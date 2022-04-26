@@ -1,9 +1,11 @@
 package com.example;
 
 import java.util.Arrays;
+import java.util.List;
 
-import com.example.factory.InsecurePasswordCheckerFactory;
-import com.example.utils.InsecurePasswordChecker;
+import com.example.builder.InsecurePasswordCheckerBuilder;
+import com.example.checker.InsecurePasswordChecker;
+import com.example.checker.validators.ValidatorType;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,7 +15,7 @@ public class PasswordCheckerTest {
     @Test
     public void insecurePasswordsTest() {
 
-        InsecurePasswordChecker checker = InsecurePasswordCheckerFactory.makeCheckerFromJsonFile();
+        InsecurePasswordChecker checker = InsecurePasswordCheckerBuilder.getInstance().buildPasswordChecker();
 
         Assert.assertNotNull(checker);
 
@@ -32,7 +34,7 @@ public class PasswordCheckerTest {
     @Test
     public void securePasswordsTest() {
 
-        InsecurePasswordChecker checker = InsecurePasswordCheckerFactory.makeCheckerFromJsonFile();
+        InsecurePasswordChecker checker = InsecurePasswordCheckerBuilder.getInstance().buildPasswordChecker();
 
         Assert.assertNotNull(checker);
 
@@ -43,5 +45,57 @@ public class PasswordCheckerTest {
             "L4CdeTuMAllb0ys" 
         })
         .forEach(password -> Assert.assertTrue(checker.isSecure(password)));
+    }
+
+
+    @Test
+    public void securePasswordTestOnlyLength() {
+
+        InsecurePasswordChecker checker = InsecurePasswordCheckerBuilder.getInstance().buildPasswordChecker(ValidatorType.LENGTH);
+
+        Assert.assertNotNull(checker);
+
+        Arrays.stream(new String[] { 
+            "unapasssegura!", 
+            "LACAT3DTADDS!", 
+            "1234567898", 
+            "asdasdasdads" 
+        })
+        .forEach(password -> Assert.assertTrue(checker.isSecure(password)));
+
+        Arrays.stream(new String[] { 
+            "un4pass", 
+            "1234567", 
+            "Asdasdd", 
+            "123" 
+        })
+        .forEach(password -> Assert.assertFalse(checker.isSecure(password)));
+    }
+
+    @Test
+    public void securePasswordTestOnlyLengthAndUpper() {
+
+        List<ValidatorType> myValidators = Arrays.asList(ValidatorType.LENGTH, ValidatorType.UPPERCASE);
+        
+        InsecurePasswordChecker checker = InsecurePasswordCheckerBuilder.getInstance()
+                                                                        .buildPasswordChecker(myValidators);
+
+        Assert.assertNotNull(checker);
+
+        Arrays.stream(new String[] { 
+            "LACAT3DTADDS!", 
+            "1234567898AAA",
+            "ASDASD123" 
+        })
+        .forEach(password -> Assert.assertTrue(checker.isSecure(password)));
+
+        Arrays.stream(new String[] { 
+            "un4pass", 
+            "1234567", 
+            "AsdASD", 
+            "123",
+            "123asdasdasd",
+        })
+        .forEach(password -> Assert.assertFalse(checker.isSecure(password)));
     }
 }
