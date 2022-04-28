@@ -1,5 +1,7 @@
-target
 .vscode
 .idea
-.apt_generated_tests
-.apt_generated
+*/.vscode/
+*/.idea/
+*/target/
+.apt_generated_tests/
+*/.apt_generated_tests/
