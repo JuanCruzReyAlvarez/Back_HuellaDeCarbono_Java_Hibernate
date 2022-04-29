@@ -1,7 +1,8 @@
 package dds.tp.carbono.checker.validators.builder;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.TreeSet;
 
@@ -11,11 +12,14 @@ import dds.tp.carbono.checker.validators.WeakListPasswordValidator;
 
 public class WeakListPasswordValidatorBuilder {
 
-    private static String FILE_NAME = "src/main/resources/insecurePasswords.json";
+    private static String FILE_NAME = "insecurePasswords.json";
     
     public static WeakListPasswordValidator build() {
         
-        try (Reader reader = new FileReader(FILE_NAME)) {
+        ClassLoader loader = WeakListPasswordValidator.class.getClassLoader();
+
+        try (InputStream is = loader.getResourceAsStream(FILE_NAME)) {
+            Reader reader = new InputStreamReader(is);
             return new Gson().fromJson(reader, WeakListPasswordValidator.class);
         } catch (IOException e) {
             return new WeakListPasswordValidator(new TreeSet<String>());            
