@@ -1,4 +1,4 @@
-package dds.tp.carbono.entities;
+package dds.tp.carbono.entities.point;
 
 import lombok.Getter;
 import lombok.Setter;
