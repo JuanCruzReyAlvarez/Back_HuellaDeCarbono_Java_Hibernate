@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+    mysqldb:
+        image: mysql:5.6
+        container_name: carbono-mysql
+        environment:
+            MYSQL_DATABASE: carbono
+            MYSQL_ROOT_PASSWORD: 123456 
+            MYSQL_TCP_PORT: 3306
+        ports:
+            - "3306"
+        volumes:
+            - ~/docker/carbono-mysql-data:/var/lib/mysql
+        restart: always
+
+    web:
+        image: carbono
+        container_name: carono-web
+        ports:
+            - "80:8080"
+        volumes:
+            - ./stable.war:/usr/local/tomcat/webapps/ROOT.war
+            - ./server.xml:/usr/local/tomcat/conf/server.xml
+        links:
+            - mysqldb
+        # env_file: .env
+        entrypoint: catalina.sh run
+        depends_on:
+            - mysqldb

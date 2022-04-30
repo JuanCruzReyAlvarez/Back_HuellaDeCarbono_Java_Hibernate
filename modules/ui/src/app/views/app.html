@@ -1,0 +1,26 @@
+<p-toolbar *ngIf="!isLogin && user" styleClass="authenticated-toolbar">
+    <div class="p-toolbar-group-left">
+        <img src="assets/images/logo.png" class="logo-image" alt="">
+    </div>
+    
+
+    <div class="p-toolbar-group-right">
+        <p-button icon="pi pi-user" [label]="user.username" (click)="menu.toggle($event)"></p-button>
+        <p-menu #menu [popup]="true" [model]="userMenuItems"></p-menu>
+    </div>
+</p-toolbar>
+
+<div *ngIf="!isLogin && user" class="grid main-layout" style="overflow-y: scroll;">
+
+    <div class="col">
+        <router-outlet></router-outlet>
+    </div>
+
+    <div style="height: 175px; width: 0px;" class="fixed-bottom speeddial-tooltip-demo">
+        <p-speedDial [model]="sideMenuItems" className="speeddial-left" direction="up"></p-speedDial>
+    </div>
+
+</div>
+
+<router-outlet *ngIf="isLogin"></router-outlet>
+

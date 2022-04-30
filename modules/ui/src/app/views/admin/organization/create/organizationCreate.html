@@ -1,0 +1,107 @@
+<p-toast position="bottom-center"></p-toast>
+
+<p-card styleClass="organization-form mb-10">
+
+    <p-divider></p-divider>
+
+    <h3 style="text-align: center;"><u>Datos Pincipales de la Organizacion</u></h3>
+
+    <p-divider></p-divider>
+
+    <div class="grid p-fluid">
+        <div class="col">
+            
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-box"></i></span>
+                <input type="text" 
+                       [(ngModel)]="organization.name" 
+                       pInputText 
+                       placeholder="Razon Social">         
+            </div>
+
+            <div class="p-inputgroup mt-4 organization-type">
+                <p-selectButton [options]="orgTypes" 
+                                [(ngModel)]="organization.type" 
+                                optionLabel="name"
+                                optionValue="name"></p-selectButton>       
+            </div>
+
+            <p-dropdown styleClass="mt-4 mb-12"
+                        [options]="categories" 
+                        [(ngModel)]="organization.classification" 
+                        [editable]="true"
+                        placeholder="Categoria"
+                        optionLabel="label"
+                        optionValue="value"></p-dropdown>
+        </div>
+    </div>
+
+    <p-divider></p-divider>
+    
+    <h3 style="text-align: center;"><u>Sectores de la Organizacion</u></h3>
+
+    <p-divider></p-divider>
+
+    <div class="grid p-fluid">
+        <div class="col">
+
+            <div class="p-inputgroup mt-4">
+                <input type="text" pInputText placeholder="Agregar Sector" #newSector/>         
+                <button type="button" 
+                        pButton 
+                        pRipple
+                        (click)="addSector(newSector.value); newSector.value = ''">
+                    <i class="pi pi-plus-circle"></i>
+                </button>
+            </div>
+
+            <p-table *ngIf="organization && organization.sectors && organization.sectors.length" [value]="organization.sectors" styleClass="p-datatable-striped mt-4" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Sector</th>
+                        <th style="width: 75px;">Quitar</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-sector>
+                    <tr>
+                        <td>{{sector.name}}</td>
+                        <td style="width: 75px;">
+                            <button type="button" 
+                                    pButton 
+                                    pRipple
+                                    class="p-button-danger"
+                                    (click)="removeSector(sector)" >
+                                <i class="pi pi-times"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+        </div>
+    </div>
+
+    <p-divider></p-divider>
+    <h3 style="text-align: center;"><u>Ubicacion Geografica</u></h3>
+
+    <div class="flex align-items-center justify-content-center" style="min-width: 200px; min-height: 50px">
+        <button type="button" pButton pRipple class="p-button-info" (click)="mapDialog=true">
+            <span *ngIf="!organization.location">Agregar Ubicacion</span> 
+            <span *ngIf="organization.location">{{ organization.location.address }}</span> 
+            <i class="pi pi-map-marker ml-2"></i></button> 
+    </div>
+
+</p-card>
+
+<div *ngIf="loading" class="fixed-bottom-right">
+    <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+</div>
+
+<div *ngIf="!disableButton && organization.name && organization.sectors.length && organization.classification && organization.type && organization.location" class="fixed-bottom-right">
+    <button pButton pRipple class="p-button-info organization-save-button" (click)="save()"><i class="pi pi-save" style="font-size: 1.8rem;"></i></button>
+</div>
+
+
+<p-dialog [(visible)]="mapDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+    <map-usage *ngIf="mapDialog" [geoLocation]="organization.location" [geoLocationCallback]="geoLocationCallback"></map-usage>
+</p-dialog>
