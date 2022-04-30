@@ -68,9 +68,27 @@ abrir terminal y posicionarse donde se encuentra este README.md (base del repo) 
 - -sa ----- Run Local Server on local Apache Tomcat  
 - -h  ----- Help guide  
 
+#### ejemplo
+
+ ```
+-$ sh ./environment/build-carbono.sh -ucsa
+
  ```
 
+- esto primero hace build de la UI creando todos los archivos estaticos (html, css, js)
+- luego compila el codigo java de la carpeta carbono y genera el .war
+- levanta el .war en el Apache Tomcat que se encuentra en la carpeta environment
 
+### Debugging
 
+#### vsCode
 
+- Para debuggear en el Visual Studio Code es necesario instalar la extension de Apache Tomcat:
+https://marketplace.visualstudio.com/items?itemName=adashen.vscode-tomcat
 
+- luego dentro del widget de tomcat agregar un nuevo tomcat apuntando al directorio llamado tomcat que esta en la carpeta environment
+- para debuggear hacer click derecho en el ROOT.war (creado al buildear con el build-carbono.sh -c) y poner Debbug with Tomcat
+
+#### intelliJ
+
+- //TODO: completar
