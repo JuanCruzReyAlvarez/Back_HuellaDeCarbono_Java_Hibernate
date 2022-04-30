@@ -35,7 +35,7 @@ https://drive.google.com/file/d/19n6kdPV6DA4IYDUfMBO2H5gJuSnwWOJu/view?usp=shari
 - guardar hosts file
 
 
-## Instalar docker desktop en Windows 10
+## Instalar docker desktop en Windows 10 (Opcional para no instalar base de datos)
 
 https://www.youtube.com/watch?v=_et7H0EQ8fY
 
