@@ -5,3 +5,10 @@
 */target/
 .apt_generated_tests/
 */.apt_generated_tests/
+*.log
+*.out
+localhost_access_log*.txt
+environment/tomcat/temp/
+environment/tomcat/webapps/ROOT
+environment/tomcat/webapps/ROOT.war
+environment/stable.war
