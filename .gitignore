@@ -12,3 +12,4 @@ environment/tomcat/temp/
 environment/tomcat/webapps/ROOT
 environment/tomcat/webapps/ROOT.war
 environment/stable.war
+target

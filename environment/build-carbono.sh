@@ -1,15 +1,13 @@
 #!bin/bash
 
-function startServerProcess {
-    cd $CARBONO_PATH/environment && docker-compose down && docker-compose up
-}
-
-function runMavenBuild {
-    if [[ $1 == *"t"* ]]; then
-        mvn clean install 
-    else
-        mvn clean install -DskipTests
-    fi
+function printerror {
+    echo " " &&
+    echo " " &&
+    echo "-------------------------------------------" &&
+    echo "[ERROR] $1" &&
+    echo "-------------------------------------------" &&
+    echo " " &&
+    echo " "
 }
 
 function printHelp {
@@ -19,6 +17,8 @@ function printHelp {
     echo "-u  ----- UI Module  " &&
     echo "-c  ----- Carbono Backend  " &&
     echo "-t  ----- Run unit testing to complete build  " &&
+    echo "-s  ----- Run Local Server Docker by default " &&
+    echo "-sa ----- Run Local Server on local Apache Tomcat  " &&
     echo "-h  ----- This help guide  " &&
     echo "-------------------------------------------" &&
     echo "if no parameters are passed the helper will run it all" &&
@@ -35,6 +35,31 @@ function printmessage {
     echo "-------------------------------------------" &&
     echo " " &&
     echo " "
+}
+
+function startServerProcess {
+    cd $CARBONO_PATH/environment &&
+   
+    if [[ $1 == *"a"* ]]; then
+      if [[ -f $(pwd)"/tomcat/webapps/ROOT.war" ]]; then
+        export CATALINA_HOME=$(pwd)"/tomcat" &&
+        echo ${CATALINA_HOME} &&
+        export DATABASE_HOST="localhost" &&
+        ./tomcat/bin/startup.bat
+      else
+        printerror "there is no WAR file. Please run the build helper with -c flag at least one time"
+      fi
+    else
+      docker-compose down && docker-compose up
+    fi
+}
+
+function runMavenBuild {
+    if [[ $1 == *"t"* ]]; then
+        mvn clean install 
+    else
+        mvn clean install -DskipTests
+    fi
 }
 
 function buildAndDeployUI {
@@ -55,6 +80,8 @@ function buildAndDeployCarbono {
     cd $CARBONO_PATH/carbono &&
     runMavenBuild $1 &&
     cp -f ./target/carbono-0.1.war $CARBONO_PATH/environment/stable.war && 
+    cp -f ./target/carbono-0.1.war $CARBONO_PATH/environment/tomcat/webapps/ROOT.war && 
+    cp -f ./target/carbono-0.1.war ./target/ROOT.war && 
     printmessage "Carbono Built and Deployed"
 }
 
@@ -71,7 +98,7 @@ if [[ $1 == *"c"* ]]; then
 fi
 
 if [[ $1 == *"s"* ]]; then
-  startServerProcess
+  startServerProcess $1
 fi
 
 if [[ $1 == *"h"* ]]; then

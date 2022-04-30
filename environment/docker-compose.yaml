@@ -24,7 +24,8 @@ services:
             - ./server.xml:/usr/local/tomcat/conf/server.xml
         links:
             - mysqldb
-        # env_file: .env
+        environment: 
+            DATABASE_HOST: mysqldb
         entrypoint: catalina.sh run
         depends_on:
             - mysqldb
