@@ -8,18 +8,60 @@ https://drive.google.com/file/d/19n6kdPV6DA4IYDUfMBO2H5gJuSnwWOJu/view?usp=shari
 - Inicio > Settings
 - Buscar "editar variables de entorno"
 - Se tiene que abrir una ventanita "System Properties" > click en boton "Environment Variables..."
+
 - Agregar Variable de entorno llamada JAVA_HOME en SYSTEM (abajo)
 
 ![Alt text](https://i.gyazo.com/2f21c66bb352547ab6f8bbf125c0c96c.png "Agregar JAVA_HOME")
 
 - Agregar row en la variable de entorno Path cuyo valor sea %JAVA_HOME%\bin
 
+
 ![Alt text](https://i.gyazo.com/bf11f067a4ca25b3d046561aaa91c60b.png "Editar Path")
 
-- Agregar Variable de entorno llamada DATABASE_HOST con el valor localhost en variables de usuario (abajo)
 
-![Alt text](https://i.gyazo.com/ce69ab7fd44277ff75c29faad99a632d.png "Editar Path")
+### Maven
 
+- Descargar y extraer en C:\Program Files\Java
+
+https://drive.google.com/file/d/1WISFuwqOivZ37lYdTgXs3MgXDTo37JtK/view?usp=sharing
+
+- Agregar Variable de entorno llamada MAVEN_HOME en SYSTEM (abajo)
+
+![Alt text](https://i.gyazo.com/ec762d5789045011c7bcedd82cfdf304.png "Agregar MAVEN_HOME")
+
+- Agregar row en la variable de entorno Path cuyo valor sea %MAVEN_HOME%\bin
+
+![Alt text](https://i.gyazo.com/23592b2d39801120125e38fa4f42f9a8.png "Editar Path")
+
+
+## Variables de Entorno para nuestro proyecto
+
+- Agregar Variable de entorno llamada DATABASE_HOST con el valor localhost en variables de usuario (arriba)
+
+![Alt text](https://i.gyazo.com/ce69ab7fd44277ff75c29faad99a632d.png "Database env var")
+
+- Agregar Variable de entorno llamada CARBONO_PATH cuyo valor es la direccion del repositorio clonado
+
+![Alt text](https://i.gyazo.com/f518cf7193368ac2c4c650aaa884f66a.png "Carbono Path")
+
+## Instalar NodeJS, NPM y Angular cli (para la UI)
+
+- Descargar, extraer y ejecutar el instalador
+
+https://drive.google.com/file/d/1esN0vh7jon_OE6l6G4R65nQHSXf7aBI8/view?usp=sharing
+
+- abrir una nueva terminal y verificar que se haya instalado 
+
+ ```
+-$ npm -v
+ ```
+ - El comando de arriba debe devolver el numero de version de npm
+
+#### instalar Angular cli con npm
+
+ ```
+-$ npm install -g @angular/cli
+ ```
 
 ## Configurar dominio ddstp.carbono.com
 
@@ -29,7 +71,6 @@ https://drive.google.com/file/d/19n6kdPV6DA4IYDUfMBO2H5gJuSnwWOJu/view?usp=shari
 
  ```
 127.0.0.1 ddstp.carbono.com
-
  ```
  
 - guardar hosts file
@@ -56,7 +97,6 @@ abrir terminal y posicionarse donde se encuentra este README.md (base del repo) 
 
  ```
 -$ sh ./environment/build-carbono.sh
-
  ```
 ### Argumentos
 
@@ -72,7 +112,6 @@ abrir terminal y posicionarse donde se encuentra este README.md (base del repo) 
 
  ```
 -$ sh ./environment/build-carbono.sh -ucsa
-
  ```
 
 - esto primero hace build de la UI creando todos los archivos estaticos (html, css, js)
