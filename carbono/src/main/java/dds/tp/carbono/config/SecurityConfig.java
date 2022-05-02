@@ -32,6 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         "/assets/images/**"
     };
 
+    private static final String[] ALLOWED_POST_URIS = new String[] {
+        "/api/auth/**",
+    };
+
     // @Autowired
     // UserDetailsServiceImpl userDetailsService;
     
@@ -68,6 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests()
             .antMatchers(HttpMethod.GET, ALLOWED_URIS).permitAll()
+            .antMatchers(HttpMethod.POST, ALLOWED_POST_URIS).permitAll()
             .anyRequest().authenticated();
 
         // http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -64,7 +64,14 @@ function runMavenBuild {
 
 function buildAndDeployUI {
     cd $CARBONO_PATH && 
-    cd modules/ui && npm run build &&
+    cd modules/ui && 
+    if [[ -d $(pwd)"/node_modules" ]]; then
+      echo "node moldules exists"
+    else
+      npm install &&
+      echo "node modules installed"
+    fi
+    npm run build &&
     cp -Rf ./dist $CARBONO_PATH/carbono/src/main/resources/static &&
     printmessage "Built and Deployed"
 }
