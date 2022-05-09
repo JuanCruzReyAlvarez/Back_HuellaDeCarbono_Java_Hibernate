@@ -11,7 +11,7 @@ import dds.tp.carbono.contracts.Importable;
 public class ImportableSheetDataBuilder {
     
     private static final Integer SHEET_INDEX = 0;
-    private static final Integer FIRST_DATA_ROW_INDEX = 2;
+    private static final int FIRST_DATA_ROW_INDEX = 2;
 
     public static ImportableSheet build(Class<? extends Importable> importableType, Workbook workbook) {
         Sheet sheet = workbook.getSheetAt(SHEET_INDEX);
@@ -20,9 +20,9 @@ public class ImportableSheetDataBuilder {
 
         while(iterator.hasNext()) {
             Row row = iterator.next();
-            if (row.getRowNum() >= FIRST_DATA_ROW_INDEX);
-                importableSheet.getRows().add(iterator.next());
-        }
+            if (row.getRowNum() >= FIRST_DATA_ROW_INDEX)
+                importableSheet.getRows().add(row);
+        } 
 
         return importableSheet;
     }

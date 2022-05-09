@@ -9,4 +9,7 @@ public class Model implements Importable {
     
     @Getter @Setter @ExcelColumn(index = 0)
     private String actividad;
+
+    @Getter @Setter @ExcelColumn(index = 1)
+    private String tipoDeConsumo;
 }

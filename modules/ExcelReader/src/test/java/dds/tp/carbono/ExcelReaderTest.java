@@ -15,7 +15,6 @@ public class ExcelReaderTest {
     public void test() throws IllegalArgumentException, IllegalAccessException, NoSuchMethodException, SecurityException, InstantiationException, InvocationTargetException {
         IExcelReader reader = new ExcelReader();
 
-
         String fileName = "sample.xlsx";
 
         List<Model> models = reader.read(fileName, Model.class);
