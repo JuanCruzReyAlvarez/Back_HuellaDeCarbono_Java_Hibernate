@@ -1,7 +1,6 @@
 package dds.tp.carbono;
 
 import java.util.Arrays;
-import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,7 +14,7 @@ public class PasswordCheckerTest {
     @Test
     public void insecurePasswordsTest() {
 
-        InsecurePasswordChecker checker = InsecurePasswordCheckerBuilder.getInstance().buildPasswordChecker();
+        InsecurePasswordChecker checker = new InsecurePasswordCheckerBuilder().buildPasswordChecker();
 
         Assert.assertNotNull(checker);
 
@@ -36,7 +35,7 @@ public class PasswordCheckerTest {
     @Test
     public void securePasswordsTest() {
 
-        InsecurePasswordChecker checker = InsecurePasswordCheckerBuilder.getInstance().buildPasswordChecker();
+        InsecurePasswordChecker checker = new InsecurePasswordCheckerBuilder().buildPasswordChecker();
 
         Assert.assertNotNull(checker);
 
@@ -53,7 +52,7 @@ public class PasswordCheckerTest {
     @Test
     public void securePasswordTestOnlyLength() {
 
-        InsecurePasswordChecker checker = InsecurePasswordCheckerBuilder.getInstance().buildPasswordChecker(ValidatorType.LENGTH);
+        InsecurePasswordChecker checker = new InsecurePasswordCheckerBuilder().buildPasswordChecker(ValidatorType.LENGTH);
 
         Assert.assertNotNull(checker);
 
@@ -77,10 +76,12 @@ public class PasswordCheckerTest {
     @Test
     public void securePasswordTestOnlyLengthAndUpper() {
 
-        List<ValidatorType> myValidators = Arrays.asList(ValidatorType.LENGTH, ValidatorType.UPPERCASE);
+        ValidatorType[] myValidators = new ValidatorType[] { 
+            ValidatorType.LENGTH, 
+            ValidatorType.UPPERCASE
+        };
         
-        InsecurePasswordChecker checker = InsecurePasswordCheckerBuilder.getInstance()
-                                                                        .buildPasswordChecker(myValidators);
+        InsecurePasswordChecker checker = new InsecurePasswordCheckerBuilder().buildPasswordChecker(myValidators);
 
         Assert.assertNotNull(checker);
 
