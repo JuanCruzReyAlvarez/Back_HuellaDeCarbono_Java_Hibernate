@@ -1,0 +1,33 @@
+html,body {
+    background-color: black;
+}
+
+.table-container {
+    padding: 25px;
+    background-color: rgb(46, 46, 46);
+    border-radius: 5px;
+}
+
+.trayectos-table-header {
+    background-color: black;
+    color: white;
+}
+
+.tayectos-table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #fcb9b9;
+    font-weight: bolder;
+    border-radius: 5px;
+}
+  
+.tayectos-table td, th {
+    border: 1px solid #5c5c5c;
+    text-align: left;
+    padding: 8px;
+}
+  
+.tayectos-table tr:nth-child(even) {
+    background-color: #dddddd;
+}

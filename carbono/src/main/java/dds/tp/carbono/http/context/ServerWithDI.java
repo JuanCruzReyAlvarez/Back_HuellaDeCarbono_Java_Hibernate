@@ -9,6 +9,7 @@ import dds.tp.carbono.contracts.services.org.IOrgMetricsService;
 import dds.tp.carbono.http.controllers.admin.ui.AdminOrganizationController;
 import dds.tp.carbono.http.controllers.auth.LoginController;
 import dds.tp.carbono.http.controllers.auth.RegisterController;
+import dds.tp.carbono.http.controllers.member.trayectos.TrayectosController;
 import dds.tp.carbono.http.controllers.org.OrgMetricsController;
 import spark.TemplateEngine;
 import spark.servlet.SparkApplication;
@@ -39,6 +40,7 @@ public class ServerWithDI implements SparkApplication {
             new RegisterController(ctx.get(IRegisterService.class)),
             new OrgMetricsController(ctx.get(IOrgMetricsService.class)),
             new AdminOrganizationController(),
+            new TrayectosController()
         };
     }
 }

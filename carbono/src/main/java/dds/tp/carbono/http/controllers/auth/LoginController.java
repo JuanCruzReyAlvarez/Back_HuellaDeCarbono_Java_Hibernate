@@ -41,7 +41,7 @@ public class LoginController extends Controller {
     private String redirectByRol(Rol rol) throws HttpException {
         switch (rol) {
             case ADMINISTRADOR : return json(new AuthRedirect(path(Uri.ADMIN_ORG)));
-            case MIEMBRO       : return json(new AuthRedirect(path(Uri.MEMBER_DASHBOARD)));
+            case MIEMBRO       : return json(new AuthRedirect(path(Uri.MEMBER_TRAYECTOS)));
             case ORGANIZACION  : return json(new AuthRedirect(path(Uri.ORG_METRICS)));
             default: throw new ForbiddenException(FORBIDDEN_MESSAGE);
         }

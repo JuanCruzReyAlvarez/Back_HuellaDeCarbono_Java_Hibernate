@@ -53,8 +53,6 @@ public class OrgMetricsController extends Controller {
             log.info(new Gson().toJson(excelData));
            
             return view(VIEW, Collections.singletonMap("metrics", excelData));
-
-      
         } catch (Exception ex) {
             return view(VIEW, Collections.singletonMap("errors", Collections.singletonMap("error", ex.getMessage())));
         }

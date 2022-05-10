@@ -14,7 +14,7 @@ public class Routes {
     private static final String ADMIN     = "/admin";
     private static final String ORG       = "/org";
     private static final String MEMBER    = "/member";
-    private static final String DASHBOARD = "/dashboard";
+    private static final String TRAYECTOS = "/trayectos";
     private static final String METRICS   = "/metrics";
     
     public void init() {
@@ -25,7 +25,7 @@ public class Routes {
                 new Route(Uri.ADMIN_ORG, ORG)
             }),
             new Route(Uri.MEMBER, MEMBER, new Route[] {
-                new Route(Uri.MEMBER_DASHBOARD, DASHBOARD)
+                new Route(Uri.MEMBER_TRAYECTOS, TRAYECTOS)
             }),
             new Route(Uri.ORG, ORG, new Route[] {
                 new Route(Uri.ORG_METRICS, METRICS)

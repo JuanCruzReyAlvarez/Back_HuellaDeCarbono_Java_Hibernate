@@ -7,7 +7,7 @@ public enum Uri {
     ADMIN, 
     ADMIN_ORG, 
     MEMBER,
-    MEMBER_DASHBOARD, 
+    MEMBER_TRAYECTOS, 
     ORG, 
     ORG_METRICS 
 }
