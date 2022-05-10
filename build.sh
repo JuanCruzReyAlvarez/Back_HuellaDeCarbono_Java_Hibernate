@@ -80,7 +80,7 @@ if [[ $1 == *"c"* ]]; then
     buildAndDeployContractsModule $1
 fi
 
-if [[ $1 == *"p"* ]]; then
+if [[ $1 == *"e"* ]]; then
     buildAndDeployExcelReaderModule $1
 fi
 

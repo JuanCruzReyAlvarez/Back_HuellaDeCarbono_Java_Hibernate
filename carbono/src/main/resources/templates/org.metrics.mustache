@@ -12,20 +12,46 @@
 </head>
 
 <body>
+    <div class="form-container">
+        <form id="metrics-form" method='post' action="/org/metrics" enctype='multipart/form-data'>
+            <div class="form-field button-wrap">
+                <label class="button" for="file">Select a file:</label>
+                <input type="file" id="file" name="file">
+            </div>
 
-    <form id="metrics-form" metod="POST" action="org/metrics">
-        <div class="form-field">
-            <label for="myfile">Select a file:</label>
-            <input type="file" id="myfile" name="myfile">
-        </div>
+            <div class="form-footer">
+                <input class="metrics-button" type="submit" value="Upload">
+            </div>
+        </form>
+    </div>
 
-        <div class="form-footer">
-            <input class="metrics-button" type="submit" value="Login">
+    <table>
+        <tr>
+            <th>Actividard</th>
+            <th>Tipo de Consumo</th>
+            <th>Periodo de Imputacion</th>
+        </tr>
+        {{#metrics}}
+        <tr>
+            <td>{{actividad}}</td>
+            <td>{{tipoDeConsumo}}</td>
+            <td>{{periodoDeImputacion}}</td>
+        </tr>
+        {{/metrics}}
+    </table>
+
+    <div class="toast-container">
+        {{#errors}}
+        <div id="toast" class="toast-error visible">
+            <ul>
+                <li>{{error}}</li>
+            </ul>
         </div>
-    </form>
-    
+        {{/errors}}
+    </div>
+
     <div id="toast"></div>
-    
+
     <script src="/js/toast/toast.js"></script>
     <script src="/js/org/metrics.js"></script>
 

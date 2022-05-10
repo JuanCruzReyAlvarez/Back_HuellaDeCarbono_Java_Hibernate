@@ -22,7 +22,7 @@ public class ExcelReader implements IExcelReader {
         try (Workbook workbook = new XSSFWorkbook(is)) {
             ImportableSheet importableSheet = ImportableSheetDataBuilder.build(importableType, workbook);
             List<? extends Importable> list = new ImportableSheetParser(importableSheet).parse();
-            return list.stream().map(i -> importableType.cast(i)).collect(Collectors.toList());
+            return list.stream().map(i -> importableType.cast(i)).filter(i -> !i.isEmpty()).collect(Collectors.toList());
         } catch (IOException e) {
             return null;
         }

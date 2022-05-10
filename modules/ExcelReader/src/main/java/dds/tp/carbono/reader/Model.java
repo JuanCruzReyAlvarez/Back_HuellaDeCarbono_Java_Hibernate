@@ -12,4 +12,12 @@ public class Model implements Importable {
 
     @Getter @Setter @ExcelColumn(index = 1)
     private String tipoDeConsumo;
+
+    @Getter @Setter @ExcelColumn(index = 4)
+    private String periodoDeImputacion;
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
 }

@@ -1,5 +1,7 @@
 package dds.tp.carbono.http.controllers;
 
+import java.util.Map;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 
@@ -18,6 +20,10 @@ public abstract class Controller implements IController {
     protected <T> T getBody(Request request, Class<T> type, Validator<T> validator) throws HttpException {
         try {
             T data = new Gson().fromJson(request.body(), type);
+
+            if (validator == null)
+                return data;
+
             ValidateResult validation = validator.validate(data);
             
             if (validation.isValid())
@@ -30,6 +36,10 @@ public abstract class Controller implements IController {
     }
 
     protected ModelAndView view(String view, Object ...context) {
+        return new ModelAndView(context, view);
+    }
+
+    protected ModelAndView view(String view, Map<String, Object> context) {
         return new ModelAndView(context, view);
     }
 
