@@ -26,7 +26,6 @@ import spark.TemplateEngine;
 public class OrgMetricsController extends Controller {
     
     private static final String VIEW = "org.metrics.mustache";
-    private static final String VIEW_ERROR = "org.metrics.error.mustache";
     private static final String ACCESS_TYPE = "multipart/form-data";
     private static final String MULTIPART_DRIVER = "org.eclipse.jetty.multipartConfig";
     

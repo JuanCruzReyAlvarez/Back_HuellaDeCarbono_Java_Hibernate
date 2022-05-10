@@ -5,7 +5,6 @@ import dds.tp.carbono.contracts.http.IController;
 import dds.tp.carbono.http.controllers.admin.ui.AdminOrganizationController;
 import dds.tp.carbono.http.controllers.auth.LoginController;
 import dds.tp.carbono.http.controllers.auth.RegisterController;
-import dds.tp.carbono.http.controllers.org.OrgMetricsController;
 import dds.tp.carbono.services.auth.LoginService;
 import dds.tp.carbono.services.auth.RegisterService;
 import spark.TemplateEngine;
