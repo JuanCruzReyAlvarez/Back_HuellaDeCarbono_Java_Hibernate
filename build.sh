@@ -47,14 +47,35 @@ function runMavenBuild {
 function buildAndDeployContractsModule {
     cd $CARBONO_PATH/modules/contracts &&
     runMavenBuild $1 &&
+
+    if [[ ! -d $CARBONO_PATH/carbono/lib ]]; then
+        mkdir $CARBONO_PATH/carbono/lib
+    fi
+    
     cp -f ./target/contracts-1.0-jar-with-dependencies.jar $CARBONO_PATH/carbono/lib/contracts-1.0.jar && 
+
+    if [[ ! -d $CARBONO_PATH/modules/passwords/lib ]]; then
+        mkdir $CARBONO_PATH/modules/passwords/lib
+    fi
+    
     cp -f ./target/contracts-1.0-jar-with-dependencies.jar $CARBONO_PATH/modules/passwords/lib/contracts-1.0.jar && 
+
+    if [[ ! -d $CARBONO_PATH/modules/ExcelReader/lib ]]; then
+        mkdir $CARBONO_PATH/modules/ExcelReader/lib
+    fi
+
+    cp -f ./target/contracts-1.0-jar-with-dependencies.jar $CARBONO_PATH/modules/ExcelReader/lib/contracts-1.0.jar && 
+
     printmessage "Passwords Module Built and Deployed"
 }
 
 function buildAndDeployExcelReaderModule {
     cd $CARBONO_PATH/modules/ExcelReader &&
     runMavenBuild $1 &&
+
+    if [[ ! -d $CARBONO_PATH/carbono/lib ]]; then
+        mkdir $CARBONO_PATH/carbono/lib
+    fi
     cp -f ./target/ExcelReader-1.0-jar-with-dependencies.jar $CARBONO_PATH/carbono/lib/excelReader-1.0.jar && 
     printmessage "Passwords Module Built and Deployed"
 }
@@ -62,6 +83,10 @@ function buildAndDeployExcelReaderModule {
 function buildAndDeployPasswordsModule {
     cd $CARBONO_PATH/modules/passwords &&
     runMavenBuild $1 &&
+
+    if [[ ! -d $CARBONO_PATH/carbono/lib ]]; then
+        mkdir $CARBONO_PATH/carbono/lib
+    fi
     cp -f ./target/passwords-1.0-jar-with-dependencies.jar $CARBONO_PATH/carbono/lib/passwords-1.0.jar && 
     printmessage "Passwords Module Built and Deployed"
 }
