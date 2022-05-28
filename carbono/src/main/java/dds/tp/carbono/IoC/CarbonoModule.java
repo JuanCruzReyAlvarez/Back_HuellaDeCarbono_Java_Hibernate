@@ -8,7 +8,7 @@ import dds.tp.carbono.contracts.services.auth.IRegisterService;
 import dds.tp.carbono.contracts.services.org.IOrgMetricsService;
 import dds.tp.carbono.services.auth.LoginService;
 import dds.tp.carbono.services.auth.RegisterService;
-import dds.tp.carbono.services.org.MetricsService;
+import dds.tp.carbono.services.org.metrics.MetricsService;
 
 public class CarbonoModule implements IModule {
     
@@ -21,7 +21,7 @@ public class CarbonoModule implements IModule {
 
     private IContext buildModules(IContext ctx) {
         ctx = new PasswordsModule().build(ctx);
-        ctx = new ExcelReaderModule().build(ctx);
+        // ctx = new ExcelReaderModule().build(ctx);
         // ...
 
         return ctx;

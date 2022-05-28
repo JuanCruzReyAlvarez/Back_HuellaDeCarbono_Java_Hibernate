@@ -20,6 +20,11 @@
     border: solid 1px red;
 }
 
+.toast-success {
+    background-color: #91eea07a;
+    border: solid 1px rgb(0, 255, 72);
+}
+
 .visible {
     display: block !important;
 }

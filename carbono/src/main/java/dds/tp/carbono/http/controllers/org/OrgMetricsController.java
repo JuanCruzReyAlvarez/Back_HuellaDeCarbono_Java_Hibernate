@@ -8,13 +8,12 @@ import javax.servlet.MultipartConfigElement;
 
 import com.google.gson.Gson;
 
-import dds.tp.carbono.contracts.IExcelReader;
 import dds.tp.carbono.contracts.services.org.IOrgMetricsService;
-import dds.tp.carbono.entities.organization.metrics.MetricsExcelModel;
+import dds.tp.carbono.entities.organization.metrics.ImportableModel;
 import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.Uri;
-import dds.tp.carbono.reader.ExcelReader;
+import dds.tp.carbono.reader.ExcelImporter;
 import lombok.extern.slf4j.Slf4j;
 import spark.ModelAndView;
 import spark.Request;
@@ -29,10 +28,7 @@ public class OrgMetricsController extends Controller {
     private static final String ACCESS_TYPE = "multipart/form-data";
     private static final String MULTIPART_DRIVER = "org.eclipse.jetty.multipartConfig";
     
-    // private IOrgMetricsService service;
-
     public OrgMetricsController(IOrgMetricsService service) {
-        // this.service = service;
     }
 
     @Override
@@ -46,9 +42,9 @@ public class OrgMetricsController extends Controller {
         
         try (InputStream is = request.raw().getPart("file").getInputStream()) {
         
-            IExcelReader reader = new ExcelReader();
+            ExcelImporter importer = new ExcelImporter();
 
-            List<MetricsExcelModel> excelData = reader.read(is, MetricsExcelModel.class);
+            List<ImportableModel> excelData = importer.importFrom(is, ImportableModel.class);
            
             log.info(new Gson().toJson(excelData));
            

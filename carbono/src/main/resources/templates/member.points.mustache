@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Carbono - Miembro - Trayectos</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/bootstrap/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/toast/toast.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/modal/modal.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/member/trayectos/points.css'>
+    <script src='/js/jquery.min.js'></script>
+</head>
+
+<body>
+
+    <div id="agregar-point-modal" class="carbono-modal">
+        <div class="carbono-modal-content">
+
+            <form id="crear-point-container" method="post" action="/member/points">
+
+                <h3 class="form-label title active">Pais</h3>
+                <h3 class="form-label title">Provincia</h3>
+                <h3 class="form-label title">Municipio</h3>
+                <h3 class="form-label title">Localidad</h3>
+                <h3 class="form-label title">Calle</h3>
+                
+
+                <div class="form-field field active">
+                    <input type="text" class="autocomplete" autocomplete="off"/>
+                    <div class="autocomplete-list" label="pais"></div>
+                    <input id="pais" type="hidden" name="pais" class="value"/>
+                </div>
+
+                <div class="form-field field">
+                    <input type="text" class="autocomplete" autocomplete="off"/>
+                    <div class="autocomplete-list" label="provincia"></div>
+                    <input id="provincia" type="hidden" name="provincia" class="value"/>
+                </div>
+
+
+                <div class="form-field field">
+                    <input type="text" class="autocomplete" autocomplete="off"/>
+                    <div class="autocomplete-list" label="municipio"></div>
+                    <input id="municipio" type="hidden" name="municipio" class="value"/>
+                </div>
+
+
+                <div class="form-field field">
+                    <input type="text" class="autocomplete" autocomplete="off"/>
+                    <div class="localidad autocomplete-list" label="localidad"></div>
+                    <input id="localidad" type="hidden" name="localidad" class="value"/>
+                </div>
+
+
+                <div class="form-field field">
+                    <input id="calle" type="text" name="calle" autocomplete="off"/>
+
+                    <h3 style="text-align: center;">Altura</h3>
+                    <div>
+                        <input id="altura" type="text" name="altura" autocomplete="off"/>
+                    </div>
+    
+                    <h3 style="text-align: center;">Detalle</h3>
+                    <div>
+                        <input id="detalle" type="text" name="detalle" autocomplete="off"/>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <button id="submitForm" type="submit"> Crear Punto </button>
+                    </div>
+                </div>
+                
+
+            </form>
+
+        </div>
+    </div>
+
+
+    <div class="container">
+
+        <div class="table-container">
+            <div class="header-toolbar">
+                <button id="agregarPointButton">Agregar Point</button>
+            </div>
+            <table id="points-table">
+                <tr class="points-table-header">
+                    <th>pais</th>
+                    <th>provincia</th>
+                    <th>municipio</th>
+                    <th>localidad</th>
+                    <th>calle</th>
+                    <th>altura</th>
+                    <th>detalle</th>
+                    <th>Accion</th>
+                </tr>
+                {{#points}}
+                <tr class="row-{{id}}">
+                    <td>{{pais.nombre}}</td>
+                    <td>{{provincia.nombre}}</td>
+                    <td>{{municipio.nombre}}</td>
+                    <td>{{localidad.nombre}}</td>
+                    <td>{{calle}}</td>
+                    <td>{{altura}}</td>
+                    <td>{{detalle}}</td>
+                    <td><button id="verTramosButton">Accion</button></td>
+                </tr>
+                {{/points}}
+            </table>
+        </div>
+    </div>
+
+
+    <div class="toast-container">
+        <div id="toast"></div>
+    </div>
+
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    <script src="/js/toast/toast.js"></script>
+    <script src="/js/modal/modal.js"></script>
+    <script src="/js/member/points.js"></script>
+</body>
+
+</html>

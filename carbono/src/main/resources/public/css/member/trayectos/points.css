@@ -26,6 +26,7 @@ input {
     border-color: -internal-light-dark(rgba(118, 118, 118, 0), rgba(133, 133, 133, 0)) !important;
     border-image: initial;
 }
+
 .form-row {
     display:table;
     table-layout:fixed;
@@ -33,9 +34,18 @@ input {
     min-height: 40px;
     border-radius: 5px;
 }
+
+.form-label {
+    text-align: center;
+    display: none;
+}
+
 .form-field {
-    display:table-cell;
-    
+    display: none;
+}
+
+.active {
+    display: block;
 }
 
 .form-field input {
@@ -55,12 +65,12 @@ input {
     border-radius: 5px;
 }
 
-.trayectos-table-header {
+.points-table-header {
     background-color: black;
     color: white;
 }
 
-.tayectos-table {
+#points-table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -69,24 +79,18 @@ input {
     border-radius: 5px;
 }
   
-.tayectos-table td, th {
+#points-table td, th {
     border: 1px solid #5c5c5c;
     text-align: left;
     padding: 8px;
 }
   
-.tayectos-table tr:nth-child(even) {
+#points-table tr:nth-child(even) {
     background-color: #dddddd;
 }
 
-#crear-trayecto-container {
-    width: 80vw;
-    padding-top: 25px;
-}
-
-
-#crear-tramo-container {
-    width: 80vw;
+#crear-point-container {
+    width: 25vw;
     padding-top: 25px;
 }
 

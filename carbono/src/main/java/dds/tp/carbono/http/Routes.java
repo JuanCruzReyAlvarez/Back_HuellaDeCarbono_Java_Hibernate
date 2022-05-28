@@ -8,14 +8,16 @@ import dds.tp.carbono.http.utils.Uri;
 import lombok.Getter;
 
 public class Routes {
-    private static final String ROOT      = "";
-    private static final String LOGIN     = "/login";
-    private static final String REGISTER  = "/register";
-    private static final String ADMIN     = "/admin";
-    private static final String ORG       = "/org";
-    private static final String MEMBER    = "/member";
-    private static final String TRAYECTOS = "/trayectos";
-    private static final String METRICS   = "/metrics";
+    private static final String ROOT         = "";
+    private static final String LOGIN        = "/login";
+    private static final String REGISTER     = "/register";
+    private static final String ADMIN        = "/admin";
+    private static final String ORG          = "/org";
+    private static final String MEMBER       = "/member";
+    private static final String TRAYECTOS    = "/trayectos";
+    private static final String AUTOCOMPLETE = "/autocomplete";
+    private static final String POINTS       = "/points";
+    private static final String METRICS      = "/metrics";
     
     public void init() {
         this.api = new Route(Uri.ROOT, ROOT, new Route[] {
@@ -25,7 +27,12 @@ public class Routes {
                 new Route(Uri.ADMIN_ORG, ORG)
             }),
             new Route(Uri.MEMBER, MEMBER, new Route[] {
-                new Route(Uri.MEMBER_TRAYECTOS, TRAYECTOS)
+                new Route(Uri.MEMBER_POINTS, POINTS, new Route[] {
+                    new Route(Uri.MEMBER_POINTS_AUTOCOMPLETE, AUTOCOMPLETE)
+                }),
+                new Route(Uri.MEMBER_TRAYECTOS, TRAYECTOS, new Route[] {
+                    new Route(Uri.MEMBER_TRAYECTOS_AUTOCOMPLETE, AUTOCOMPLETE)
+                })
             }),
             new Route(Uri.ORG, ORG, new Route[] {
                 new Route(Uri.ORG_METRICS, METRICS)
