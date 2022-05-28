@@ -17,3 +17,5 @@ target
 modules/combos/
 
 */lib/
+modules/ExcelReader/lib/
+modules/passwords/lib/

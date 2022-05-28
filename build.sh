@@ -60,11 +60,11 @@ function buildAndDeployContractsModule {
     
     cp -f ./target/contracts-1.0-jar-with-dependencies.jar $CARBONO_PATH/modules/passwords/lib/contracts-1.0.jar && 
 
-    if [[ ! -d $CARBONO_PATH/modules/ExcelReader/lib ]]; then
-        mkdir $CARBONO_PATH/modules/ExcelReader/lib
+    if [[ ! -d $CARBONO_PATH/modules/excelreader2/lib ]]; then
+        mkdir $CARBONO_PATH/modules/excelreader2/lib
     fi
 
-    cp -f ./target/contracts-1.0-jar-with-dependencies.jar $CARBONO_PATH/modules/ExcelReader/lib/contracts-1.0.jar && 
+    cp -f ./target/contracts-1.0-jar-with-dependencies.jar $CARBONO_PATH/modules/excelreader2/lib/contracts-1.0.jar && 
 
     printmessage "Passwords Module Built and Deployed"
 }
@@ -94,9 +94,6 @@ function buildAndDeployPasswordsModule {
 function buildAndDeployCarbono {
     cd $CARBONO_PATH/carbono &&
     runMavenBuild $1 &&
-    # cp -f ./target/carbono-1..war $CARBONO_PATH/environment/stable.war && 
-    # cp -f ./target/carbono-1..war $CARBONO_PATH/environment/tomcat/webapps/ROOT.war && 
-    # cp -f ./target/carbono-1..war ./target/ROOT.war && 
     printmessage "Carbono Built and Deployed"
 }
 
