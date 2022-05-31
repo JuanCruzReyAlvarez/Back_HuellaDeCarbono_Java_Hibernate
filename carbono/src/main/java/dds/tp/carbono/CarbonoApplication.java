@@ -1,13 +1,10 @@
 package dds.tp.carbono;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import dds.tp.carbono.http.context.ServerWithDI;
 
-@SpringBootApplication
 public class CarbonoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CarbonoApplication.class, args);
+		new ServerWithDI().init();
 	}
-
 }

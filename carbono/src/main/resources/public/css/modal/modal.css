@@ -1,0 +1,31 @@
+.carbono-modal {
+    position: absolute;
+    width: 99.3vw;
+    height: 99.5vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    display: none;
+    justify-content: center
+}
+
+.carbono-modal-content {
+    min-width: 500px;
+    min-height: 250px;
+    height: fit-content;
+    width: fit-content;
+    border: 1px solid #51571c;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background-color: black;
+    padding: 20px 15px;
+    box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+}
+
+.hidden {
+    display: none;
+}
+
+.shown {
+    display: flex;
+}
