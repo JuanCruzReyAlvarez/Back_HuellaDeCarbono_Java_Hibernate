@@ -56,6 +56,8 @@ https://drive.google.com/file/d/1esN0vh7jon_OE6l6G4R65nQHSXf7aBI8/view?usp=shari
 -$ npm -v
  ```
  - El comando de arriba debe devolver el numero de version de npm
+ -
+ ![Alt text](https://i.gyazo.com/da57847d204857abd6c7099bcec19d3b.png "NPM version")
 
 #### instalar Angular cli con npm
 
