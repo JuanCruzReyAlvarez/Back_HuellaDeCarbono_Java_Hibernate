@@ -9,4 +9,5 @@ public class Estacion implements Ubicable {
     @Getter @Setter private Integer id;
     @Getter @Setter private String nombre;
     @Getter @Setter private PuntoGeografico ubicacion;
+    @Getter @Setter private Double distanciaAnterior;
 }
