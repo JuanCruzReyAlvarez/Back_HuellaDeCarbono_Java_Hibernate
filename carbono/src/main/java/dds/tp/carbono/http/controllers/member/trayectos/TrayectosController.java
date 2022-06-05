@@ -28,7 +28,7 @@ public class TrayectosController extends Controller {
     
         private String autocomplete(Request rq, Response rs) {
 
-            String typeSearch = rq.queryParams("type");
+            // String typeSearch = rq.queryParams("type");
             String query = rq.queryParams("q");
 
             List<AutocompleteDTO> list = new ArrayList<AutocompleteDTO>() {{
