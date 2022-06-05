@@ -1,10 +1,10 @@
 package dds.tp.carbono.services.org.metrics.metrics;
 
 public enum TipoDeConsumo {
-    Nafta,
-    Electricidad,
-    Peso,
-    Carbon,
+    Nafta, 
+    Electricidad, 
+    Peso, 
+    Carbon, 
     GasNatural,
     Diesel,
     Gasoil,
@@ -19,25 +19,33 @@ public enum TipoDeConsumo {
     Residuos,
     CamionDeCarga,
     UtilitarioLiviano,
-    Distancia;
+    Distancia; 
 
-// agregar los if de los tipos de consumo faltantes
     public static TipoDeConsumo getBy(String nombre) throws Exception{
-        if (nombre.equals("Nafta"))
-          return Nafta;
+        switch (nombre.toLowerCase().replace(" ", "")) {
 
-        if (nombre.equals("Electricidad"))
-          return Electricidad;
+            case "nafta": return Nafta;
+            case "electricidad": return Electricidad;
+            case "peso": return Peso;
+            case "carbon": return Carbon;
+            case "distancia": return Distancia;
+            case "gasNatural": return GasNatural;
+            case "diesel": return Diesel;
+            case "gasoil": return Gasoil;
+            case "kerosene": return Kerosene;
+            case "fuelOil": return FuelOil;
+            case "carbondelenia": return CarbonDeLenia;
+            case "lenia": return Lenia;
+            case "gnc": return GNC;
+            case "materiaprima": return MateriaPrima;
+            case "insumos": return Insumos;
+            case "productosvendidos": return ProductosVendidos;
+            case "residuos": return Residuos;
+            case "camiondecarga": return CamionDeCarga;
+            case "utilitarioliviano": return UtilitarioLiviano;
         
-        if (nombre.equals("Peso"))
-          return Peso;
-
-        if (nombre.equals("Carbon"))
-          return Carbon;
-
-        if (nombre.equals("Distancia"))
-          return Distancia;
-
-          throw new Exception("Tipo de consumo no existente");
+            default: 
+            throw new Exception("Tipo de consumo no existente");
+        }
    }
 }
