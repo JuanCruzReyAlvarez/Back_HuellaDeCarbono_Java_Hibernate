@@ -1,5 +1,6 @@
 package dds.tp.carbono.entities.member;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dds.tp.carbono.entities.point.PuntoGeografico;
@@ -11,4 +12,9 @@ public class Trayecto {
     @Getter @Setter private PuntoGeografico puntoPartida;
     @Getter @Setter private PuntoGeografico puntoLlegada;
     @Getter @Setter private List<Tramo> tramos;
+    @Getter @Setter private Miembro miembro;
+
+    public Trayecto() {
+        this.tramos = new ArrayList<Tramo>();
+    }
 }

@@ -11,4 +11,5 @@ public class PuntoGeografico {
     @Getter @Setter private Integer idLocalidad;
     @Getter @Setter private String calle;
     @Getter @Setter private String altura;
+    
 }

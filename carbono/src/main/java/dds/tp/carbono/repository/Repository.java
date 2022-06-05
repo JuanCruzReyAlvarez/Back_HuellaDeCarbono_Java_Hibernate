@@ -1,10 +1,11 @@
 package dds.tp.carbono.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Repository<T> {
 
-    private List<T> lista;
+    private List<T> lista = new ArrayList<T>();
 
     public T save(T item) {
         this.setId(this.lista.size() + 1, item);        

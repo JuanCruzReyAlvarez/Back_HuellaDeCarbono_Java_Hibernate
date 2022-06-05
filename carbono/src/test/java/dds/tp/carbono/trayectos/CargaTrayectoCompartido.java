@@ -3,8 +3,8 @@ package dds.tp.carbono.trayectos;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
-import java.util.TreeSet;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,6 +14,7 @@ import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.member.TipoDocumento;
 import dds.tp.carbono.entities.member.Tramo;
 import dds.tp.carbono.entities.member.Trayecto;
+import dds.tp.carbono.entities.member.TrayectoPendiente;
 import dds.tp.carbono.entities.organization.Clasificacion;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
@@ -30,6 +31,8 @@ import dds.tp.carbono.entities.transport.TipoTransportePublico;
 import dds.tp.carbono.entities.transport.TipoVehiculoParticular;
 import dds.tp.carbono.entities.transport.TransportePublico;
 import dds.tp.carbono.entities.transport.VehiculoParticular;
+import dds.tp.carbono.repository.TrayectoPendienteRepository;
+import dds.tp.carbono.services.miembro.trayecto.CreadorDeTrayecto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -65,32 +68,34 @@ public class CargaTrayectoCompartido {
         Clasificacion clasificacion = new Clasificacion(1, "Universidad");
         Organizacion utn = this.buildOrganizacion("UTN", ubicacionUtn, TipoOrganizacion.INSTITUCION, clasificacion);
         
-        utn.setSectores(new TreeSet<Sector>() {{
-            add(new Sector(1, "Administrativo", utn));
-            add(new Sector(2, "Directivo", utn));
-            add(new Sector(3, "Alumnos", utn));
-            add(new Sector(4, "Profesores", utn));
-        }});
+        utn.getSectores().add(new Sector(1, "Administrativo", utn));
+        utn.getSectores().add(new Sector(2, "Directivo", utn));
+        utn.getSectores().add(new Sector(3, "Alumnos", utn));
+        utn.getSectores().add(new Sector(4, "Profesores", utn));
         
         Trayecto trayecto = new Trayecto();
         trayecto.setPuntoPartida(miCasa.getUbicacion());
         trayecto.setPuntoLlegada(utn.getUbicacion());
 
-        trayecto.getTramos().add(crearTramo(
-            miCasa.getUbicacion(), 
-            paradaDeTuCasa.getUbicacion(),
-            this.getTransporteDeMiCasaATuCasa()));
+        trayecto.getTramos().add(crearTramo(miCasa.getUbicacion(), paradaDeTuCasa.getUbicacion(), this.getTransporteDeMiCasaATuCasa()));
+        trayecto.getTramos().add(crearTramo(paradaDeTuCasa.getUbicacion(), tuCasa.getUbicacion(), new MedioNoMotorizado(1, TipoMedioNoMotorizado.PIE)));
+
+        Tramo tramoCompartido = crearTramo(tuCasa.getUbicacion(), utn.getUbicacion(), this.getTransporteTuCasaAUtn());
+        tramoCompartido.getCompartidos().add(vos);
+        trayecto.getTramos().add(tramoCompartido);
+        trayecto.setMiembro(yo);
         
-        trayecto.getTramos().add(crearTramo(
-            paradaDeTuCasa.getUbicacion(), 
-            tuCasa.getUbicacion(),
-            new MedioNoMotorizado(1, TipoMedioNoMotorizado.PIE)));
-
-
-        Tramo tramoCompartido = crearTramo(tuCasa.getUbicacion(), utn.getUbicacion(),this.getTransporteTuCasaAUtn());
-
-        trayecto.getTramos().add();
+        CreadorDeTrayecto creadorTrayecto = new CreadorDeTrayecto();
        
+        Trayecto trayectoCreado = creadorTrayecto.crear(trayecto);
+
+        Assert.assertEquals(Integer.valueOf(1), trayectoCreado.getId());
+
+        TrayectoPendiente trayectoPendiente = TrayectoPendienteRepository.getInstance().getAll().get(0);
+
+        Assert.assertNotNull(trayectoPendiente);
+        Assert.assertEquals(1, trayectoPendiente.getMiembrosPendientes().size());
+        Assert.assertEquals(vos, trayectoPendiente.getMiembrosPendientes().get(0));
     }
 
 
@@ -137,11 +142,14 @@ public class CargaTrayectoCompartido {
     }
 
 
-    private Organizacion buildOrganizacion(String string, PuntoGeografico ubicacionUtn, TipoOrganizacion institucion, Clasificacion clasificacion) {
-
-        return null;
+    private Organizacion buildOrganizacion(String razonSocial, PuntoGeografico ubicacionUtn, TipoOrganizacion tipo, Clasificacion clasificacion) {
+        Organizacion organizacion = new Organizacion();
+        organizacion.setRazonSocial(razonSocial);
+        organizacion.setUbicacion(ubicacionUtn);
+        organizacion.setTipo(tipo);
+        organizacion.setClasificacion(clasificacion);
+        return organizacion;
     }
-
 
     private PuntoGeografico buildPuntoGeografico(int id, String calle, String altura, int localidadId) {
         PuntoGeografico punto = new PuntoGeografico();

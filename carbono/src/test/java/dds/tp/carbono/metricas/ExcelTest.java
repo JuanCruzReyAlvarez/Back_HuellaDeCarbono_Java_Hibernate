@@ -1,4 +1,4 @@
-package dds.tp.carbono;
+package dds.tp.carbono.metricas;
 
 import java.io.InputStream;
 import java.util.List;

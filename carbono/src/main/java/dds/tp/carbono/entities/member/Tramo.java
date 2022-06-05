@@ -1,5 +1,6 @@
 package dds.tp.carbono.entities.member;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dds.tp.carbono.entities.point.PuntoGeografico;
@@ -14,6 +15,10 @@ public class Tramo {
     @Getter @Setter private MedioDeTransporte transporte;
     @Getter @Setter private List<Miembro> compartidos;
 
+    public Tramo() {
+        this.compartidos = new ArrayList<Miembro>();
+    }
+    
     public Double obtenerDistancia() throws Exception{
         return this.transporte.calcularDistancia(puntoA, puntoB);
     }

@@ -1,5 +1,6 @@
 package dds.tp.carbono.entities.organization;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import dds.tp.carbono.entities.point.PuntoGeografico;
@@ -14,4 +15,8 @@ public class Organizacion implements Ubicable {
     @Getter @Setter private Clasificacion clasificacion;
     @Getter @Setter private PuntoGeografico ubicacion;
     @Getter @Setter private Set<Sector> sectores;
+
+    public Organizacion() {
+        this.sectores = new HashSet<Sector>();
+    }
 }

@@ -11,6 +11,11 @@ public class TrayectoPendiente {
     @Getter @Setter private Tramo tramoCompartido;
     @Getter @Setter private List<Miembro> miembrosPendientes;
 
+    public TrayectoPendiente(Tramo tramo) {
+        this.tramoCompartido = tramo;
+        this.miembrosPendientes = tramo.getCompartidos();
+    }
+
     public Integer trayectoCreado(Miembro miembro) {
         this.miembrosPendientes.stream()
                                .filter(m -> !m.getId().equals(miembro.getId()))

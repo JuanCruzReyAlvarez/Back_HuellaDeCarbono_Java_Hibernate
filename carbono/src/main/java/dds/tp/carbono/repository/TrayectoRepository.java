@@ -21,9 +21,11 @@ public class TrayectoRepository extends Repository<Trayecto> {
     public List<Tramo> getTramos() {
         List<Tramo> listaTramos = new ArrayList<Tramo>();
 
-        this.getAll().stream().map(t -> t.getTramos()).collect(Collectors.toList()).forEach(lt -> {
-            lt.forEach(t -> listaTramos.add(t));
-        });
+        this.getAll()
+            .stream()
+            .map(t -> t.getTramos())
+            .collect(Collectors.toList())
+            .forEach(lt -> lt.forEach(t -> listaTramos.add(t)));
 
         return listaTramos;
     }
