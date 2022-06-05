@@ -2,10 +2,6 @@ package dds.tp.carbono.services.org.metrics.metrics;
 
 import dds.tp.carbono.entities.organization.metrics.ImportableModel;
 
-// import dds.tp.carbono.services.org.metrics.converter.MetricasDeOrganizacionConverter;
-
-// import dds.tp.carbono.entities.organization.metrics.ImportableModel;
-
 public class MetricasDeOrganizacionBuilder {
 
     private MetricasDeOrganizacion metricas;
@@ -22,7 +18,6 @@ public class MetricasDeOrganizacionBuilder {
         return this;
     }
 
-
     public MetricasDeOrganizacionBuilder addConsumo(ImportableModel importable) throws Exception {
         Consumo consumo = new Consumo();
 
@@ -36,18 +31,18 @@ public class MetricasDeOrganizacionBuilder {
         return this;
     }
 
-    public MetricasDeOrganizacionBuilder addPeriodoDeImputacion(ImportableModel importable) throws Exception{
+    public MetricasDeOrganizacionBuilder addPeriodoDeImputacion(ImportableModel importable) throws Exception {
         PeriodoDeImputacion periodo = new PeriodoDeImputacion(importable.getPeriodoDeImputacion());
         this.metricas.setPeriodoDeImputacion(periodo);
 
         return this;
     }
     
-    public MetricasDeOrganizacion build() throws Exception{
+    public MetricasDeOrganizacion build() throws Exception {
         if(this.metricas.isValid())
             return this.metricas;
 
-        throw new Exception("");
+        throw new Exception("No son válidas las metricas");
     }
 
     private MetricasDeOrganizacionBuilder addTipoDeConsumo(ImportableModel importable) throws Exception {
@@ -57,5 +52,4 @@ public class MetricasDeOrganizacionBuilder {
 
         return this;
     }
-
 }

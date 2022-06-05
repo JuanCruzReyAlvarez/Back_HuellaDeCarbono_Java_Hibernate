@@ -1,5 +1,7 @@
 package dds.tp.carbono.services.org.metrics.metrics;
 
+import dds.tp.carbono.utils.FormatString;
+
 public enum TipoDeConsumo {
     Nafta, 
     Electricidad, 
@@ -21,8 +23,8 @@ public enum TipoDeConsumo {
     UtilitarioLiviano,
     Distancia; 
 
-    public static TipoDeConsumo getBy(String nombre) throws Exception{
-        switch (nombre.toLowerCase().replace(" ", "")) {
+    public static TipoDeConsumo getBy(String nombre) throws Exception {
+        switch (formatNombre(nombre)) {
 
             case "nafta": return Nafta;
             case "electricidad": return Electricidad;
@@ -44,8 +46,15 @@ public enum TipoDeConsumo {
             case "camiondecarga": return CamionDeCarga;
             case "utilitarioliviano": return UtilitarioLiviano;
         
-            default: 
-            throw new Exception("Tipo de consumo no existente");
+            default: throw new Exception("Tipo de consumo no existente");
         }
    }
+
+    private static String formatNombre(String nombre) {
+        nombre = FormatString.sinEspacios(nombre);
+        nombre = FormatString.toLower(nombre);
+        nombre = FormatString.sinTildes(nombre);
+
+        return nombre;
+    }
 }

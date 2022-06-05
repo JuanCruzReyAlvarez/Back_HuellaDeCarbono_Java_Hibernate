@@ -6,14 +6,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class PeriodoDeImputacion {
-    @Setter
-    @Getter
-    private Periodicidad periodicidad;
-    @Setter
-    @Getter
-    private LocalDate fechaInicio;
+    @Setter @Getter private Periodicidad periodicidad;
+    @Setter @Getter private LocalDate fechaInicio;
 
-    public PeriodoDeImputacion(String periodo) throws Exception{
+    public PeriodoDeImputacion(String periodo) throws Exception {
         if(periodo.contains("/")){
             String[] anioYMes = periodo.split("/");
             int anio = Integer.parseInt(anioYMes[1]);
@@ -28,5 +24,4 @@ public class PeriodoDeImputacion {
             this.fechaInicio = LocalDate.of(anio, 01, 01);
         }    
     }
-
 }

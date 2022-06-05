@@ -10,19 +10,17 @@ import dds.tp.carbono.entities.organization.metrics.ImportableModel;
 import dds.tp.carbono.reader.ExcelImporter;
 import dds.tp.carbono.services.org.metrics.converter.MetricasDeOrganizacionConverter;
 import dds.tp.carbono.services.org.metrics.metrics.Actividad;
-import dds.tp.carbono.services.org.metrics.metrics.Consumo;
 import dds.tp.carbono.services.org.metrics.metrics.MetricasDeOrganizacion;
 import dds.tp.carbono.services.org.metrics.metrics.Periodicidad;
 import dds.tp.carbono.services.org.metrics.metrics.TipoDeConsumo;
 import dds.tp.carbono.services.org.metrics.metrics.Unidad;
-
 
 public class ExcelTest {
 
     @Test
     public void metricasConverterTest() {
 
-        try(InputStream is = this.getClass().getClassLoader().getResourceAsStream("sample2.xlsx")){
+        try (InputStream is = this.getClass().getClassLoader().getResourceAsStream("sample2.xlsx")) {
             
             ExcelImporter importer = new ExcelImporter();
             
@@ -42,9 +40,8 @@ public class ExcelTest {
             Assert.assertEquals(1, listaDeMetricas.get(7).getPeriodoDeImputacion().getFechaInicio().getMonthValue());
             Assert.assertEquals(2022, listaDeMetricas.get(7).getPeriodoDeImputacion().getFechaInicio().getYear()); 
         }
-        catch (Exception ex){
+        catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-    }
-    
+    }  
 }
