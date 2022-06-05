@@ -14,12 +14,13 @@ import dds.tp.carbono.entities.member.Tramo;
 import dds.tp.carbono.entities.point.PuntoGeografico;
 import dds.tp.carbono.entities.transport.Estacion;
 import dds.tp.carbono.entities.transport.Linea;
+import dds.tp.carbono.entities.transport.ServicioContratado;
 import dds.tp.carbono.entities.transport.TipoTransportePublico;
 import dds.tp.carbono.entities.transport.TransportePublico;
 import lombok.Getter;
 import lombok.Setter;
 
-public class DistanciaTramo {
+public class ObtenerDistanciaTramo {
 
     private ParadasData data = null;
 
@@ -35,8 +36,7 @@ public class DistanciaTramo {
     }
 
     @Test
-    public void distanciaTramo() throws Exception {
-
+    public void distanciaTransportePublico() throws Exception {
         Tramo tramo = new Tramo();
         tramo.setId(1);
 
@@ -52,27 +52,50 @@ public class DistanciaTramo {
     }
 
     @Test
-    public void distanciaTramo2() throws Exception {
-
+    public void distanciaTransportePublico2() throws Exception {
         Tramo tramo = new Tramo();
         tramo.setId(1);
 
         PuntoGeografico origen = this.buildPuntoGeografico(1, "cordoba", "1500", 1);
         PuntoGeografico destino = this.buildPuntoGeografico(3, "cordoba", "3000", 1);
-        TransportePublico transporte = this.buildTransportePublico(1, TipoTransportePublico.SUBTE, 0);
+        TransportePublico subte = this.buildTransportePublico(1, TipoTransportePublico.SUBTE, 0);
 
         tramo.setPuntoA(origen);
         tramo.setPuntoB(destino);
-        tramo.setTransporte(transporte);
+        tramo.setTransporte(subte);
 
         Assert.assertEquals(Double.valueOf(1000.7), tramo.obtenerDistancia());
+    }
+
+    @Test
+    public void distanciaServicioContratado() throws Exception {
+        Tramo tramo = new Tramo();
+
+        PuntoGeografico origen = this.buildPuntoGeografico(1, "cordoba", "1500", 1);
+        PuntoGeografico destino = this.buildPuntoGeografico(3, "cordoba", "3000", 1);
+
+        tramo.setId(1);
+        tramo.setPuntoA(origen);
+        tramo.setPuntoB(destino);
+        tramo.setTransporte(new ServicioContratado());
+       
+        Double distancia = tramo.obtenerDistancia();
+
+        System.out.println(distancia);
+
+        Assert.assertNotNull(distancia);
     }
 
     private TransportePublico buildTransportePublico(int id, TipoTransportePublico tipo, int lineaIndex) {
         TransportePublico transporte = new TransportePublico();
         transporte.setId(1);
         transporte.setTipo(TipoTransportePublico.SUBTE);
+        transporte.setLinea(this.buildLinea(lineaIndex));
 
+        return transporte;
+    }
+
+    private Linea buildLinea(int lineaIndex) {
         Linea linea = this.data.getLineas().get(lineaIndex);
 
         for (int i = 0; i < linea.getEstaciones().size(); i++) {
@@ -83,9 +106,7 @@ public class DistanciaTramo {
             linea.getEstaciones().get(i).setSiguiente(siguiente);
         }
 
-        transporte.setLinea(linea);
-
-        return transporte;
+        return linea;
     }
 
     private PuntoGeografico buildPuntoGeografico(int id, String calle, String altura, int localidadId) {

@@ -2,6 +2,7 @@ package dds.tp.carbono.services.ubicacion;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import dds.tp.carbono.services.external.dto.Localidad;
 import dds.tp.carbono.services.external.dto.Municipio;
@@ -24,7 +25,7 @@ public class UbicacionesCacheDecorator implements UbicacionesService {
         if (provincias.size() == 0)
             this.cache.addProvincias(this.source.listadoDeProvincias());
         
-        return List.copyOf(this.cache.getProvincias());
+        return this.cache.getProvincias().stream().collect(Collectors.toList());
     }
 
     @Override
@@ -34,7 +35,7 @@ public class UbicacionesCacheDecorator implements UbicacionesService {
         if (municipios.size() == 0)
             this.cache.addMunicipios(this.source.listadoDeMunicipios(provincia));
         
-        return List.copyOf(this.cache.getMunicipios(provincia));
+        return this.cache.getMunicipios(provincia).stream().collect(Collectors.toList());
     }
 
     @Override
@@ -44,6 +45,6 @@ public class UbicacionesCacheDecorator implements UbicacionesService {
         if (localidades.size() == 0)
             this.cache.addLocalidades(this.source.listadoDeLocalidades(municipio));
         
-        return List.copyOf(this.cache.getLocalidades(municipio));
+        return this.cache.getLocalidades(municipio).stream().collect(Collectors.toList());
     }
 }

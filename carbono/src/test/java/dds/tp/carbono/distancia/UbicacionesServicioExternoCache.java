@@ -10,7 +10,7 @@ import dds.tp.carbono.services.external.dto.Provincia;
 import dds.tp.carbono.services.ubicacion.UbicacionesCacheDecorator;
 import dds.tp.carbono.services.ubicacion.UbicacionesService;
 
-public class CalculadorDistanciaTest {
+public class UbicacionesServicioExternoCache {
 
     private static final long DELAY = 2000;
 
@@ -41,8 +41,6 @@ public class CalculadorDistanciaTest {
                     System.out.println(String.format("%d - %s", loc.getId(), loc.getNombre()));
                 }
             }
-       
         }
-
     }
 }

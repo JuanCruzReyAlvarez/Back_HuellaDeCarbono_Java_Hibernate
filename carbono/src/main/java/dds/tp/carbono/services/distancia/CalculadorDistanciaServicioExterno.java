@@ -13,8 +13,7 @@ public class CalculadorDistanciaServicioExterno {
     private ServicioExterno svcExterno;
     
     public CalculadorDistanciaServicioExterno() {
-        RetrofitHttpClient http = new RetrofitHttpClient();
-        this.svcExterno = http.getRetrofit().create(ServicioExterno.class);
+        this.svcExterno = new RetrofitHttpClient().getRetrofit().create(ServicioExterno.class);
     }
    
     public Double calcularDistancia(PuntoGeografico origen, PuntoGeografico destino) throws Exception {

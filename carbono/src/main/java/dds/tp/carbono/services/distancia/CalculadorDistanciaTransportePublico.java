@@ -11,10 +11,11 @@ public class CalculadorDistanciaTransportePublico {
         List<Estacion> estacionesDelRecorrido = new ArrayList<>();
         Estacion estacionActual = estacionInicio;
 
-        while (estacionActual.getId() != estacionFin.getId()) {
+        while (!estacionActual.getId().equals(estacionFin.getId())) {
             estacionActual = estacionActual.getSiguiente();
             estacionesDelRecorrido.add(estacionActual);
         }
+
         return estacionesDelRecorrido.stream().mapToDouble(estacion -> estacion.getDistanciaEstacionAnterior()).sum();
     }
 }
