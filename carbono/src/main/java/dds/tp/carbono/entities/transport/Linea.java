@@ -9,4 +9,13 @@ public class Linea {
     @Getter @Setter private Integer id;
     @Getter @Setter private String nombre;
     @Getter @Setter private List<Estacion> estaciones;
+
+    public Estacion getEstacionByUbicacionId(Integer idUbicacion) throws Exception{
+        for(Estacion estacion: this.getEstaciones()){
+            if(estacion.getUbicacion().getId().equals(idUbicacion)){
+                return estacion;
+            }
+        }
+        throw new Exception("No existe la estacion con esa ubicacion");
+    }
 }

@@ -9,7 +9,7 @@
                         "id": 1,
                         "direccion": "cordoba 1500"
                     },
-                    "distanciaAnterior": 0
+                    "distanciaEstacionAnterior": 0
                 },
                 {
                     "id": 2,
@@ -17,7 +17,7 @@
                         "id": 2,
                         "direccion": "cordoba 1800"
                     },
-                    "distanciaAnterior": 300
+                    "distanciaEstacionAnterior": 300.1
                 },
                 {
                     "id": 3,
@@ -25,7 +25,7 @@
                         "id": 3,
                         "direccion": "cordoba 2500"
                     },
-                    "distanciaAnterior": 700
+                    "distanciaEstacionAnterior": 700.6
                 },
                 {
                     "id": 4,
@@ -33,7 +33,7 @@
                         "id": 4,
                         "direccion": "cordoba 3000"
                     },
-                    "distanciaAnterior": 500
+                    "distanciaEstacionAnterior": 500.23
                 }
             ]
         }

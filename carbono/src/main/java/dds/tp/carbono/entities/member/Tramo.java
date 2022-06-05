@@ -13,4 +13,8 @@ public class Tramo {
     @Getter @Setter private PuntoGeografico puntoB;
     @Getter @Setter private MedioDeTransporte transporte;
     @Getter @Setter private List<Miembro> compartidos;
+
+    public Double obtenerDistancia() throws Exception{
+        return this.transporte.calcularDistancia(puntoA, puntoB);
+    }
 }
