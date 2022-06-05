@@ -17,7 +17,7 @@ public class ImportableModel implements Importable {
     @Getter @Setter @ExcelColumn(index = 4)
     private String periodoDeImputacion;
 
-    @Getter @Setter @ExcelColumn(index = 3) // Hablar con leo para ver que numero de index ponerle a periodicidad y a valor
+    @Getter @Setter @ExcelColumn(index = 3) 
     private String periodicidad;
 
     @Getter @Setter @ExcelColumn(index = 2)
