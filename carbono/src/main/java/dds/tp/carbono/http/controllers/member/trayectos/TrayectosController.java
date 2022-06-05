@@ -9,6 +9,7 @@ import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.dto.member.trayectos.TrayectoDTO;
 import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.Uri;
+import lombok.Getter;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -27,7 +28,7 @@ public class TrayectosController extends Controller {
     
         private String autocomplete(Request rq, Response rs) {
 
-            String typeSearch = rq.queryParams("type");
+            // String typeSearch = rq.queryParams("type");
             String query = rq.queryParams("q");
 
             List<AutocompleteDTO> list = new ArrayList<AutocompleteDTO>() {{
@@ -49,9 +50,9 @@ public class TrayectosController extends Controller {
         }
 
         private class AutocompleteDTO {
-            private boolean isOrg;
-            private String label;
-            private Integer ubicacionId;
+            @Getter private boolean isOrg;
+            @Getter private String label;
+            @Getter private Integer ubicacionId;
 
             public AutocompleteDTO(boolean isOrg, String label, Integer ubicacionId) {
                 this.isOrg = isOrg;

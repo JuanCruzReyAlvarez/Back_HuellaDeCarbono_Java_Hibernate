@@ -1,0 +1,41 @@
+{
+    "lineas": [
+        {
+            "nombre": "132",
+            "estaciones": [
+                {
+                    "id": 1,
+                    "ubicacion": {
+                        "id": 1,
+                        "direccion": "cordoba 1500"
+                    },
+                    "distanciaEstacionAnterior": 0
+                },
+                {
+                    "id": 2,
+                    "ubicacion": {
+                        "id": 2,
+                        "direccion": "cordoba 1800"
+                    },
+                    "distanciaEstacionAnterior": 300.1
+                },
+                {
+                    "id": 3,
+                    "ubicacion": {
+                        "id": 3,
+                        "direccion": "cordoba 2500"
+                    },
+                    "distanciaEstacionAnterior": 700.6
+                },
+                {
+                    "id": 4,
+                    "ubicacion": {
+                        "id": 4,
+                        "direccion": "cordoba 3000"
+                    },
+                    "distanciaEstacionAnterior": 500.23
+                }
+            ]
+        }
+    ]
+}

@@ -17,6 +17,13 @@ public class ImportableModel implements Importable {
     @Getter @Setter @ExcelColumn(index = 4)
     private String periodoDeImputacion;
 
+    @Getter @Setter @ExcelColumn(index = 3) 
+    private String periodicidad;
+
+    @Getter @Setter @ExcelColumn(index = 2)
+    private Double valor;
+
+
     @Override
     public boolean isValid() {
         return actividad != null && tipoDeConsumo != null && periodoDeImputacion != null;
