@@ -2,16 +2,15 @@ package dds.tp.carbono.distancia;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.List;
-
-import com.google.gson.Gson;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import dds.tp.carbono.entities.transport.Linea;
+import com.google.gson.Gson;
+
 import dds.tp.carbono.entities.transport.Estacion;
+import dds.tp.carbono.entities.transport.Linea;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,7 +38,9 @@ public class DistanciaEntreParadas {
             });
         });
          
+  
        
+
     }
 
     private class ParadasData {
