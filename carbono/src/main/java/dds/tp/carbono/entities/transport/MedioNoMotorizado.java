@@ -8,8 +8,14 @@ public class MedioNoMotorizado implements MedioDeTransporte {
     @Getter @Setter private Integer id;
     @Getter @Setter private TipoMedioNoMotorizado tipo;
 
+    public MedioNoMotorizado(Integer id, TipoMedioNoMotorizado tipo) {
+        this.id = id;
+        this.tipo = tipo;
+    }
+
     @Override
-        public Double calcularDistancia(PuntoGeografico inicio, PuntoGeografico fin) {
-        return 0.2; //para que no tire error
+    public Double calcularDistancia(PuntoGeografico inicio, PuntoGeografico fin) {
+        return Double.valueOf(0);
     }
 }
+
