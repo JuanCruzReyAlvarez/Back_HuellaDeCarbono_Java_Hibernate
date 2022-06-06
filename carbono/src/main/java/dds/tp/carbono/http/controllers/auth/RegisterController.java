@@ -1,9 +1,6 @@
 package dds.tp.carbono.http.controllers.auth;
 
-
 import java.util.Collections;
-
-import dds.tp.carbono.contracts.services.auth.IRegisterService;
 import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.exception.InsecurePasswordException;
 import dds.tp.carbono.http.controllers.Controller;
@@ -12,6 +9,7 @@ import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.Uri;
 import dds.tp.carbono.http.validator.ValidateResult;
 import dds.tp.carbono.http.validator.Validator;
+import dds.tp.carbono.services.auth.RegisterService;
 import lombok.Getter;
 import lombok.Setter;
 import spark.Request;
@@ -24,9 +22,9 @@ public class RegisterController extends Controller{
     private static final String PASSWORD_FIELD_NAME = "password";
     private static final String INSECURE_PASSWORD_MESSAGE = "The Password Is Insecure";
 
-    private IRegisterService service;
+    private RegisterService service;
     
-    public RegisterController(IRegisterService service) {
+    public RegisterController(RegisterService service) {
         this.service = service;
     }
 

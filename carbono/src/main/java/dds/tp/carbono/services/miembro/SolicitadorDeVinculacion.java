@@ -1,4 +1,4 @@
-package dds.tp.carbono.services.organizacion;
+package dds.tp.carbono.services.miembro;
 
 import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.organization.Sector;

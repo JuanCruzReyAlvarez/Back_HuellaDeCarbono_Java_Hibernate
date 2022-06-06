@@ -1,5 +1,7 @@
 package dds.tp.carbono.repository.org;
 
+import java.util.NoSuchElementException;
+
 import dds.tp.carbono.dao.org.SolicitudVinculacionDao;
 import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.organization.EstadoSolicitudVinculacion;
@@ -27,12 +29,16 @@ public class SolicitudVinculacionRepository {
         return this.dao.save(solicitud);
     }
 
-    public SolicitudVinculacion buscar(SolicitudVinculacion solicitud) {
-        return this.dao.getAll()
-                       .stream()
-                       .filter(s -> s.getId().equals(solicitud.getId()))
-                       .findFirst()
-                       .orElseThrow();
+    public SolicitudVinculacion buscar(SolicitudVinculacion solicitud) throws NoSuchElementException {
+        SolicitudVinculacion solicitudEncontrada = this.dao.getAll()
+                                                            .stream()
+                                                            .filter(s -> s.getId().equals(solicitud.getId()))
+                                                            .findFirst()
+                                                            .orElse(null);
+        if (solicitudEncontrada != null)
+            return solicitudEncontrada;
+        
+        throw new NoSuchElementException();
     }
 
     public SolicitudVinculacion editarEstado(SolicitudVinculacion solicitud, EstadoSolicitudVinculacion estado) {

@@ -12,7 +12,7 @@ import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
-import dds.tp.carbono.services.organizacion.SolicitadorDeVinculacion;
+import dds.tp.carbono.services.miembro.SolicitadorDeVinculacion;
 import dds.tp.carbono.utils.TestUtils;
 import lombok.Getter;
 import lombok.Setter;

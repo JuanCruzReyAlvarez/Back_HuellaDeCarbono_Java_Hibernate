@@ -4,14 +4,13 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import dds.tp.carbono.contracts.IoC.Injectable;
 import dds.tp.carbono.exception.InvalidFileException;
 import dds.tp.carbono.model.Importable;
 import dds.tp.carbono.model.workbook.FlatExcelData;
 import dds.tp.carbono.reader.importable.ExcelReader;
 import dds.tp.carbono.reader.workbook.ExcelWorkbookHandler;
 
-public class ExcelImporter implements Injectable {
+public class ExcelImporter {
 
     private ExcelWorkbookHandler workbookHandler;
     private ExcelReader reader;

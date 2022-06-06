@@ -1,14 +1,10 @@
 package dds.tp.carbono.admin;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.google.gson.Gson;
 
 import dds.tp.carbono.dao.admin.TransportePublicoDao;
 import dds.tp.carbono.entities.transport.Estacion;
@@ -16,6 +12,7 @@ import dds.tp.carbono.entities.transport.Linea;
 import dds.tp.carbono.entities.transport.TipoTransportePublico;
 import dds.tp.carbono.entities.transport.TransportePublico;
 import dds.tp.carbono.services.admin.CreadorLineaTransportePublico;
+import dds.tp.carbono.utils.TestUtils;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,14 +21,8 @@ public class CrearTransportePublico {
     private ParadasData data = null;
 
     @Before
-    public void init() {
-        String fileName = "paradas.json";
-
-        try (InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName)) {
-            this.data = new Gson().fromJson(new InputStreamReader(is), ParadasData.class);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+    public void init() throws Exception {
+        this.data = (ParadasData) TestUtils.readJson("paradas.json", ParadasData.class);
     }
 
     @Test
@@ -47,23 +38,27 @@ public class CrearTransportePublico {
         TransportePublico transporte = creador.crearOActualizar(this.buildTransportePublico(TipoTransportePublico.COLECTIVO, 0));
 
         Estacion nuevaEstacion = this.buildNuevaEstacion(); 
-
         Linea linea = transporte.getLinea();
-
         int cantidadEstaciones = linea.getEstaciones().size();
         
         linea.getEstaciones().get(linea.getEstaciones().size() - 1).setSiguiente(nuevaEstacion);
         linea.getEstaciones().add(nuevaEstacion);
         
         transporte.setLinea(linea);
-
         creador.crearOActualizar(transporte);
         
-
-        int nuevaCantidadDeEstaciones = TransportePublicoDao.getInstance().getAll().get(0).getLinea().getEstaciones().size();
-
+        int nuevaCantidadDeEstaciones = this.getCantidaDeEstacionesActual();
         Assert.assertEquals(nuevaCantidadDeEstaciones, cantidadEstaciones + 1);
     } 
+
+    private int getCantidaDeEstacionesActual() {
+        return TransportePublicoDao.getInstance()
+                                   .getAll()
+                                   .get(0)
+                                   .getLinea()
+                                   .getEstaciones()
+                                   .size();
+    }
 
     private Estacion buildNuevaEstacion() {
         Estacion nuevaEstacion = new Estacion();

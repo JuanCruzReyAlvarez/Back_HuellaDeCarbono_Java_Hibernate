@@ -1,5 +1,7 @@
 package dds.tp.carbono.repository.auth;
 
+import java.util.NoSuchElementException;
+
 import dds.tp.carbono.dao.auth.UsuarioDao;
 import dds.tp.carbono.entities.auth.Usuario;
 
@@ -17,12 +19,17 @@ public class UsuarioRepository {
                                && usuario.getPassword().equals(password));
     }
 
-    public Usuario getUsuarioByUsername(String username) {
-        return this.dao.getAll()
-                       .stream()
-                       .filter(usuario -> usuario.getUsername().equals(username))
-                       .findFirst()
-                       .orElseThrow();
+    public Usuario getUsuarioByUsername(String username) throws NoSuchElementException {
+        Usuario usuarioEncontrado =  this.dao.getAll()
+                                             .stream()
+                                             .filter(usuario -> usuario.getUsername().equals(username))
+                                             .findFirst()
+                                             .orElse(null);
+
+        if (usuarioEncontrado != null)
+            return usuarioEncontrado;
+
+        throw new NoSuchElementException();
     }
 
     public Usuario guardar(Usuario usuario) {

@@ -8,7 +8,6 @@ import javax.servlet.MultipartConfigElement;
 
 import com.google.gson.Gson;
 
-import dds.tp.carbono.contracts.services.org.IOrgMetricsService;
 import dds.tp.carbono.entities.organization.metrics.ImportableModel;
 import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.exceptions.HttpException;
@@ -27,9 +26,6 @@ public class OrgMetricsController extends Controller {
     private static final String VIEW = "org.metrics.mustache";
     private static final String ACCESS_TYPE = "multipart/form-data";
     private static final String MULTIPART_DRIVER = "org.eclipse.jetty.multipartConfig";
-    
-    public OrgMetricsController(IOrgMetricsService service) {
-    }
 
     @Override
     public void routes(TemplateEngine engine) {
@@ -41,11 +37,8 @@ public class OrgMetricsController extends Controller {
         request.attribute(MULTIPART_DRIVER, new MultipartConfigElement("/temp"));
         
         try (InputStream is = request.raw().getPart("file").getInputStream()) {
-        
             ExcelImporter importer = new ExcelImporter();
-
             List<ImportableModel> excelData = importer.importFrom(is, ImportableModel.class);
-           
             log.info(new Gson().toJson(excelData));
            
             return view(VIEW, Collections.singletonMap("metrics", excelData));
