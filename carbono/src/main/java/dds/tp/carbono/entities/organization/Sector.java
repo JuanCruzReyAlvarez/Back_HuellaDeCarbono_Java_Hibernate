@@ -15,5 +15,8 @@ public class Sector {
         this.id = id;
         this.nombre = nombre;
         this.organizacion = organizacion;
+    }
+
+    public Sector() { //no borrar
     }   
 }
