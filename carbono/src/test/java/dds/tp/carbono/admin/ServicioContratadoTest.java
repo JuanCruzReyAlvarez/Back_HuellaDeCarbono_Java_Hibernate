@@ -16,7 +16,6 @@ public class ServicioContratadoTest {
         servicio.crear("Uber");
         servicio.crear("Cabify");
         servicio.crear("remiseria");
-        servicio.crear("Taxi");
 
         TipoServicioContratadoRepository repo = new TipoServicioContratadoRepository();
 
@@ -30,8 +29,8 @@ public class ServicioContratadoTest {
         CreadorDeTipoServicioContratado servicio = new CreadorDeTipoServicioContratado();
 
         try {
-            servicio.crear("Uber");
-            TipoServicioContratado tipo = servicio.crear("Uber");
+            servicio.crear("Taxi");
+            TipoServicioContratado tipo = servicio.crear("Taxi");
             Assert.assertNull(tipo);
         } catch (Exception ex) {
             Assert.assertTrue(true);

@@ -15,7 +15,7 @@ public class UbicacionesServicioExternoCache {
     private static final long DELAY = 2000;
 
     private UbicacionesService service;
-    @Test
+    // @Test
     public void requestLocalidades() throws Exception {
         this.service = new UbicacionesCacheDecorator();
 
