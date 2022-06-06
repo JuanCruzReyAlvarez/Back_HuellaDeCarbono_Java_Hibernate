@@ -2,24 +2,17 @@ package dds.tp.carbono.services.organizacion;
 
 import dds.tp.carbono.entities.organization.Organizacion;
 
-import dds.tp.carbono.repository.org.CreadorDeOrganizacionesRepository;
+import dds.tp.carbono.repository.org.OrganizacionRepository;
 
 public class CreadorDeOrganizacion {
 
-    private CreadorDeOrganizacionesRepository repository;
+    private OrganizacionRepository repository;
 
     public CreadorDeOrganizacion() {
-        this.repository = new CreadorDeOrganizacionesRepository();
+        this.repository = new OrganizacionRepository();
     }
 
     public Organizacion crear(Organizacion organizacion) {
-        
-        return this.repository.crear(organizacion); 
-        
+        return this.repository.guardar(organizacion);         
     }
-    
-
-  
 }
-
-

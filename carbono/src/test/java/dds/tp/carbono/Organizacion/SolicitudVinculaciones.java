@@ -1,7 +1,5 @@
 package dds.tp.carbono.Organizacion;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,14 +7,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.google.gson.Gson;
-
 import dds.tp.carbono.dao.org.SolicitudVinculacionDao;
 import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 import dds.tp.carbono.services.organizacion.SolicitadorDeVinculacion;
+import dds.tp.carbono.utils.TestUtils;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,26 +23,24 @@ public class SolicitudVinculaciones {
     private OrganizacionData dataOrg;
 
     @Before
-    public void init() {
-        String fileName = "miembros.json";
-        try (InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName)) { 
-            this.dataMembers = new Gson().fromJson(new InputStreamReader(is), MiembrosData.class);
-        } catch (Exception ex) { }
-
-        String fileName2 = "organizacion.json";
-        try (InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName2)) {
-            this.dataOrg = new Gson().fromJson(new InputStreamReader(is), OrganizacionData.class);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+    public void init() throws Exception {
+        this.dataMembers = (MiembrosData) TestUtils.readJson("miembros.json", MiembrosData.class);
+        this.dataOrg = (OrganizacionData) TestUtils.readJson("organizacion.json", OrganizacionData.class);
     }
 
     @Test
     public void solicitudDeVinculacion() throws Exception {
         SolicitadorDeVinculacion solicitador = new SolicitadorDeVinculacion();
+        
         Sector sector = this.getSectorRandom();
+        Miembro miembro = this.getMiembroRandom();
+        
         solicitador.solicitarVinculacion(this.dataMembers.getMiembros().get(0), sector);
-        Assert.assertEquals(1, SolicitudVinculacionDao.getInstance().getAll().size());
+        Assert.assertTrue(SolicitudVinculacionDao.getInstance().getAll()
+                                                               .stream()
+                                                               .anyMatch(s -> s.getMiembro()
+                                                                               .getNroDocumento()
+                                                                               .equals(miembro.getNroDocumento())));
     }
 
     @Test
@@ -60,22 +55,15 @@ public class SolicitudVinculaciones {
         } catch (Exception ex) {
             Assert.assertTrue(true);
         }
+    }
 
-        
+    private Miembro getMiembroRandom() {
+        return this.dataMembers.getMiembros().get(0);
     }
 
     private Sector getSectorRandom() {
         return this.dataOrg.getOrganizaciones().get(0).getSectores().stream().collect(Collectors.toList()).get(0);
     }
-
-
-    
-
-
-
-
-
-
 
     private class MiembrosData {
         @Getter @Setter private List<Miembro> miembros;

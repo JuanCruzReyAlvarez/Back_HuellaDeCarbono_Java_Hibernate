@@ -4,11 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import dds.tp.carbono.entities.point.PuntoGeografico;
-import dds.tp.carbono.entities.point.Ubicable;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Organizacion implements Ubicable {
+public class Organizacion {
     @Getter @Setter private Integer id;
     @Getter @Setter private String razonSocial;
     @Getter @Setter private Clasificacion clasificacion;
