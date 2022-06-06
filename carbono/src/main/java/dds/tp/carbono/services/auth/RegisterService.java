@@ -26,7 +26,7 @@ public class RegisterService implements IRegisterService {
             throw new InsecurePasswordException();
         
         Usuario usuario = this.buildUsuario(username, password, rol);
-        return this.repository.guardarUsuario(usuario);
+        return this.repository.guardar(usuario);
     }
 
     private Usuario buildUsuario(String username, String password, String rol) {

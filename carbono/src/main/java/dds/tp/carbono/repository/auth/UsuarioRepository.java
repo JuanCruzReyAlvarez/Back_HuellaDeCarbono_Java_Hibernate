@@ -10,10 +10,6 @@ public class UsuarioRepository {
         this.dao = UsuarioDao.getInstance();
     }
     
-    public Usuario guardar(Usuario usuario) {
-        return this.dao.save(usuario);
-    }
-
     public boolean isValidLogin(String username, String password) {
         return this.dao.getAll()
                         .stream()
@@ -29,7 +25,7 @@ public class UsuarioRepository {
                        .orElseThrow();
     }
 
-    public Usuario guardarUsuario(Usuario usuario) {
+    public Usuario guardar(Usuario usuario) {
         return this.dao.save(usuario);
     }
 }
