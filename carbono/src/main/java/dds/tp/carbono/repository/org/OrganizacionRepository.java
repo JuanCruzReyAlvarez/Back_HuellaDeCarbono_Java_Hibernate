@@ -3,18 +3,15 @@ package dds.tp.carbono.repository.org;
 import dds.tp.carbono.dao.org.CreadorDeOrganizacionesDao;
 import dds.tp.carbono.entities.organization.Organizacion;
 
-public class CreadorDeOrganizacionesRepository {
+public class OrganizacionRepository {
 
     CreadorDeOrganizacionesDao dao; 
 
-    public CreadorDeOrganizacionesRepository() {
+    public OrganizacionRepository() {
         this.dao = CreadorDeOrganizacionesDao.getInstance();
     }
 
-    public Organizacion crear(Organizacion organizacion) {
-        
+    public Organizacion guardar(Organizacion organizacion) {
         return this.dao.save(organizacion); 
-        
-    }
-    
+    }    
 }
