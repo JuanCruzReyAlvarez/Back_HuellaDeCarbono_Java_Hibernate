@@ -3,7 +3,6 @@ package dds.tp.carbono.entities.member;
 import java.util.HashSet;
 import java.util.Set;
 
-import dds.tp.carbono.entities.organization.Sector;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 import lombok.Getter;
 import lombok.Setter;

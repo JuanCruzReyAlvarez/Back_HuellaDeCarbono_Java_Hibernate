@@ -26,4 +26,18 @@ public class SolicitudVinculacionRepository {
     public SolicitudVinculacion crearSolicitud(SolicitudVinculacion solicitud) {
         return this.dao.save(solicitud);
     }
+
+    public SolicitudVinculacion buscar(SolicitudVinculacion solicitud) {
+        return this.dao.getAll()
+                       .stream()
+                       .filter(s -> s.getId().equals(solicitud.getId()))
+                       .findFirst()
+                       .orElseThrow();
+    }
+
+    public SolicitudVinculacion editarEstado(SolicitudVinculacion solicitud, EstadoSolicitudVinculacion estado) {
+        int index = this.dao.getAll().indexOf(solicitud);
+        this.dao.getAll().get(index).setEstado(estado);
+        return this.dao.getAll().get(index);
+    }
 }

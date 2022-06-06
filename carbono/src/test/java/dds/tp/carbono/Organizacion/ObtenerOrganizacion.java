@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,84 +13,60 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
-
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
+import dds.tp.carbono.services.organizacion.CreadorDeOrganizacion;
+
 import lombok.Getter;
 import lombok.Setter;
 
 public class ObtenerOrganizacion {
 
-    private OrganizacionData data = null;
+    //private MiembrosData dataMembers;
+    private OrganizacionData dataOrg;
 
     @Before
     public void init() {
         String fileName = "organizacion.json";
 
-        try (InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName)) {  //preguntar
-            this.data = new Gson().fromJson(new InputStreamReader(is), OrganizacionData.class); 
-        } catch (Exception ex) {                                                                         
+        try (InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName)) { 
+            this.dataOrg = new Gson().fromJson(new InputStreamReader(is), OrganizacionData.class);
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-    /* 
     @Test
-        public void sectores_organizacion() throws Exception {
-        Organizacion organizacion  = new Organizacion();
-         organizacion.setRazonSocial("Motorola");
+    public void CrearOrganizacion() throws Exception {
+
+        CreadorDeOrganizacion creador = new CreadorDeOrganizacion();
+        Organizacion organizacion = this.getOrganizacionRandom();
+        Sector sector = this.getSectorRandom();
         
-         Sector sector_uno = this.buildSector(1, "Programador");
-         Sector sector_dos= this.buildSector(2, "Analista Universitario");
-         Sector sector_tres = this.buildSector(3, "Data Scientist");
+        Set<Sector> sectores = new HashSet<Sector>(); 
+
+        Organizacion organizacionCreada = creador.crear(organizacion); 
+
+        Assert.assertFalse(organizacionCreada.getSectores().isEmpty());
         
-         Set<Sector> sectores = new HashSet<Sector>();
-         sectores.add(sector_uno);
-         sectores.add(sector_dos);
-         sectores.add(sector_tres);
+        sectores.add(sector);
 
-         organizacion.setSectores(sectores);
-
-         Assert.assertEquals(organizacion.getSectores().size(), 3);
-     }
-
-*/
-
-
-          
-    private int organizacionEjemplo() {
-        List<Organizacion> organizaciones = this.data.getOrganizaciones();
-        Set<Sector> sectores = organizaciones.get(0).getSectores();
-        return sectores.size();
+        Assert.assertTrue(organizacionCreada.getSectores().contains(sector));
+        
     }
 
-    private Sector buildSector(int id, String nombre) {
-        Sector punto = new Sector();
-        punto.setId(id);
-        punto.setNombre(nombre);
-        return punto;
+
+    private Sector getSectorRandom() {
+        return this.dataOrg.getOrganizaciones().get(0).getSectores().stream().collect(Collectors.toList()).get(0);
     }
+
+    private Organizacion getOrganizacionRandom() {
+        return this.dataOrg.getOrganizaciones().get(0);
+    }
+
 
     private class OrganizacionData {
         @Getter @Setter private List<Organizacion> organizaciones;
     }
 }
 
-    // @Test
-    // public int distanciaTransportePublico2() throws Exception {
-    //     Tramo tramo = new Tramo();
-    //     tramo.setId(1);
-
-    //     Sector sector_uno = this.buildSector(1, "Programador");
-    //     Sector sector_dos= this.buildSector(2, "Data Scientist");
-    //     Sector sector_tres = this.buildSector(3, "Desarrollador web");
-    //     Sector sector_cuatro = this.buildSector(4, "Analista");
-
-    //     Set<Sector> sectores = new HashSet<Sector>();
-    //     sectores.add(sector_uno);
-    //     sectores.add(sector_dos);
-    //     sectores.add(sector_tres);
-    //     sectores.add(sector_cuatro);
-
-        
-    // } 

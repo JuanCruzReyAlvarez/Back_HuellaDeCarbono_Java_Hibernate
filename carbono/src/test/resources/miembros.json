@@ -1,10 +1,10 @@
 {
-    "miembros":[
+    "miembros": [
         {
+            "id": 1,
             "nombre": "jhonson",
             "apellido": "gson",
             "nroDocumento": "43714555"
-            
         }
     ]
 }

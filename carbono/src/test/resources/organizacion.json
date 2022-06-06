@@ -1,100 +1,25 @@
 {
     "organizaciones": [
         {
-            
             "razonSocial": "Facebook",
             "sectores": [
                 {
                     "id": 1,
-                    "nombre":"Recursos Humanos",
-
+                    "nombre": "Recursos Humanos",
                     "solicitudes": [
-                     { 
-                        "miembro":{
-                            "nombre": "jhonson",
-                            "apellido": "gson",
-                            "nroDocumento": "43714555"
-                        },
-                        "sector":"Testing",
-                        "EstadoSolicitudVinculacion": "PENDIENTE"
-                    },
-                    { 
-                         "miembro":"Pipe",
-                         "sector":"Kernel",
-                         "EstadoSolicitudVinculacion": "ACEPTADO"
-                    },
-                    { 
-                        "miembro":"Juan",
-                        "sector":"Cpu",
-                        "EstadoSolicitudVinculacion": "RECHAZADO"
-                    }
-                    ] 
-                    
-
-                },
-                {
-                    "id": 2,
-                    "nombre":"DataScience",
-                    
-                    "solicitudes": [
-                        { 
-                           "miembro":"Stephi",
-                           "sector":"Kernel",
-                           "EstadoSolicitudVinculacion": "PENDIENTE"
-                       },
-                       { 
-                            "miembro":"Lucas",
-                            "sector":"Kernel",
-                            "EstadoSolicitudVinculacion": "ACEPTADO"
-                       },
-                       { 
-                           "miembro":"Juanpi",
-                           "sector":"Conexiones",
-                           "EstadoSolicitudVinculacion": "ACEPTADO  "
-                       }
-                       ] 
-                },
-                {
-                    "id": 3,
-                    "nombre":"Desarrolador Web",
-                    "solicitudes": [
-                        { 
-                           "miembro":"Leo",
-                           "sector":"Testing",
-                           "EstadoSolicitudVinculacion": "ACEPTADO"
-                       },
-                       { 
-                            "miembro":"Pipe",
-                            "sector":"Kernel",
-                            "EstadoSolicitudVinculacion": "ACEPTADO"
-                       },
-                       { 
-                           "miembro":"Lucila",
-                           "sector":"Legales",
-                           "EstadoSolicitudVinculacion": "PENDIENTE"
-                       }
-                       ] 
-                },
-                {
-                    "id": 4,
-                    "nombre":"Analista",
-                    "solicitudes": [
-                        { 
-                           "miembro":"Jero",
-                           "sector":"Atencion al cliente",
-                           "EstadoSolicitudVinculacion": "PENDIENTE"
-                       },
-                       { 
-                            "miembro":"Emi",
-                            "sector":"Consola",
+                        {
+                            "miembro": {
+                                "nombre": "jhonson",
+                                "apellido": "gson",
+                                "nroDocumento": "43714555"
+                            },
+                            "sector":  {
+                                "id": 1,
+                                "nombre": "Recursos Humanos"
+                            },
                             "EstadoSolicitudVinculacion": "PENDIENTE"
-                       },
-                       { 
-                           "miembro":"Juan",
-                           "sector":"memoria",
-                           "EstadoSolicitudVinculacion": "RECHAZADO"
-                       }
-                       ] 
+                        }
+                    ]
                 }
             ]
         }

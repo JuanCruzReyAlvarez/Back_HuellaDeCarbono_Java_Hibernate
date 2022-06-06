@@ -11,17 +11,18 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
-import dds.tp.carbono.dao.org.SolicitudVinculacionDao;
 import dds.tp.carbono.entities.member.Miembro;
+import dds.tp.carbono.entities.organization.EstadoSolicitudVinculacion;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
+import dds.tp.carbono.services.organizacion.ContestadorDeSolicitudesVinculacion;
 import dds.tp.carbono.services.organizacion.SolicitadorDeVinculacion;
 import lombok.Getter;
 import lombok.Setter;
 
-public class SolicitudVinculaciones {
-    
+public class ContestadorDeSolicitudesDeVinculacion {
+
     private MiembrosData dataMembers;
     private OrganizacionData dataOrg;
 
@@ -40,42 +41,56 @@ public class SolicitudVinculaciones {
         }
     }
 
+
+    
     @Test
-    public void solicitudDeVinculacion() throws Exception {
+    public void AceptadorDeSolicitud() throws Exception {
         SolicitadorDeVinculacion solicitador = new SolicitadorDeVinculacion();
         Sector sector = this.getSectorRandom();
-        solicitador.solicitarVinculacion(this.dataMembers.getMiembros().get(0), sector);
-        Assert.assertEquals(1, SolicitudVinculacionDao.getInstance().getAll().size());
-    }
+        SolicitudVinculacion solicitud = solicitador.solicitarVinculacion(this.dataMembers.getMiembros().get(0), sector);
 
-    @Test
-    public void solicitudDeVinculacionExistente() throws Exception {
-        SolicitadorDeVinculacion solicitador = new SolicitadorDeVinculacion();
-        Sector sector = this.getSectorRandom();
-        solicitador.solicitarVinculacion(this.dataMembers.getMiembros().get(0), sector);
 
+        ContestadorDeSolicitudesVinculacion contestador = new ContestadorDeSolicitudesVinculacion();
+ 
+        SolicitudVinculacion solicitudAceptada = contestador.aceptar(solicitud);
         try {
-            SolicitudVinculacion solicitud2 = solicitador.solicitarVinculacion(this.dataMembers.getMiembros().get(0), sector);
-            Assert.assertNull(solicitud2);
+            SolicitudVinculacion solicitudAceptada2 = contestador.aceptar(solicitud);
+            Assert.assertNull(solicitudAceptada2);
         } catch (Exception ex) {
             Assert.assertTrue(true);
         }
-
+        
+        
+         Assert.assertEquals(EstadoSolicitudVinculacion.ACEPTADO, solicitudAceptada.getEstado());
         
     }
+     @Test
+    public void RechazadorDeSolicitud() throws Exception {
+        SolicitadorDeVinculacion solicitador = new SolicitadorDeVinculacion();
+        Sector sector = this.getSectorRandom();
+        SolicitudVinculacion solicitud = solicitador.solicitarVinculacion(this.dataMembers.getMiembros().get(0), sector);
+        
 
-    private Sector getSectorRandom() {
-        return this.dataOrg.getOrganizaciones().get(0).getSectores().stream().collect(Collectors.toList()).get(0);
+        ContestadorDeSolicitudesVinculacion contestador = new ContestadorDeSolicitudesVinculacion();
+ 
+        SolicitudVinculacion solicitudRechazada = contestador.rechazar(solicitud);
+       
+        try {
+            SolicitudVinculacion solicitudRechazada2 = contestador.rechazar(solicitud);
+            Assert.assertNull(solicitudRechazada2);
+        } catch (Exception ex) {
+            Assert.assertTrue(true);
+        }
+        
+         Assert.assertEquals(EstadoSolicitudVinculacion.RECHAZADO, solicitudRechazada.getEstado());
+        
     }
 
 
     
-
-
-
-
-
-
+    private Sector getSectorRandom() {
+        return this.dataOrg.getOrganizaciones().get(0).getSectores().stream().collect(Collectors.toList()).get(0);
+    }
 
     private class MiembrosData {
         @Getter @Setter private List<Miembro> miembros;
@@ -84,5 +99,9 @@ public class SolicitudVinculaciones {
     private class OrganizacionData {
         @Getter @Setter private List<Organizacion> organizaciones;
     }
+
+
+    
+ 
 
 }
