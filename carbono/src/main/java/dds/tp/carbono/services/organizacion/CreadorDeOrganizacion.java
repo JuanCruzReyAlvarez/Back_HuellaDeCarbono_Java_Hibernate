@@ -1,33 +1,25 @@
 package dds.tp.carbono.services.organizacion;
 
-import java.util.List;
-
 import dds.tp.carbono.entities.organization.Organizacion;
-import dds.tp.carbono.entities.organization.Sector;
-/* 
+
+import dds.tp.carbono.repository.org.CreadorDeOrganizacionesRepository;
+
 public class CreadorDeOrganizacion {
 
-    private OrganizacionRepository repository;
+    private CreadorDeOrganizacionesRepository repository;
 
-    public void CreadorDeOrganizacion() {
-        this.repository = new OrganizacionRepository();
+    public CreadorDeOrganizacion() {
+        this.repository = new CreadorDeOrganizacionesRepository();
     }
 
     public Organizacion crear(Organizacion organizacion) {
         
-        this.repository 
+        return this.repository.crear(organizacion); 
         
-        return this.organizacionDao.guardar(sectores);
     }
+    
 
-    private List<Sector> sectores (Organizacion organizacion){
-        return organizacion.getSectores();
-    }
-
-    private void crearSectores(List<Sector> sectores){
-        CreadorDeSectores creadorDeSectores = new CreadorDeSectores();
-        sectores.forEach(sector ->creadorDeSectores.crear(Sector) );
-    }
+  
 }
-*/
+
 

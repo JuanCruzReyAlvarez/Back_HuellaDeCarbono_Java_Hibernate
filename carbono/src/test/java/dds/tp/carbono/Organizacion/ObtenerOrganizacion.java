@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
-import dds.tp.carbono.entities.member.Tramo;
+
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
 import lombok.Getter;
@@ -27,8 +27,8 @@ public class ObtenerOrganizacion {
         String fileName = "organizacion.json";
 
         try (InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName)) {  //preguntar
-            this.data = new Gson().fromJson(new InputStreamReader(is), OrganizacionData.class); // con la biblio de google gson paso lo de json a un objeto
-        } catch (Exception ex) {                                                                         // organizacionData para poder usarlo.
+            this.data = new Gson().fromJson(new InputStreamReader(is), OrganizacionData.class); 
+        } catch (Exception ex) {                                                                         
             System.out.println(ex.getMessage());
         }
     }
