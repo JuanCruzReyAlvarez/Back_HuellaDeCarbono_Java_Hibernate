@@ -1,14 +1,14 @@
-package dds.tp.carbono.repository;
+package dds.tp.carbono.dao.member;
 
 import dds.tp.carbono.entities.organization.Organizacion;
 
-public class OrganizacionRepository extends Repository<Organizacion> {
+public class OrganizacionDao extends Dao<Organizacion> {
     
-    private static OrganizacionRepository instance;
+    private static OrganizacionDao instance;
 
-    public static OrganizacionRepository getInstance() {
+    public static OrganizacionDao getInstance() {
         if (instance == null)
-            instance = new OrganizacionRepository();
+            instance = new OrganizacionDao();
 
         return instance;
     }
@@ -17,7 +17,7 @@ public class OrganizacionRepository extends Repository<Organizacion> {
     public Organizacion save(Organizacion org) {
         org = super.save(org);
         
-        PuntoGeograficoRepository.getInstance().save(org.getUbicacion());
+        PuntoGeograficoDao.getInstance().save(org.getUbicacion());
 
         return org;
     }

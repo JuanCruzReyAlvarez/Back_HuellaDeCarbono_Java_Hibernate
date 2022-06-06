@@ -1,17 +1,21 @@
 package dds.tp.carbono.dao.member;
 
 import dds.tp.carbono.entities.member.TrayectoPendiente;
-import dds.tp.carbono.repository.TrayectoPendienteRepository;
 
-public class TrayectoPendienteDao {
-    
-    private TrayectoPendienteRepository repository;
- 
-    public TrayectoPendienteDao() {
-        this.repository = TrayectoPendienteRepository.getInstance();
+public class TrayectoPendienteDao extends Dao<TrayectoPendiente>{
+
+    private static TrayectoPendienteDao instance;
+
+    public static TrayectoPendienteDao getInstance() {
+        if (instance == null)
+            instance = new TrayectoPendienteDao();
+
+        return instance;
     }
 
-    public TrayectoPendiente guardar(TrayectoPendiente trayectoPendiente) {
-        return this.repository.save(trayectoPendiente);
+    @Override
+    public TrayectoPendiente setId(Integer id, TrayectoPendiente item) {
+        item.setId(id);
+        return item;
     }
 }

@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
+import dds.tp.carbono.dao.member.TrayectoPendienteDao;
 import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.member.TipoDocumento;
 import dds.tp.carbono.entities.member.Tramo;
@@ -31,7 +32,6 @@ import dds.tp.carbono.entities.transport.TipoTransportePublico;
 import dds.tp.carbono.entities.transport.TipoVehiculoParticular;
 import dds.tp.carbono.entities.transport.TransportePublico;
 import dds.tp.carbono.entities.transport.VehiculoParticular;
-import dds.tp.carbono.repository.TrayectoPendienteRepository;
 import dds.tp.carbono.services.miembro.trayecto.CreadorDeTrayecto;
 import lombok.Getter;
 import lombok.Setter;
@@ -91,7 +91,7 @@ public class CargaTrayectoCompartido {
 
         Assert.assertEquals(Integer.valueOf(1), trayectoCreado.getId());
 
-        TrayectoPendiente trayectoPendiente = TrayectoPendienteRepository.getInstance().getAll().get(0);
+        TrayectoPendiente trayectoPendiente = TrayectoPendienteDao.getInstance().getAll().get(0);
 
         Assert.assertNotNull(trayectoPendiente);
         Assert.assertEquals(1, trayectoPendiente.getMiembrosPendientes().size());

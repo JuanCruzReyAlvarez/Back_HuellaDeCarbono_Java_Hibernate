@@ -1,9 +1,9 @@
-package dds.tp.carbono.repository;
+package dds.tp.carbono.dao.member;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Repository<T> {
+public abstract class Dao<T> {
 
     private List<T> lista = new ArrayList<T>();
 

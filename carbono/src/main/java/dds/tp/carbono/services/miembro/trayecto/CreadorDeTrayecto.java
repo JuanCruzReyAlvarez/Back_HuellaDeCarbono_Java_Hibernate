@@ -3,16 +3,16 @@ package dds.tp.carbono.services.miembro.trayecto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import dds.tp.carbono.dao.member.TrayectoDao;
 import dds.tp.carbono.entities.member.Tramo;
 import dds.tp.carbono.entities.member.Trayecto;
+import dds.tp.carbono.repository.member.TrayectoRepository;
 
 public class CreadorDeTrayecto {
     
-    private TrayectoDao trayectoDao;
+    private TrayectoRepository repository;
 
     public CreadorDeTrayecto() {
-        this.trayectoDao = new TrayectoDao();
+        this.repository = new TrayectoRepository();
     }
 
     public Trayecto crear(Trayecto trayecto) {
@@ -21,7 +21,7 @@ public class CreadorDeTrayecto {
         if (tramosCompartidos.size() > 0)
             this.crearTrayectosPendientes(tramosCompartidos);
 
-        return this.trayectoDao.guardar(trayecto);
+        return this.repository.guardar(trayecto);
     }
 
     private void crearTrayectosPendientes(List<Tramo> tramosCompartidos) {
