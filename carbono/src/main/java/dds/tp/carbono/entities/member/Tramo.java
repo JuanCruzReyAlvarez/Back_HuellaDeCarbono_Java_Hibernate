@@ -22,4 +22,11 @@ public class Tramo {
     public Double obtenerDistancia() throws Exception{
         return this.transporte.calcularDistancia(puntoA, puntoB);
     }
+
+    public Boolean isValid() {
+        if (puntoA == null || puntoB == null || transporte == null)
+            return false;
+            
+        return true;
+    }
 }
