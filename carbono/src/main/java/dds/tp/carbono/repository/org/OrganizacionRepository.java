@@ -13,5 +13,9 @@ public class OrganizacionRepository {
 
     public Organizacion guardar(Organizacion organizacion) {
         return this.dao.save(organizacion); 
+    }
+
+    public boolean exists(String razonSocial) {
+        return this.dao.getAll().stream().anyMatch(o -> o.getRazonSocial().equals(razonSocial));
     }    
 }

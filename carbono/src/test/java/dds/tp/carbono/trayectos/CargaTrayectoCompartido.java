@@ -1,14 +1,10 @@
 package dds.tp.carbono.trayectos;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.google.gson.Gson;
 
 import dds.tp.carbono.dao.member.TrayectoPendienteDao;
 import dds.tp.carbono.entities.member.Miembro;
@@ -33,6 +29,7 @@ import dds.tp.carbono.entities.transport.TipoVehiculoParticular;
 import dds.tp.carbono.entities.transport.TransportePublico;
 import dds.tp.carbono.entities.transport.VehiculoParticular;
 import dds.tp.carbono.services.miembro.trayecto.CreadorDeTrayecto;
+import dds.tp.carbono.utils.TestUtils;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,37 +38,19 @@ public class CargaTrayectoCompartido {
     private ParadasData data;
 
     @Before
-    public void init() {
-        String fileName = "paradas.json";
-
-        try (InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName)) {
-            this.data = new Gson().fromJson(new InputStreamReader(is), ParadasData.class);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+    public void init() throws Exception {
+        this.data = (ParadasData) TestUtils.readJson("paradas.json", ParadasData.class);
     }
 
     @Test
-    public void cargarTrayectoCompartido() {
-        Miembro yo = this.buildMiembro(1, "Leo", "Dan", TipoDocumento.DNI, "123456788");
-        Miembro vos = this.buildMiembro(1, "Lucas", "Piola", TipoDocumento.DNI, "123456789");
+    public void cargarTrayectoCompartido() throws Exception {
+        Miembro yo = this.buildMiembro(1, "nombre1", "apellido1", TipoDocumento.DNI, "123456788");
+        Miembro vos = this.buildMiembro(2, "nombre2", "apellido2", TipoDocumento.DNI, "123456789");
 
-        PuntoArbitrario miCasa = new PuntoArbitrario();
-        miCasa.setUbicacion(this.buildPuntoGeografico(1, "falsa", "123", 1));
-
+        PuntoArbitrario miCasa = this.buildMiCasa(); 
         Estacion paradaDeTuCasa = paradaDeTuCasa();
-
-        PuntoArbitrario tuCasa = new PuntoArbitrario();
-        tuCasa.setUbicacion(this.buildPuntoGeografico(2, "verdadera", "456", 1));
-
-        PuntoGeografico ubicacionUtn = this.buildPuntoGeografico(5, "Medrano", "951", 1);
-        Clasificacion clasificacion = new Clasificacion(1, "Universidad");
-        Organizacion utn = this.buildOrganizacion("UTN", ubicacionUtn, TipoOrganizacion.INSTITUCION, clasificacion);
-        
-        utn.getSectores().add(new Sector(1, "Administrativo", utn));
-        utn.getSectores().add(new Sector(2, "Directivo", utn));
-        utn.getSectores().add(new Sector(3, "Alumnos", utn));
-        utn.getSectores().add(new Sector(4, "Profesores", utn));
+        PuntoArbitrario tuCasa = this.buildTuCasa(); 
+        Organizacion utn = this.buildOrgUTN();
         
         Trayecto trayecto = new Trayecto();
         trayecto.setPuntoPartida(miCasa.getUbicacion());
@@ -85,9 +64,7 @@ public class CargaTrayectoCompartido {
         trayecto.getTramos().add(tramoCompartido);
         trayecto.setMiembro(yo);
         
-        CreadorDeTrayecto creadorTrayecto = new CreadorDeTrayecto();
-       
-        Trayecto trayectoCreado = creadorTrayecto.crear(trayecto);
+        Trayecto trayectoCreado = new CreadorDeTrayecto().crear(trayecto);
 
         Assert.assertEquals(Integer.valueOf(1), trayectoCreado.getId());
 
@@ -98,6 +75,26 @@ public class CargaTrayectoCompartido {
         Assert.assertEquals(vos, trayectoPendiente.getMiembrosPendientes().get(0));
     }
 
+
+    private PuntoArbitrario buildTuCasa() {
+        PuntoArbitrario tuCasa = new PuntoArbitrario();
+        tuCasa.setUbicacion(this.buildPuntoGeografico(2, "verdadera", "456", 1));
+        return tuCasa;
+    }
+
+    private PuntoArbitrario buildMiCasa() {
+        PuntoArbitrario miCasa = new PuntoArbitrario();
+        miCasa.setUbicacion(this.buildPuntoGeografico(1, "falsa", "123", 1));
+        return miCasa;
+    }
+
+    private Organizacion buildOrgUTN() {
+        return this.buildOrganizacion(
+            "UTN", 
+            this.buildPuntoGeografico(5, "Medrano", "951", 1), 
+            TipoOrganizacion.INSTITUCION, 
+            new Clasificacion(1, "Universidad"));
+    }
 
     private Miembro buildMiembro(Integer id, String nombre, String apellido, TipoDocumento tipoDocumento, String nroDocumento) {
         Miembro miembro = new Miembro();
@@ -148,6 +145,8 @@ public class CargaTrayectoCompartido {
         organizacion.setUbicacion(ubicacionUtn);
         organizacion.setTipo(tipo);
         organizacion.setClasificacion(clasificacion);
+        organizacion.getSectores().add(new Sector(1, "Administrativo", organizacion));
+
         return organizacion;
     }
 

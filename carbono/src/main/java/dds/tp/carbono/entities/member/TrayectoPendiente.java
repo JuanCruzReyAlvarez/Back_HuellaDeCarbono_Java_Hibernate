@@ -16,7 +16,7 @@ public class TrayectoPendiente {
         this.miembrosPendientes = tramo.getCompartidos();
     }
 
-    public Integer trayectoCreado(Miembro miembro) {
+    public Integer quitarMiembroPendiente(Miembro miembro) {
         this.miembrosPendientes.stream()
                                .filter(m -> !m.getId().equals(miembro.getId()))
                                .collect(Collectors.toList());

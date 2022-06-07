@@ -14,7 +14,6 @@ function printHelp {
     echo "This is the DDS Carbono TP 2022 Group 7 Build, Deploy and Run In development mode Helper!" &&
     echo " " &&
     echo "-p  ----- Passwords Module  " &&
-    echo "-c  ----- Contracts Module  " &&
     echo "-e  ----- Excel Importer Module  " &&
     echo "-a  ----- Carbono Backend  " &&
     echo "-t  ----- Run unit testing to complete build  " &&
@@ -42,31 +41,6 @@ function runMavenBuild {
     else
         mvn clean install -DskipTests
     fi
-}
-
-function buildAndDeployContractsModule {
-    cd $CARBONO_PATH/modules/contracts &&
-    runMavenBuild $1 &&
-
-    if [[ ! -d $CARBONO_PATH/carbono/lib ]]; then
-        mkdir $CARBONO_PATH/carbono/lib
-    fi
-    
-    cp -f ./target/contracts-1.0-jar-with-dependencies.jar $CARBONO_PATH/carbono/lib/contracts-1.0.jar && 
-
-    if [[ ! -d $CARBONO_PATH/modules/passwords/lib ]]; then
-        mkdir $CARBONO_PATH/modules/passwords/lib
-    fi
-    
-    cp -f ./target/contracts-1.0-jar-with-dependencies.jar $CARBONO_PATH/modules/passwords/lib/contracts-1.0.jar && 
-
-    if [[ ! -d $CARBONO_PATH/modules/excelreader2/lib ]]; then
-        mkdir $CARBONO_PATH/modules/excelreader2/lib
-    fi
-
-    cp -f ./target/contracts-1.0-jar-with-dependencies.jar $CARBONO_PATH/modules/excelreader2/lib/contracts-1.0.jar && 
-
-    printmessage "Passwords Module Built and Deployed"
 }
 
 function buildAndDeployExcelReaderModule {
@@ -97,11 +71,6 @@ function buildAndDeployCarbono {
     printmessage "Carbono Built and Deployed"
 }
 
-
-if [[ $1 == *"c"* ]]; then
-    buildAndDeployContractsModule $1
-fi
-
 if [[ $1 == *"e"* ]]; then
     buildAndDeployExcelReaderModule $1
 fi
@@ -119,7 +88,6 @@ if [[ $1 == *"h"* ]]; then
 fi
 
 if [[ $# == 0 ]]; then
-    buildAndDeployContractsModule &&
     buildAndDeployExcelReaderModule &&
     buildAndDeployPasswordsModule &&
     buildAndDeployCarbono

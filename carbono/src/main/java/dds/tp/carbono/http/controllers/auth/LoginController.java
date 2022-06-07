@@ -1,14 +1,15 @@
 package dds.tp.carbono.http.controllers.auth;
 
-import dds.tp.carbono.contracts.services.auth.ILoginService;
 import dds.tp.carbono.entities.auth.Rol;
 import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.exceptions.ForbiddenException;
 import dds.tp.carbono.http.exceptions.HttpException;
+import dds.tp.carbono.http.exceptions.UnauthorizedException;
 import dds.tp.carbono.http.utils.Uri;
 import dds.tp.carbono.http.validator.ValidateResult;
 import dds.tp.carbono.http.validator.Validator;
+import dds.tp.carbono.services.auth.LoginService;
 import lombok.Getter;
 import lombok.Setter;
 import spark.Request;
@@ -19,10 +20,11 @@ import spark.TemplateEngine;
 public class LoginController extends Controller {
     private static final String LOGIN_VIEW = "login.mustache";
     private static final String FORBIDDEN_MESSAGE = "Usuario sin roles validos";
+    private static final String UNAUTHORIZED_MESSAGE = "Usuario o Password invalido";
     
-    private ILoginService loginService;
+    private LoginService loginService;
 
-    public LoginController(ILoginService loginService) {
+    public LoginController(LoginService loginService) {
         this.loginService = loginService;
     }
 
@@ -33,9 +35,14 @@ public class LoginController extends Controller {
     }
 
     public String login(Request request, Response response) throws HttpException {
-        LoginDTO input = getBody(request, LoginDTO.class, new LoginDTOValidator());
-        Usuario usuario = loginService.login(input.getUsername(), input.getPassword());
-        return redirectByRol(usuario.getRol());
+        
+        try {
+            LoginDTO input = getBody(request, LoginDTO.class, new LoginDTOValidator());
+            Usuario usuario = loginService.login(input.getUsername(), input.getPassword());
+            return redirectByRol(usuario.getRol());
+        } catch (Exception ex) {
+            throw new UnauthorizedException(UNAUTHORIZED_MESSAGE);
+        }
     }
 
     private String redirectByRol(Rol rol) throws HttpException {

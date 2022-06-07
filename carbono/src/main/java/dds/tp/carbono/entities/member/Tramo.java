@@ -5,6 +5,7 @@ import java.util.List;
 
 import dds.tp.carbono.entities.point.PuntoGeografico;
 import dds.tp.carbono.entities.transport.MedioDeTransporte;
+import dds.tp.carbono.validators.tramo.TramoValidator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,14 +20,11 @@ public class Tramo {
         this.compartidos = new ArrayList<Miembro>();
     }
     
-    public Double obtenerDistancia() throws Exception{
+    public Double obtenerDistancia() throws Exception {
         return this.transporte.calcularDistancia(puntoA, puntoB);
     }
 
     public Boolean isValid() {
-        if (puntoA == null || puntoB == null || transporte == null)
-            return false;
-            
-        return true;
+        return new TramoValidator().validate(this);
     }
 }

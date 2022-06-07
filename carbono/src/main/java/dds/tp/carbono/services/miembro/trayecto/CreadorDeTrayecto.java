@@ -15,7 +15,11 @@ public class CreadorDeTrayecto {
         this.repository = new TrayectoRepository();
     }
 
-    public Trayecto crear(Trayecto trayecto) {
+    public Trayecto crear(Trayecto trayecto) throws Exception {
+
+        if (!trayecto.isValid())
+            throw new Exception("Trayecto Invalido");
+
         List<Tramo> tramosCompartidos = this.tramosCompartidos(trayecto);
 
         if (tramosCompartidos.size() > 0)

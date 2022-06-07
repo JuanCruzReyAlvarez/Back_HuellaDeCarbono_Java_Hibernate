@@ -12,14 +12,18 @@ import dds.tp.carbono.services.auth.RegisterService;
 public class LoginTest {
 
     @Test
-    public void loginCheck() {
-        LoginService login = new LoginService();
-        Usuario usuario = login.login("admin", "admin");
-        Assert.assertNull(usuario);
+    public void loginCheck() throws Exception {
+        try {
+            LoginService login = new LoginService();
+            Usuario usuario = login.login("admin", "admin");
+            Assert.assertNull(usuario);
+        } catch (Exception ex) {
+            Assert.assertNotNull(ex);
+        }
     }
     
     @Test
-    public void loginValido() throws InsecurePasswordException {
+    public void loginValido() throws Exception {
         RegisterService register = new RegisterService(new InsecurePasswordCheckerBuilder());
         
         Usuario user = register.register("admin", "Diseniodesistemas12345", "administrador");

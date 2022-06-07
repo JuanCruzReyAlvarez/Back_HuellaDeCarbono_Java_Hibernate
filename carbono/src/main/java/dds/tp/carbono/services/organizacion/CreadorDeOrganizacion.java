@@ -1,7 +1,6 @@
 package dds.tp.carbono.services.organizacion;
 
 import dds.tp.carbono.entities.organization.Organizacion;
-
 import dds.tp.carbono.repository.org.OrganizacionRepository;
 
 public class CreadorDeOrganizacion {
@@ -12,7 +11,11 @@ public class CreadorDeOrganizacion {
         this.repository = new OrganizacionRepository();
     }
 
-    public Organizacion crear(Organizacion organizacion) {
+    public Organizacion crear(Organizacion organizacion) throws Exception {
+
+        if (!organizacion.isValid())
+            throw new Exception("Invalid Organization");
+
         return this.repository.guardar(organizacion);         
     }
 }
