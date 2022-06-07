@@ -13,6 +13,6 @@ public class RazonSocialValidator implements OrganizacionValidatorCommand {
 
     @Override
     public Boolean validate(Organizacion organizacion) {
-        return !this.repository.exists(organizacion.getRazonSocial());
+        return !this.repository.exists(organizacion.getRazonSocial()) && organizacion.getRazonSocial() != null;
     }
 }

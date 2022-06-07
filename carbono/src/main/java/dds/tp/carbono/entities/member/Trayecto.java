@@ -22,4 +22,13 @@ public class Trayecto {
     public Boolean isValid() {
         return new TrayectoValidator().validate(this);
     }
+
+    public Double obtenerDistancia() throws Exception {
+        Double distancia = Double.valueOf(0);
+
+        for (Tramo tramo : this.getTramos())
+            distancia += tramo.obtenerDistancia();
+        
+        return distancia;
+    }
 }
