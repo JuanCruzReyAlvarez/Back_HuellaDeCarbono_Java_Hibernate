@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import dds.tp.carbono.entities.point.PuntoGeografico;
+import dds.tp.carbono.validators.organizacion.OrganizacionValidator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,5 +18,9 @@ public class Organizacion {
 
     public Organizacion() {
         this.sectores = new HashSet<Sector>();
+    }
+
+    public boolean isValid() {
+        return new OrganizacionValidator().validate(this);
     }	
 }

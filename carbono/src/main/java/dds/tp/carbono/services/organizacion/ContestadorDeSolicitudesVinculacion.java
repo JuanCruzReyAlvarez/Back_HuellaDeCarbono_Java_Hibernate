@@ -17,7 +17,6 @@ public class ContestadorDeSolicitudesVinculacion {
     public SolicitudVinculacion aceptar(SolicitudVinculacion solicitud) throws NoSuchElementException, Exception {
         SolicitudVinculacion solicitudEncontrada = this.repository.buscar(solicitud);
 
-        
         if (solicitudEncontrada.getEstado() == EstadoSolicitudVinculacion.ACEPTADO)
             throw new Exception("Solicitud ya estaba Aceptada");
 
@@ -26,7 +25,6 @@ public class ContestadorDeSolicitudesVinculacion {
 
     public SolicitudVinculacion rechazar(SolicitudVinculacion solicitud) throws NoSuchElementException, Exception {
         SolicitudVinculacion solicitudEncontrada = this.repository.buscar(solicitud);
-
 
         if (solicitudEncontrada.getEstado() == EstadoSolicitudVinculacion.RECHAZADO)
             throw new Exception("Solicitud ya estaba Rechazada");

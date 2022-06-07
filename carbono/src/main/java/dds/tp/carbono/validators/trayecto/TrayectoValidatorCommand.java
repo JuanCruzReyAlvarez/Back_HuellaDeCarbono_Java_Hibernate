@@ -1,5 +1,7 @@
 package dds.tp.carbono.validators.trayecto;
 
-public class TrayectoValidatorCommand {
-    
+import dds.tp.carbono.entities.member.Trayecto;
+
+public interface TrayectoValidatorCommand {
+    public Boolean validate(Trayecto trayecto);
 }

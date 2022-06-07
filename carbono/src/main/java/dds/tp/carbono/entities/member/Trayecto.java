@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dds.tp.carbono.entities.point.PuntoGeografico;
+import dds.tp.carbono.validators.trayecto.TrayectoValidator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,24 +20,6 @@ public class Trayecto {
     }
 
     public Boolean isValid() {
-        if (this.puntoPartida == null || this.puntoLlegada == null || this.tramos.size() == 0 || this.miembro == null )
-            return false;
-             
-        if (!this.tramosValidos())
-            return false;
-        
-        if (!this.puntoInicialYFinalCongruente())
-            return false;
-        
-        return true;
-    }
-
-    private boolean tramosValidos() {
-        return this.tramos.stream().allMatch(tramo -> tramo.isValid());
-    }
-
-    private boolean puntoInicialYFinalCongruente() {
-        return this.tramos.get(0).getPuntoA().getId().equals(this.puntoPartida.getId()) &&
-               this.tramos.get(this.tramos.size() - 1).getPuntoB().getId().equals(this.puntoLlegada.getId());
+        return new TrayectoValidator().validate(this);
     }
 }
