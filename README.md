@@ -44,44 +44,6 @@ https://drive.google.com/file/d/1WISFuwqOivZ37lYdTgXs3MgXDTo37JtK/view?usp=shari
 
 ![Alt text](https://i.gyazo.com/f518cf7193368ac2c4c650aaa884f66a.png "Carbono Path")
 
-## Instalar NodeJS, NPM y Angular cli (para la UI)
-
-- Descargar, extraer y ejecutar el instalador
-
-https://drive.google.com/file/d/1esN0vh7jon_OE6l6G4R65nQHSXf7aBI8/view?usp=sharing
-
-- abrir una nueva terminal y verificar que se haya instalado 
-
- ```
--$ npm -v
- ```
- - El comando de arriba debe devolver el numero de version de npm
- -
- ![Alt text](https://i.gyazo.com/da57847d204857abd6c7099bcec19d3b.png "NPM version")
-
-#### instalar Angular cli con npm
-
- ```
--$ npm install -g @angular/cli
- ```
-
-## Configurar dominio ddstp.carbono.com
-
-- Abrir un editor de texto en modo Adminitrador (click derecho -> ejecutar como administrador)
-- Abrir el archivo hosts (ubicado en C:\Windows\System32\drivers\etc)
-- Agregar el siguiente texto debajo de todo
-
- ```
-127.0.0.1 ddstp.carbono.com
- ```
- 
-- guardar hosts file
-
-
-## Instalar docker desktop en Windows 10 (Opcional para no instalar base de datos)
-
-https://www.youtube.com/watch?v=_et7H0EQ8fY
-
 
 ## Instalacion de MySQL
 
@@ -98,38 +60,21 @@ https://drive.google.com/file/d/1k2HXtRa9g9cvbp8qioxMQ0ESeAGs9kS2/view?usp=shari
 abrir terminal y posicionarse donde se encuentra este README.md (base del repo) y ejecutar:
 
  ```
--$ sh ./environment/build-carbono.sh
+-$ sh ./build.sh
  ```
 ### Argumentos
 
 - -p  ----- Build Passwords Module  
-- -u  ----- Build UI Module  
-- -c  ----- Build Carbono Backend  
+- -e  ----- Build Excel Importer Module  
+- -a  ----- Build Carbono Backend  
 - -t  ----- Run unit tests when building  
-- -s  ----- Run Local Server Docker (default) 
-- -sa ----- Run Local Server on local Apache Tomcat  
 - -h  ----- Help guide  
 
 #### ejemplo
 
  ```
--$ sh ./environment/build-carbono.sh -ucsa
+-$ sh ./environment/build.sh -pa
  ```
 
-- esto primero hace build de la UI creando todos los archivos estaticos (html, css, js)
-- luego compila el codigo java de la carpeta carbono y genera el .war
-- levanta el .war en el Apache Tomcat que se encuentra en la carpeta environment
-
-### Debugging
-
-#### vsCode
-
-- Para debuggear en el Visual Studio Code es necesario instalar la extension de Apache Tomcat:
-https://marketplace.visualstudio.com/items?itemName=adashen.vscode-tomcat
-
-- luego dentro del widget de tomcat agregar un nuevo tomcat apuntando al directorio llamado tomcat que esta en la carpeta environment
-- para debuggear hacer click derecho en el ROOT.war (creado al buildear con el build-carbono.sh -c) y poner Debbug with Tomcat
-
-#### intelliJ
-
-- //TODO: completar
+- esto primero hace build del modulo de passwords
+- luego compila el codigo java de la carpeta carbono
