@@ -1,12 +1,12 @@
 package dds.tp.carbono.utils;
 
 public class FormatString {
-    public static String toLower(String string){
-        return string.toLowerCase();
 
+    public static String toLower(String string) {
+        return string.toLowerCase();
     }
 
-    public static String sinTildes(String string){
+    public static String sinTildes(String string) {
         return string.replace("á", "a")
                      .replace("é", "e")
                      .replace("í", "i")
@@ -14,7 +14,7 @@ public class FormatString {
                      .replace("ú", "u");
     }
 
-    public static String sinEspacios(String string){
+    public static String sinEspacios(String string) {
         return string.replace(" ", "");
     }
 }

@@ -2,12 +2,14 @@ package dds.tp.carbono.entities.transport;
 
 import dds.tp.carbono.entities.point.PuntoGeografico;
 import dds.tp.carbono.services.distancia.CalculadorDistanciaTransportePublico;
+import dds.tp.carbono.services.org.metrics.metrics.TipoDeConsumo;
 import lombok.Getter;
 import lombok.Setter;
 
 public class TransportePublico implements MedioDeTransporte {
     @Getter @Setter private Integer id;
     @Getter @Setter private TipoTransportePublico tipo;
+    @Getter @Setter private TipoDeConsumo combustible;
     @Getter @Setter private Linea linea;
 
     @Override

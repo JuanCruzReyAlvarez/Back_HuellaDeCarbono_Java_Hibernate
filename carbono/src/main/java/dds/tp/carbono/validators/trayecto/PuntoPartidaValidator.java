@@ -8,11 +8,13 @@ public class PuntoPartidaValidator implements TrayectoValidatorCommand {
 
     @Override
     public Boolean validate(Trayecto trayecto) {
-        return trayecto.getPuntoPartida() != null && this.puntoDePartidaCongruenteEnTramos(trayecto);
+        return trayecto.getPuntoPartida() != null && trayecto.getTramos() != null
+            && this.puntoDePartidaCongruenteEnTramos(trayecto);
     }
 
     private boolean puntoDePartidaCongruenteEnTramos(Trayecto trayecto) {
-        return trayecto.getTramos()
+        return trayecto.getTramos().size() > 0 
+            && trayecto.getTramos()
                        .get(PRIMER_TRAMO)
                        .getPuntoA()
                        .getId()
