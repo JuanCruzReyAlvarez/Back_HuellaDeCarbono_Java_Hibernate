@@ -1,8 +1,12 @@
 package dds.tp.carbono.entities.organization;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import dds.tp.carbono.entities.huella.HuellaCarbono;
+import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
 import dds.tp.carbono.entities.point.PuntoGeografico;
 import dds.tp.carbono.validators.organizacion.OrganizacionValidator;
 import lombok.Getter;
@@ -15,12 +19,18 @@ public class Organizacion {
     @Getter @Setter private TipoOrganizacion tipo;
     @Getter @Setter private PuntoGeografico ubicacion;
     @Getter @Setter private Set<Sector> sectores;
+    @Getter @Setter private List<MetricaOrganizacion> metricas;
 
     public Organizacion() {
         this.sectores = new HashSet<Sector>();
+        this.metricas = new ArrayList<MetricaOrganizacion>();
     }
 
     public boolean isValid() {
         return new OrganizacionValidator().validate(this);
-    }	
+    }
+    
+    public HuellaCarbono calcularHC() {
+        return new HuellaCarbono(); //TODO: Implementar calcularHC
+    } 
 }
