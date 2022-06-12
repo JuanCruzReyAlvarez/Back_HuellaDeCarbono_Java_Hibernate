@@ -1,9 +1,9 @@
-package dds.tp.carbono.services.org.metrics.metrics;
+package dds.tp.carbono.entities.organization.metrics;
 
 import lombok.Getter;
 import lombok.Setter;
 
-public class MetricasDeOrganizacion {
+public class MetricaOrganizacion {
     @Setter @Getter private Actividad actividad;
     @Setter @Getter private TipoDeConsumo tipoDeConsumo;
     @Setter @Getter private Consumo consumo;

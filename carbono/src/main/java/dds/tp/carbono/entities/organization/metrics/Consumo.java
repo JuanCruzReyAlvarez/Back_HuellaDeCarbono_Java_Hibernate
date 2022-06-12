@@ -1,4 +1,4 @@
-package dds.tp.carbono.services.org.metrics.metrics;
+package dds.tp.carbono.entities.organization.metrics;
 
 import lombok.Getter;
 import lombok.Setter;

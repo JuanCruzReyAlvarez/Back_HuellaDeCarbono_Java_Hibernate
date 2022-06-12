@@ -1,4 +1,4 @@
-package dds.tp.carbono.services.org.metrics.metrics;
+package dds.tp.carbono.entities.organization.metrics;
 
 public enum Unidad {
     KG,
@@ -9,7 +9,6 @@ public enum Unidad {
 
     public static Unidad getBy(TipoDeConsumo tipo) throws Exception {
         switch (tipo) {
-
             case Nafta: return LT; 
             case Electricidad: return Kwh; 
             case Peso: return KG; 

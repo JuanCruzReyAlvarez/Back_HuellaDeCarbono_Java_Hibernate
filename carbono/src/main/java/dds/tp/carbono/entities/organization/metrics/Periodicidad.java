@@ -1,4 +1,4 @@
-package dds.tp.carbono.services.org.metrics.metrics;
+package dds.tp.carbono.entities.organization.metrics;
 
 public enum Periodicidad {
     ANUAL,
@@ -9,7 +9,7 @@ public enum Periodicidad {
             return ANUAL;
 
         if (nombre.equals("MENSUAL"))
-            return ANUAL;
+            return MENSUAL;
             
         throw new Exception("Periodicidad no existente");
     }
