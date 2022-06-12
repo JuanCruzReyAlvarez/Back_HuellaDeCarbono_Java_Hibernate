@@ -6,14 +6,14 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import dds.tp.carbono.entities.organization.metrics.Actividad;
 import dds.tp.carbono.entities.organization.metrics.ImportableModel;
+import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
+import dds.tp.carbono.entities.organization.metrics.Periodicidad;
+import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
+import dds.tp.carbono.entities.organization.metrics.Unidad;
 import dds.tp.carbono.reader.ExcelImporter;
-import dds.tp.carbono.services.org.metrics.converter.MetricasDeOrganizacionConverter;
-import dds.tp.carbono.services.org.metrics.metrics.Actividad;
-import dds.tp.carbono.services.org.metrics.metrics.MetricasDeOrganizacion;
-import dds.tp.carbono.services.org.metrics.metrics.Periodicidad;
-import dds.tp.carbono.services.org.metrics.metrics.TipoDeConsumo;
-import dds.tp.carbono.services.org.metrics.metrics.Unidad;
+import dds.tp.carbono.services.organizacion.metrics.MetricaOrganizacionConverter;
 
 public class ExcelTest {
 
@@ -26,9 +26,9 @@ public class ExcelTest {
             
             List<ImportableModel> excelData = importer.importFrom(is, ImportableModel.class);
 
-            MetricasDeOrganizacionConverter converter = new MetricasDeOrganizacionConverter();
+            MetricaOrganizacionConverter converter = new MetricaOrganizacionConverter();
 
-            List<MetricasDeOrganizacion> listaDeMetricas = converter.convertir(excelData);
+            List<MetricaOrganizacion> listaDeMetricas = converter.convertir(excelData);
 
             Assert.assertEquals(Actividad.CombustionFija, listaDeMetricas.get(0).getActividad());
             Assert.assertEquals(TipoDeConsumo.GNC, listaDeMetricas.get(5).getTipoDeConsumo());

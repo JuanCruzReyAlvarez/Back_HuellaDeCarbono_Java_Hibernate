@@ -1,8 +1,8 @@
-package dds.tp.carbono.repository.org;
+package dds.tp.carbono.repository.organization;
 
 import java.util.NoSuchElementException;
 
-import dds.tp.carbono.dao.org.SolicitudVinculacionDao;
+import dds.tp.carbono.dao.organization.SolicitudVinculacionDao;
 import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.organization.EstadoSolicitudVinculacion;
 import dds.tp.carbono.entities.organization.Sector;

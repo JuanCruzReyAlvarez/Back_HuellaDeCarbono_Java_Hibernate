@@ -3,7 +3,7 @@ package dds.tp.carbono.services.miembro;
 import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.organization.Sector;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
-import dds.tp.carbono.repository.org.SolicitudVinculacionRepository;
+import dds.tp.carbono.repository.organization.SolicitudVinculacionRepository;
 
 public class SolicitadorDeVinculacion {
     

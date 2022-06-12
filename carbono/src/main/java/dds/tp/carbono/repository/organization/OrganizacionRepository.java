@@ -1,14 +1,14 @@
-package dds.tp.carbono.repository.org;
+package dds.tp.carbono.repository.organization;
 
-import dds.tp.carbono.dao.org.CreadorDeOrganizacionesDao;
+import dds.tp.carbono.dao.organization.OrganizacionDao;
 import dds.tp.carbono.entities.organization.Organizacion;
 
 public class OrganizacionRepository {
 
-    CreadorDeOrganizacionesDao dao; 
+    OrganizacionDao dao; 
 
     public OrganizacionRepository() {
-        this.dao = CreadorDeOrganizacionesDao.getInstance();
+        this.dao = OrganizacionDao.getInstance();
     }
 
     public Organizacion guardar(Organizacion organizacion) {

@@ -1,7 +1,7 @@
 package dds.tp.carbono.validators.organizacion;
 
 import dds.tp.carbono.entities.organization.Organizacion;
-import dds.tp.carbono.repository.org.OrganizacionRepository;
+import dds.tp.carbono.repository.organization.OrganizacionRepository;
 
 public class RazonSocialValidator implements OrganizacionValidatorCommand {
 

@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 
 import dds.tp.carbono.entities.organization.EstadoSolicitudVinculacion;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
-import dds.tp.carbono.repository.org.SolicitudVinculacionRepository;
+import dds.tp.carbono.repository.organization.SolicitudVinculacionRepository;
 
 public class ContestadorDeSolicitudesVinculacion {
     

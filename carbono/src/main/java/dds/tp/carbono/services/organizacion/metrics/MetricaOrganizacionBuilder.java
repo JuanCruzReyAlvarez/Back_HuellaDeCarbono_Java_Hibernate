@@ -1,16 +1,23 @@
-package dds.tp.carbono.services.org.metrics.metrics;
+package dds.tp.carbono.services.organizacion.metrics;
 
+import dds.tp.carbono.entities.organization.metrics.Actividad;
+import dds.tp.carbono.entities.organization.metrics.Consumo;
 import dds.tp.carbono.entities.organization.metrics.ImportableModel;
+import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
+import dds.tp.carbono.entities.organization.metrics.Periodicidad;
+import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
+import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
+import dds.tp.carbono.entities.organization.metrics.Unidad;
 
-public class MetricasDeOrganizacionBuilder {
+public class MetricaOrganizacionBuilder {
 
-    private MetricasDeOrganizacion metricas;
+    private MetricaOrganizacion metricas;
 
     public void MetricasDeOrganizacion() {
-        this.metricas = new MetricasDeOrganizacion();
+        this.metricas = new MetricaOrganizacion();
     }
 
-    public MetricasDeOrganizacionBuilder addActividad(ImportableModel importable) throws Exception {
+    public MetricaOrganizacionBuilder addActividad(ImportableModel importable) throws Exception {
 
         Actividad actividad = Actividad.getBy(importable.getActividad());
         this.metricas.setActividad(actividad);
@@ -18,7 +25,7 @@ public class MetricasDeOrganizacionBuilder {
         return this;
     }
 
-    public MetricasDeOrganizacionBuilder addConsumo(ImportableModel importable) throws Exception {
+    public MetricaOrganizacionBuilder addConsumo(ImportableModel importable) throws Exception {
         Consumo consumo = new Consumo();
 
         this.addTipoDeConsumo(importable);
@@ -31,21 +38,21 @@ public class MetricasDeOrganizacionBuilder {
         return this;
     }
 
-    public MetricasDeOrganizacionBuilder addPeriodoDeImputacion(ImportableModel importable) throws Exception {
+    public MetricaOrganizacionBuilder addPeriodoDeImputacion(ImportableModel importable) throws Exception {
         PeriodoDeImputacion periodo = new PeriodoDeImputacion(importable.getPeriodoDeImputacion());
         this.metricas.setPeriodoDeImputacion(periodo);
 
         return this;
     }
     
-    public MetricasDeOrganizacion build() throws Exception {
+    public MetricaOrganizacion build() throws Exception {
         if(this.metricas.isValid())
             return this.metricas;
 
         throw new Exception("No son válidas las metricas");
     }
 
-    private MetricasDeOrganizacionBuilder addTipoDeConsumo(ImportableModel importable) throws Exception {
+    private MetricaOrganizacionBuilder addTipoDeConsumo(ImportableModel importable) throws Exception {
 
         TipoDeConsumo tipo = TipoDeConsumo.getBy(importable.getTipoDeConsumo());
         this.metricas.setTipoDeConsumo(tipo);

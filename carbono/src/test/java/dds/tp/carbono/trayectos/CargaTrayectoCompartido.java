@@ -16,13 +16,13 @@ import dds.tp.carbono.entities.organization.Clasificacion;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
 import dds.tp.carbono.entities.organization.TipoOrganizacion;
+import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
 import dds.tp.carbono.entities.point.PuntoArbitrario;
 import dds.tp.carbono.entities.point.PuntoGeografico;
 import dds.tp.carbono.entities.transport.Estacion;
 import dds.tp.carbono.entities.transport.Linea;
 import dds.tp.carbono.entities.transport.MedioDeTransporte;
 import dds.tp.carbono.entities.transport.MedioNoMotorizado;
-import dds.tp.carbono.entities.transport.TipoCombustible;
 import dds.tp.carbono.entities.transport.TipoMedioNoMotorizado;
 import dds.tp.carbono.entities.transport.TipoTransportePublico;
 import dds.tp.carbono.entities.transport.TipoVehiculoParticular;
@@ -111,7 +111,7 @@ public class CargaTrayectoCompartido {
         VehiculoParticular tuAuto = new VehiculoParticular();
         tuAuto.setTipo(TipoVehiculoParticular.AUTO);
         tuAuto.setId(1);
-        tuAuto.setCombustible(TipoCombustible.NAFTA);
+        tuAuto.setCombustible(TipoDeConsumo.Nafta);
         
         return tuAuto;
     }
