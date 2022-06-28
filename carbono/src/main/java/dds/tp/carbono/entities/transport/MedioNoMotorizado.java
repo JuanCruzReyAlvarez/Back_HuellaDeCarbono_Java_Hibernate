@@ -1,5 +1,6 @@
 package dds.tp.carbono.entities.transport;
 
+import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
 import dds.tp.carbono.entities.point.PuntoGeografico;
 import dds.tp.carbono.services.distancia.CalculadorDistanciaServicioExterno;
 import lombok.Getter;
@@ -19,6 +20,11 @@ public class MedioNoMotorizado implements MedioDeTransporte {
         CalculadorDistanciaServicioExterno calculador = new CalculadorDistanciaServicioExterno();
         return calculador.calcularDistancia(inicio, fin);
     }
- 
+
+    @Override
+    public TipoDeConsumo getCombustible() throws Exception {
+        throw new Exception("no tiene combustible");
+    }
+
 }
 
