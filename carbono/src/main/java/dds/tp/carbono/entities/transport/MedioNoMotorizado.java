@@ -9,7 +9,7 @@ import lombok.Setter;
 public class MedioNoMotorizado implements MedioDeTransporte {
     @Getter @Setter private Integer id;
     @Getter @Setter private TipoMedioNoMotorizado tipo;
-
+    @Setter private CalculadorDistanciaServicioExterno calculador = new CalculadorDistanciaServicioExterno();
     public MedioNoMotorizado(Integer id, TipoMedioNoMotorizado tipo) {
         this.id = id;
         this.tipo = tipo;
@@ -17,7 +17,6 @@ public class MedioNoMotorizado implements MedioDeTransporte {
     
     @Override
     public Double calcularDistancia(PuntoGeografico inicio, PuntoGeografico fin) throws Exception {
-        CalculadorDistanciaServicioExterno calculador = new CalculadorDistanciaServicioExterno();
         return calculador.calcularDistancia(inicio, fin);
     }
 

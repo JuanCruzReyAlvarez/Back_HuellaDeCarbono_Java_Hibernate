@@ -88,8 +88,8 @@ public class ObtenerDistanciaTramo {
 
     private TransportePublico buildTransportePublico(int id, TipoTransportePublico tipo, int lineaIndex) {
         TransportePublico transporte = new TransportePublico();
-        transporte.setId(1);
-        transporte.setTipo(TipoTransportePublico.SUBTE);
+        transporte.setId(id);
+        transporte.setTipo(tipo);
         transporte.setLinea(this.buildLinea(lineaIndex));
 
         return transporte;

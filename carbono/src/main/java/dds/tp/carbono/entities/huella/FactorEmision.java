@@ -10,4 +10,11 @@ public class FactorEmision {
     @Getter @Setter private TipoDeConsumo tipoDeConsumo;
     @Getter @Setter private Double valor;
     @Getter @Setter private Unidad unidad;
+
+    public FactorEmision (Integer id, TipoDeConsumo tipoDeConsumo, Double valor, Unidad unidad){
+        this.id = id;
+        this.tipoDeConsumo = tipoDeConsumo;
+        this.valor = valor;
+        this.unidad = unidad;
+    }
 }

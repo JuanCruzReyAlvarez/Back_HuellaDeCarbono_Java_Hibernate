@@ -12,7 +12,10 @@ public class HuellaCarbono {
         this.unidad = UnidadHC.gCO2eq;
     }
     public HuellaCarbono suma(HuellaCarbono huella){
-        return new HuellaCarbono();
+        HuellaCarbono huellaSuma = new HuellaCarbono();
+        huellaSuma.setValor(this.valor + huella.getValor());
+        //TODO faltan las unidades
+        return huellaSuma;
     }
 
 }
