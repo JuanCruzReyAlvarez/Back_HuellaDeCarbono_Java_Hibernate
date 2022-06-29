@@ -11,7 +11,7 @@ import org.eclipse.jetty.http.HttpStatus;
 
 import dds.tp.carbono.entities.auth.Rol;
 import dds.tp.carbono.entities.huella.UnidadFE;
-import dds.tp.carbono.entities.organization.metrics.Actividad;
+import dds.tp.carbono.entities.organization.metrics.TipoActividad;
 import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
 import dds.tp.carbono.http.controllers.AuthorizationMiddleware;
 import dds.tp.carbono.http.dto.ErrorDTO;
@@ -88,7 +88,7 @@ public class FactorEmisionController extends AuthorizationMiddleware {
 
     private Map<String, Object> getViewData() {
         return new HashMap<String, Object>() {{
-            put("actividades", Stream.of(Actividad.values()).map(Enum::name).collect(Collectors.toList())); 
+            put("actividades", Stream.of(TipoActividad.values()).map(Enum::name).collect(Collectors.toList())); 
             put("tiposConsumo", Stream.of(TipoDeConsumo.values()).map(Enum::name).collect(Collectors.toList()));
             put("unidades", Stream.of(UnidadFE.values()).map(Enum::toString).collect(Collectors.toList()));
         }};
