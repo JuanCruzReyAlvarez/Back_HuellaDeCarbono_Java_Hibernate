@@ -2,6 +2,7 @@ package dds.tp.carbono.http.context;
 
 import dds.tp.carbono.builder.InsecurePasswordCheckerBuilder;
 import dds.tp.carbono.contracts.http.IController;
+import dds.tp.carbono.http.controllers.admin.FactorEmisionController;
 import dds.tp.carbono.http.controllers.admin.ui.AdminOrganizationController;
 import dds.tp.carbono.http.controllers.auth.LoginController;
 import dds.tp.carbono.http.controllers.auth.RegisterController;
@@ -39,7 +40,8 @@ public class Server implements SparkApplication {
             new OrgMetricsController(),
             new AdminOrganizationController(),
             new TrayectosController(),
-            new PointController()
+            new PointController(),
+            new FactorEmisionController()
         };
     }
 }

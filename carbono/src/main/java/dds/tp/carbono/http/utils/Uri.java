@@ -13,4 +13,5 @@ public enum Uri {
     MEMBER_POINTS_AUTOCOMPLETE,
     ORG, 
     ORG_METRICS, 
+    ADMIN_FACTOR_EMISION, 
 }

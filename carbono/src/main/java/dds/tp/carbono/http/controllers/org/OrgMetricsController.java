@@ -6,10 +6,9 @@ import java.util.List;
 
 import javax.servlet.MultipartConfigElement;
 
-import com.google.gson.Gson;
-
+import dds.tp.carbono.entities.auth.Rol;
 import dds.tp.carbono.entities.organization.metrics.ImportableModel;
-import dds.tp.carbono.http.controllers.Controller;
+import dds.tp.carbono.http.controllers.AuthorizationMiddleware;
 import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.Uri;
 import dds.tp.carbono.reader.ExcelImporter;
@@ -21,11 +20,13 @@ import spark.Spark;
 import spark.TemplateEngine;
 
 @Slf4j
-public class OrgMetricsController extends Controller {
+public class OrgMetricsController extends AuthorizationMiddleware {
     
     private static final String VIEW = "org.metrics.mustache";
     private static final String ACCESS_TYPE = "multipart/form-data";
     private static final String MULTIPART_DRIVER = "org.eclipse.jetty.multipartConfig";
+
+    public OrgMetricsController() { super(Rol.ORGANIZACION); }
 
     @Override
     public void routes(TemplateEngine engine) {
@@ -34,14 +35,19 @@ public class OrgMetricsController extends Controller {
     }
 
     private ModelAndView uploadFile(Request request, Response rs) throws HttpException {
+
         request.attribute(MULTIPART_DRIVER, new MultipartConfigElement("/temp"));
         
         try (InputStream is = request.raw().getPart("file").getInputStream()) {
+            
             ExcelImporter importer = new ExcelImporter();
+
             List<ImportableModel> excelData = importer.importFrom(is, ImportableModel.class);
-            log.info(new Gson().toJson(excelData));
+
+            log.info(json(excelData));
            
             return view(VIEW, Collections.singletonMap("metrics", excelData));
+            
         } catch (Exception ex) {
             return view(VIEW, Collections.singletonMap("errors", Collections.singletonMap("error", ex.getMessage())));
         }
