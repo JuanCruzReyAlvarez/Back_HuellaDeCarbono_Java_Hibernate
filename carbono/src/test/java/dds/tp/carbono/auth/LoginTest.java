@@ -6,6 +6,7 @@ import org.junit.Test;
 import dds.tp.carbono.builder.InsecurePasswordCheckerBuilder;
 import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.exception.InsecurePasswordException;
+import dds.tp.carbono.http.utils.SessionCookie;
 import dds.tp.carbono.services.auth.LoginService;
 import dds.tp.carbono.services.auth.RegisterService;
 
@@ -15,8 +16,8 @@ public class LoginTest {
     public void loginCheck() throws Exception {
         try {
             LoginService login = new LoginService();
-            Usuario usuario = login.login("admin", "admin");
-            Assert.assertNull(usuario);
+            SessionCookie cookie = login.login("admin", "admin");
+            Assert.assertNull(cookie);
         } catch (Exception ex) {
             Assert.assertNotNull(ex);
         }
@@ -32,9 +33,9 @@ public class LoginTest {
         Assert.assertNotNull(user.getId());
 
         LoginService login = new LoginService();
-        Usuario usuario = login.login("admin", "Diseniodesistemas12345");
+        SessionCookie cookie = login.login("admin", "Diseniodesistemas12345");
 
-        Assert.assertEquals(user, usuario);
+        Assert.assertEquals(user, cookie.getUser());
     }
     
     @Test

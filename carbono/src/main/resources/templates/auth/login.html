@@ -8,12 +8,11 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='/css/toast/toast.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='/css/auth/login.css'>
-    <script src='/js/jquery.min.js'></script>
 </head>
 
 <body>
 
-    <form id="login-form" metod="POST" action="login">
+    <form id="login-form" method="POST" action="login">
         <div class="form-field">
             <input id="username" type="text" placeholder="Username" name="username" autocomplete="off">
         </div>
@@ -26,12 +25,13 @@
         </div>
     </form>
     
-    <div id="toast">
-    
+    {{#error}}
+    <div id="toast" class="toast-error toast-fadein">
+        <ul>
+            <li>{{error}}</li>
+        </ul>
     </div>
-    
-    <script src="/js/toast/toast.js"></script>
-    <script src="/js/auth/login.js"></script>
+    {{/error}}
 
 </body>
 

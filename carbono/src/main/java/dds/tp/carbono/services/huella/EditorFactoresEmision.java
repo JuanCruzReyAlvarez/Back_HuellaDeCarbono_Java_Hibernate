@@ -1,5 +1,7 @@
 package dds.tp.carbono.services.huella;
 
+import java.util.List;
+
 import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 
@@ -9,6 +11,10 @@ public class EditorFactoresEmision {
 
     public EditorFactoresEmision() {
         this.repository = new FactorEmisionRepository();
+    }
+
+    public List<FactorEmision> obtenerTodos() {
+        return this.repository.getAll();
     }
 
     public FactorEmision guardar(FactorEmision fe) throws Exception {
