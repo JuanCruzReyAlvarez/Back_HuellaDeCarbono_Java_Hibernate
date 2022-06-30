@@ -10,10 +10,9 @@ public class VehiculoParticular implements MedioDeTransporte {
     @Getter @Setter private Integer id;
     @Getter @Setter private TipoVehiculoParticular tipo;
     @Getter @Setter private TipoDeConsumo combustible;
-
+    @Setter private CalculadorDistanciaServicioExterno calculador = new CalculadorDistanciaServicioExterno();
     @Override
     public Double calcularDistancia(PuntoGeografico inicio, PuntoGeografico fin) throws Exception {
-        CalculadorDistanciaServicioExterno calculador = new CalculadorDistanciaServicioExterno();
         return calculador.calcularDistancia(inicio, fin);
     }
 }

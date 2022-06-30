@@ -1,5 +1,6 @@
 package dds.tp.carbono.entities.huella;
 
+import dds.tp.carbono.entities.huella.converterUnidades.KilogramoUnidadHC;
 import dds.tp.carbono.entities.huella.converterUnidades.UnidadHC;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +11,7 @@ public class HuellaCarbono {
 
     public HuellaCarbono() {
         this.valor = Double.valueOf(0);
+        this.unidad = new KilogramoUnidadHC();
     }
 
     public HuellaCarbono suma(HuellaCarbono hc2) throws Exception {

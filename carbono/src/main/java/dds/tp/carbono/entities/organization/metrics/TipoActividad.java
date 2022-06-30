@@ -3,21 +3,29 @@ package dds.tp.carbono.entities.organization.metrics;
 import dds.tp.carbono.utils.FormatString;
 
 public enum TipoActividad {
-    CombustionFija,
-    CombustionMovil,
-    ElectricidadAdquiridaConsumida,
-    LogisticaDeProductosServicios;
+    Combustion_Fija,
+    Combustion_Movil,
+    Electricidad_Adquirida_Consumida,
+    Logistica_De_Productos_Servicios,
+    Trayecto_Miembros;
 
     public static TipoActividad getBy(String nombre) throws Exception {
 
         switch (formatNombre(nombre)) {
-            case "combustionfija" : return CombustionFija;
-            case "combustionmovil" : return CombustionMovil;
-            case "electricidadadquiridaconsumida" : return ElectricidadAdquiridaConsumida;
-            case "logisticadeproductosservicios" : return LogisticaDeProductosServicios; 
+            case "combustionfija" : return Combustion_Fija;
+            case "combustionmovil" : return Combustion_Movil;
+            case "electricidadadquiridaconsumida" : return Electricidad_Adquirida_Consumida;
+            case "logisticadeproductosservicios" : return Logistica_De_Productos_Servicios; 
+            case "trayectomiembros" : return Trayecto_Miembros; 
                 
             default: throw new Exception("Actividad no existente");
         }
+   }
+
+   @Override
+   public String toString() {
+        String str = super.toString();
+        return str.replaceAll("_", " ");
    }
 
     private static String formatNombre(String nombre) {

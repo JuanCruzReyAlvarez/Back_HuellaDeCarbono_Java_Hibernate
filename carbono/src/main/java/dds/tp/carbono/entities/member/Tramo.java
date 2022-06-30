@@ -5,6 +5,7 @@ import java.util.List;
 
 import dds.tp.carbono.entities.point.PuntoGeografico;
 import dds.tp.carbono.entities.transport.MedioDeTransporte;
+import dds.tp.carbono.entities.transport.MedioNoMotorizado;
 import dds.tp.carbono.validators.tramo.TramoValidator;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,4 +28,9 @@ public class Tramo {
     public Boolean isValid() {
         return new TramoValidator().validate(this);
     }
+
+    public Boolean esCalculable(){
+        return !(this.transporte instanceof MedioNoMotorizado);
+    }
+
 }

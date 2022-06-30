@@ -88,7 +88,7 @@ public class FactorEmisionController extends AuthorizationMiddleware {
 
     private Map<String, Object> getViewData() {
         return new HashMap<String, Object>() {{
-            put("actividades", Stream.of(TipoActividad.values()).map(Enum::name).collect(Collectors.toList())); 
+            put("actividades", Stream.of(TipoActividad.values()).map(Enum::toString).collect(Collectors.toList())); 
             put("tiposConsumo", Stream.of(TipoDeConsumo.values()).map(Enum::name).collect(Collectors.toList()));
             put("unidades", Stream.of(UnidadFE.values()).map(Enum::toString).collect(Collectors.toList()));
         }};
