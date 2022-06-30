@@ -1,31 +1,42 @@
 package dds.tp.carbono.huella;
 
-import com.google.gson.Gson;
-import dds.tp.carbono.distancia.ObtenerDistanciaTramo;
-import dds.tp.carbono.entities.huella.FactorEmision;
-import dds.tp.carbono.entities.member.Tramo;
-import dds.tp.carbono.entities.member.Trayecto;
-import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
-import dds.tp.carbono.entities.organization.metrics.Unidad;
-import dds.tp.carbono.entities.point.PuntoGeografico;
-import dds.tp.carbono.entities.transport.*;
-import dds.tp.carbono.repository.huella.FactorEmisionRepository;
-import dds.tp.carbono.services.distancia.CalculadorDistanciaServicioExterno;
-import dds.tp.carbono.services.huella.CalculadorHuellaTrayecto;
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.poi.ss.formula.functions.T;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import scala.collection.immutable.IntMap;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.google.gson.Gson;
+
+import dds.tp.carbono.entities.huella.FactorEmision;
+import dds.tp.carbono.entities.huella.UnidadFE;
+import dds.tp.carbono.entities.member.Tramo;
+import dds.tp.carbono.entities.member.Trayecto;
+import dds.tp.carbono.entities.organization.metrics.TipoActividad;
+import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
+import dds.tp.carbono.entities.point.PuntoGeografico;
+import dds.tp.carbono.entities.transport.Estacion;
+import dds.tp.carbono.entities.transport.Linea;
+import dds.tp.carbono.entities.transport.MedioDeTransporte;
+import dds.tp.carbono.entities.transport.MedioNoMotorizado;
+import dds.tp.carbono.entities.transport.ServicioContratado;
+import dds.tp.carbono.entities.transport.TipoMedioNoMotorizado;
+import dds.tp.carbono.entities.transport.TipoServicioContratado;
+import dds.tp.carbono.entities.transport.TipoTransportePublico;
+import dds.tp.carbono.entities.transport.TipoVehiculoParticular;
+import dds.tp.carbono.entities.transport.TransportePublico;
+import dds.tp.carbono.entities.transport.VehiculoParticular;
+import dds.tp.carbono.repository.huella.FactorEmisionRepository;
+import dds.tp.carbono.services.distancia.CalculadorDistanciaServicioExterno;
+import dds.tp.carbono.services.huella.CalculadorHuellaTrayecto;
+import lombok.Getter;
+import lombok.Setter;
 
 public class HuellaTrayecto {
 
@@ -53,13 +64,13 @@ public class HuellaTrayecto {
     @Before
     public void inicializarRepositoryMock(){
         this.repositoryMock = mock(FactorEmisionRepository.class);
-        FactorEmision factorGNC = new FactorEmision(1, TipoDeConsumo.GNC, 4.00, Unidad.M3);
-        FactorEmision factorNafta = new FactorEmision(1, TipoDeConsumo.Nafta, 3.00, Unidad.LT);
-        FactorEmision factorDiesel = new FactorEmision(1, TipoDeConsumo.Diesel, 2.00, Unidad.LT);
+        FactorEmision factorGNC = new FactorEmision(TipoDeConsumo.GNC, TipoActividad.Trayecto_Miembros, 4.00, UnidadFE.kgCO2eq_M3);
+        FactorEmision factorNafta = new FactorEmision(TipoDeConsumo.Nafta, TipoActividad.Trayecto_Miembros, 3.00, UnidadFE.kgCO2eq_LT);
+        FactorEmision factorDiesel = new FactorEmision(TipoDeConsumo.Diesel, TipoActividad.Trayecto_Miembros, 2.00, UnidadFE.kgCO2eq_LT);
 
-        when(this.repositoryMock.get(TipoDeConsumo.GNC)).thenReturn(factorGNC);
-        when(this.repositoryMock.get(TipoDeConsumo.Nafta)).thenReturn(factorNafta);
-        when(this.repositoryMock.get(TipoDeConsumo.Diesel)).thenReturn(factorDiesel);
+        when(this.repositoryMock.get(TipoDeConsumo.GNC, TipoActividad.Trayecto_Miembros)).thenReturn(factorGNC);
+        when(this.repositoryMock.get(TipoDeConsumo.Nafta, TipoActividad.Trayecto_Miembros)).thenReturn(factorNafta);
+        when(this.repositoryMock.get(TipoDeConsumo.Diesel, TipoActividad.Trayecto_Miembros)).thenReturn(factorDiesel);
     }
 
     @Before
@@ -72,7 +83,7 @@ public class HuellaTrayecto {
     }
 
     @Test
-    public void calcularHuellaTrayectoCompletoTest(){
+    public void calcularHuellaTrayectoCompletoTest() throws Exception {
         Trayecto trayecto = this.crearTrayectoConTodosLosTiposDeTramos();
         CalculadorHuellaTrayecto calculador = new CalculadorHuellaTrayecto(trayecto);
 
@@ -83,7 +94,7 @@ public class HuellaTrayecto {
     }
 
     @Test
-    public void calcularHuellaTrayectoSinTramosTest(){
+    public void calcularHuellaTrayectoSinTramosTest() throws Exception {
         Trayecto trayecto = this.crearTrayectoSinTramos();
         CalculadorHuellaTrayecto calculador = new CalculadorHuellaTrayecto(trayecto);
 
@@ -94,7 +105,7 @@ public class HuellaTrayecto {
     }
 
     @Test
-    public void calcularHuellaTrayectoNoMotorizado(){
+    public void calcularHuellaTrayectoNoMotorizado() throws Exception {
         Trayecto trayecto = this.crearTrayectoNoMotorizado();
         CalculadorHuellaTrayecto calculador = new CalculadorHuellaTrayecto(trayecto);
 

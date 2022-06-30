@@ -1,6 +1,12 @@
 package dds.tp.carbono.http.controllers;
 
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import org.apache.hadoop.shaded.org.apache.http.NameValuePair;
+import org.apache.hadoop.shaded.org.apache.http.client.utils.URLEncodedUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
@@ -24,15 +30,27 @@ public abstract class Controller implements IController {
             if (validator == null)
                 return data;
 
-            ValidateResult validation = validator.validate(data);
-            
-            if (validation.isValid())
-                return data;
-
-            throw new BadResquestException(validation.getErrors());
+            return validateInput(data, validator);
         } catch (JsonParseException ex) {
             throw new BadResquestException("Malformed Body");
         }
+    }
+
+    protected <T> T validateInput(T data, Validator<T> validator) throws HttpException {
+        ValidateResult validation = validator.validate(data);
+            
+        if (validation.isValid())
+            return data;
+
+        throw new BadResquestException(validation.getErrors()); 
+    }
+
+    protected Map<String, String> formFields(Request request) throws HttpException {
+        List<NameValuePair> pairs = URLEncodedUtils.parse(request.body(), Charset.defaultCharset());
+        Map<String, String> map = new HashMap<>();
+        pairs.forEach(p -> map.put(p.getName(), p.getValue()));
+
+        return map;
     }
 
     protected ModelAndView view(String view, Object ...context) {

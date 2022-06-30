@@ -3,7 +3,6 @@ package dds.tp.carbono.entities.member;
 import java.util.ArrayList;
 import java.util.List;
 
-import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
 import dds.tp.carbono.entities.point.PuntoGeografico;
 import dds.tp.carbono.entities.transport.MedioDeTransporte;
 import dds.tp.carbono.entities.transport.MedioNoMotorizado;

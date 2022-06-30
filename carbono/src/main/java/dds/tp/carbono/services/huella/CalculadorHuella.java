@@ -4,5 +4,5 @@ import dds.tp.carbono.entities.huella.HuellaCarbono;
 
 public interface CalculadorHuella {
 
-    public HuellaCarbono calcular();
+    public HuellaCarbono calcular() throws Exception;
 }

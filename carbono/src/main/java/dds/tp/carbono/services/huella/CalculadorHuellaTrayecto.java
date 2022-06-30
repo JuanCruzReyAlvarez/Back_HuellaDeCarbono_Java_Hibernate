@@ -2,24 +2,28 @@ package dds.tp.carbono.services.huella;
 
 import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
+import dds.tp.carbono.entities.huella.converterUnidades.GramoUnidadHC;
 import dds.tp.carbono.entities.member.Tramo;
 import dds.tp.carbono.entities.member.Trayecto;
+import dds.tp.carbono.entities.organization.metrics.TipoActividad;
+import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
 import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.ivy.plugins.repository.Repository;
+import lombok.extern.slf4j.Slf4j;
 
-public class CalculadorHuellaTrayecto implements CalculadorHuella{
+@Slf4j
+public class CalculadorHuellaTrayecto implements CalculadorHuella {
     @Getter @Setter private Trayecto trayecto;
     @Getter @Setter private FactorEmisionRepository repository;
 
-    public CalculadorHuellaTrayecto(Trayecto trayecto){
+    public CalculadorHuellaTrayecto(Trayecto trayecto) {
         this.trayecto = trayecto;
         this.repository = new FactorEmisionRepository();
     }
 
     @Override
-    public HuellaCarbono calcular() {
+    public HuellaCarbono calcular() throws Exception {
         HuellaCarbono huellaTotal = new HuellaCarbono();
 
         for (Tramo tramo: trayecto.getTramos())
@@ -31,14 +35,16 @@ public class CalculadorHuellaTrayecto implements CalculadorHuella{
 
     private HuellaCarbono calcular(Tramo tramo) {
         HuellaCarbono huellaTramo = new HuellaCarbono();
+        
         try {
-            FactorEmision factorEmision = repository.get(tramo.getTransporte().getCombustible());
+            TipoDeConsumo tipoConsumo = tramo.getTransporte().getCombustible();
+            TipoActividad actividad = TipoActividad.Trayecto_Miembros;
+            FactorEmision factorEmision = repository.get(tipoConsumo, actividad);
             huellaTramo.setValor(tramo.obtenerDistancia() * factorEmision.getValor());
-            //TODO Falta settear la unidad
-        } catch (Exception exception) {
-            //TODO loggear un mensaje
+        } catch (Exception ex) {
+            log.error("Error al calcular HC para tramo", tramo, ex);
         }
+
         return huellaTramo;
     }
-
 }

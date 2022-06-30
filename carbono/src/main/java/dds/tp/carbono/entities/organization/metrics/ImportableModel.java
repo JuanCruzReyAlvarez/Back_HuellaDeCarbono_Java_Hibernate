@@ -21,7 +21,7 @@ public class ImportableModel implements Importable {
     private String periodicidad;
 
     @Getter @Setter @ExcelColumn(index = 2)
-    private Double valor;
+    private Object valor;
 
 
     @Override
