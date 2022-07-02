@@ -14,7 +14,7 @@ import spark.Spark;
 public abstract class AuthorizationMiddleware extends Controller {
 
     private static final String FORBIDDEN_MESSAGE = "Forbidden.";
-    private static final String TOKEN_COOKIE_NAME = "CARBONO-TOKEN";
+    protected static final String TOKEN_COOKIE_NAME = "CARBONO-TOKEN";
     private static final String UNAUTHORIZED_MESSAGE = "Unauthorized.";
 
     private List<Rol> allowedRoles;
@@ -43,7 +43,7 @@ public abstract class AuthorizationMiddleware extends Controller {
         return fullPath;
     }
 
-    private SessionCookie getSessionCookie(String token) {
+    protected SessionCookie getSessionCookie(String token) {
         try {
             return new SessionCookie(token);
         } catch (Exception ex) {

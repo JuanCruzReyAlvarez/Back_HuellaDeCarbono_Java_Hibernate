@@ -1,13 +1,14 @@
 package dds.tp.carbono.services.organizacion;
 
+import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.repository.organization.OrganizacionRepository;
 
-public class CreadorDeOrganizacion {
+public class OrganizacionService {
 
     private OrganizacionRepository repository;
 
-    public CreadorDeOrganizacion() {
+    public OrganizacionService() {
         this.repository = new OrganizacionRepository();
     }
 
@@ -17,5 +18,9 @@ public class CreadorDeOrganizacion {
             throw new Exception("Invalid Organization");
 
         return this.repository.guardar(organizacion);         
+    }
+
+    public Organizacion getByUser(Usuario user) {
+        return this.repository.getByUser(user);
     }
 }

@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
-import dds.tp.carbono.services.organizacion.CreadorDeOrganizacion;
+import dds.tp.carbono.services.organizacion.OrganizacionService;
 import dds.tp.carbono.utils.TestUtils;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +25,7 @@ public class ObtenerOrganizacion {
 
     @Test
     public void CrearOrganizacion() throws Exception {
-        CreadorDeOrganizacion creador = new CreadorDeOrganizacion();
+        OrganizacionService creador = new OrganizacionService();
 
         Organizacion organizacion = this.getOrganizacionRandom();
         Sector sector = this.getSectorRandom();

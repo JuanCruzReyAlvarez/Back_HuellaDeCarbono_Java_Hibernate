@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="/css/admin/factores.emision.css">
-    <title>Document</title>
+    <title>Carbono - Factores de Emision</title>
 </head>
 
 <body>
@@ -123,6 +123,11 @@
                 element.addEventListener("click", (e) => 
                     document.getElementById(input).value = element.innerHTML);
         });
+
+        setTimeout(() => {
+            for (let element of document.getElementsByClassName("btn-close"))
+                element.click();
+        }, 5000);
     </script>
 
 </body>

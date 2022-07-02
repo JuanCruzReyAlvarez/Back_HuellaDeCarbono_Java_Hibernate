@@ -15,6 +15,12 @@ public abstract class Dao<T> {
         return item;
     }
 
+    public T update(T item) {
+        int index = this.lista.indexOf(item);        
+        this.lista.set(index, item);
+        return item;
+    }
+
     public List<T> getAll() {
         return this.lista;
     }

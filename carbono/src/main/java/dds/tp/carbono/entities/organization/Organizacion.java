@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
 import dds.tp.carbono.entities.point.PuntoGeografico;
@@ -20,6 +21,7 @@ public class Organizacion {
     @Getter @Setter private PuntoGeografico ubicacion;
     @Getter @Setter private Set<Sector> sectores;
     @Getter @Setter private List<MetricaOrganizacion> metricas;
+    @Getter @Setter private Usuario user;
 
     public Organizacion() {
         this.sectores = new HashSet<Sector>();

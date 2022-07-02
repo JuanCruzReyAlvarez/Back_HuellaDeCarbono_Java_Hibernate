@@ -1,0 +1,43 @@
+body {
+    background-color: var(--bs-dark);
+    color: var(--bs-primary);
+    font-family: 'Montserrat';
+}
+#file {
+    border: solid 1px var(--bs-primary);
+    border-radius: 0.25rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+#file::-webkit-file-upload-button {
+    background-color: black ;
+    border: solid 1px var(--bs-primary);
+    border-radius: 0.25rem;
+    color: var(--bs-primary);
+    font-weight: bolder;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-menu {
+    width: 100%;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.bg-black {
+    background-color: black !important;
+}
+
+.maxwidth-120 {
+    max-width: 155px;
+}
+
+.border-black {
+    border-width: 3px !important;
+    border-color: black !important;
+}
