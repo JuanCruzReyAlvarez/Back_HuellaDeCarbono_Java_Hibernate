@@ -2,7 +2,6 @@ package dds.tp.carbono.services.huella;
 
 import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
-import dds.tp.carbono.entities.huella.converterUnidades.GramoUnidadHC;
 import dds.tp.carbono.entities.member.Tramo;
 import dds.tp.carbono.entities.member.Trayecto;
 import dds.tp.carbono.entities.organization.metrics.TipoActividad;
