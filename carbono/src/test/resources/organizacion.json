@@ -1,6 +1,7 @@
 {
     "organizaciones": [
         {
+            "metricas" : [],
             "razonSocial": "Facebook",
             "sectores": [
                 {
@@ -17,7 +18,7 @@
                                 "id": 1,
                                 "nombre": "Recursos Humanos"
                             },
-                            "EstadoSolicitudVinculacion": "PENDIENTE"
+                            "estado": "PENDIENTE"
                         }
                     ]
                 }

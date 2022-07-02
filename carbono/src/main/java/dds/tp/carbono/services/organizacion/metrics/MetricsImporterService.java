@@ -24,8 +24,10 @@ public class MetricsImporterService {
 
     public List<MetricaOrganizacion> importExcel(InputStream excelInputStream) throws InvalidFileException, Exception {
         List<ImportableModel> importables = this.importer.importFrom(excelInputStream, ImportableModel.class);
+
         MetricaOrganizacionConverter converter = new MetricaOrganizacionConverter();
         List<MetricaOrganizacion> metricas = converter.convertir(importables);
+       
         this.repository.addMetrics(metricas, this.organizacion);
 
         return metricas;

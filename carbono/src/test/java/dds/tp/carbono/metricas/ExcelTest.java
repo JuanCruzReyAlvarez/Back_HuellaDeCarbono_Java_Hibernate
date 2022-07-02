@@ -21,9 +21,9 @@ public class ExcelTest {
             
             List<ImportableModel> excelData = importer.importFrom(is, ImportableModel.class);
 
-            MetricaOrganizacionConverter converter = new MetricaOrganizacionConverter();
+            // MetricaOrganizacionConverter converter = new MetricaOrganizacionConverter();
 
-            List<MetricaOrganizacion> listaDeMetricas = converter.convertir(excelData);
+            // List<MetricaOrganizacion> listaDeMetricas = converter.convertir(excelData);
 
             // Assert.assertEquals(Actividad.CombustionFija, listaDeMetricas.get(0).getActividad());
             // Assert.assertEquals(TipoDeConsumo.GNC, listaDeMetricas.get(5).getTipoDeConsumo());
@@ -34,6 +34,7 @@ public class ExcelTest {
             // Assert.assertEquals(2021, listaDeMetricas.get(1).getPeriodoDeImputacion().getFechaInicio().getYear());
             // Assert.assertEquals(1, listaDeMetricas.get(7).getPeriodoDeImputacion().getFechaInicio().getMonthValue());
             // Assert.assertEquals(2022, listaDeMetricas.get(7).getPeriodoDeImputacion().getFechaInicio().getYear()); 
+            System.out.println("asd");
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
