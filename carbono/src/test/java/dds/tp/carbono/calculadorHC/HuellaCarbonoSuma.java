@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import dds.tp.carbono.entities.huella.HuellaCarbono;
-import dds.tp.carbono.entities.huella.converterUnidades.GramoUnidadHC;
-import dds.tp.carbono.entities.huella.converterUnidades.KilogramoUnidadHC;
+import dds.tp.carbono.services.huella.converterUnidades.GramoUnidadHC;
+import dds.tp.carbono.services.huella.converterUnidades.KilogramoUnidadHC;
 
 
 public class HuellaCarbonoSuma {

@@ -34,7 +34,7 @@ import dds.tp.carbono.entities.transport.TransportePublico;
 import dds.tp.carbono.entities.transport.VehiculoParticular;
 import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 import dds.tp.carbono.services.distancia.CalculadorDistanciaServicioExterno;
-import dds.tp.carbono.services.huella.CalculadorHuellaTrayecto;
+import dds.tp.carbono.services.huella.calculador.CalculadorHuellaTrayecto;
 import lombok.Getter;
 import lombok.Setter;
 

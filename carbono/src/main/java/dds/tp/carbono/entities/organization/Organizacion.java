@@ -8,7 +8,9 @@ import java.util.Set;
 import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
+import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
 import dds.tp.carbono.entities.point.PuntoGeografico;
+import dds.tp.carbono.services.huella.calculador.CalculadorHuellaCarbono;
 import dds.tp.carbono.validators.organizacion.OrganizacionValidator;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,7 +34,8 @@ public class Organizacion {
         return new OrganizacionValidator().validate(this);
     }
     
-    public HuellaCarbono calcularHC() {
-        return new HuellaCarbono(); //TODO: Implementar calcularHC
-    } 
+    public HuellaCarbono calcularHC(PeriodoDeImputacion periodo) throws Exception {
+        CalculadorHuellaCarbono calculador = new CalculadorHuellaCarbono(this, periodo); 
+        return calculador.calcula();
+        } 
 }

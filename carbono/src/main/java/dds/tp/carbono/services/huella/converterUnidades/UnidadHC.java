@@ -1,4 +1,4 @@
-package dds.tp.carbono.entities.huella.converterUnidades;
+package dds.tp.carbono.services.huella.converterUnidades;
 
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 

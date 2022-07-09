@@ -1,4 +1,4 @@
-package dds.tp.carbono.services.huella;
+package dds.tp.carbono.services.huella.calculador;
 
 import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;

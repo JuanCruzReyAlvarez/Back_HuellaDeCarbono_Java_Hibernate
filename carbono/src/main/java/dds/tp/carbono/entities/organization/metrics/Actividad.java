@@ -8,10 +8,10 @@ public abstract class Actividad {
     public DatoActividad getDatoActividad(){
 
         DatoActividad datoActividad = new DatoActividad();
-
         datoActividad.setValor(this.consumo.getValor());
         datoActividad.setUnidad(this.consumo.getUnidad());
         
         return datoActividad ;
     }
 }
+

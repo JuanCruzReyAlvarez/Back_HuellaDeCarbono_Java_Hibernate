@@ -11,7 +11,7 @@ import dds.tp.carbono.reader.ExcelImporter;
 import dds.tp.carbono.repository.organization.OrganizacionRepository;
 
 public class MetricsImporterService {
-    
+    /* 
     private Organizacion organizacion;
     private OrganizacionRepository repository;
     private ExcelImporter importer;
@@ -21,7 +21,7 @@ public class MetricsImporterService {
         this.repository = new OrganizacionRepository();
         this.importer = new ExcelImporter();
     }
-
+    
     public List<MetricaOrganizacion> importExcel(InputStream excelInputStream) throws InvalidFileException, Exception {
         List<ImportableModel> importables = this.importer.importFrom(excelInputStream, ImportableModel.class);
 
@@ -31,5 +31,5 @@ public class MetricsImporterService {
         this.repository.addMetrics(metricas, this.organizacion);
 
         return metricas;
-    }
+    }*/
 }
