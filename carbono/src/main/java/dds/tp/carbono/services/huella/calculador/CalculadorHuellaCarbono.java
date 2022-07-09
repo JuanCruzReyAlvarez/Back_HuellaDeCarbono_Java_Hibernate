@@ -44,10 +44,13 @@ public class CalculadorHuellaCarbono {
     private List<MetricaOrganizacion> filtrarMetricas( ){
         return this.organizacion.getMetricas()
         .stream()
-        .filter(m ->m.getPeriodoDeImputacion()
-        .equals(this.periodo))
+        .filter(m -> (m.getPeriodoDeImputacion().getPeriodicidad()) == this.periodo.getPeriodicidad()
+        //.equals(m.periodo.getPeriodicidad())
+        )
         .collect(Collectors.toList());
-    } 
+    }
+    
+    
 
     private List<HuellaCarbono> obtenerHC(List<MetricaOrganizacion> metricasACalcular) {
         return metricasACalcular
@@ -72,16 +75,17 @@ public class CalculadorHuellaCarbono {
     
     private HuellaCarbono obtenerTotal(HuellaCarbono huellaTotal, List<HuellaCarbono> huellasDeMetricas) throws Exception {
         
+        HuellaCarbono hc = new HuellaCarbono();
+
         for (int i = 0; i < huellasDeMetricas.size(); i++){
-            huellaTotal = huellasDeMetricas.get(i);
-            HuellaCarbono hc2 = huellasDeMetricas.get(i+1);
+            //huellaTotal = huellasDeMetricas.get(i);
+            //HuellaCarbono hc2 = huellasDeMetricas.get(i+1);
+            hc = hc.suma(huellasDeMetricas.get(i));
 
-            huellaTotal.suma(hc2);
+            //hc = hc.suma(hc2);
         }
-        return null;
+        return hc;
     }
-
-    
 
    
 }

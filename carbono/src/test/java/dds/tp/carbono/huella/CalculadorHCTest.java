@@ -40,21 +40,7 @@ public class CalculadorHCTest {
         when(this.repositoryMockFE.get(TipoDeConsumo.GasNatural, TipoActividad.Combustion_Fija)).thenReturn(factorGasNatural);
         
     }
-    /*
-     *  public HuellaCarbono calcularHuellaParaLasMetricas()  throws Exception { //chequear el tema de catch y try en obtener HC
-
-        List <MetricaOrganizacion> metricasACalcular = this.organizacion.getMetricas();
-        
-        metricasACalcular = filtrarMetricas();
-        
-        List <HuellaCarbono> huellasDeMetricas = obtenerHC(metricasACalcular);
-        
-        HuellaCarbono huellaTotal = new HuellaCarbono();
-        huellaTotal = obtenerTotal(huellaTotal, huellasDeMetricas);
-        
-        return huellaTotal;
-    } 
-     */
+    
     @Test 
     public void calcularHuellaParaLasMetricasTest() throws Exception{
 
@@ -67,11 +53,8 @@ public class CalculadorHCTest {
 
         Assert.assertEquals(Double.valueOf(1206.00), huella.getValor());
 
-        
     }
 
-    
-    
     //-----------------------------------INSTANCIAS ----------------------------------------------
 
     private Organizacion crearOrganizacionConMetricas() throws Exception{

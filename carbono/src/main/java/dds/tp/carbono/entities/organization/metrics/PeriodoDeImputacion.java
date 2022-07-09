@@ -29,4 +29,14 @@ public class PeriodoDeImputacion {
         this.periodicidad = Periodicidad.MENSUAL;
         // this.fechaInicio = LocalDate.of(anio, mes, 01);
     }
+
+    @Override
+    public boolean equals(Object obj){
+        //q sean de la misma instancia
+        //q sean iguales los atributos
+        // anual vs mensual
+        return obj instanceof Periodicidad;
+
+        //return true;
+    }
 }
