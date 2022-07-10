@@ -4,4 +4,5 @@ public enum Rol {
     ADMINISTRADOR,
     ORGANIZACION,
     MIEMBRO,
+    AGENTE_SECTORIAL
 }
