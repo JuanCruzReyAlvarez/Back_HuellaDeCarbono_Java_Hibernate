@@ -22,6 +22,7 @@ public class Organizacion {
     @Getter @Setter private Set<Sector> sectores;
     @Getter @Setter private List<MetricaOrganizacion> metricas;
     @Getter @Setter private Usuario user;
+    
 
     public Organizacion() {
         this.sectores = new HashSet<Sector>();

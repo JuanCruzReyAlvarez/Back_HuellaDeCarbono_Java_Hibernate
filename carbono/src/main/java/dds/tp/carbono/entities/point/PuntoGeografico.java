@@ -1,5 +1,6 @@
 package dds.tp.carbono.entities.point;
 
+import dds.tp.carbono.services.external.dto.Municipio;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,5 +12,7 @@ public class PuntoGeografico {
     @Getter @Setter private Integer idLocalidad;
     @Getter @Setter private String calle;
     @Getter @Setter private String altura;
+    @Getter @Setter private Municipio municipio;
+
     
 }
