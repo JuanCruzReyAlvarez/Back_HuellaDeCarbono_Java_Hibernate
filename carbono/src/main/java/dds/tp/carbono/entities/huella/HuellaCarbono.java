@@ -1,7 +1,5 @@
 package dds.tp.carbono.entities.huella;
 
-import dds.tp.carbono.services.huella.converterUnidades.KilogramoUnidadHC;
-import dds.tp.carbono.services.huella.converterUnidades.UnidadHC;
 import lombok.Getter;
 import lombok.Setter;
 

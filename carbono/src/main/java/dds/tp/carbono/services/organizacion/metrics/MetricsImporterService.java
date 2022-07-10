@@ -9,9 +9,10 @@ import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
 import dds.tp.carbono.exception.InvalidFileException;
 import dds.tp.carbono.reader.ExcelImporter;
 import dds.tp.carbono.repository.organization.OrganizacionRepository;
+import dds.tp.carbono.services.organizacion.metrics.converter.MetricaOrganizacionConverter;
 
 public class MetricsImporterService {
-    /* 
+    
     private Organizacion organizacion;
     private OrganizacionRepository repository;
     private ExcelImporter importer;
@@ -31,5 +32,5 @@ public class MetricsImporterService {
         this.repository.addMetrics(metricas, this.organizacion);
 
         return metricas;
-    }*/
+    }
 }

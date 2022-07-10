@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import dds.tp.carbono.dao.organization.SolicitudVinculacionDao;
+import dds.tp.carbono.dao.org.SolicitudVinculacionDao;
 import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;

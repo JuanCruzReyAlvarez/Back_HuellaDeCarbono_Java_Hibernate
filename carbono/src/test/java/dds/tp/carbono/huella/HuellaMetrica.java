@@ -1,13 +1,11 @@
 package dds.tp.carbono.huella;
 
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import dds.tp.carbono.dao.huella.FactorEmisionDao;
 import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.huella.UnidadFE;
@@ -21,36 +19,25 @@ import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
 import dds.tp.carbono.entities.organization.metrics.TipoActividad;
 import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
 import dds.tp.carbono.entities.organization.metrics.Unidad;
-import dds.tp.carbono.repository.huella.FactorEmisionRepository;
-import dds.tp.carbono.services.huella.calculador.CalculadorHuellaMetrica;
+import dds.tp.carbono.services.huella.calculador.org.CalculadorHuellaMetrica;
 
 public class HuellaMetrica {
 
-    private FactorEmisionRepository repositoryMock;
-
     @Before
     public void inicializarRepositoryMock(){
-        this.repositoryMock = mock(FactorEmisionRepository.class);
         FactorEmision factorGasNatural = new FactorEmision(TipoDeConsumo.GasNatural, TipoActividad.Combustion_Fija, 4.00, UnidadFE.kgCO2eq_M3);
-
-        when(this.repositoryMock.get(TipoDeConsumo.GasNatural, TipoActividad.Combustion_Fija)).thenReturn(factorGasNatural);
-        
+        FactorEmisionDao.getInstance().save(factorGasNatural);
     }
 
     @Test
     public void calcularHuellaMetricaCombustionFijaTest() throws Exception{
 
-        CalculadorHuellaMetrica calculador = new CalculadorHuellaMetrica();
         MetricaOrganizacion metrica = this.crearMetricaCombustionFija();
+        CalculadorHuellaMetrica calculador = new CalculadorHuellaMetrica(metrica);
         HuellaCarbono huella = new HuellaCarbono();
     
-        calculador.setRepository(this.repositoryMock);
-        calculador.setMetricaOrganizacion(metrica);
-        calculador.setHuellaCarbono(huella);
-
         huella = calculador.calcular(); 
         Assert.assertEquals(Double.valueOf(402.00), huella.getValor());
-        //Assert.assertEquals(UnidadHC.kgCO2eq, huella.getUnidad());
     }
     
     //-----------------------------------INSTANCIAS ----------------------------------------------
@@ -81,16 +68,13 @@ public class HuellaMetrica {
     }
 
     private Actividad buildActividadCombustionFija (Consumo consumo){
-        Actividad actividad = new CombustionFija();
-        actividad.setConsumo(consumo);
+        Actividad actividad = new CombustionFija(consumo);
         return actividad;
     }
 
     private MetricaOrganizacion buildMetricaOrganizacion (Actividad actividad, TipoActividad tipoActividad, TipoDeConsumo tipoDeConsumo, PeriodoDeImputacion periodoDeImputacion){
         MetricaOrganizacion metrica = new MetricaOrganizacion();
         metrica.setActividad(actividad);
-        metrica.setTipoActividad(tipoActividad);
-        metrica.setTipoDeConsumo(tipoDeConsumo);
         metrica.setPeriodoDeImputacion(periodoDeImputacion);
         return metrica;
     }

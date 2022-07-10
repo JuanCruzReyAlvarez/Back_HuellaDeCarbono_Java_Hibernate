@@ -1,6 +1,4 @@
-package dds.tp.carbono.services.huella.converterUnidades;
-
-import dds.tp.carbono.entities.huella.HuellaCarbono;
+package dds.tp.carbono.entities.huella;
 
 public class GramoUnidadHC extends UnidadHC {
 
@@ -25,5 +23,3 @@ public class GramoUnidadHC extends UnidadHC {
         return false;
     }  
 }
-
-

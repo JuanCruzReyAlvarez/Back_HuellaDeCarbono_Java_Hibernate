@@ -1,4 +1,4 @@
-package dds.tp.carbono.services.huella.calculador;
+package dds.tp.carbono.services.huella.calculador.member;
 
 import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
@@ -7,6 +7,7 @@ import dds.tp.carbono.entities.member.Trayecto;
 import dds.tp.carbono.entities.organization.metrics.TipoActividad;
 import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
 import dds.tp.carbono.repository.huella.FactorEmisionRepository;
+import dds.tp.carbono.services.huella.calculador.CalculadorHuella;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;

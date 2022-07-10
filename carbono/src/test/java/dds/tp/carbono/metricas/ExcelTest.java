@@ -1,14 +1,8 @@
 package dds.tp.carbono.metricas;
 
 import java.io.InputStream;
-import java.util.List;
 
 import org.junit.Test;
-
-import dds.tp.carbono.entities.organization.metrics.ImportableModel;
-import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
-import dds.tp.carbono.reader.ExcelImporter;
-import dds.tp.carbono.services.organizacion.metrics.MetricaOrganizacionConverter;
 
 public class ExcelTest {
 
@@ -17,7 +11,7 @@ public class ExcelTest {
 
         try (InputStream is = this.getClass().getClassLoader().getResourceAsStream("sample2.xlsx")) {
             
-            ExcelImporter importer = new ExcelImporter();
+            //ExcelImporter importer = new ExcelImporter();
             
             //List<ImportableModel> excelData = importer.importFrom(is, ImportableModel.class);
 
