@@ -1,7 +1,10 @@
 package dds.tp.carbono.entities.member;
 
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 import lombok.Getter;
@@ -18,5 +21,17 @@ public class Miembro {
 
     public Miembro() {
         this.solicitudes = new HashSet<SolicitudVinculacion>();
+    }
+
+    public List<Trayecto> getTrayectosNoCompartidos() {
+        return this.trayectos.stream().filter(t -> t.getTramos().stream()
+            .allMatch(tramo -> tramo.getCompartidos().size() == 0))
+        .collect(Collectors.toList());
+    }
+
+    public List<Trayecto> getTrayectosCompartidos() {
+        return this.trayectos.stream().filter(t -> t.getTramos().stream()
+            .allMatch(tramo -> tramo.getCompartidos().size() > 0))
+        .collect(Collectors.toList());
     }
 }

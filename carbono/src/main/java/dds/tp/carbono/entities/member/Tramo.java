@@ -21,8 +21,12 @@ public class Tramo {
         this.compartidos = new ArrayList<Miembro>();
     }
     
-    public Double obtenerDistancia() throws Exception {
-        return this.transporte.calcularDistancia(puntoA, puntoB);
+    public Double obtenerDistancia() {
+        try {
+            return this.transporte.calcularDistancia(puntoA, puntoB);
+        } catch (Exception ex) {
+            return Double.valueOf(0);
+        }
     }
 
     public Boolean isValid() {

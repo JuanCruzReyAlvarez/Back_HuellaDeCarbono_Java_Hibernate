@@ -1,4 +1,4 @@
-package dds.tp.carbono.dao.organization;
+package dds.tp.carbono.dao.org;
 
 import dds.tp.carbono.dao.member.Dao;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;

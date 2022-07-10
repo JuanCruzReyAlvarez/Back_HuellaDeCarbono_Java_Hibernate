@@ -3,15 +3,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 public abstract class Actividad {
-    @Setter @Getter public Consumo consumo;
 
-    public DatoActividad getDatoActividad(){
+    @Setter @Getter protected TipoActividad tipoActividad;
+
+    public DatoActividad getDatoActividad() {
 
         DatoActividad datoActividad = new DatoActividad();
-
-        datoActividad.setValor(this.consumo.getValor());
-        datoActividad.setUnidad(this.consumo.getUnidad());
+        datoActividad.setValor(this.getValorDA());
+        datoActividad.setUnidad(this.getUnidadDA());
         
-        return datoActividad ;
+        return datoActividad;
     }
+
+    public abstract TipoDeConsumo getTipoDeConsumo();
+    protected abstract Double getValorDA();
+    protected abstract Unidad getUnidadDA();
 }

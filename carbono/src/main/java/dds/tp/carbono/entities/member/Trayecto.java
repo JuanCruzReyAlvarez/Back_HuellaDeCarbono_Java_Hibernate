@@ -15,6 +15,8 @@ public class Trayecto {
     @Getter @Setter private List<Tramo> tramos;
     @Getter @Setter private Miembro miembro;
 
+    private Double distancia = null;
+
     public Trayecto() {
         this.tramos = new ArrayList<Tramo>();
     }
@@ -23,12 +25,20 @@ public class Trayecto {
         return new TrayectoValidator().validate(this);
     }
 
-    public Double obtenerDistancia() throws Exception {
-        Double distancia = Double.valueOf(0);
+    public Double obtenerDistancia() {
+        
+        if (this.distancia != null)
+            return this.distancia;
+
+        this.distancia = Double.valueOf(0);
 
         for (Tramo tramo : this.getTramos())
-            distancia += tramo.obtenerDistancia();
+            this.distancia += tramo.obtenerDistancia();
         
-        return distancia;
+        return this.distancia;
+    }
+
+    public Tramo getTramoCompartido() {
+        return this.tramos.stream().filter(t -> t.getCompartidos().size() > 0).findFirst().orElse(null);
     }
 }
