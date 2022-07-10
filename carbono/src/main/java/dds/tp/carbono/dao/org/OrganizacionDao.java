@@ -1,9 +1,10 @@
-package dds.tp.carbono.dao.member;
+package dds.tp.carbono.dao.org;
 
+import dds.tp.carbono.dao.member.Dao;
 import dds.tp.carbono.entities.organization.Organizacion;
 
 public class OrganizacionDao extends Dao<Organizacion> {
-    
+
     private static OrganizacionDao instance;
 
     public static OrganizacionDao getInstance() {
@@ -17,5 +18,5 @@ public class OrganizacionDao extends Dao<Organizacion> {
     public Organizacion setId(Integer id, Organizacion item) {
         item.setId(id);
         return item;
-    }
+    }   
 }

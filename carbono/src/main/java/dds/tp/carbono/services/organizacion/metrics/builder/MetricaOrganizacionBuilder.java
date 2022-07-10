@@ -1,9 +1,13 @@
-package dds.tp.carbono.services.organizacion.metrics;
+package dds.tp.carbono.services.organizacion.metrics.builder;
 
+import dds.tp.carbono.entities.organization.metrics.Actividad;
+import dds.tp.carbono.entities.organization.metrics.Consumo;
 import dds.tp.carbono.entities.organization.metrics.ImportableModel;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
 import dds.tp.carbono.entities.organization.metrics.TipoActividad;
+import dds.tp.carbono.services.organizacion.metrics.factory.ActividadFactory;
+import dds.tp.carbono.services.organizacion.metrics.factory.ConsumoFactory;
 
 public class MetricaOrganizacionBuilder {
 
@@ -14,22 +18,10 @@ public class MetricaOrganizacionBuilder {
     }
 
     public MetricaOrganizacionBuilder addActividad(ImportableModel importable) throws Exception {
-
-        TipoActividad actividad = TipoActividad.getBy(importable.getActividad());
-        this.metricas.setTipoActividad(actividad);
-
-        return this;
-    }
-
-    public MetricaOrganizacionBuilder addConsumo(ImportableModel importable) throws Exception {
-        // Consumo consumo = new Consumo();
-
-        // this.addTipoDeConsumo(importable);
-        // consumo.setUnidad(Unidad.getBy(this.metricas.getTipoDeConsumo()));
-        // consumo.setValor(Double.valueOf((Double)importable.getValor()));
-        // Periodicidad periodicidad = Periodicidad.getBy(importable.getPeriodicidad());
-        // consumo.setPeriodicidad(periodicidad);
-        // this.metricas.setConsumo(consumo);
+        Consumo consumo = ConsumoFactory.getConsumo(importable);
+        TipoActividad tipoActividad = TipoActividad.getBy(importable.getActividad());
+        Actividad actividad = ActividadFactory.crearActividad(tipoActividad, consumo);        
+        this.metricas.setActividad(actividad);
 
         return this;
     }
@@ -47,12 +39,4 @@ public class MetricaOrganizacionBuilder {
 
         throw new Exception("No son válidas las metricas");
     }
-
-    // private MetricaOrganizacionBuilder addTipoDeConsumo(ImportableModel importable) throws Exception {
-
-    //     TipoDeConsumo tipo = TipoDeConsumo.getBy(importable.getTipoDeConsumo());
-    //     this.metricas.setTipoDeConsumo(tipo);
-
-    //     return this;
-    // }
 }

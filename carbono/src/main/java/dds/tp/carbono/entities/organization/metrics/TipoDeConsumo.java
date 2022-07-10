@@ -1,11 +1,12 @@
 package dds.tp.carbono.entities.organization.metrics;
 
+import dds.tp.carbono.entities.organization.metrics.logistica.CategoriaLogistica;
+import dds.tp.carbono.entities.organization.metrics.logistica.TransporteLogistica;
 import dds.tp.carbono.utils.FormatString;
 
 public enum TipoDeConsumo {
     Nafta, 
     Electricidad, 
-    Peso, 
     Carbon, 
     GasNatural,
     Diesel,
@@ -15,22 +16,22 @@ public enum TipoDeConsumo {
     CarbonDeLenia,
     Lenia,
     GNC,
-    MateriaPrima,
-    Insumos,
-    ProductosVendidos,
-    Residuos,
-    CamionDeCarga,
-    UtilitarioLiviano,
-    Distancia; 
+    //logistica
+    CamionDeCargaMateriaPrima,
+    CamionDeCargaInsumos,
+    CamionDeCargaProductosVendidos,
+    CamionDeCargaResiduos,
+    UtilitarioLivianoMateriaPrima,
+    UtilitarioLivianoInsumos,
+    UtilitarioLivianoProductosVendidos,
+    UtilitarioLivianoResiduos;
 
     public static TipoDeConsumo getBy(String nombre) throws Exception {
         switch (formatNombre(nombre)) {
 
             case "nafta": return Nafta;
             case "electricidad": return Electricidad;
-            case "peso": return Peso;
             case "carbon": return Carbon;
-            case "distancia": return Distancia;
             case "gasNatural": return GasNatural;
             case "diesel": return Diesel;
             case "gasoil": return Gasoil;
@@ -39,16 +40,29 @@ public enum TipoDeConsumo {
             case "carbondelenia": return CarbonDeLenia;
             case "lenia": return Lenia;
             case "gnc": return GNC;
-            case "materiaprima": return MateriaPrima;
-            case "insumos": return Insumos;
-            case "productosvendidos": return ProductosVendidos;
-            case "residuos": return Residuos;
-            case "camiondecarga": return CamionDeCarga;
-            case "utilitarioliviano": return UtilitarioLiviano;
         
             default: throw new Exception("Tipo de consumo no existente");
         }
    }
+
+   public static TipoDeConsumo getBy(TransporteLogistica transporte, CategoriaLogistica categoria) throws Exception {
+        if (transporte.equals(TransporteLogistica.camion_de_carga))
+            switch (categoria) {
+                case materia_prima: return CamionDeCargaMateriaPrima;
+                case insumos: return CamionDeCargaInsumos;
+                case productos_vendidos: return CamionDeCargaProductosVendidos;
+                case residuos: return CamionDeCargaResiduos;
+            }
+        else if (transporte.equals(TransporteLogistica.utilitario_liviano)) 
+            switch (categoria) {
+                case materia_prima: return UtilitarioLivianoMateriaPrima;
+                case insumos: return UtilitarioLivianoInsumos;
+                case productos_vendidos: return UtilitarioLivianoProductosVendidos;
+                case residuos: return UtilitarioLivianoResiduos;
+            }
+
+        throw new Exception("Tipo de consumo no existente");
+    }
 
     private static String formatNombre(String nombre) {
         nombre = FormatString.sinEspacios(nombre);

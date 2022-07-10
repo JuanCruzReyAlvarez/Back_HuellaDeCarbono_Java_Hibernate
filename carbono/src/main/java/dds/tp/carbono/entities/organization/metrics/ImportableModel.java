@@ -28,4 +28,8 @@ public class ImportableModel implements Importable {
     public boolean isValid() {
         return actividad != null && tipoDeConsumo != null && periodoDeImputacion != null;
     }
+
+    public boolean isActividadLogistica() throws Exception {
+        return TipoActividad.Logistica_De_Productos_Servicios.equals(TipoActividad.getBy(this.actividad));
+    }
 }

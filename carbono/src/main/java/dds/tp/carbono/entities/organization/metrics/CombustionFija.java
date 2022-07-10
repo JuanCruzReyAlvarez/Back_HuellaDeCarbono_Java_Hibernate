@@ -3,13 +3,13 @@ package dds.tp.carbono.entities.organization.metrics;
 import lombok.Getter;
 import lombok.Setter;
 
-public class ElectricidadAdquiridaConsumida extends Actividad {
-    
+public class CombustionFija extends Actividad {
+
     @Setter @Getter public Consumo consumo;
-    
-    public ElectricidadAdquiridaConsumida(Consumo consumo) {
+
+    public CombustionFija(Consumo consumo) {
         this.consumo = consumo;
-        this.tipoActividad = TipoActividad.Electricidad_Adquirida_Consumida;
+        this.tipoActividad = TipoActividad.Combustion_Fija;
     }
 
     @Override

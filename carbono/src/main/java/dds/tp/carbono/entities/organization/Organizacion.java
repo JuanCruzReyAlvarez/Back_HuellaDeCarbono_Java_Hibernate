@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
+import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
 import dds.tp.carbono.entities.point.PuntoGeografico;
+import dds.tp.carbono.services.huella.calculador.org.CalculadorHuellaOrganizacion;
 import dds.tp.carbono.validators.organizacion.OrganizacionValidator;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,8 +23,9 @@ public class Organizacion {
     @Getter @Setter private TipoOrganizacion tipo;
     @Getter @Setter private PuntoGeografico ubicacion;
     @Getter @Setter private Set<Sector> sectores;
-    @Getter @Setter private List<MetricaOrganizacion> metricas;
     @Getter @Setter private Usuario user;
+    
+    private List<MetricaOrganizacion> metricas;
 
     public Organizacion() {
         this.sectores = new HashSet<Sector>();
@@ -32,7 +36,18 @@ public class Organizacion {
         return new OrganizacionValidator().validate(this);
     }
     
-    public HuellaCarbono calcularHC() {
-        return new HuellaCarbono(); //TODO: Implementar calcularHC
-    } 
+    public HuellaCarbono calcularHC(PeriodoDeImputacion periodo) throws Exception {
+        CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(this, periodo); 
+        return calculador.calcula();
+    }
+
+    public List<MetricaOrganizacion> getMetricas(PeriodoDeImputacion periodo) {
+        return this.metricas.stream()
+            .filter(m -> m.getPeriodoDeImputacion().equals(periodo))
+            .collect(Collectors.toList());
+    }
+
+    public void addMetricas(List<MetricaOrganizacion> metricas) {
+        this.metricas.addAll(metricas);
+    }
 }
