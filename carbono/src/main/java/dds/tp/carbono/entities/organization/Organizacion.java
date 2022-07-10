@@ -24,7 +24,7 @@ public class Organizacion {
     @Getter @Setter private PuntoGeografico ubicacion;
     @Getter @Setter private Set<Sector> sectores;
     @Getter @Setter private Usuario user;
-    
+
     private List<MetricaOrganizacion> metricas;
 
     public Organizacion() {

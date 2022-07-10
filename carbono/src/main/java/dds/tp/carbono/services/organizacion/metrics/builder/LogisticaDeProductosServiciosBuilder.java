@@ -16,8 +16,6 @@ public class LogisticaDeProductosServiciosBuilder {
 
     public LogisticaDeProductosServiciosBuilder(Stream<ImportableModel> stream) {
         this.actividad = new LogisticaDeProductosServicios();
-
-        
         this.data = stream;
     }
 
@@ -68,7 +66,5 @@ public class LogisticaDeProductosServiciosBuilder {
 
     public Actividad build() {
         return this.actividad;
-    }
-
-    
+    } 
 }
