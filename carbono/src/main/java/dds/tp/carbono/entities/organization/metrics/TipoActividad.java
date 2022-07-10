@@ -14,11 +14,12 @@ public enum TipoActividad {
         switch (formatNombre(nombre)) {
             case "combustionfija" : return Combustion_Fija;
             case "combustionmovil" : return Combustion_Movil;
-            case "electricidadadquiridaconsumida" : return Electricidad_Adquirida_Consumida;
-            case "logisticadeproductosservicios" : return Logistica_De_Productos_Servicios; 
+            case "electricidadadquiridayconsumida" : return Electricidad_Adquirida_Consumida;
+            case "logisticadeproductosyservicios" : return Logistica_De_Productos_Servicios; 
             case "trayectomiembros" : return Trayecto_Miembros; 
                 
-            default: throw new Exception("Actividad no existente");
+            default: 
+                throw new Exception("Actividad no existente");
         }
    }
 

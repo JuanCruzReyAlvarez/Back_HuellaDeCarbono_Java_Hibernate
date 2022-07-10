@@ -8,7 +8,7 @@ import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.huella.KilogramoUnidadHC;
 
 
-public class HuellaCarbonoSuma {
+public class HuellaCarbonoSumaTest {
     
     @Test
     public void sumarDosHuellas() throws Exception {

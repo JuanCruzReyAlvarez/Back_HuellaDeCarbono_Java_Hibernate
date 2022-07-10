@@ -11,8 +11,4 @@ public class MetricaOrganizacion {
         return this.actividad != null &&
                 this.periodoDeImputacion != null;
     }
-
-    public TipoDeConsumo getTipoDeConsumo() {
-        return null;
-    }
 }

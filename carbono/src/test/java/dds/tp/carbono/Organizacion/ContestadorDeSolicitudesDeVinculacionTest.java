@@ -18,7 +18,7 @@ import dds.tp.carbono.utils.TestUtils;
 import lombok.Getter;
 import lombok.Setter;
 
-public class ContestadorDeSolicitudesDeVinculacion {
+public class ContestadorDeSolicitudesDeVinculacionTest {
 
     private MiembrosData dataMembers;
     private OrganizacionData dataOrg;

@@ -38,7 +38,7 @@ import dds.tp.carbono.services.huella.calculador.member.CalculadorHuellaTrayecto
 import lombok.Getter;
 import lombok.Setter;
 
-public class HuellaTrayecto {
+public class HuellaTrayectoTest {
 
     private EstacionesData data = null;
     private FactorEmisionRepository repositoryMock;

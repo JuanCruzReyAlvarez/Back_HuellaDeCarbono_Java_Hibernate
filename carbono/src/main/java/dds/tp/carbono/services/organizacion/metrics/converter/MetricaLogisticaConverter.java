@@ -1,7 +1,5 @@
 package dds.tp.carbono.services.organizacion.metrics.converter;
 
-import java.util.Arrays;
-
 import dds.tp.carbono.entities.organization.metrics.ImportableModel;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
@@ -16,7 +14,7 @@ public class MetricaLogisticaConverter {
     public MetricaLogisticaConverter(ImportableModel ...importables) {
         this.importables = importables;
         this.metrica = new MetricaOrganizacion();
-        this.builder = new LogisticaDeProductosServiciosBuilder(Arrays.stream(this.importables));
+        this.builder = new LogisticaDeProductosServiciosBuilder(this.importables);
     }
 
     public MetricaOrganizacion convert() throws Exception {

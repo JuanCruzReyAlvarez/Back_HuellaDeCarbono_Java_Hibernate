@@ -14,7 +14,7 @@ import dds.tp.carbono.utils.TestUtils;
 import lombok.Getter;
 import lombok.Setter;
 
-public class ObtenerOrganizacion {
+public class ObtenerOrganizacionTest {
 
     private OrganizacionData dataOrg;
 

@@ -21,7 +21,7 @@ import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
 import dds.tp.carbono.entities.organization.metrics.Unidad;
 import dds.tp.carbono.services.huella.calculador.org.CalculadorHuellaMetrica;
 
-public class HuellaMetrica {
+public class HuellaMetricaTest {
 
     @Before
     public void inicializarRepositoryMock(){

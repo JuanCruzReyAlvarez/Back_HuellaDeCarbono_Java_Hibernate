@@ -16,7 +16,7 @@ public enum CategoriaLogistica {
             case "productosvendidos" : return productos_vendidos;
             case "residuos" : return residuos; 
                 
-            default: throw new Exception("Actividad no existente");
+            default: throw new Exception("Categoria no existente");
         }
    }
 

@@ -11,7 +11,7 @@ public enum TransporteLogistica {
         switch (formatNombre(nombre)) {
             case "camiondecarga" : return camion_de_carga;
             case "utilitarioliviano" : return utilitario_liviano;
-            default: throw new Exception("Actividad no existente");
+            default: throw new Exception("Transporte no existente");
         }
    }
 

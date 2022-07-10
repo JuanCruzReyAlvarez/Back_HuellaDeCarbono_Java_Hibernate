@@ -41,7 +41,8 @@ public enum TipoDeConsumo {
             case "lenia": return Lenia;
             case "gnc": return GNC;
         
-            default: throw new Exception("Tipo de consumo no existente");
+            default: 
+                throw new Exception("Tipo de consumo no existente");
         }
    }
 

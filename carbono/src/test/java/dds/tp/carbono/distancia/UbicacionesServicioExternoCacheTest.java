@@ -8,7 +8,7 @@ import dds.tp.carbono.services.external.dto.Provincia;
 import dds.tp.carbono.services.ubicacion.UbicacionesCacheDecorator;
 import dds.tp.carbono.services.ubicacion.UbicacionesService;
 
-public class UbicacionesServicioExternoCache {
+public class UbicacionesServicioExternoCacheTest {
 
     private static final long DELAY = 2000;
 

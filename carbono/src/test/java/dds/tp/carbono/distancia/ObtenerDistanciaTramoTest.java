@@ -20,7 +20,7 @@ import dds.tp.carbono.entities.transport.TransportePublico;
 import lombok.Getter;
 import lombok.Setter;
 
-public class ObtenerDistanciaTramo {
+public class ObtenerDistanciaTramoTest {
 
     private ParadasData data = null;
 

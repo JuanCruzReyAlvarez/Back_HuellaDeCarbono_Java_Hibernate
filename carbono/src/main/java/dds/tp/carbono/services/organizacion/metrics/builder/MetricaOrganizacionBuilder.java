@@ -13,7 +13,7 @@ public class MetricaOrganizacionBuilder {
 
     private MetricaOrganizacion metricas;
 
-    public void MetricasDeOrganizacion() {
+    public MetricaOrganizacionBuilder() {
         this.metricas = new MetricaOrganizacion();
     }
 

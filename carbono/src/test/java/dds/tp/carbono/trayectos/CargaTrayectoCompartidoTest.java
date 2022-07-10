@@ -33,7 +33,7 @@ import dds.tp.carbono.utils.TestUtils;
 import lombok.Getter;
 import lombok.Setter;
 
-public class CargaTrayectoCompartido {
+public class CargaTrayectoCompartidoTest {
     
     private ParadasData data;
 

@@ -1,6 +1,6 @@
 package dds.tp.carbono.services.organizacion.metrics.builder;
 
-import java.util.stream.Stream;
+import java.util.Arrays;
 
 import dds.tp.carbono.entities.organization.metrics.Actividad;
 import dds.tp.carbono.entities.organization.metrics.ImportableModel;
@@ -12,15 +12,15 @@ import dds.tp.carbono.entities.organization.metrics.logistica.TransporteLogistic
 public class LogisticaDeProductosServiciosBuilder {
  
     private LogisticaDeProductosServicios actividad;
-    private Stream<ImportableModel> data;
+    private ImportableModel[] data;
 
-    public LogisticaDeProductosServiciosBuilder(Stream<ImportableModel> stream) {
+    public LogisticaDeProductosServiciosBuilder(ImportableModel[] importables) {
         this.actividad = new LogisticaDeProductosServicios();
-        this.data = stream;
+        this.data = importables;
     }
 
     public LogisticaDeProductosServiciosBuilder addPeso() throws Exception {
-        Double peso = (Double)this.data.filter(i -> i.getTipoDeConsumo().equalsIgnoreCase("peso"))
+        Double peso = (Double)Arrays.stream(this.data).filter(i -> i.getTipoDeConsumo().equalsIgnoreCase("peso"))
             .findFirst().orElseThrow(Exception::new).getValor();
 
         this.actividad.setPeso(peso);
@@ -29,7 +29,7 @@ public class LogisticaDeProductosServiciosBuilder {
     }
 
     public LogisticaDeProductosServiciosBuilder addDistancia() throws Exception {
-        Double distancia = (Double)this.data.filter(i -> i.getTipoDeConsumo().equalsIgnoreCase("distancia"))
+        Double distancia = (Double)Arrays.stream(this.data).filter(i -> i.getTipoDeConsumo().equalsIgnoreCase("distancia"))
             .findFirst().orElseThrow(Exception::new).getValor();
         
         this.actividad.setDistancia(distancia);
@@ -39,7 +39,7 @@ public class LogisticaDeProductosServiciosBuilder {
 
     public LogisticaDeProductosServiciosBuilder addCategoria() throws Exception {
         
-        String categoria = (String)this.data.filter(i -> i.getTipoDeConsumo().equalsIgnoreCase("categoria"))
+        String categoria = (String)Arrays.stream(this.data).filter(i -> i.getTipoDeConsumo().equalsIgnoreCase("categoria"))
             .findFirst().orElseThrow(Exception::new).getValor();
             
         this.actividad.setCategoria(CategoriaLogistica.getBy(categoria));
@@ -48,10 +48,10 @@ public class LogisticaDeProductosServiciosBuilder {
 
     public LogisticaDeProductosServiciosBuilder addTransporte() throws Exception {
         
-        String categoria = (String)this.data.filter(i -> i.getTipoDeConsumo().equalsIgnoreCase("medio_transporte"))
+        String transporte = (String)Arrays.stream(this.data).filter(i -> i.getTipoDeConsumo().equalsIgnoreCase("medio_transporte"))
             .findFirst().orElseThrow(Exception::new).getValor();
             
-        this.actividad.setCategoria(CategoriaLogistica.getBy(categoria));
+        this.actividad.setTransporte(TransporteLogistica.getBy(transporte));
 
         return this;
     }

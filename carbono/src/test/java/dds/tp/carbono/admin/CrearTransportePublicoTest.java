@@ -16,7 +16,7 @@ import dds.tp.carbono.utils.TestUtils;
 import lombok.Getter;
 import lombok.Setter;
 
-public class CrearTransportePublico {
+public class CrearTransportePublicoTest {
     
     private ParadasData data = null;
 
