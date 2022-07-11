@@ -11,6 +11,7 @@ import dds.tp.carbono.entities.member.Trayecto;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.repository.member.MiembroRepository;
 
+//hacer test de esta clase
 public class TrayectosCompartidosFilter {
 
     private List<Miembro> miembros;

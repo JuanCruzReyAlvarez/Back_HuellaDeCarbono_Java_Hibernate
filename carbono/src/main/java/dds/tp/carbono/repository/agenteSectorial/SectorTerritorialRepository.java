@@ -5,6 +5,7 @@ import dds.tp.carbono.dao.agenteSectorial.SectorProvincialDao;
 import dds.tp.carbono.entities.agenteSectorial.SectorMunicipal;
 import dds.tp.carbono.entities.agenteSectorial.SectorProvincial;
 import dds.tp.carbono.entities.agenteSectorial.SectorTerritorial;
+import dds.tp.carbono.entities.auth.Usuario;
 
 public class SectorTerritorialRepository {
     
@@ -24,5 +25,17 @@ public class SectorTerritorialRepository {
             return this.sectorProvincialDao.save((SectorProvincial)sectorTerritorial);
 
         return null;
+    }
+
+    public SectorTerritorial getBy(Usuario usuario) {
+        
+        SectorTerritorial sector = this.sectorProvincialDao.getAll().stream()
+            .filter(x -> x.getUsuario().equals(usuario)).findFirst().orElse(null);
+        
+        if (sector == null)
+            sector = this.sectorMunicipalDao.getAll().stream()
+                .filter(x -> x.getUsuario().equals(usuario)).findFirst().orElse(null);
+        
+        return sector;
     }
 }

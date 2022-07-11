@@ -4,6 +4,7 @@ import dds.tp.carbono.builder.InsecurePasswordCheckerBuilder;
 import dds.tp.carbono.contracts.http.IController;
 import dds.tp.carbono.http.controllers.admin.FactorEmisionController;
 import dds.tp.carbono.http.controllers.admin.ui.AdminOrganizationController;
+import dds.tp.carbono.http.controllers.agenteSectorial.CalcuarHuellaController;
 import dds.tp.carbono.http.controllers.auth.LoginController;
 import dds.tp.carbono.http.controllers.auth.RegisterController;
 import dds.tp.carbono.http.controllers.member.trayectos.PointController;
@@ -41,7 +42,8 @@ public class Server implements SparkApplication {
             new AdminOrganizationController(),
             new TrayectosController(),
             new PointController(),
-            new FactorEmisionController()
+            new FactorEmisionController(),
+            new CalcuarHuellaController()
         };
     }
 }

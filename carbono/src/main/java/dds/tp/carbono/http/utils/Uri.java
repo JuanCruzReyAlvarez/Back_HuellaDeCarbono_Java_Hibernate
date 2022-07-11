@@ -14,4 +14,6 @@ public enum Uri {
     ORG, 
     ORG_METRICS, 
     ADMIN_FACTOR_EMISION, 
+    AGENTE_SECTORIAL,
+    AGENTE_SECTORIAL_HUELLA
 }

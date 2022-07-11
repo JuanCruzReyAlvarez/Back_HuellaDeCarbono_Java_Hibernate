@@ -12,6 +12,7 @@ public class Redirect {
             case ADMINISTRADOR : return Uri.ADMIN_ORG;
             case MIEMBRO       : return Uri.MEMBER_TRAYECTOS;
             case ORGANIZACION  : return Uri.ORG_METRICS;
+            case AGENTE_SECTORIAL : return Uri.AGENTE_SECTORIAL;
             default: throw new ForbiddenException(FORBIDDEN_MESSAGE);
         }
     }   

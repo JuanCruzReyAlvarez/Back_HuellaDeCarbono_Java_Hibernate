@@ -28,7 +28,10 @@ public class Routes {
                 define(Uri.MEMBER_TRAYECTOS_AUTOCOMPLETE, "/autocomplete"))),
     // -------------------------------------------------------------------------------- organization  
         define(Uri.ORG, "/org",
-            define(Uri.ORG_METRICS, "/metrics")));
+            define(Uri.ORG_METRICS, "/metrics")),
+        define(Uri.AGENTE_SECTORIAL, "/agente",
+            define(Uri.AGENTE_SECTORIAL_HUELLA, "/huella")));
+
 
         paths = api.branches();
     }
