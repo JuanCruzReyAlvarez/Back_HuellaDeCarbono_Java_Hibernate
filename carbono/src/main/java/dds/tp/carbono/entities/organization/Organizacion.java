@@ -10,6 +10,7 @@ import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
+import dds.tp.carbono.entities.organization.notifications.Contacts;
 import dds.tp.carbono.entities.point.PuntoGeografico;
 import dds.tp.carbono.services.huella.calculador.org.CalculadorHuellaOrganizacion;
 import dds.tp.carbono.validators.organizacion.OrganizacionValidator;
@@ -27,9 +28,12 @@ public class Organizacion {
 
     private List<MetricaOrganizacion> metricas;
 
+    private List<Contacts> contactos;
+
     public Organizacion() {
         this.sectores = new HashSet<Sector>();
         this.metricas = new ArrayList<MetricaOrganizacion>();
+        this.contactos = new ArrayList<Contacts>();
     }
 
     public boolean isValid() {
@@ -49,5 +53,9 @@ public class Organizacion {
 
     public void addMetricas(List<MetricaOrganizacion> metricas) {
         this.metricas.addAll(metricas);
+    }
+
+    public void addContacto(Contacts contacto) {
+        this.contactos.add(contacto);
     }
 }
