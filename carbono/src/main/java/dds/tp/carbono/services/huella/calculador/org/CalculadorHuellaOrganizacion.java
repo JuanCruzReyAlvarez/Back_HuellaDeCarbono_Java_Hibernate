@@ -6,6 +6,7 @@ import java.util.List;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
+import dds.tp.carbono.repository.member.MiembroRepository;
 import dds.tp.carbono.services.huella.calculador.org.commands.HuellaCommand;
 import dds.tp.carbono.services.huella.calculador.org.commands.HuellaParaMetricasCommand;
 import dds.tp.carbono.services.huella.calculador.org.commands.HuellaParaTrayectosCommand;
@@ -23,8 +24,8 @@ public class CalculadorHuellaOrganizacion {
     public CalculadorHuellaOrganizacion(Organizacion org, PeriodoDeImputacion periodo) {
         this.periodo = periodo;
         this.organizacion = org;
-
-        TrayectosCompartidosFilter trayectosFilter = new TrayectosCompartidosFilter(org);
+        MiembroRepository repo = new MiembroRepository();
+        TrayectosCompartidosFilter trayectosFilter = new TrayectosCompartidosFilter(repo.getBy(org));
 
         this.diferentesCalculosParaOrg = new ArrayList<HuellaCommand>() {{
             add(new HuellaParaMetricasCommand(org.getMetricas(periodo)));

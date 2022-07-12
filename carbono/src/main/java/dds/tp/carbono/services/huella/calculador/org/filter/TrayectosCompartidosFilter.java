@@ -8,17 +8,16 @@ import java.util.Set;
 import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.member.Tramo;
 import dds.tp.carbono.entities.member.Trayecto;
-import dds.tp.carbono.entities.organization.Organizacion;
-import dds.tp.carbono.repository.member.MiembroRepository;
 
-//hacer test de esta clase
+
 public class TrayectosCompartidosFilter {
 
     private List<Miembro> miembros;
 
-    public TrayectosCompartidosFilter(Organizacion org) {
-        MiembroRepository repo = new MiembroRepository();
-        this.miembros = repo.getBy(org);
+    public TrayectosCompartidosFilter(List<Miembro> miembros) {
+        //MiembroRepository repo = new MiembroRepository();
+        //this.miembros = repo.getBy(org);
+        this.miembros = miembros;
     }
 
     public List<Trayecto> filtrarCompartidos() {
