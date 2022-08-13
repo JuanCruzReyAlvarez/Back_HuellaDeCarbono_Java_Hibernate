@@ -30,7 +30,7 @@ public class CalculadorHuellaTrayecto implements CalculadorHuella {
             if(tramo.esCalculable())
                 huellaTotal = huellaTotal.suma(this.calcular(tramo));
 
-        return huellaTotal;
+        return huellaTotal;             
     }
 
     private HuellaCarbono calcular(Tramo tramo) {

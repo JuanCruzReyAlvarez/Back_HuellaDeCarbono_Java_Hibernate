@@ -31,7 +31,9 @@ public class CalculadorHuellaOrganizacion {
             add(new HuellaParaMetricasCommand(org.getMetricas(periodo)));
             add(new HuellaParaTrayectosCommand(trayectosFilter.filtrarCompartidos()));
         }};
-    }
+    } 
+    // repensar patron state a rajatabla.
+    // un miembro debe poder ver su impacto.
 
     public HuellaCarbono calcula() throws Exception {
 

@@ -54,7 +54,7 @@ public class Organizacion {
     public void addMetricas(List<MetricaOrganizacion> metricas) {
         this.metricas.addAll(metricas);
     }
-
+    // nombre clases
     public void addContacto(Contacts contacto) {
         this.contactos.add(contacto);
     }

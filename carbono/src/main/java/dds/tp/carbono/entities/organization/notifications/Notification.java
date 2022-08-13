@@ -17,4 +17,4 @@ public class Notification implements Job {
         System.out.println("Hola, esto es una prueba");
     }
     
-}
+} // testear el funcionamiento sin necesidad de testear el job, la logica antes.

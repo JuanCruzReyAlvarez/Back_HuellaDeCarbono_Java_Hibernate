@@ -18,4 +18,4 @@ public abstract class Actividad {
     public abstract TipoDeConsumo getTipoDeConsumo();
     protected abstract Double getValorDA();
     protected abstract Unidad getUnidadDA();
-}
+}       

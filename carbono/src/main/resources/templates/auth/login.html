@@ -11,27 +11,36 @@
 </head>
 
 <body>
+<div class="body">
 
-    <form id="login-form" method="POST" action="login">
-        <div class="form-field">
-            <input id="username" type="text" placeholder="Username" name="username" autocomplete="off">
-        </div>
-        <div class="form-field">
-            <input id="password" type="password" placeholder="Password" name="password" autocomplete="off">
-        </div>
+<form method="POST" action="login">
+</div>
+		<div class="grad"></div>
+		<div class="header">
+			<div>Site<span>Random</span></div>
+		</div>
+		<br>
+		<div class="login">
+				<input id="username" type="text" placeholder="Username" name="username" autocomplete="off">
+				<input id="password" type="password" placeholder="Password" name="password" autocomplete="off">
+				<input type="submit" value="Login">
+				<br>
+				<p class="hrefRegister" >Si no estas registrado.</p>
+				<a href="register"> <strong> Registrate! </strong> </a>
 
-        <div class="form-footer">
-            <input class="login-button" type="submit" value="Login">
-        </div>
-    </form>
-    
-    {{#error}}
-    <div id="toast" class="toast-error toast-fadein">
-        <ul>
-            <li>{{error}}</li>
-        </ul>
-    </div>
-    {{/error}}
+		</div>
+
+</form>
+
+
+
+{{#error}}
+<div id="toast" class="toast-error toast-fadein">
+	<ul>
+		<li>{{error}}</li>
+	</ul>
+</div>
+{{/error}}
 
 </body>
 
