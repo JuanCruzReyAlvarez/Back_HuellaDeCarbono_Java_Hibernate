@@ -8,6 +8,9 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='/css/toast/toast.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='/css/auth/login.css'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href='/css/auth/loginfooter.css'>
 </head>
 
 <body>
@@ -17,7 +20,7 @@
 </div>
 		<div class="grad"></div>
 		<div class="header">
-			<div>Site<span>Random</span></div>
+			<div>Calculador<span><strong> Huella Ecologica</strong></span></span></div>
 		</div>
 		<br>
 		<div class="login">
@@ -26,22 +29,22 @@
 				<input type="submit" value="Login">
 				<br>
 				<p class="hrefRegister" >Si no estas registrado.</p>
-				<a href="register"> <strong> Registrate! </strong> </a>
+				<a href="register" class="textLogin" style="float: right;"> <strong> Registrate! </strong> </a>
 
 		</div>
 
 </form>
 
 
-
-{{#error}}
-<div id="toast" class="toast-error toast-fadein">
-	<ul>
-		<li>{{error}}</li>
-	</ul>
-</div>
-{{/error}}
-
+<!--
+	{{#error}}
+	<div id="toast" class="toast-error toast-fadein">
+		<ul>
+			<li>{{error}}</li>
+		</ul>
+	</div>
+	{{/error}}
+-->
 </body>
 
 </html>

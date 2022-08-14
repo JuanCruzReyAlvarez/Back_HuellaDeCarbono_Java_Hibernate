@@ -2,6 +2,8 @@
 @import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
 
+
+
 body{
 	margin: 0;
 	padding: 0;
@@ -20,7 +22,7 @@ body{
 	bottom: -40px;
 	width: auto;
 	height: auto;
-	background-image: url(http://ginva.com/wp-content/uploads/2012/07/city-skyline-wallpapers-008.jpg);
+	background-image: url(../images/newYorkPark.jpg);
 	background-size: cover;
 	-webkit-filter: blur(5px);
 	z-index: 0;
@@ -42,30 +44,45 @@ body{
 .header{
 	position: absolute;
 	top: calc(50% - 35px);
-	left: calc(50% - 255px);
+	left: calc(50% - 500px);
 	z-index: 2;
 }
 
 .header div{
-	float: left;
+	position: relative;
 	color: #fff;
 	font-family: 'Exo', sans-serif;
-	font-size: 35px;
+	font-size: 50px;
 	font-weight: 200;
+	left: -150px;
 }
 
 .header div span{
-	color: #5379fa !important;
+	color: #4af610 !important;
 }
 
 .login{
 	position: absolute;
 	top: calc(50% - 75px);
-	left: calc(50% - 50px);
+	left: calc(50% - -50px);
 	height: 150px;
-	width: 350px;
+	width: 235px;
 	padding: 10px;
 	z-index: 2;
+}
+
+.textLogin{
+	position: relative;
+	bottom: 32px;
+	right: -12px;
+}
+
+.hrefRegister{
+	width: 150px;
+	text-decoration: none;
+	font-size: 15px;
+	height: 15px;
+	
 }
 
 .login input[type=text]{
@@ -96,7 +113,7 @@ body{
 }
 
 .login input[type=submit]{
-	width: 260px;
+	width: 250px;
 	height: 35px;
 	background: #fff;
 	border: 1px solid #fff;
@@ -108,12 +125,6 @@ body{
 	font-weight: 400;
 	padding: 6px;
 	margin-top: 10px;
-}
-
-.hrefRegister{
-	width: auto;
-	text-decoration: none;
-	font-size: 15px;
 }
 
 .login strong{
