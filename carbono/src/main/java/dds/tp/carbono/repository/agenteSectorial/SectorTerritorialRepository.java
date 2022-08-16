@@ -12,10 +12,13 @@ public class SectorTerritorialRepository {
     private SectorMunicipalDao sectorMunicipalDao;
     private SectorProvincialDao sectorProvincialDao;
 
+
     public SectorTerritorialRepository() {
         this.sectorMunicipalDao = SectorMunicipalDao.getInstance();
         this.sectorProvincialDao = SectorProvincialDao.getInstance();
     }
+
+
 
     public SectorTerritorial guardar(SectorTerritorial sectorTerritorial) {
         
