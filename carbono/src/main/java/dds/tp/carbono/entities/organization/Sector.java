@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.member.Miembro;
-import dds.tp.carbono.services.huella.calculador.member.CalculadorHuellaSector;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,24 +19,7 @@ public class Sector {
         this.nombre = nombre;
         this.organizacion = organizacion;
         this.solicitudes = solicitudes;
-    }   
-
-    public IndicadorHCSector getIndicador() throws Exception {
-        
-        IndicadorHCSector indicador = new IndicadorHCSector();
-        HuellaCarbono hc = calcularHC();
-        
-        indicador.setUnidad(hc.getUnidad());
-        indicador.setValor(hc.getValor()/cantidadMiembros());
-        return indicador;
-    }
-
-    private int cantidadMiembros() {
-        return solicitudes.stream().
-        filter(n->n.getEstado() == EstadoSolicitudVinculacion.ACEPTADO).
-        collect(Collectors.toList()).
-        size();
-    }
+    }    
 
     public List<Miembro> getMiembros() {
         List<Miembro> miembros = new ArrayList<Miembro>() ;
@@ -48,8 +29,4 @@ public class Sector {
         return miembros;
     }
 
-    public HuellaCarbono calcularHC() throws Exception  {
-        CalculadorHuellaSector calculador = new CalculadorHuellaSector(this);
-        return calculador.calcular();
-    }
 }
