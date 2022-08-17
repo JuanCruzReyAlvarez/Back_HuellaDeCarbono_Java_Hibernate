@@ -40,7 +40,7 @@ public class Sector {
         size();
     }
 
-    public List<Miembro> miembros() {
+    public List<Miembro> getMiembros() {
         List<Miembro> miembros = new ArrayList<Miembro>() ;
         solicitudes.stream().
         filter(n->n.getEstado() == EstadoSolicitudVinculacion.ACEPTADO).

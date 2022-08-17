@@ -1,12 +1,10 @@
 package dds.tp.carbono.services.huella.calculador.member;
 
 import java.util.List;
-
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.member.Trayecto;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
-import dds.tp.carbono.repository.member.MiembroRepository;
 import dds.tp.carbono.services.huella.calculador.CalculadorHuella;
 import dds.tp.carbono.services.huella.calculador.org.filter.TrayectosCompartidosFilter;
 import lombok.Getter;
@@ -29,8 +27,8 @@ public class CalculadorHuellaSector implements CalculadorHuella{
 
     private HuellaCarbono calcularHuellaSector() throws Exception {
 
-        MiembroRepository repo = new MiembroRepository();
-        TrayectosCompartidosFilter trayectosFilter = new TrayectosCompartidosFilter(repo.getBySector(sector));
+        TrayectosCompartidosFilter trayectosFilter = new TrayectosCompartidosFilter(sector.getMiembros());
+
         List<Trayecto> trayectosFiltrados = trayectosFilter.filtrarCompartidos();
        
         HuellaCarbono huellaTotal = new HuellaCarbono();
