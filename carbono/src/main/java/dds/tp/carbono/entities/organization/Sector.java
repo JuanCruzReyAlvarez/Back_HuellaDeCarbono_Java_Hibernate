@@ -1,11 +1,11 @@
 package dds.tp.carbono.entities.organization;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
+import java.util.stream.Collectors;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.member.Miembro;
-import dds.tp.carbono.repository.member.MiembroRepository;
 import dds.tp.carbono.services.huella.calculador.member.CalculadorHuellaSector;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,10 +16,11 @@ public class Sector {
     @Getter @Setter private Organizacion organizacion;
     @Getter @Setter private Set<SolicitudVinculacion> solicitudes;
     
-    public Sector(Integer id, String nombre, Organizacion organizacion) {
+    public Sector(Integer id, String nombre, Organizacion organizacion, Set<SolicitudVinculacion> solicitudes) {
         this.id = id;
         this.nombre = nombre;
         this.organizacion = organizacion;
+        this.solicitudes = solicitudes;
     }   
 
     public IndicadorHCSector getIndicador() throws Exception {
@@ -33,10 +34,18 @@ public class Sector {
     }
 
     private int cantidadMiembros() {
-        MiembroRepository repo = new MiembroRepository();
-        List<Miembro> miembros = repo.getBySector(this);
+        return solicitudes.stream().
+        filter(n->n.getEstado() == EstadoSolicitudVinculacion.ACEPTADO).
+        collect(Collectors.toList()).
+        size();
+    }
 
-        return miembros.size();
+    public List<Miembro> miembros() {
+        List<Miembro> miembros = new ArrayList<Miembro>() ;
+        solicitudes.stream().
+        filter(n->n.getEstado() == EstadoSolicitudVinculacion.ACEPTADO).
+        collect(Collectors.toList()).forEach(a->miembros.add(a.getMiembro() ) );
+        return miembros;
     }
 
     public HuellaCarbono calcularHC() throws Exception  {
