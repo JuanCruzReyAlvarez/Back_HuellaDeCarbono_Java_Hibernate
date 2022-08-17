@@ -3,7 +3,6 @@ package dds.tp.carbono.http.controllers.agenteSectorial;
 import java.util.HashMap;
 import java.util.Map;
 
-import dds.tp.carbono.entities.agenteSectorial.SectorMunicipal;
 import dds.tp.carbono.entities.auth.Rol;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;

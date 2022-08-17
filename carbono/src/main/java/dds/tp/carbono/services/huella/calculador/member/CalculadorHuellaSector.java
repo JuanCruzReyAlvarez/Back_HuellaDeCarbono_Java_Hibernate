@@ -1,14 +1,11 @@
 package dds.tp.carbono.services.huella.calculador.member;
 
 import java.util.List;
-import java.util.Set;
 
 import dds.tp.carbono.entities.huella.HuellaCarbono;
-import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.member.Trayecto;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
-import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 import dds.tp.carbono.repository.member.MiembroRepository;
 import dds.tp.carbono.services.huella.calculador.CalculadorHuella;
 import dds.tp.carbono.services.huella.calculador.org.filter.TrayectosCompartidosFilter;
