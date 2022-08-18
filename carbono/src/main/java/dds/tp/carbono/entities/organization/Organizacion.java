@@ -7,12 +7,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import dds.tp.carbono.entities.auth.Usuario;
-import dds.tp.carbono.entities.huella.HuellaCarbono;
+import dds.tp.carbono.entities.huella.BuscadorMiembros;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
 import dds.tp.carbono.entities.organization.notifications.Contacts;
 import dds.tp.carbono.entities.point.PuntoGeografico;
-import dds.tp.carbono.services.huella.calculador.org.CalculadorHuellaOrganizacion;
 import dds.tp.carbono.validators.organizacion.OrganizacionValidator;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +24,7 @@ public class Organizacion {
     @Getter @Setter private PuntoGeografico ubicacion;
     @Getter @Setter private Set<Sector> sectores;
     @Getter @Setter private Usuario user;
+    @Setter public BuscadorMiembros buscador;
 
     private List<MetricaOrganizacion> metricas;
 
@@ -40,10 +40,6 @@ public class Organizacion {
         return new OrganizacionValidator().validate(this);
     }
     
-    public HuellaCarbono calcularHC(PeriodoDeImputacion periodo) throws Exception {
-        CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(this, periodo); 
-        return calculador.calcula();
-    }
 
     public List<MetricaOrganizacion> getMetricas(PeriodoDeImputacion periodo) {
         return this.metricas.stream()
@@ -58,4 +54,8 @@ public class Organizacion {
     public void addContacto(Contacts contacto) {
         this.contactos.add(contacto);
     }
+
 }
+
+
+// el calculador tiene una organizacion laorganizacion solo e suna entidad

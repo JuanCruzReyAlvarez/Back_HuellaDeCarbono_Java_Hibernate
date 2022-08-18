@@ -15,8 +15,6 @@ public class TrayectosCompartidosFilter {
     private List<Miembro> miembros;
 
     public TrayectosCompartidosFilter(List<Miembro> miembros) {
-        //MiembroRepository repo = new MiembroRepository();
-        //this.miembros = repo.getBy(org);
         this.miembros = miembros;
     }
 

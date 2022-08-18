@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import dds.tp.carbono.dao.huella.FactorEmisionDao;
+import dds.tp.carbono.entities.huella.BuscadorMiembros;
 import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.huella.UnidadFE;
@@ -22,20 +23,27 @@ import dds.tp.carbono.entities.organization.metrics.TipoActividad;
 import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
 import dds.tp.carbono.entities.organization.metrics.Unidad;
 import dds.tp.carbono.services.huella.calculador.org.CalculadorHuellaOrganizacion;
+import dds.tp.carbono.entities.huella.BuscadorFactorEmision;
 
 public class CalculadorHCTest {
+
 
     @Before
     public void inicializarRepositoryMockFE() {
         FactorEmision factorGasNatural = new FactorEmision(TipoDeConsumo.GasNatural, TipoActividad.Combustion_Fija, 4.00, UnidadFE.kgCO2eq_M3);
         FactorEmisionDao.getInstance().save(factorGasNatural);
+        
     }
+
+
     
     @Test 
     public void calcularHuellaParaLasMetricasTest() throws Exception {
         Organizacion org = this.crearOrganizacionConMetricas();
         PeriodoDeImputacion periodo = this.buildPeriodoDeImputacion();
-        CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(org, periodo);
+        BuscadorFactorEmision buscadorDeEmision = this.inicializarBuscador();
+        CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(org, periodo,buscadorDeEmision);
+        
         HuellaCarbono huella = calculador.calcula();
 
         Assert.assertEquals(Double.valueOf(1206.00), huella.getValor());
@@ -63,8 +71,27 @@ public class CalculadorHCTest {
     private Organizacion buildOrganizacion(List<MetricaOrganizacion> metricas) {
         Organizacion org = new Organizacion();
         org.addMetricas(metricas);
-        
+        BuscadorMiembros buscadorMiembro = new BuscadorMiembros();
+        org.setBuscador(buscadorMiembro);
         return org;
+    }
+
+    
+    private BuscadorFactorEmision inicializarBuscador() throws Exception {
+        List<FactorEmision> factores = new ArrayList<>();
+
+        FactorEmision factorGasNatural = new FactorEmision(TipoDeConsumo.GasNatural, TipoActividad.Combustion_Fija, 4.00, UnidadFE.kgCO2eq_M3);
+        FactorEmision factorGNC = new FactorEmision(TipoDeConsumo.GNC, TipoActividad.Trayecto_Miembros, 4.00, UnidadFE.kgCO2eq_M3);
+        FactorEmision factorNafta = new FactorEmision(TipoDeConsumo.Nafta, TipoActividad.Trayecto_Miembros, 3.00, UnidadFE.kgCO2eq_LT);
+        FactorEmision factorDiesel = new FactorEmision(TipoDeConsumo.Diesel, TipoActividad.Trayecto_Miembros, 2.00, UnidadFE.kgCO2eq_LT);
+
+        factores.add(factorGasNatural);
+        factores.add(factorGNC);
+        factores.add(factorNafta);
+        factores.add(factorDiesel);
+
+        return new BuscadorFactorEmision(factores);
+
     }
 
     private PeriodoDeImputacion buildPeriodoDeImputacion() throws Exception {

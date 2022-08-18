@@ -5,6 +5,8 @@ import dds.tp.carbono.entities.organization.Sector;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 import dds.tp.carbono.repository.organization.SolicitudVinculacionRepository;
 
+//Es un service no hay problema con el repository
+
 public class SolicitadorDeVinculacion {
     
     SolicitudVinculacionRepository repository;

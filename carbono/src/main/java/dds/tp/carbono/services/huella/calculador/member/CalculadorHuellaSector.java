@@ -13,11 +13,10 @@ import dds.tp.carbono.services.huella.calculador.org.filter.TrayectosCompartidos
 import lombok.Getter;
 import lombok.Setter;
 
-public class CalculadorHuellaSector implements CalculadorHuella{
+public class CalculadorHuellaSector extends CalculadorHuella{
 
     @Getter @Setter private Sector sector;
     @Getter @Setter private Organizacion org;
-    @Getter @Setter private BuscadorFactorEmision buscador;
 
     public CalculadorHuellaSector(Sector sector, BuscadorFactorEmision buscador){
         this.sector = sector;

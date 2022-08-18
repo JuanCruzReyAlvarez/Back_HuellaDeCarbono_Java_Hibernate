@@ -13,9 +13,8 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class CalculadorHuellaTrayecto implements CalculadorHuella {
+public class CalculadorHuellaTrayecto extends CalculadorHuella {
     @Getter @Setter private Trayecto trayecto;
-    @Getter @Setter private BuscadorFactorEmision buscador;
 
     public CalculadorHuellaTrayecto(Trayecto trayecto,BuscadorFactorEmision buscador) {
         this.trayecto = trayecto;

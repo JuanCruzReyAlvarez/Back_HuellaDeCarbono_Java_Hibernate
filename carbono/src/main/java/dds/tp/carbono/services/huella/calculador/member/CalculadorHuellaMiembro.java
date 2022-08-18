@@ -8,10 +8,9 @@ import dds.tp.carbono.services.huella.calculador.CalculadorHuella;
 import lombok.Getter;
 import lombok.Setter;
 
-public class CalculadorHuellaMiembro implements CalculadorHuella {
+public class CalculadorHuellaMiembro extends CalculadorHuella {
 
     @Getter @Setter private Miembro miembro;
-    @Getter @Setter private BuscadorFactorEmision buscador;
 
     public CalculadorHuellaMiembro(Miembro miembro,BuscadorFactorEmision buscador) {
         this.miembro = miembro;

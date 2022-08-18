@@ -11,6 +11,8 @@ import dds.tp.carbono.reader.ExcelImporter;
 import dds.tp.carbono.repository.organization.OrganizacionRepository;
 import dds.tp.carbono.services.organizacion.metrics.converter.MetricaOrganizacionConverter;
 
+// Es un service no pertenece a dominio no hay drama con el repository
+
 public class MetricsImporterService {
     
     private Organizacion organizacion;
