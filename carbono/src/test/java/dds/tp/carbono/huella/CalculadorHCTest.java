@@ -45,7 +45,7 @@ public class CalculadorHCTest {
         CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(org, periodo,buscadorDeEmision);
         
         HuellaCarbono huella = calculador.calcula();
-
+        System.out.print(huella.getValor());
         Assert.assertEquals(Double.valueOf(1206.00), huella.getValor());
     }
 
