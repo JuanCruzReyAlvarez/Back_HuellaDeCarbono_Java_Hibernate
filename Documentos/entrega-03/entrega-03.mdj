@@ -10244,8 +10244,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 558,
-									"top": 685,
+									"left": 559,
+									"top": 663,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -10265,8 +10265,8 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 573,
-									"top": 685,
+									"left": 574,
+									"top": 663,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -10287,7 +10287,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 529,
-									"top": 686,
+									"top": 664,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -10308,7 +10308,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 474,
-									"top": 671,
+									"top": 649,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -10329,7 +10329,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 477,
-									"top": 657,
+									"top": 635,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -10350,7 +10350,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 470,
-									"top": 698,
+									"top": 676,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -10464,7 +10464,7 @@
 							"tail": {
 								"$ref": "AAAAAAGB8EY9UoyQqqw="
 							},
-							"points": "449:692;544:692;544:784",
+							"points": "449:670;544:670;544:784",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGB8EqKrBHkomg="
@@ -16902,7 +16902,8 @@
 										"$ref": "AAAAAAGBTvGlJdHckSE="
 									},
 									"name": "Double valor;",
-									"visibility": "private"
+									"visibility": "private",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -16911,7 +16912,8 @@
 										"$ref": "AAAAAAGBTvGlJdHckSE="
 									},
 									"name": "UnidadHC unidad;",
-									"visibility": "private"
+									"visibility": "private",
+									"type": ""
 								}
 							]
 						},
@@ -17779,7 +17781,8 @@
 											"_parent": {
 												"$ref": "AAAAAAGBTpJivZJD8No="
 											},
-											"name": "organizacion "
+											"name": "organizacion ",
+											"type": ""
 										},
 										{
 											"_type": "UMLParameter",
@@ -19010,7 +19013,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGB8ZqSdFmnBF8="
 									},
-									"name": "Organizacion organizacion;"
+									"name": "Organizacion organizacion;",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -19018,7 +19022,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGB8ZqSdFmnBF8="
 									},
-									"name": "String nombre;"
+									"name": "String nombre;",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -19026,7 +19031,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGB8ZqSdFmnBF8="
 									},
-									"name": "Integer id;"
+									"name": "Integer id;",
+									"type": ""
 								}
 							],
 							"operations": [
