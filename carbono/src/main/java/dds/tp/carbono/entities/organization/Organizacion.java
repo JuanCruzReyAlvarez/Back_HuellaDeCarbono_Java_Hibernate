@@ -6,6 +6,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.entities.huella.BuscadorMiembros;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
@@ -16,18 +23,30 @@ import dds.tp.carbono.validators.organizacion.OrganizacionValidator;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
+@Table(name = "organizacion")
 public class Organizacion {
+    @Id
+    @GeneratedValue
     @Getter @Setter private Integer id;
+    @Column(name="razonSocial")
     @Getter @Setter private String razonSocial;
+    @Transient
     @Getter @Setter private Clasificacion clasificacion;
+    @Transient
     @Getter @Setter private TipoOrganizacion tipo;
+    @Transient
     @Getter @Setter private PuntoGeografico ubicacion;
+    @Transient
     @Getter @Setter private Set<Sector> sectores;
+    @Transient
     @Getter @Setter private Usuario user;
+    @Transient
     @Setter public BuscadorMiembros buscador;
-
+    
+    @Transient
     private List<MetricaOrganizacion> metricas;
-
+    @Transient
     private List<Contacts> contactos;
 
     public Organizacion() {
