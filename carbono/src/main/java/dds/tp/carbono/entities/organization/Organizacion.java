@@ -6,12 +6,21 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
 
 import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.entities.huella.BuscadorMiembros;
@@ -26,27 +35,38 @@ import lombok.Setter;
 @Entity
 @Table(name = "organizacion")
 public class Organizacion {
+
     @Id
     @GeneratedValue
     @Getter @Setter private Integer id;
+
     @Column(name="razonSocial")
     @Getter @Setter private String razonSocial;
-    @Transient
+
+    @ManyToOne
     @Getter @Setter private Clasificacion clasificacion;
-    @Transient
+
+
+    @Enumerated(EnumType.STRING)
     @Getter @Setter private TipoOrganizacion tipo;
-    @Transient
+
+    @OneToOne
     @Getter @Setter private PuntoGeografico ubicacion;
-    @Transient
+
+    @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @Getter @Setter private Set<Sector> sectores;
-    @Transient
+
+    @OneToOne
     @Getter @Setter private Usuario user;
+
     @Transient
     @Setter public BuscadorMiembros buscador;
     
-    @Transient
+    @OneToMany
+    @JoinColumn(name="organizacion_id")                     
     private List<MetricaOrganizacion> metricas;
-    @Transient
+
+    @OneToMany
     private List<Contacts> contactos;
 
     public Organizacion() {
