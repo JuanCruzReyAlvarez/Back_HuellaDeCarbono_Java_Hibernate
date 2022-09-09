@@ -46,7 +46,6 @@ public class Organizacion {
     @ManyToOne
     @Getter @Setter private Clasificacion clasificacion;
 
-
     @Enumerated(EnumType.STRING)
     @Getter @Setter private TipoOrganizacion tipo;
 

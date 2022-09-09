@@ -5,31 +5,38 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
 
 import dds.tp.carbono.entities.member.Miembro;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="sector")
+@Table(name = "sector")
 public class Sector {
+    
     @Id
     @GeneratedValue
     @Getter @Setter private Integer id;
+
     @Column
     @Getter @Setter private String nombre;
+
     @ManyToOne
     @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
     @Getter @Setter private Organizacion organizacion;
-    @Transient
+
+    @OneToMany(mappedBy = "sector", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @Getter @Setter private Set<SolicitudVinculacion> solicitudes;
     
     public Sector(Integer id, String nombre, Organizacion organizacion, Set<SolicitudVinculacion> solicitudes) {
