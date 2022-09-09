@@ -24,5 +24,10 @@ public class ToneladaUnidadHC extends UnidadHC {
             return false;
 
         return true;
+    }
+
+    @Override
+    public String nombre() {
+        return "TN";
     }  
 }

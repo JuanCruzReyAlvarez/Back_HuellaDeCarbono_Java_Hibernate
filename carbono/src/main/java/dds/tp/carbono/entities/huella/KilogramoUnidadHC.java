@@ -1,6 +1,13 @@
 package dds.tp.carbono.entities.huella;
 
+
+
 public class KilogramoUnidadHC extends UnidadHC {
+
+    @Override
+    public String nombre (){
+        return "KG";
+    }
 
     @Override
     public void reducir(HuellaCarbono hc) throws Exception {

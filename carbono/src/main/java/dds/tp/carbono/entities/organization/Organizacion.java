@@ -61,7 +61,7 @@ public class Organizacion {
     @Setter public BuscadorMiembros buscador;
     
 
-    @Transient           
+    @OneToMany           
     private List<MetricaOrganizacion> metricas;
 
     @OneToMany

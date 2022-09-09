@@ -20,7 +20,7 @@ import dds.tp.carbono.entities.organization.Organizacion;
 @Entity
 @Table(name="sectorTerritorial")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name= "territorio")
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name= "tipoDeTerritorio")
 
 public abstract class SectorTerritorial {
     

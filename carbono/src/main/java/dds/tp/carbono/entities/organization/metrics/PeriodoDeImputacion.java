@@ -2,14 +2,22 @@ package dds.tp.carbono.entities.organization.metrics;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 import lombok.Getter;
 import lombok.Setter;
 
-
+@Embeddable
 public class PeriodoDeImputacion {
 
+    @Enumerated(EnumType.STRING)
     @Setter @Getter private Periodicidad periodicidad;
     
+    @Column(name = "fecha", columnDefinition = "DATE")
     @Setter @Getter private LocalDate fechaInicio;                //Hay que convertir de localdate tima a loq ue sea.
 
     public PeriodoDeImputacion(String periodo) throws Exception {

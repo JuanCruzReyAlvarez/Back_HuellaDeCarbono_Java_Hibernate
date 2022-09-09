@@ -1,14 +1,18 @@
 package dds.tp.carbono.entities.organization.metrics;
 
-
-
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Embedded;
 
+
+@Entity
+@DiscriminatorValue("combustionFija")
 public class CombustionFija extends Actividad {
 
-
+    @Embedded
     @Setter @Getter public Consumo consumo;
 
     public CombustionFija(Consumo consumo) {

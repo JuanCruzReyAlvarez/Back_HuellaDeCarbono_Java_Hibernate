@@ -21,5 +21,10 @@ public class GramoUnidadHC extends UnidadHC {
     @Override
     public boolean esMayor(UnidadHC unidad) {
         return false;
+    }
+
+    @Override
+    public String nombre() {
+        return "GR";
     }  
 }

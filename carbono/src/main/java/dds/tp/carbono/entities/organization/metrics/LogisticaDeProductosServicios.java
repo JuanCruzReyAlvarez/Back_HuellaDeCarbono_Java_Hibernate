@@ -5,15 +5,34 @@ import dds.tp.carbono.entities.organization.metrics.logistica.TransporteLogistic
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+
+
+@Entity
+@DiscriminatorValue("logisticaDeProductosServicios")
 public class LogisticaDeProductosServicios extends Actividad {
 
+    @Column
     private static final double FACTOR_K = 1;
     
+    @Column
     @Setter @Getter private Double distancia;
+    
+    @Column
     @Setter @Getter private Double peso; 
+
+    @Enumerated(EnumType.STRING)
     @Setter @Getter private CategoriaLogistica categoria; 
+
+    @Enumerated(EnumType.STRING)
     @Setter @Getter private TransporteLogistica transporte; 
 
+    @Enumerated(EnumType.STRING)
     @Setter @Getter private TipoDeConsumo tipoDeConsumo; 
 
     public LogisticaDeProductosServicios() {
