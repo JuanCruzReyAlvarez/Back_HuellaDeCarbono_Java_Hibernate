@@ -45,7 +45,7 @@ public class Miembro {
 
     @OneToMany (mappedBy = "miembro",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @Getter @Setter private Set<Trayecto> trayectos;
-
+    
     public Miembro() {
         this.solicitudes = new HashSet<SolicitudVinculacion>();
     }

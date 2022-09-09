@@ -8,9 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
 
 import dds.tp.carbono.entities.point.PuntoGeografico;
 import dds.tp.carbono.entities.transport.MedioDeTransporte;
@@ -27,12 +27,14 @@ public class Tramo {
     @GeneratedValue
     @Getter @Setter private Integer id;
 
-    @Transient
+    @OneToOne
     @Getter @Setter private PuntoGeografico puntoA;
-    @Transient
+    @OneToOne
     @Getter @Setter private PuntoGeografico puntoB;
+
     @Transient
     @Getter @Setter private MedioDeTransporte transporte;
+
     @OneToMany
     @JoinColumn(name = "tramo_id", referencedColumnName = "id")
     @Getter @Setter private List<Miembro> compartidos;

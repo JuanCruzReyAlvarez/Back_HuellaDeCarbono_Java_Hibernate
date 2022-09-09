@@ -1,9 +1,13 @@
 package dds.tp.carbono.entities.organization.metrics;
 
+
+
 import lombok.Getter;
 import lombok.Setter;
 
+
 public class CombustionFija extends Actividad {
+
 
     @Setter @Getter public Consumo consumo;
 

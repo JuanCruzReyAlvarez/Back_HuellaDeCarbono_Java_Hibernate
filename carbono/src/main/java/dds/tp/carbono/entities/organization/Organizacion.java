@@ -14,7 +14,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -61,8 +60,8 @@ public class Organizacion {
     @Transient
     @Setter public BuscadorMiembros buscador;
     
-    @OneToMany
-    @JoinColumn(name="organizacion_id")                     
+
+    @Transient           
     private List<MetricaOrganizacion> metricas;
 
     @OneToMany
@@ -72,8 +71,8 @@ public class Organizacion {
         this.sectores = new HashSet<Sector>();
         this.metricas = new ArrayList<MetricaOrganizacion>();
         this.contactos = new ArrayList<Contacts>();
-    }
-
+    } 
+    
     public boolean isValid() {
         return new OrganizacionValidator().validate(this);
     }

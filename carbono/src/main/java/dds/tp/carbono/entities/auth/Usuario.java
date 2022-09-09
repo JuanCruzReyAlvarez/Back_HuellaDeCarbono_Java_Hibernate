@@ -2,6 +2,7 @@ package dds.tp.carbono.entities.auth;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,6 +24,6 @@ public class Usuario {
     @Column
     @Getter @Setter private String password;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Getter @Setter private Rol rol;
 }
