@@ -30,6 +30,6 @@ public class Estacion {
     @Column
     @Getter @Setter private Double distanciaEstacionAnterior;
     
-    @Transient
+    @OneToOne
     @Getter @Setter private Estacion siguiente;
 }
