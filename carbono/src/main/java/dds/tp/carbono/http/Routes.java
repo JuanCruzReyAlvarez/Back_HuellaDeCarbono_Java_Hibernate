@@ -8,50 +8,49 @@ import dds.tp.carbono.http.utils.Uri;
 import lombok.Getter;
 
 public class Routes {
-    private static final String ROOT         = "";
-    private static final String LOGIN        = "/login";
-    private static final String REGISTER     = "/register";
-    private static final String ADMIN        = "/admin";
-    private static final String ORG          = "/org";
-    private static final String MEMBER       = "/member";
-    private static final String TRAYECTOS    = "/trayectos";
-    private static final String AUTOCOMPLETE = "/autocomplete";
-    private static final String POINTS       = "/points";
-    private static final String METRICS      = "/metrics";
-    
+
     public void init() {
-        this.api = new Route(Uri.ROOT, ROOT, new Route[] {
-            new Route(Uri.LOGIN, LOGIN),
-            new Route(Uri.REGISTER, REGISTER),
-            new Route(Uri.ADMIN, ADMIN, new Route[] {
-                new Route(Uri.ADMIN_ORG, ORG)
-            }),
-            new Route(Uri.MEMBER, MEMBER, new Route[] {
-                new Route(Uri.MEMBER_POINTS, POINTS, new Route[] {
-                    new Route(Uri.MEMBER_POINTS_AUTOCOMPLETE, AUTOCOMPLETE)
-                }),
-                new Route(Uri.MEMBER_TRAYECTOS, TRAYECTOS, new Route[] {
-                    new Route(Uri.MEMBER_TRAYECTOS_AUTOCOMPLETE, AUTOCOMPLETE)
-                })
-            }),
-            new Route(Uri.ORG, ORG, new Route[] {
-                new Route(Uri.ORG_METRICS, METRICS)
-            })
-        });
+
+    // -------------------------------------------------------------------------------- root 
+        this.api = define(Uri.ROOT, "",
+    // -------------------------------------------------------------------------------- auth 
+        define(Uri.LOGIN, "/login"),
+        define(Uri.REGISTER, "/register"),
+    // -------------------------------------------------------------------------------- admin
+        define(Uri.ADMIN, "/admin", 
+            define(Uri.ADMIN_ORG, "/org"), 
+            define(Uri.ADMIN_FACTOR_EMISION, "/fe")),
+    // -------------------------------------------------------------------------------- member
+        define(Uri.MEMBER, "/member",
+            define(Uri.MEMBER_POINTS, "/points",
+                define(Uri.MEMBER_POINTS_AUTOCOMPLETE, "/autocomplete")),
+            define(Uri.MEMBER_TRAYECTOS, "/trayectos",
+                define(Uri.MEMBER_TRAYECTOS_AUTOCOMPLETE, "/autocomplete"))),
+    // -------------------------------------------------------------------------------- organization  
+        define(Uri.ORG, "/org",
+            define(Uri.ORG_METRICS, "/metrics")),
+        define(Uri.AGENTE_SECTORIAL, "/agente",
+            define(Uri.AGENTE_SECTORIAL_HUELLA, "/huella")));
+
 
         paths = api.branches();
     }
 
+    private Route define(Uri uri, String path, Route... children) {
+        return new Route(uri, path, children);
+    }
+
     private Route api;
     @Getter private Map<Uri, String> paths = new TreeMap<>();
-    
+
     private static Routes instance;
+
     public static Routes getInstance() {
         if (instance == null) {
             instance = new Routes();
             instance.init();
         }
-        
+
         return instance;
     }
 }

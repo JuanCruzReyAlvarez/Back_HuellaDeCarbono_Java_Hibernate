@@ -1,26 +1,27 @@
 package dds.tp.carbono.http.controllers.auth;
 
+import java.util.Collections;
+import java.util.Map;
+
 import dds.tp.carbono.entities.auth.Rol;
-import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.http.controllers.Controller;
-import dds.tp.carbono.http.exceptions.ForbiddenException;
+import dds.tp.carbono.http.dto.auth.LoginDTO;
+import dds.tp.carbono.http.dto.validators.LoginDTOValidator;
 import dds.tp.carbono.http.exceptions.HttpException;
-import dds.tp.carbono.http.exceptions.UnauthorizedException;
+import dds.tp.carbono.http.utils.Redirect;
+import dds.tp.carbono.http.utils.SessionCookie;
 import dds.tp.carbono.http.utils.Uri;
-import dds.tp.carbono.http.validator.ValidateResult;
-import dds.tp.carbono.http.validator.Validator;
 import dds.tp.carbono.services.auth.LoginService;
-import lombok.Getter;
-import lombok.Setter;
+import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
 import spark.TemplateEngine;
 
 public class LoginController extends Controller {
-    private static final String LOGIN_VIEW = "login.mustache";
-    private static final String FORBIDDEN_MESSAGE = "Usuario sin roles validos";
+    private static final String LOGIN_VIEW = "auth/login.html";
     private static final String UNAUTHORIZED_MESSAGE = "Usuario o Password invalido";
+    private static final String TOKEN_COOKIE_NAME = "CARBONO-TOKEN";
     
     private LoginService loginService;
 
@@ -30,59 +31,48 @@ public class LoginController extends Controller {
 
     @Override
     public void routes(TemplateEngine engine) {
-        Spark.get(path(Uri.LOGIN), (rq, rs) -> view(LOGIN_VIEW), engine);
-        Spark.post(path(Uri.LOGIN), (rq, rs) -> this.login(rq, rs));
+        Spark.get(path(Uri.LOGIN), (rq, rs) -> this.loginView(rq, rs), engine);
+        Spark.post(path(Uri.LOGIN), (rq, rs) -> this.login(rq, rs), engine);
     }
 
-    public String login(Request request, Response response) throws HttpException {
+    private ModelAndView loginView(Request request, Response response) {
+        try {
+            String token = request.cookie(TOKEN_COOKIE_NAME);
+    
+            if (token == null)
+                return view(LOGIN_VIEW);
+    
+            redirectDefault(response, new SessionCookie(token));
+        } catch (Exception ex) {            
+            return view(LOGIN_VIEW);
+        }
+
+        return null;
+    }
+
+    public ModelAndView login(Request request, Response response) throws HttpException {
         
         try {
-            LoginDTO input = getBody(request, LoginDTO.class, new LoginDTOValidator());
-            Usuario usuario = loginService.login(input.getUsername(), input.getPassword());
-            return redirectByRol(usuario.getRol());
-        } catch (Exception ex) {
-            throw new UnauthorizedException(UNAUTHORIZED_MESSAGE);
-        }
-    }
+            Map<String, String> input = formFields(request);
 
-    private String redirectByRol(Rol rol) throws HttpException {
-        switch (rol) {
-            case ADMINISTRADOR : return json(new AuthRedirect(path(Uri.ADMIN_ORG)));
-            case MIEMBRO       : return json(new AuthRedirect(path(Uri.MEMBER_TRAYECTOS)));
-            case ORGANIZACION  : return json(new AuthRedirect(path(Uri.ORG_METRICS)));
-            default: throw new ForbiddenException(FORBIDDEN_MESSAGE);
-        }
-    }
-
-    private class AuthRedirect {
-        @Getter @Setter private String uri;
-        @Getter @Setter private boolean redirect;
-
-        public AuthRedirect(String uri) {
-            this.uri = uri;
-            this.redirect = true;
-        }
-    }
-
-    private class LoginDTO {
-        @Getter @Setter private String username;
-        @Getter @Setter private String password;
-    }
-
-    private class LoginDTOValidator extends Validator<LoginDTO> {
-        private static final String PASSWORD_FIELD_NAME = "password";
-        private static final String USERNAME_FIELD_NAME = "username";
-        private static final String REQUIRED_MESSAGE = "The %s field is required";
-
-        @Override
-        public ValidateResult validate(LoginDTO dto) {
-            if (dto.getPassword() == null || dto.getPassword().isEmpty())
-                addError(PASSWORD_FIELD_NAME, String.format(REQUIRED_MESSAGE, PASSWORD_FIELD_NAME));
+            LoginDTO login = validateInput(
+                new LoginDTO(input.get("username"), input.get("password")),
+                new LoginDTOValidator());
             
-            if (dto.getUsername() == null || dto.getUsername().isEmpty())
-                addError(USERNAME_FIELD_NAME, String.format(REQUIRED_MESSAGE, USERNAME_FIELD_NAME));
+            SessionCookie session = loginService.login(login.getUsername(), login.getPassword());
+            response.cookie(TOKEN_COOKIE_NAME, session.getToken());
 
-            return this;
+            redirectDefault(response, session);
+        } catch (Exception ex) {
+            return view(LOGIN_VIEW, Collections.singletonMap("error", UNAUTHORIZED_MESSAGE));
         }
+
+        return null;
+    }
+
+    private void redirectDefault(Response response, SessionCookie session) throws HttpException {
+        Rol rol = session.getUser().getRol();
+        Uri uri = Redirect.defaultUriByRol(rol);
+        response.redirect(path(uri));
     }
 }

@@ -3,6 +3,8 @@ package dds.tp.carbono.services.admin;
 import dds.tp.carbono.entities.transport.TransportePublico;
 import dds.tp.carbono.repository.admin.TransportePublicoRepository;
 
+//Es un service no es de nuestro dominio, esta bien el acceso al repository.
+
 public class CreadorLineaTransportePublico {
     
     private TransportePublicoRepository repository;

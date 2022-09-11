@@ -14,12 +14,9 @@ public class SolicitudVinculacionDao extends Dao<SolicitudVinculacion> {
         return instance;
     }
 
-    private int idCounter = 0;
-    
     @Override
     public SolicitudVinculacion setId(Integer id, SolicitudVinculacion item) {
-        item.setId(idCounter++);
+        item.setId(id);
         return item;
-    }
-    
+    }    
 }
