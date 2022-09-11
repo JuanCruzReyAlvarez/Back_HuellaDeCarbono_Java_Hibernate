@@ -1,0 +1,49 @@
+#toast { 
+    display: none;
+    color: rgb(228, 211, 211);
+    border-radius: 5px;
+    min-height: 40px;
+    height: fit-content;
+    padding: 20px;
+    margin-right: 20px;
+    position: fixed;
+    right: 0px;
+}
+
+.toast-fadein {
+    display: block !important   ;
+    animation: fadein 2s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+
+#toast ul{ 
+    list-style-type: none;
+    margin: 5px;
+    padding: 0;
+    font-family: system-ui;
+}
+
+.toast-error {
+    background-color: #ee91917a;
+    border: solid 1px red;
+}
+
+.toast-success {
+    background-color: #91eea07a;
+    border: solid 1px rgb(0, 255, 72);
+}
+
+.visible {
+    display: block !important;
+}
+
+.toast-container {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}

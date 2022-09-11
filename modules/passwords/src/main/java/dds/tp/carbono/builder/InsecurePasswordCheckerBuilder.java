@@ -2,7 +2,6 @@ package dds.tp.carbono.builder;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -14,23 +13,14 @@ import dds.tp.carbono.checker.validators.contracts.PasswordValidator;
 import dds.tp.carbono.checker.validators.regex.LowercasePasswordValidator;
 import dds.tp.carbono.checker.validators.regex.NumberPasswordValidator;
 import dds.tp.carbono.checker.validators.regex.UppercasePasswordValidator;
+import dds.tp.carbono.contracts.IInsecurePasswordCheckerBuilder;
 
-public class InsecurePasswordCheckerBuilder {
-
-    //singleton
-    private static InsecurePasswordCheckerBuilder instance;
-
-    public static InsecurePasswordCheckerBuilder getInstance() {
-        if (instance == null)
-            instance = new InsecurePasswordCheckerBuilder();
-
-        return instance;
-    }
+public class InsecurePasswordCheckerBuilder implements IInsecurePasswordCheckerBuilder {
 
     //strategy
     private Map<ValidatorType, PasswordValidator> validators;
     
-    private InsecurePasswordCheckerBuilder() {
+    public InsecurePasswordCheckerBuilder() {
         this.validators = new HashMap<ValidatorType, PasswordValidator>();
 
         validators.put(ValidatorType.LENGTH, new LengthPasswordValidator());
@@ -39,17 +29,12 @@ public class InsecurePasswordCheckerBuilder {
         validators.put(ValidatorType.NUMERIC, new NumberPasswordValidator());
         validators.put(ValidatorType.WEAKLIST, WeakListPasswordValidatorBuilder.build());
     }
-
-    public InsecurePasswordChecker buildPasswordChecker() {
-        return this.buildPasswordChecker(Arrays.asList(ValidatorType.values()));
-    }
     
-    public InsecurePasswordChecker buildPasswordChecker(ValidatorType validator) {
-        return this.buildPasswordChecker(Arrays.asList(validator));
-    }
+    public InsecurePasswordChecker buildPasswordChecker(ValidatorType ...types) {
+        if (types.length == 0)
+            types = ValidatorType.values();
 
-    public InsecurePasswordChecker buildPasswordChecker(List<ValidatorType> types) {
-        return new InsecurePasswordChecker(types.stream().
+        return new InsecurePasswordChecker(Arrays.stream(types).
             map(type -> this.validators.get(type))
             .collect(Collectors.toSet()));
     }

@@ -1,0 +1,27 @@
+{
+    "organizaciones": [
+        {
+            "razonSocial": "Facebook",
+            "sectores": [
+                {
+                    "id": 1,
+                    "nombre": "Recursos Humanos",
+                    "solicitudes": [
+                        {
+                            "miembro": {
+                                "nombre": "jhonson",
+                                "apellido": "gson",
+                                "nroDocumento": "43714555"
+                            },
+                            "sector":  {
+                                "id": 1,
+                                "nombre": "Recursos Humanos"
+                            },
+                            "estado": "PENDIENTE"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Carbono - Miembro - Trayectos</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/bootstrap/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/toast/toast.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/modal/modal.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/member/trayectos/trayectos.css'>
+    <script src='/js/jquery.min.js'></script>
+    
+</head>
+<body>
+
+    <div id="agregar-trayecto-modal" class="carbono-modal">
+        <div class="carbono-modal-content">
+
+            <ul id="new-trayecto-tabs" class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#crear-trayecto-container">Trayecto</a></li>
+                <li role="presentation"><a href="#crear-tramo-container">Tramos</a></li>
+            </ul>
+
+            <div id="crear-trayecto-container">
+
+                <div class="form-row">
+                    <div class="form-field">
+                        
+                        <div id="origen-type" class="horizontal-options">
+                            <span label="org">Organizacion</span>
+                            <span label="point">Punto Del Mapa</span>
+                        </div>
+                 
+                        <input id="origen" type="text" class="autocomplete" placeholder="Origen" name="origen" autocomplete="off">
+                        <div class="origen autocomplete-list"></div>
+                        
+                    </div>
+    
+                    <div class="form-field">
+                        <div id="destino-type" class="horizontal-options">
+                            <span label="org">Organizacion</span>
+                            <span label="point">Punto Del Mapa</span>
+                        </div>
+                    
+                        <input id="destino" type="text" class="autocomplete" placeholder="Destino" name="destino" autocomplete="off">
+                        <div class="destino autocomplete-list"></div>
+                    
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="crear-tramo-container" style="visibility: hidden">
+                crear tramo
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        
+        <div class="table-container">
+            <div class="header-toolbar">
+                <button id="agregarTrayectoButton">Agregar Trayecto</button>
+            </div>
+            <table class="tayectos-table">
+                <tr class="trayectos-table-header">
+                    <th>ID</th>
+                    <th>Desde</th>
+                    <th>Hasta</th>
+                    <th>Nro de Tramos</th>
+                    <th>Accion</th>
+                </tr>
+                {{#trayectos}}
+                <tr class="row-{{id}}">
+                    <td>{{id}}</td>
+                    <td>{{desde}}</td>
+                    <td>{{hasta}}</td>
+                    <td>{{nroDeTramos}}</td>
+                    <td><button id="verTramosButton">Ver Tramos</button></td>
+                </tr>
+                {{/trayectos}}
+            </table>
+        </div>
+    </div>
+
+
+    <div class="toast-container">
+        <div id="toast"></div>
+    </div>
+
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    <script src="/js/toast/toast.js"></script>
+    <script src="/js/modal/modal.js"></script>
+    <script src="/js/member/trayectos.js"></script>
+</body>
+</html>
