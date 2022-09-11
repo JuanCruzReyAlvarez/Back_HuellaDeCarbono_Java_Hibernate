@@ -4,29 +4,32 @@ package dds.tp.carbono.entities.transport;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.glassfish.hk2.api.InheritableThread;
 
 import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
 import dds.tp.carbono.entities.point.PuntoGeografico;
 import dds.tp.carbono.services.distancia.CalculadorDistanciaTransportePublico;
 import lombok.Getter;
 import lombok.Setter;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-@Table(name = "transportePublico")
-public class TransportePublico implements MedioDeTransporte {
+@Table(name = "transporte_Publico")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class TransportePublico extends MedioDeTransporte {
 
-    @Id
-    @GeneratedValue
+    @Transient
     @Getter @Setter private Integer id;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Getter @Setter private TipoTransportePublico tipo;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Getter @Setter private TipoDeConsumo combustible;
 
     @OneToOne

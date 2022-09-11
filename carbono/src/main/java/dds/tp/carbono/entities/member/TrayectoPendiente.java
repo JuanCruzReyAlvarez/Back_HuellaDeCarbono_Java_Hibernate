@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -15,7 +15,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table (name = "trayectoPendiente")
+@Table (name = "trayecto_pendiente")
 public class TrayectoPendiente {
 
     @Id
@@ -25,8 +25,7 @@ public class TrayectoPendiente {
     @OneToOne
     @Getter @Setter private Tramo tramoCompartido;
 
-    @OneToMany
-    @JoinColumn(name="trayectoPendiente_id")
+    @OneToMany(mappedBy = "trayecto_pendiente")
     @Getter @Setter private List<Miembro> miembrosPendientes;
 
     public TrayectoPendiente(Tramo tramo) {
@@ -41,4 +40,10 @@ public class TrayectoPendiente {
 
         return this.miembrosPendientes.size();
     }
+
+    public void agregarMiemrbo (Miembro x) {
+        this.miembrosPendientes.add(x);
+        x.setTrayecto_pendiente(this);
+        }
+        
 }

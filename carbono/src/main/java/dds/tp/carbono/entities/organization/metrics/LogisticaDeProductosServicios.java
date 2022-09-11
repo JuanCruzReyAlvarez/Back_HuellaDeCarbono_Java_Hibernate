@@ -26,13 +26,13 @@ public class LogisticaDeProductosServicios extends Actividad {
     @Column
     @Setter @Getter private Double peso; 
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Setter @Getter private CategoriaLogistica categoria; 
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Setter @Getter private TransporteLogistica transporte; 
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Setter @Getter private TipoDeConsumo tipoDeConsumo; 
 
     public LogisticaDeProductosServicios() {

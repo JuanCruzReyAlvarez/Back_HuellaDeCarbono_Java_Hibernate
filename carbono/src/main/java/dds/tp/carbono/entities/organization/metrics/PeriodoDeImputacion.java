@@ -13,11 +13,11 @@ import lombok.Setter;
 @Embeddable
 public class PeriodoDeImputacion {
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Setter @Getter private Periodicidad periodicidad;
     
     @Column(name = "fecha", columnDefinition = "DATE")
-    @Setter @Getter private LocalDate fechaInicio;                //Hay que convertir de localdate tima a loq ue sea.
+    @Setter @Getter private LocalDate fechaInicio;                
 
     public PeriodoDeImputacion(String periodo) throws Exception {
         if (periodo.contains("/"))

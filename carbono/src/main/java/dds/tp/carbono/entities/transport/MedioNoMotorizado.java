@@ -3,8 +3,8 @@ package dds.tp.carbono.entities.transport;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -16,14 +16,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "medioNoMotorizado")
-public class MedioNoMotorizado implements MedioDeTransporte {
+@Table(name = "medio_No_Motorizado")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class MedioNoMotorizado extends MedioDeTransporte {
 
-    @Id
-    @GeneratedValue
+    @Transient
     @Getter @Setter private Integer id;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Getter @Setter private TipoMedioNoMotorizado tipo;
 
     @Transient

@@ -14,22 +14,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="FactorEmision")
+@Table(name="Factor_Emision")
 public class FactorEmision {
     @Id
     @GeneratedValue
     @Getter @Setter private Integer id;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Getter @Setter private TipoDeConsumo tipoDeConsumo;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Getter @Setter private TipoActividad tipoActividad;
     
     @Column
     @Getter @Setter private Double valor;
     
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Getter @Setter private UnidadFE unidad;
 
     public FactorEmision() {

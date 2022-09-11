@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "puntoGeografico")
+@Table(name = "punto_Geografico")
 public class PuntoGeografico {
 
     @Id

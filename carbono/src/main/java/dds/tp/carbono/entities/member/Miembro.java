@@ -13,6 +13,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -34,10 +36,10 @@ public class Miembro {
     @Column
     @Getter @Setter private String apellido;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Getter @Setter private TipoDocumento tipoDocumento;
 
-    @Column
+    @Column (name = "nro_documento")
     @Getter @Setter private String nroDocumento;
 
     @OneToMany (mappedBy = "miembro",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
@@ -45,6 +47,10 @@ public class Miembro {
 
     @OneToMany (mappedBy = "miembro",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @Getter @Setter private Set<Trayecto> trayectos;
+
+    @ManyToOne
+    @JoinColumn(name = "trayecto_pendiente_id", referencedColumnName = "id")
+    @Getter @Setter private TrayectoPendiente trayecto_pendiente;
     
     public Miembro() {
         this.solicitudes = new HashSet<SolicitudVinculacion>();

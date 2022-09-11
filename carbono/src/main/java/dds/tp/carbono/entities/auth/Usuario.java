@@ -24,6 +24,6 @@ public class Usuario {
     @Column
     @Getter @Setter private String password;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Getter @Setter private Rol rol;
 }

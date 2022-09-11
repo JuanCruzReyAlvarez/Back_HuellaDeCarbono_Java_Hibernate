@@ -32,6 +32,7 @@ public abstract class Actividad {
         DatoActividad datoActividad = new DatoActividad();
         datoActividad.setValor(this.getValorDA());
         datoActividad.setUnidad(this.getUnidadDA());
+        datoActividad.setActividad(this);
         
         return datoActividad;
     }

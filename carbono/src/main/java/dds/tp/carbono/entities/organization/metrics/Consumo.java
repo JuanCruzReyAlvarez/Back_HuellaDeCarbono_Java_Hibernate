@@ -15,12 +15,12 @@ public class Consumo {
     @Column
     @Setter @Getter private Double valor;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Setter @Getter private Periodicidad periodicidad;
     
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Setter @Getter private Unidad unidad;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Setter @Getter private TipoDeConsumo tipo;
 }

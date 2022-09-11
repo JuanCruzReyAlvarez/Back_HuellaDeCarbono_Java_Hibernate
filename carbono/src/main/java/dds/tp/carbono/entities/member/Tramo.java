@@ -29,6 +29,7 @@ public class Tramo {
 
     @OneToOne
     @Getter @Setter private PuntoGeografico puntoA;
+    
     @OneToOne
     @Getter @Setter private PuntoGeografico puntoB;
 

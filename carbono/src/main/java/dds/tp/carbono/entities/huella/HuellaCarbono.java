@@ -15,7 +15,7 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name="HuellaCarbono")
+@Table(name="Huella_Carbono")
 public class HuellaCarbono {
 
     @Id

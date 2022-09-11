@@ -13,7 +13,7 @@ public class TipoServicioContratado {
     @Transient
     @Getter @Setter private Integer id;
 
-    @Column
+    @Column( name = "tipoServicioContratado")
     @Getter @Setter private String nombre;
 
     public TipoServicioContratado(String nombre) {

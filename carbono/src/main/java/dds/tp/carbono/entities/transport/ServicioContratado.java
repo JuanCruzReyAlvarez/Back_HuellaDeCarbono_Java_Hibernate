@@ -6,6 +6,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -16,14 +18,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "servicioContratado")
-public class ServicioContratado implements MedioDeTransporte {
+@Table(name = "servicio_Contratado")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class ServicioContratado extends MedioDeTransporte {
 
-    @Id
-    @GeneratedValue
-    @Getter @Setter private Integer id;
-
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Getter @Setter private TipoDeConsumo combustible;
 
     @Embedded

@@ -8,19 +8,21 @@ import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-
+import dds.tp.carbono.entities.agenteSectorial.SectorTerritorial;
 import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.entities.huella.BuscadorMiembros;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
@@ -39,13 +41,13 @@ public class Organizacion {
     @GeneratedValue
     @Getter @Setter private Integer id;
 
-    @Column(name="razonSocial")
+    @Column(name="razon_Social")
     @Getter @Setter private String razonSocial;
 
-    @ManyToOne
+    @Embedded
     @Getter @Setter private Clasificacion clasificacion;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Getter @Setter private TipoOrganizacion tipo;
 
     @OneToOne
@@ -60,12 +62,15 @@ public class Organizacion {
     @Transient
     @Setter public BuscadorMiembros buscador;
     
-
-    @OneToMany           
+    @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)           
     private List<MetricaOrganizacion> metricas;
 
-    @OneToMany
+    @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Contacts> contactos;
+
+    @ManyToOne
+    @JoinColumn(name = "sectorTerritorial_id", referencedColumnName = "id")
+    @Setter @Getter private SectorTerritorial sectorTerritorial;
 
     public Organizacion() {
         this.sectores = new HashSet<Sector>();
@@ -91,6 +96,22 @@ public class Organizacion {
     public void addContacto(Contacts contacto) {
         this.contactos.add(contacto);
     }
+
+    public void agregarSector (Sector x) {
+        this.sectores.add(x);
+        x.setOrganizacion(this);
+    }
+
+    public void agregarMetricaOrganizacion (MetricaOrganizacion x) {
+        this.metricas.add(x);
+        x.setOrganizacion(this);
+    }
+
+    public void agregarContacto (Contacts x) {
+        this.contactos.add(x);
+        x.setOrganizacion(this);
+    }
+        
 
 }
 
