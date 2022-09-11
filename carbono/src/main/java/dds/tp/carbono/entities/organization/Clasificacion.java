@@ -2,9 +2,7 @@ package dds.tp.carbono.entities.organization;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Id;
 import javax.persistence.Transient;
-import javax.persistence.GeneratedValue;
 
 
 import lombok.Getter;
