@@ -11,6 +11,8 @@ public class TramoValidator {
 
     public TramoValidator() {
         this.commands = new ArrayList<TramoValidatorCommand>() {{
+            add(new PuntoInicialValidator());  
+            add(new PuntoFinalValidator());  
             add(new MedioDeTransporteValidator());  
         }};
     }

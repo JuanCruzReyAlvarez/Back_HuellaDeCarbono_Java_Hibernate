@@ -21,11 +21,15 @@ public class ImportableModel implements Importable {
     private String periodicidad;
 
     @Getter @Setter @ExcelColumn(index = 2)
-    private Double valor;
+    private Object valor;
 
 
     @Override
     public boolean isValid() {
         return actividad != null && tipoDeConsumo != null && periodoDeImputacion != null;
+    }
+
+    public boolean isActividadLogistica() throws Exception {
+        return TipoActividad.Logistica_De_Productos_Servicios.equals(TipoActividad.getBy(this.actividad));
     }
 }

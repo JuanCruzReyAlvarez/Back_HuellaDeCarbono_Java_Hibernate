@@ -7,6 +7,8 @@ import dds.tp.carbono.entities.member.Tramo;
 import dds.tp.carbono.entities.member.Trayecto;
 import dds.tp.carbono.repository.member.TrayectoRepository;
 
+// Es un service no pertenece a dominio no hay drama con el repository
+
 public class CreadorDeTrayecto {
     
     private TrayectoRepository repository;

@@ -3,6 +3,8 @@ package dds.tp.carbono.services.admin;
 import dds.tp.carbono.entities.transport.TipoServicioContratado;
 import dds.tp.carbono.repository.admin.TipoServicioContratadoRepository;
 
+//Es un service no es de nuestro dominio, esta bien el acceso al repository.
+
 public class CreadorDeTipoServicioContratado {
     
     private TipoServicioContratadoRepository repository;
