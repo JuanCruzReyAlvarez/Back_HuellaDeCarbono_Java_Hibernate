@@ -15,6 +15,8 @@ public class AgenteSectorialService {
         this.repo = new SectorTerritorialRepository();
     }
 
+
+
     public HuellaCarbono calcularHuella(Usuario usuario, PeriodoDeImputacion periodo) throws Exception {
         SectorTerritorial sector = repo.getBy(usuario);
 
@@ -23,4 +25,7 @@ public class AgenteSectorialService {
             
         return new CalculadorHuellaSectorTerritorial(sector, periodo).calcular();
     }
+
+    
+
 }

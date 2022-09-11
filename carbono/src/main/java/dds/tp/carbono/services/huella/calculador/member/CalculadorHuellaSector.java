@@ -1,27 +1,26 @@
 package dds.tp.carbono.services.huella.calculador.member;
 
 import java.util.List;
-import java.util.Set;
 
+import dds.tp.carbono.entities.huella.BuscadorFactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
-import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.member.Trayecto;
+import dds.tp.carbono.entities.organization.IndicadorHCSector;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
-import dds.tp.carbono.entities.organization.SolicitudVinculacion;
-import dds.tp.carbono.repository.member.MiembroRepository;
 import dds.tp.carbono.services.huella.calculador.CalculadorHuella;
 import dds.tp.carbono.services.huella.calculador.org.filter.TrayectosCompartidosFilter;
 import lombok.Getter;
 import lombok.Setter;
 
-public class CalculadorHuellaSector implements CalculadorHuella{
+public class CalculadorHuellaSector extends CalculadorHuella{
 
     @Getter @Setter private Sector sector;
     @Getter @Setter private Organizacion org;
 
-    public CalculadorHuellaSector(Sector sector){
+    public CalculadorHuellaSector(Sector sector, BuscadorFactorEmision buscador){
         this.sector = sector;
+        this.buscador = buscador;
     }
 
     @Override
@@ -32,8 +31,8 @@ public class CalculadorHuellaSector implements CalculadorHuella{
 
     private HuellaCarbono calcularHuellaSector() throws Exception {
 
-        MiembroRepository repo = new MiembroRepository();
-        TrayectosCompartidosFilter trayectosFilter = new TrayectosCompartidosFilter(repo.getBySector(sector));
+        TrayectosCompartidosFilter trayectosFilter = new TrayectosCompartidosFilter(sector.getMiembros());
+
         List<Trayecto> trayectosFiltrados = trayectosFilter.filtrarCompartidos();
        
         HuellaCarbono huellaTotal = new HuellaCarbono();
@@ -49,12 +48,21 @@ public class CalculadorHuellaSector implements CalculadorHuella{
         HuellaCarbono hc = new HuellaCarbono();
 
         for(Trayecto trayecto: trayectosFiltrados){
-            CalculadorHuellaMiembro calculador = new CalculadorHuellaMiembro(trayecto.getMiembro());
+            CalculadorHuellaMiembro calculador = new CalculadorHuellaMiembro(trayecto.getMiembro(), buscador);
             hc = hc.suma(calculador.calcular());
         }
         
         return hc;
     }
 
-    
+    public IndicadorHCSector getIndicador() throws Exception {
+        
+        IndicadorHCSector indicador = new IndicadorHCSector();
+        HuellaCarbono hc = this.calcular();
+        
+        indicador.setUnidad(hc.getUnidad());
+        indicador.setValor(hc.getValor()/(sector.getMiembros().size()));
+        return indicador;
+    }
+  
 }

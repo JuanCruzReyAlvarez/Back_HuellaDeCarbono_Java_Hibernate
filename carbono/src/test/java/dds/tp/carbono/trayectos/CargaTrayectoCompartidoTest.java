@@ -1,6 +1,8 @@
 package dds.tp.carbono.trayectos;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -15,6 +17,7 @@ import dds.tp.carbono.entities.member.TrayectoPendiente;
 import dds.tp.carbono.entities.organization.Clasificacion;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
+import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 import dds.tp.carbono.entities.organization.TipoOrganizacion;
 import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
 import dds.tp.carbono.entities.point.PuntoArbitrario;
@@ -141,11 +144,12 @@ public class CargaTrayectoCompartidoTest {
 
     private Organizacion buildOrganizacion(String razonSocial, PuntoGeografico ubicacionUtn, TipoOrganizacion tipo, Clasificacion clasificacion) {
         Organizacion organizacion = new Organizacion();
+        Set<SolicitudVinculacion> solicitudes = new HashSet<SolicitudVinculacion>(); 
         organizacion.setRazonSocial(razonSocial);
         organizacion.setUbicacion(ubicacionUtn);
         organizacion.setTipo(tipo);
         organizacion.setClasificacion(clasificacion);
-        organizacion.getSectores().add(new Sector(1, "Administrativo", organizacion));
+        organizacion.getSectores().add(new Sector(1, "Administrativo", organizacion,solicitudes));
 
         return organizacion;
     }

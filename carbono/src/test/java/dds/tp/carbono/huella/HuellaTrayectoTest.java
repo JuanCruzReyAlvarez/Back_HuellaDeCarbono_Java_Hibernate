@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
+import dds.tp.carbono.entities.huella.BuscadorFactorEmision;
 import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.entities.huella.UnidadFE;
 import dds.tp.carbono.entities.member.Tramo;
@@ -32,23 +34,30 @@ import dds.tp.carbono.entities.transport.TipoTransportePublico;
 import dds.tp.carbono.entities.transport.TipoVehiculoParticular;
 import dds.tp.carbono.entities.transport.TransportePublico;
 import dds.tp.carbono.entities.transport.VehiculoParticular;
-import dds.tp.carbono.repository.huella.FactorEmisionRepository;
+//import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 import dds.tp.carbono.services.distancia.CalculadorDistanciaServicioExterno;
 import dds.tp.carbono.services.huella.calculador.member.CalculadorHuellaTrayecto;
+//import javassist.expr.NewArray;
 import lombok.Getter;
 import lombok.Setter;
 
 public class HuellaTrayectoTest {
 
     private EstacionesData data = null;
-    private FactorEmisionRepository repositoryMock;
+    //private FactorEmisionRepository repositoryMock;
     private CalculadorDistanciaServicioExterno calculadorMock;
+    private BuscadorFactorEmision buscador;
 
     private PuntoGeografico puntoUno = this.buildPuntoGeografico(1, "cordoba", "1100",1);
     private PuntoGeografico puntoDos = this.buildPuntoGeografico(2, "cordoba", "1200",1);
     private PuntoGeografico puntoTres = this.buildPuntoGeografico(3, "cordoba", "1300",1);
     private PuntoGeografico puntoCuatro = this.buildPuntoGeografico(4, "cordoba", "1400",1);
     private PuntoGeografico puntoCinco = this.buildPuntoGeografico(5, "cordoba", "1500",1);
+
+    
+
+    
+    
 
     @Before
     public void init() {
@@ -61,17 +70,37 @@ public class HuellaTrayectoTest {
         }
     }
 
+
     @Before
-    public void inicializarRepositoryMock(){
-        this.repositoryMock = mock(FactorEmisionRepository.class);
+    public void inicializarBuscador() throws Exception {
+        List<FactorEmision> factores = new ArrayList<>();
+
         FactorEmision factorGNC = new FactorEmision(TipoDeConsumo.GNC, TipoActividad.Trayecto_Miembros, 4.00, UnidadFE.kgCO2eq_M3);
         FactorEmision factorNafta = new FactorEmision(TipoDeConsumo.Nafta, TipoActividad.Trayecto_Miembros, 3.00, UnidadFE.kgCO2eq_LT);
         FactorEmision factorDiesel = new FactorEmision(TipoDeConsumo.Diesel, TipoActividad.Trayecto_Miembros, 2.00, UnidadFE.kgCO2eq_LT);
 
-        when(this.repositoryMock.get(TipoDeConsumo.GNC, TipoActividad.Trayecto_Miembros)).thenReturn(factorGNC);
-        when(this.repositoryMock.get(TipoDeConsumo.Nafta, TipoActividad.Trayecto_Miembros)).thenReturn(factorNafta);
-        when(this.repositoryMock.get(TipoDeConsumo.Diesel, TipoActividad.Trayecto_Miembros)).thenReturn(factorDiesel);
+        factores.add(factorGNC);
+        factores.add(factorNafta);
+        factores.add(factorDiesel);
+
+        this.buscador = new BuscadorFactorEmision(factores);
     }
+
+
+    //@Before
+    //public void inicializarBuscador(){
+        //this.repositoryMock = mock(FactorEmisionRepository.class);
+        //this.buscadorMock = mock(BuscadorFactorEmision.class);
+        
+
+        //when(this.repositoryMock.get(TipoDeConsumo.GNC, TipoActividad.Trayecto_Miembros)).thenReturn(factorGNC);
+        //when(this.repositoryMock.get(TipoDeConsumo.Nafta, TipoActividad.Trayecto_Miembros)).thenReturn(factorNafta);
+        //when(this.repositoryMock.get(TipoDeConsumo.Diesel, TipoActividad.Trayecto_Miembros)).thenReturn(factorDiesel);
+
+
+        //when(this.buscadorMock.buscarPorConsumoActividad(TipoDeConsumo.Diesel, TipoActividad.Trayecto_Miembros)).thenReturn(factorDiesel)
+
+    //}
 
     @Before
     public void inicializarAPImock() throws Exception {
@@ -84,11 +113,13 @@ public class HuellaTrayectoTest {
 
     @Test
     public void calcularHuellaTrayectoCompletoTest() throws Exception {
+
         Trayecto trayecto = this.crearTrayectoConTodosLosTiposDeTramos();
-        CalculadorHuellaTrayecto calculador = new CalculadorHuellaTrayecto(trayecto);
+        
+        CalculadorHuellaTrayecto calculador = new CalculadorHuellaTrayecto(trayecto,this.buscador);
 
         calculador.setTrayecto(trayecto);
-        calculador.setRepository(this.repositoryMock);
+        //calculador.setRepository(this.repositoryMock);
 
         Assert.assertEquals(Double.valueOf(1425.46), calculador.calcular().getValor());
     }
@@ -96,10 +127,10 @@ public class HuellaTrayectoTest {
     @Test
     public void calcularHuellaTrayectoSinTramosTest() throws Exception {
         Trayecto trayecto = this.crearTrayectoSinTramos();
-        CalculadorHuellaTrayecto calculador = new CalculadorHuellaTrayecto(trayecto);
+        CalculadorHuellaTrayecto calculador = new CalculadorHuellaTrayecto(trayecto,this.buscador);
 
         calculador.setTrayecto(trayecto);
-        calculador.setRepository(this.repositoryMock);
+        //calculador.setRepository(this.repositoryMock);
 
         Assert.assertEquals(Double.valueOf(0.00), calculador.calcular().getValor());
     }
@@ -107,10 +138,10 @@ public class HuellaTrayectoTest {
     @Test
     public void calcularHuellaTrayectoNoMotorizado() throws Exception {
         Trayecto trayecto = this.crearTrayectoNoMotorizado();
-        CalculadorHuellaTrayecto calculador = new CalculadorHuellaTrayecto(trayecto);
+        CalculadorHuellaTrayecto calculador = new CalculadorHuellaTrayecto(trayecto,this.buscador);
 
         calculador.setTrayecto(trayecto);
-        calculador.setRepository(this.repositoryMock);
+        //calculador.setRepository(this.repositoryMock);
 
         Assert.assertEquals(Double.valueOf(0.00), calculador.calcular().getValor());
     }

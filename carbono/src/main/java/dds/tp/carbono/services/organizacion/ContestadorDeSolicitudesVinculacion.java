@@ -6,6 +6,8 @@ import dds.tp.carbono.entities.organization.EstadoSolicitudVinculacion;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 import dds.tp.carbono.repository.organization.SolicitudVinculacionRepository;
 
+// Es un service no pertenece a dominio no hay drama con el repository
+
 public class ContestadorDeSolicitudesVinculacion {
     
     SolicitudVinculacionRepository repository;

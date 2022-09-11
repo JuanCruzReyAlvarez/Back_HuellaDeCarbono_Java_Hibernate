@@ -8,6 +8,8 @@ import dds.tp.carbono.repository.organization.OrganizacionRepository;
 import dds.tp.carbono.services.external.dto.Municipio;
 import dds.tp.carbono.services.external.dto.Provincia;
 
+// Es un service no pertenece a dominio no hay drama con el repository
+
 public class OrganizacionService {
 
     private OrganizacionRepository repository;

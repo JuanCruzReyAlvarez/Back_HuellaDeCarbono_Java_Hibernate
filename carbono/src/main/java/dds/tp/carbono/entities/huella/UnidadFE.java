@@ -1,5 +1,7 @@
 package dds.tp.carbono.entities.huella;
 
+
+
 public enum UnidadFE {
     kgCO2eq_kWh,
     kgCO2eq_KM,

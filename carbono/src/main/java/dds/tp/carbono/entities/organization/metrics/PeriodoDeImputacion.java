@@ -2,13 +2,22 @@ package dds.tp.carbono.entities.organization.metrics;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 import lombok.Getter;
 import lombok.Setter;
 
+@Embeddable
 public class PeriodoDeImputacion {
 
+    @Enumerated(value = EnumType.STRING)
     @Setter @Getter private Periodicidad periodicidad;
-    @Setter @Getter private LocalDate fechaInicio;
+    
+    @Column(name = "fecha", columnDefinition = "DATE")
+    @Setter @Getter private LocalDate fechaInicio;                
 
     public PeriodoDeImputacion(String periodo) throws Exception {
         if (periodo.contains("/"))

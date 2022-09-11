@@ -1,11 +1,15 @@
 package dds.tp.carbono.huella;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import dds.tp.carbono.dao.huella.FactorEmisionDao;
+
+import dds.tp.carbono.entities.huella.BuscadorFactorEmision;
 import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.huella.UnidadFE;
@@ -22,18 +26,31 @@ import dds.tp.carbono.entities.organization.metrics.Unidad;
 import dds.tp.carbono.services.huella.calculador.org.CalculadorHuellaMetrica;
 
 public class HuellaMetricaTest {
+    
+    private BuscadorFactorEmision buscador;
+
+    //@Before
+    //public void inicializarRepositoryMock(){
+        //FactorEmision factorGasNatural = new FactorEmision(TipoDeConsumo.GasNatural, TipoActividad.Combustion_Fija, 4.00, UnidadFE.kgCO2eq_M3);
+        //FactorEmisionDao.getInstance().save(factorGasNatural);
+    //}
 
     @Before
-    public void inicializarRepositoryMock(){
+    public void inicializarBuscador() throws Exception {
+        List<FactorEmision> factores = new ArrayList<>();
+
         FactorEmision factorGasNatural = new FactorEmision(TipoDeConsumo.GasNatural, TipoActividad.Combustion_Fija, 4.00, UnidadFE.kgCO2eq_M3);
-        FactorEmisionDao.getInstance().save(factorGasNatural);
+
+        factores.add(factorGasNatural);
+
+        this.buscador = new BuscadorFactorEmision(factores);
     }
 
     @Test
     public void calcularHuellaMetricaCombustionFijaTest() throws Exception{
 
         MetricaOrganizacion metrica = this.crearMetricaCombustionFija();
-        CalculadorHuellaMetrica calculador = new CalculadorHuellaMetrica(metrica);
+        CalculadorHuellaMetrica calculador = new CalculadorHuellaMetrica(metrica,this.buscador);
         HuellaCarbono huella = new HuellaCarbono();
     
         huella = calculador.calcular(); 

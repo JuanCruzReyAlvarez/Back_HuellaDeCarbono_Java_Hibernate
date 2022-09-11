@@ -5,6 +5,8 @@ import java.util.List;
 import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 
+//Es un service no es de nuestro dominio, esta bien el acceso al repository.
+
 public class EditorFactoresEmision {
 
     FactorEmisionRepository repository;

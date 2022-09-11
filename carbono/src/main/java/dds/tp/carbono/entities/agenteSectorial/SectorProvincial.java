@@ -1,19 +1,16 @@
 package dds.tp.carbono.entities.agenteSectorial;
 
-import java.util.List;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
-import dds.tp.carbono.entities.organization.Organizacion;
+
 import dds.tp.carbono.services.external.dto.Provincia;
-import dds.tp.carbono.services.organizacion.OrganizacionService;
-import lombok.Getter;
 import lombok.Setter;
-
+@Entity
+@DiscriminatorValue("provincia")
 public class SectorProvincial extends SectorTerritorial {
-    @Getter @Setter Integer id;
+    @OneToOne
     @Setter Provincia provincia;
 
-    @Override
-    public List<Organizacion> getOrganizaciones() {
-        return new OrganizacionService().getBy(this.provincia);
-    }
 }

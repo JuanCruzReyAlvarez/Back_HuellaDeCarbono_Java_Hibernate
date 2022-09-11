@@ -1,5 +1,7 @@
 package dds.tp.carbono.services.external.dto;
 
+
+
 import lombok.Getter;
 import lombok.Setter;
 

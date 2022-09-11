@@ -3,18 +3,46 @@ package dds.tp.carbono.entities.member;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import dds.tp.carbono.entities.point.PuntoGeografico;
 import dds.tp.carbono.validators.trayecto.TrayectoValidator;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
+@Table (name = "trayecto")
 public class Trayecto {
+
+    @Id
+    @GeneratedValue
     @Getter @Setter private Integer id;
+
+    @OneToOne
     @Getter @Setter private PuntoGeografico puntoPartida;
+
+    @ManyToOne
     @Getter @Setter private PuntoGeografico puntoLlegada;
+
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @Getter @Setter private List<Tramo> tramos;
+
+    @ManyToOne
+    @JoinColumn(name = "miembro_id", referencedColumnName = "id" )
     @Getter @Setter private Miembro miembro;
 
+    @Transient
     private Double distancia = null;
 
     public Trayecto() {
