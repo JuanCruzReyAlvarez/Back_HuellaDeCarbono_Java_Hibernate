@@ -9,8 +9,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.glassfish.hk2.api.InheritableThread;
-
 import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
 import dds.tp.carbono.entities.point.PuntoGeografico;
 import dds.tp.carbono.services.distancia.CalculadorDistanciaTransportePublico;
