@@ -1,41 +1,100 @@
-import React from 'react'
+import React from "react";
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ".././styles/Register.css";
 
 export const Register = () => {
-  return (
-    <div>
-    <link href="//db.onlinewebfonts.com/c/a4e256ed67403c6ad5d43937ed48a77b?family=Core+Sans+N+W01+35+Light" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="form.css" type="text/css"/>
+    const navigate = useNavigate();
 
-    <div class="body-content">
+    const [usuario, setRegister] = useState({});
 
-    </div>
+    function onSubmit(e) {
+      e.preventDefault();
+      axios.post("http://localhost:8080/register",  JSON.stringify(usuario)).then(() => { console.log("funciono")}).catch((err)=>{
+        console.log(err)
+      })
+    }
 
-      <div class="module">
-        <h1>Crear una cuenta</h1>
+    function handleChangeNombre(e) {
+        setRegister({ ...usuario, username: e.target.value });
+    }
 
-        <form class="form" action="form.php" method="post" enctype="multipart/form-data" autocomplete="off">
+    function handleChangePassword(e) {
+     setRegister({ ...usuario, password: e.target.value });
+    }
 
-          <div class="alert alert-error"></div>
-          
-          <input type="text" placeholder="Usuario" name="username" required />
-          <input type="password" placeholder="Constraseña" name="password" autocomplete="off" />
-          <input type="password" placeholder="Confirmar Contraseña" name="confirmpassword" autocomplete="off" />
- 
-            <h2>Elegir rol</h2>
-         
-         <select id="rol" name="rol">
-            <option>Administrador</option>
-            <option>Miembro</option>
-            <option>Organizacion</option>
-            <option>Agente Sectorial</option>
-         </select>
+    function handleChangeRol(e) {
+       setRegister({ ...usuario, rol: e.target.value });
+    }
 
-          <input type="submit" value="Registrar" name="register" class="btn btn-block btn-primary" />
+    return (
+        <div>
+            {/* <link
+                href="//db.onlinewebfonts.com/c/a4e256ed67403c6ad5d43937ed48a77b?family=Core+Sans+N+W01+35+Light"
+                rel="stylesheet"
+                type="text/css"
+            />
+            <link rel="stylesheet" href="form.css" type="text/css" /> */}
 
-        </form>
+            <div class="body-content"></div>
 
-      </div>
-    </div>
-  )
-}
+            <div class="module">
+                <h1>Crear una cuenta</h1>
+                <form
+                    class="form"
+                    action="form.php"
+                    method="post"
+                    enctype="multipart/form-data"
+                    autocomplete="off"
+                    onSubmit={onSubmit}
+                >
+                    <div class="alert alert-error"></div>
+                    <input
+                        type="text"
+                        placeholder="Usuario"
+                        name="username"
+                        onChange={handleChangeNombre}
+                        required
+                    />
+                    <input
+                        type="password"
+                        placeholder="Constraseña"
+                        name="password"
+                        autocomplete="off"
+                        onChange={handleChangePassword}
+                    />
+
+                    <input
+                        type="text"
+                        placeholder="Usuario"
+                        name="rol"
+                        onChange={handleChangeRol}
+                        required
+                    />
+                    {/* <input
+                        type="password"
+                        placeholder="Confirmar Contraseña"
+                        name="confirmpassword"
+                        autocomplete="off"
+                    /> */}
+
+                    <h2>Elegir rol</h2>
+                    {/* <select id="rol" name="rol">
+                        <option>Administrador</option>
+                        <option>Miembro</option>
+                        <option>Organizacion</option>
+                        <option>Agente Sectorial</option>
+                    </select> */}
+
+                    <input
+                        type="submit"
+                        value="Registrar"
+                        name="register"
+                        class="btn btn-block btn-primary"
+                    />
+                </form>
+            </div>
+        </div>
+    );
+};

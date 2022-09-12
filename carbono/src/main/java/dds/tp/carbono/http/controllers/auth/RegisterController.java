@@ -37,10 +37,18 @@ public class RegisterController extends Controller {
 
         RegisterDTO input = getBody(rq, RegisterDTO.class, new RegisterDTOValidator());
 
+        System.out.println("llegueacapa");
+
+
         try {
             Usuario usuario = service.register(input.getUsername(), input.getPassword(), input.getRol());
+            System.out.println(usuario.getUsername());
             return json(usuario);
+            
+            
+
         } catch (InsecurePasswordException ex) {
+            System.out.println("llegueacapa2");
             throw new BadResquestException(Collections.singletonMap(PASSWORD_FIELD_NAME, INSECURE_PASSWORD_MESSAGE));
         }
     }
