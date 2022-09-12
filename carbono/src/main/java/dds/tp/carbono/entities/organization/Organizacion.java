@@ -28,6 +28,8 @@ import dds.tp.carbono.entities.huella.BuscadorMiembros;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
 import dds.tp.carbono.entities.organization.notifications.Contacts;
+import dds.tp.carbono.entities.organization.notifications.MedioDeNotificacion;
+import dds.tp.carbono.entities.organization.notifications.MensajeRecomendaciones;
 import dds.tp.carbono.entities.point.PuntoGeografico;
 import dds.tp.carbono.validators.organizacion.OrganizacionValidator;
 import lombok.Getter;
@@ -66,11 +68,14 @@ public class Organizacion {
     private List<MetricaOrganizacion> metricas;
 
     @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    private List<Contacts> contactos;
+    @Setter @Getter private List<Contacts> contactos;
 
     @ManyToOne
     @JoinColumn(name = "sectorTerritorial_id", referencedColumnName = "id")
     @Setter @Getter private SectorTerritorial sectorTerritorial;
+
+    @Transient
+    @Setter @Getter MedioDeNotificacion medioDeNotificacion;
 
     public Organizacion() {
         this.sectores = new HashSet<Sector>();
@@ -111,9 +116,18 @@ public class Organizacion {
         this.contactos.add(x);
         x.setOrganizacion(this);
     }
+
+    public void enviarRecomendaciones(){
+
+        MensajeRecomendaciones mensaje = new MensajeRecomendaciones();
+        mensaje.setLink("agregarLINKrealAqui");
+
+        for (Contacts contacto:this.getContactos()){
+            this.medioDeNotificacion.enviarMensaje(mensaje, contacto);
+        }
+    }
         
 
 }
 
 
-// el calculador tiene una organizacion laorganizacion solo e suna entidad
