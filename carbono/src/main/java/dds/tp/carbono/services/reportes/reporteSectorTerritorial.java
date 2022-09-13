@@ -33,7 +33,7 @@ public class reporteSectorTerritorial extends reporte {
 
         HuellaCarbono hc = new HuellaCarbono();
 
-        CalculadorHuellaSectorTerritorial calculador = new CalculadorHuellaSectorTerritorial(this.getSectorTerritorial(), this.getPeriodoDeImputacion());
+        CalculadorHuellaSectorTerritorial calculador = new CalculadorHuellaSectorTerritorial(this.getSectorTerritorial(), periodo);
         hc = calculador.calcular();
 
         this.listaHCEvolucion.add(i, hc);
