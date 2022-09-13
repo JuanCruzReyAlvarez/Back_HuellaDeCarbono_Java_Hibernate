@@ -15,10 +15,15 @@ public class LoginTest {
     @Test
     public void loginCheck() throws Exception {
         try {
+
             LoginService login = new LoginService();
+
             SessionCookie cookie = login.login("admin", "admin");
+
             Assert.assertNull(cookie);
+
         } catch (Exception ex) {
+            
             Assert.assertNotNull(ex);
         }
     }
