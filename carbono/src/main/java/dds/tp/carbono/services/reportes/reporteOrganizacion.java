@@ -37,9 +37,9 @@ public class reporteOrganizacion extends reporte{
 
         for (LocalDate date = periodo1; date.isBefore(periodo2); date.plusMonths(1)){
         
-        PeriodoDeImputacion periodo = new PeriodoDeImputacion();
-        periodo.setFechaInicio(date);
-        periodo.setPeriodicidad(Periodicidad.MENSUAL);
+        PeriodoDeImputacion periodo = new PeriodoDeImputacion(date, Periodicidad.MENSUAL);
+        //periodo.setFechaInicio(date);
+        //periodo.setPeriodicidad(Periodicidad.MENSUAL);
 
         HuellaCarbono hc = new HuellaCarbono();
 
