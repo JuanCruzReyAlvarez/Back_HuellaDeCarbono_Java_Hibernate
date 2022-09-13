@@ -9,15 +9,10 @@ import dds.tp.carbono.entities.organization.notifications.Wpp;
 
 public class envioDeNotificacionesTest {
 
-    
-    
     @Test
     public void enviarWpp() throws Exception {
         Organizacion org = creaOrganizacion();
-        
         org.enviarRecomendaciones();
-
-
     }
 
     private Organizacion creaOrganizacion(){
