@@ -26,6 +26,11 @@ public class PeriodoDeImputacion {
             this.periodicidadAnual(periodo);       
     }    
     
+    public PeriodoDeImputacion(LocalDate date, Periodicidad mensual) {
+        this.setFechaInicio(date);
+        this.setPeriodicidad(mensual);
+    }
+
     private void periodicidadAnual(String periodo) {
         int anio = Integer.parseInt(periodo);
         this.periodicidad = Periodicidad.ANUAL;
