@@ -59,7 +59,7 @@ public class RegisterController extends Controller {
         Spark.get(path(Uri.REGISTER), (request, response) -> {return "Hello";});
 
         Spark.get(path(Uri.REGISTER), (rq, rs) -> view(REGISTER_VIEW), engine);
-        
+
         Spark.post(path(Uri.REGISTER), (rq, rs) -> this.register(rq, rs));
     }
 
@@ -67,7 +67,7 @@ public class RegisterController extends Controller {
 
         RegisterDTO input = getBody(rq, RegisterDTO.class, new RegisterDTOValidator());
 
-        ;
+        
 
 
         try {
