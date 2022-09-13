@@ -3,7 +3,6 @@ package dds.tp.carbono.services.reportes;
 import java.util.List;
 import java.util.Set;
 
-import dds.tp.carbono.entities.huella.BuscadorFactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.organization.Clasificacion;
 import dds.tp.carbono.entities.organization.Organizacion;

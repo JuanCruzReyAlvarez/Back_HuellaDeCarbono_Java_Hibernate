@@ -1,14 +1,10 @@
 package dds.tp.carbono.services.reportes;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
 
 import dds.tp.carbono.entities.agenteSectorial.SectorTerritorial;
 import dds.tp.carbono.entities.huella.BuscadorFactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
-import dds.tp.carbono.entities.organization.Organizacion;
-import dds.tp.carbono.entities.organization.metrics.Periodicidad;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
 import lombok.Getter;
 import lombok.Setter;
