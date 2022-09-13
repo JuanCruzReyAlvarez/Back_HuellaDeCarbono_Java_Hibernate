@@ -3,7 +3,7 @@ import { Navbar } from "./components/Navbar.jsx";
 import { Sidebar } from "./components/Sidebar.jsx";
 import { Register } from "./components/Register.jsx";
 import { Login } from "./components/Login.jsx";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom"; // {libreia,libreria}
 
 const App = () => {
     return (

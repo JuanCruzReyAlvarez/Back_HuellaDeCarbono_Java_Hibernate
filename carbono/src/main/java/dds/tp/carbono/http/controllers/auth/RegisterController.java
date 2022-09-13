@@ -27,9 +27,39 @@ public class RegisterController extends Controller {
         this.service = service;
     }
 
+    private static void enableCORS() {
+
+        Spark.options("/*",
+        (request, response) -> {
+
+            String accessControlRequestHeaders = request
+                    .headers("Access-Control-Request-Headers");
+            if (accessControlRequestHeaders != null) {
+                response.header("Access-Control-Allow-Headers",
+                        accessControlRequestHeaders);
+            }
+
+            String accessControlRequestMethod = request
+                    .headers("Access-Control-Request-Method");
+            if (accessControlRequestMethod != null) {
+                response.header("Access-Control-Allow-Methods",
+                        accessControlRequestMethod);
+            }
+
+            return "OK";
+        });
+
+        Spark.before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
+    }
+
     @Override
     public void routes(TemplateEngine engine) {
+        RegisterController.enableCORS();
+
+        Spark.get(path(Uri.REGISTER), (request, response) -> {return "Hello";});
+
         Spark.get(path(Uri.REGISTER), (rq, rs) -> view(REGISTER_VIEW), engine);
+
         Spark.post(path(Uri.REGISTER), (rq, rs) -> this.register(rq, rs));
     }
 
@@ -37,7 +67,7 @@ public class RegisterController extends Controller {
 
         RegisterDTO input = getBody(rq, RegisterDTO.class, new RegisterDTOValidator());
 
-        System.out.println("llegueacapa");
+        
 
 
         try {

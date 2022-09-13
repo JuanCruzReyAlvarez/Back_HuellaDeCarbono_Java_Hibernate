@@ -6,9 +6,10 @@ import App from "./react/App.jsx";
 import { BrowserRouter } from "react-router-dom";
 
 
-const root = createRoot(document.getElementById("root"));
+const root = createRoot(document.getElementById("root")); // accedo al html del index.html 
 root.render(
   <BrowserRouter>
-        <App />
+  {/* //todo lo que renderizo en app lo conecto al html */}
+     <App />                                           
   </BrowserRouter>,
 );

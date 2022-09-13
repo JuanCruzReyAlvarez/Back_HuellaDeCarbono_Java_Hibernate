@@ -13,10 +13,12 @@ public class LoginService {
     }
 
     public SessionCookie login(String username, String password) throws Exception {
+        
         if (!this.repository.isValidLogin(username, password))
             throw new Exception("Unauthorized");   
         
         Usuario usuario = this.repository.getUsuarioByUsername(username);
+
         return new SessionCookie(usuario);
     }
 }

@@ -29,20 +29,31 @@ public class LoginController extends Controller {
         this.loginService = loginService;
     }
 
+
+
     @Override
     public void routes(TemplateEngine engine) {
+
         Spark.get(path(Uri.LOGIN), (rq, rs) -> this.loginView(rq, rs), engine);
+
+
+        System.out.println("1");
+
+
         Spark.post(path(Uri.LOGIN), (rq, rs) -> this.login(rq, rs), engine);
     }
+
+
 
     private ModelAndView loginView(Request request, Response response) {
         try {
             String token = request.cookie(TOKEN_COOKIE_NAME);
-    
+            
             if (token == null)
                 return view(LOGIN_VIEW);
-    
+            
             redirectDefault(response, new SessionCookie(token));
+
         } catch (Exception ex) {            
             return view(LOGIN_VIEW);
         }
@@ -50,20 +61,40 @@ public class LoginController extends Controller {
         return null;
     }
 
+
+
     public ModelAndView login(Request request, Response response) throws HttpException {
         
         try {
-            Map<String, String> input = formFields(request);
 
+            System.out.println("entroaltry");
+            
+            Map<String, String> input = formFields(request);
+            
+            System.out.println("segundotry");
+
+            System.out.println(input.get("username"));
+            System.out.println(input.get("password"));
+            
             LoginDTO login = validateInput(
                 new LoginDTO(input.get("username"), input.get("password")),
                 new LoginDTOValidator());
-            
+
+
+                System.out.println("1");
+
             SessionCookie session = loginService.login(login.getUsername(), login.getPassword());
+
             response.cookie(TOKEN_COOKIE_NAME, session.getToken());
 
+            System.out.println("2");
+
             redirectDefault(response, session);
-        } catch (Exception ex) {
+        } 
+        
+        
+        catch (Exception ex) {
+            System.out.println("sientreaca");
             return view(LOGIN_VIEW, Collections.singletonMap("error", UNAUTHORIZED_MESSAGE));
         }
 
