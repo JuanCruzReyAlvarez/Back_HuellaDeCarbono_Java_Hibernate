@@ -130,6 +130,20 @@
     		<artifactId>hsqldb</artifactId>
     		<version>2.2.8</version>
 		</dependency>
+		
+
+
+
+
+		<dependency>
+  			<groupId>com.twilio.sdk</groupId>
+  			<artifactId>twilio</artifactId>
+ 			 <version>8.36.0</version>
+		</dependency>
+	
+
+
+
 
 		<dependency>
   			<groupId>com.twilio.sdk</groupId>
@@ -158,4 +172,8 @@
 		</dependencies>
 
 	</dependencyManagement>
+
+
+
+
 </project>

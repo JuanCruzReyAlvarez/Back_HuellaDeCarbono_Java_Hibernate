@@ -24,8 +24,9 @@ public class Server implements SparkApplication {
 
     @Override
     public void init() {
+
         HttpContext http = new HttpContext(); 
-        IController[] controllers = registerControllers();
+        IController[] controllers = registerControllers(); 
 
         http.setPort(PORT)
             .setStaticFilesLocation(PUBLIC_DIR)
@@ -33,6 +34,9 @@ public class Server implements SparkApplication {
             .addExceptionHandling()
             .addRouting(controllers);
     }
+
+    
+    
 
     private IController[] registerControllers() {
         return new IController[] {
