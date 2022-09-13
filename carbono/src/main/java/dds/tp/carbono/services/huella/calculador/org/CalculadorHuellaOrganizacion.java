@@ -19,8 +19,7 @@ public class CalculadorHuellaOrganizacion {
     @Getter @Setter private PeriodoDeImputacion periodo;
     @Getter @Setter private Organizacion organizacion;
     @Getter @Setter public BuscadorFactorEmision buscador;
-
-
+   
     List<HuellaCommand> diferentesCalculosParaOrg; 
 
     public CalculadorHuellaOrganizacion(Organizacion org, PeriodoDeImputacion periodo, BuscadorFactorEmision buscador) {
@@ -34,11 +33,10 @@ public class CalculadorHuellaOrganizacion {
 
         this.diferentesCalculosParaOrg = new ArrayList<HuellaCommand>() {{
             add(new HuellaParaMetricasCommand(org.getMetricas(periodo),buscador));
-            add(new HuellaParaTrayectosCommand(trayectosFilter.filtrarCompartidos()));
+            add(new HuellaParaTrayectosCommand(trayectosFilter.filtrarCompartidos(), periodo));
         }};
     } 
-    // repensar patron state a rajatabla.
-    // un miembro debe poder ver su impacto.
+    
 
     public HuellaCarbono calcula() throws Exception {
 

@@ -1,9 +1,11 @@
 package dds.tp.carbono.entities.member;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -40,6 +42,10 @@ public class Trayecto {
     @ManyToOne
     @JoinColumn(name = "miembro_id", referencedColumnName = "id" )
     @Getter @Setter private Miembro miembro;
+
+    @Column(name = "fecha", columnDefinition = "DATE")
+    @Setter @Getter private LocalDate fecha;                
+
 
     @Transient
     private Double distancia = null;
