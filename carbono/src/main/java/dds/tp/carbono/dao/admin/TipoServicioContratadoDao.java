@@ -13,9 +13,5 @@ public class TipoServicioContratadoDao extends Dao<TipoServicioContratado> {
         return instance;
     }
 
-    @Override
-    public TipoServicioContratado setId(Integer id, TipoServicioContratado item) {
-        item.setId(id);
-        return item;
-    }   
+ 
 }

@@ -30,7 +30,7 @@ public class RegisterService {
 
     private Usuario buildUsuario(String username, String password, String rol) {
         Usuario usuario = new Usuario();
-        usuario.setPassword(password);
+        usuario.setHashPassword(password);
         usuario.setUsername(username);
         usuario.setRol(Rol.valueOf(rol.toUpperCase()));
         return usuario;

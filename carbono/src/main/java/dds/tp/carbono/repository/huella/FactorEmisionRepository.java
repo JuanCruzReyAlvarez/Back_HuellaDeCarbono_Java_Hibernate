@@ -13,6 +13,7 @@ public class FactorEmisionRepository {
 
     public FactorEmisionRepository() {
         this.dao = FactorEmisionDao.getInstance();
+        this.dao.setClazz(FactorEmision.class);
     }
 
     public FactorEmision get(TipoDeConsumo tipoDeConsumo, TipoActividad actividad) {

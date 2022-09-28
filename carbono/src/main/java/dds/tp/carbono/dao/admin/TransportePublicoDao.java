@@ -13,9 +13,5 @@ public class TransportePublicoDao extends Dao<TransportePublico> {
         return instance;
     }
 
-    @Override
-    public TransportePublico setId(Integer id, TransportePublico item) {
-        item.setId(id);
-        return item;
-    }   
+  
 }

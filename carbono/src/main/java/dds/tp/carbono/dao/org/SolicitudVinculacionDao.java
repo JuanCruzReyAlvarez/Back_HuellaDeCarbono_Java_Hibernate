@@ -14,9 +14,5 @@ public class SolicitudVinculacionDao extends Dao<SolicitudVinculacion> {
         return instance;
     }
 
-    @Override
-    public SolicitudVinculacion setId(Integer id, SolicitudVinculacion item) {
-        item.setId(id);
-        return item;
-    }    
+   
 }

@@ -14,9 +14,5 @@ public class FactorEmisionDao extends Dao<FactorEmision> {
         return instance;
     }
 
-    @Override
-    public FactorEmision setId(Integer id, FactorEmision item) {
-        item.setId(id);
-        return item;
-    }
+
 }

@@ -1,4 +1,4 @@
-package dds.tp.carbono.huella;
+/*package dds.tp.carbono.huella;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,4 +121,4 @@ public class CalculadorHCTest {
 
         return metrica;
     }
-}
+}*/

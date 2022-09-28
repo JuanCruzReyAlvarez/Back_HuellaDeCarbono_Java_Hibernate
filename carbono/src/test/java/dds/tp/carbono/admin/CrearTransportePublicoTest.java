@@ -1,4 +1,4 @@
-package dds.tp.carbono.admin;
+/* package dds.tp.carbono.admin;
 
 import java.util.List;
 
@@ -97,3 +97,4 @@ public class CrearTransportePublicoTest {
         @Getter @Setter private List<Linea> lineas;
     }
 }
+*/

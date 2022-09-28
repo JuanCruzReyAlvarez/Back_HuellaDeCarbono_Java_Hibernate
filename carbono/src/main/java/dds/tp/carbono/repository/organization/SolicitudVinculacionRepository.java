@@ -14,6 +14,7 @@ public class SolicitudVinculacionRepository {
 
     public SolicitudVinculacionRepository() {
         this.dao = SolicitudVinculacionDao.getInstance();
+        this.dao.setClazz(SolicitudVinculacion.class);
     }
 
     public boolean existsSolicitud(Miembro miembro, Sector sector) {

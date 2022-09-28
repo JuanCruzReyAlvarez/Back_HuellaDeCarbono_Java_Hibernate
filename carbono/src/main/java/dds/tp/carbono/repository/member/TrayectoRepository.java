@@ -9,6 +9,7 @@ public class TrayectoRepository {
 
     public TrayectoRepository() {
         this.dao = TrayectoDao.getInstance();
+        this.dao.setClazz(Trayecto.class);
     }
     
     public Trayecto guardar(Trayecto trayecto) {
