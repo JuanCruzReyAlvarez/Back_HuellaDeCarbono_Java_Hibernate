@@ -6,9 +6,11 @@ import dds.tp.carbono.entities.transport.TipoServicioContratado;
 public class TipoServicioContratadoRepository {
 
     private TipoServicioContratadoDao dao;
+   
 
     public TipoServicioContratadoRepository() {
         this.dao = TipoServicioContratadoDao.getInstance();
+        this.dao.setClazz(TipoServicioContratado.class);
     }
     
     public TipoServicioContratado guardar(TipoServicioContratado servicio) {

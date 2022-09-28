@@ -131,9 +131,11 @@
     		<version>2.2.8</version>
 		</dependency>
 		
-
-
-
+		<dependency>
+    		<groupId>com.google.guava</groupId>
+    		<artifactId>guava</artifactId>
+    		<version>31.0.1-jre</version>
+		</dependency>
 
 		<dependency>
   			<groupId>com.twilio.sdk</groupId>
@@ -144,6 +146,12 @@
 
 
 
+
+		<dependency>
+  			<groupId>com.twilio.sdk</groupId>
+  			<artifactId>twilio</artifactId>
+ 			 <version>8.36.0</version>
+		</dependency>
 
 
 

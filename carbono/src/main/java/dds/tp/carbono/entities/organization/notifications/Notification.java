@@ -5,15 +5,17 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
+import dds.tp.carbono.entities.organization.Organizacion;
+
 
 public class Notification implements Job {
 
-    //private Organizacion org;
+    private Organizacion org;
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        // acá se implemetaría el envío del mail y del wpp 
-        System.out.println("Hola, esto es una prueba");
+        org.enviarRecomendaciones();
+       
     }
     
-} // testear el funcionamiento sin necesidad de testear el job, la logica antes.
+}

@@ -8,6 +8,8 @@ public class TransportePublicoRepository {
 
     public TransportePublicoRepository() {
         this.dao = TransportePublicoDao.getInstance();
+        this.dao.setClazz(TransportePublico.class);
+        
     }
     
     public TransportePublico guardar(TransportePublico transporte) {

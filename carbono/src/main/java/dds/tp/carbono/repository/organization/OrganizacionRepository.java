@@ -16,6 +16,7 @@ public class OrganizacionRepository {
 
     public OrganizacionRepository() {
         this.dao = OrganizacionDao.getInstance();
+        this.dao.setClazz(Organizacion.class);
     }
 
     public Organizacion guardar(Organizacion organizacion) {

@@ -9,6 +9,7 @@ public class TrayectoPendienteRepository {
  
     public TrayectoPendienteRepository() {
         this.dao = TrayectoPendienteDao.getInstance();
+        this.dao.setClazz(TrayectoPendiente.class);
     }
 
     public TrayectoPendiente guardar(TrayectoPendiente trayectoPendiente) {

@@ -1,4 +1,4 @@
-package dds.tp.carbono.Organizacion;
+/*package dds.tp.carbono.Organizacion;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -89,4 +89,4 @@ public class ContestadorDeSolicitudesDeVinculacionTest {
     private class OrganizacionData {
         @Getter @Setter private List<Organizacion> organizaciones;
     }
-}
+}*/

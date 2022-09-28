@@ -13,9 +13,5 @@ public class TrayectoDao extends Dao<Trayecto> {
         return instance;
     }
 
-    @Override
-    public Trayecto setId(Integer id, Trayecto item) {
-        item.setId(id);
-        return item;
-    }
+
 }

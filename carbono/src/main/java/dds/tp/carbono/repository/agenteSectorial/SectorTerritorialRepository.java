@@ -16,6 +16,9 @@ public class SectorTerritorialRepository {
     public SectorTerritorialRepository() {
         this.sectorMunicipalDao = SectorMunicipalDao.getInstance();
         this.sectorProvincialDao = SectorProvincialDao.getInstance();
+
+        this.sectorMunicipalDao.setClazz(SectorMunicipal.class);
+        this.sectorProvincialDao.setClazz(SectorProvincial.class);
     }
 
 

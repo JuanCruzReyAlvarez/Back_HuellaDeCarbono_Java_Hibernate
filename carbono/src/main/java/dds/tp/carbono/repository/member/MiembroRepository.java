@@ -9,6 +9,7 @@ import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.organization.EstadoSolicitudVinculacion;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
+import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 
 public class MiembroRepository {
     
@@ -16,6 +17,7 @@ public class MiembroRepository {
 
     public MiembroRepository() {
         this.soliciturVinculacionDao = SolicitudVinculacionDao.getInstance();
+        this.soliciturVinculacionDao.setClazz(SolicitudVinculacion.class);
     }
 
     public List<Miembro> getBy(Organizacion org) {

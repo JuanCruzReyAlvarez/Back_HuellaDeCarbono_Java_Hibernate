@@ -13,9 +13,5 @@ public class PuntoGeograficoDao extends Dao<PuntoGeografico> {
         return instance;
     }
 
-    @Override
-    public PuntoGeografico setId(Integer id, PuntoGeografico item) {
-        item.setId(id);
-        return item;
-    }
+
 }

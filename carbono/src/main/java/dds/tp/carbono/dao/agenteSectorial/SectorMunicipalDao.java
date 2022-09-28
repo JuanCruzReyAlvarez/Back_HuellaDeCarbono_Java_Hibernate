@@ -14,9 +14,5 @@ public class SectorMunicipalDao extends Dao<SectorMunicipal> {
         return instance;
     }
 
-    @Override
-    public SectorMunicipal setId(Integer id, SectorMunicipal item) {
-        item.setId(id);
-        return item;
-    }
+
 }

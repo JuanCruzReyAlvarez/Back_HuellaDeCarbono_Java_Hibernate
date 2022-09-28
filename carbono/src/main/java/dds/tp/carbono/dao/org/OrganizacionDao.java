@@ -13,10 +13,5 @@ public class OrganizacionDao extends Dao<Organizacion> {
 
         return instance;
     }
-
-    @Override
-    public Organizacion setId(Integer id, Organizacion item) {
-        item.setId(id);
-        return item;
-    }   
+ 
 }
