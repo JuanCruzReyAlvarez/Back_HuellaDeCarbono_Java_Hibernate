@@ -1,6 +1,5 @@
 package dds.tp.carbono.entities.auth;
 
-import java.nio.charset.StandardCharsets;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.google.common.hash.Hashing;
 
+import dds.tp.carbono.services.seguridad.Hash;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,13 +30,11 @@ public class Usuario {
     @Enumerated(value = EnumType.STRING)
     @Getter @Setter private Rol rol;
 
-    public void setHashPassword(String password2) {
-        String sha256hex = Hashing.sha256()
-                            .hashString(password2, StandardCharsets.UTF_8)
-                            .toString();
-                            
 
-        this.password = sha256hex;
-       
+    public void setHashPassword(String password2) {
+
+        Hash hasheador = new Hash();
+        this.password = hasheador.setHashPassword(password2);
+                
     }
 }

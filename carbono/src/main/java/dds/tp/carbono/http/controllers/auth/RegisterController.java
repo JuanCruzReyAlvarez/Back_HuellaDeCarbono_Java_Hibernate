@@ -17,7 +17,7 @@ import spark.Spark;
 import spark.TemplateEngine;
 
 public class RegisterController extends Controller {
-    private static final String REGISTER_VIEW = "auth/register.html";
+    //private static final String REGISTER_VIEW = "auth/register.html";
     private static final String PASSWORD_FIELD_NAME = "password";
     private static final String INSECURE_PASSWORD_MESSAGE = "The Password Is Insecure";
 
@@ -56,9 +56,9 @@ public class RegisterController extends Controller {
     public void routes(TemplateEngine engine) {
         RegisterController.enableCORS();
 
-        Spark.get(path(Uri.REGISTER), (request, response) -> {return "Hello";});
+        //Spark.get(path(Uri.REGISTER), (request, response) -> {return "Hello";});
 
-        Spark.get(path(Uri.REGISTER), (rq, rs) -> view(REGISTER_VIEW), engine);
+        //Spark.get(path(Uri.REGISTER), (rq, rs) -> view(REGISTER_VIEW), engine);
 
         Spark.post(path(Uri.REGISTER), (rq, rs) -> this.register(rq, rs));
     }
@@ -78,7 +78,7 @@ public class RegisterController extends Controller {
             
 
         } catch (InsecurePasswordException ex) {
-            System.out.println("llegueacapa2");
+            System.out.println("Error por contraseña insegura");
             throw new BadResquestException(Collections.singletonMap(PASSWORD_FIELD_NAME, INSECURE_PASSWORD_MESSAGE));
         }
     }

@@ -17,7 +17,11 @@ public class LoginService {
         if (!this.repository.isValidLogin(username, password))
             throw new Exception("Unauthorized");   
         
-        Usuario usuario = this.repository.getUsuarioByUsername(username);
+        Usuario usuario = this.repository.getUsuarioByUsername(username);  
+
+        System.out.println(" HHHHHHHHHHHHOOOOOOOOOOOOOOOLLLLLLLLLLLLLLLAAAAAAAAAAAAAAAAA");
+        System.out.println(usuario.getUsername());
+        System.out.println(usuario.getPassword());
 
         return new SessionCookie(usuario);
     }

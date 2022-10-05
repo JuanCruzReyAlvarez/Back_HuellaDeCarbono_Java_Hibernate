@@ -2,8 +2,12 @@ package dds.tp.carbono.repository.auth;
 
 import java.util.NoSuchElementException;
 
+
+
 import dds.tp.carbono.dao.auth.UsuarioDao;
 import dds.tp.carbono.entities.auth.Usuario;
+import dds.tp.carbono.services.seguridad.Hash;
+
 
 
 public class UsuarioRepository {
@@ -14,12 +18,18 @@ public class UsuarioRepository {
         this.dao.setClazz(Usuario.class);
     } 
     
-    public boolean isValidLogin(String username, String password) {
-        return this.dao.getAll()
-                        .stream()
-                        .anyMatch(usuario -> usuario.getUsername().equals(username) 
-                               && usuario.getPassword().equals(password));
+
+
+    public boolean isValidLogin(String username, String password) { 
+        //hashear aca password 
+        Hash hash = new Hash();
+        String hashPassword = hash.setHashPassword(password);
+
+        Usuario user = this.getUsuarioByUsername(username);
+       
+        return user.getUsername().equals(username) && user.getPassword().equals(hashPassword); //hasheada 
     }
+
 
     public Usuario getUsuarioById(Integer id){
         return this.dao.findOne(id);
@@ -34,7 +44,16 @@ public class UsuarioRepository {
 
         throw new NoSuchElementException();
     }
-    
+/*
+    public Usuario getUsuarioByContraseña(String contraseña) throws NoSuchElementException {
+        Usuario usuarioEncontrado =  this.dao.getUsuarioByContraseña(contraseña);
+                                             
+        if (usuarioEncontrado != null)
+            return usuarioEncontrado;
+
+        throw new NoSuchElementException();
+    }
+     */
     public Usuario guardar(Usuario usuario) {
         return this.dao.save(usuario);
     }

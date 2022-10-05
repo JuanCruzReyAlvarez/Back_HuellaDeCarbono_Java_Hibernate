@@ -15,16 +15,27 @@ public class UsuarioDao extends Dao<Usuario> {
     }
 
     public Usuario getUsuarioByUsername(String username) {
-
-        return  (Usuario) EntityManagerHelper
-        .createQuery("from " + Usuario.class.getName() + " where username =" + username)
+    
+        return (Usuario) EntityManagerHelper
+        .createQuery("from " + Usuario.class.getName() + " where username =" + "'" + username + "'")
         .getSingleResult();
-        
+    
     }
-
+/* 
+    public Usuario getUsuarioByContraseña(String contraseña) {
+        Usuario prueba =  (Usuario) EntityManagerHelper
+        .createQuery("from " + Usuario.class.getName() + " where password =" + "'" + contraseña + "'")
+        .getSingleResult();
+        System.out.println(" HHHHHHHHHHHHOOOOOOOOOOOOOOOLLLLLLLLLLLLLLLAAAAAAAAAAAAAAAAA");
+        System.out.println(prueba.getUsername());
+        return prueba;
+       
+    }
+*/
     //@Override
     //public Usuario setId(Integer id, Usuario item) {
        // item.setId(id);
         //return item;
     //}    
+
 }

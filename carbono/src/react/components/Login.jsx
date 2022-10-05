@@ -15,7 +15,7 @@ export const Login = () => {
         e.preventDefault();
         axios.post("http://localhost:8080/login", JSON.stringify(usuario)).then((data) => {
             console.log("funciono", data)
-            navigate("/")
+            //navigate("/")
         }).catch(error => {
             if (!error.response) {
                 // network error
