@@ -81,28 +81,28 @@ export const Register = () => {
                         autocomplete="off"
                         onChange={handleChangePassword}
                     />
-
+                    {/*
                     <input
                         type="text"
                         placeholder="Rol"
                         name="rol"                        //pongo en cada input mi onchange
                         onChange={handleChangeRol}
                         required
-                    />
-                    {/* <input
+                    />*/}
+                     <input
                         type="password"
                         placeholder="Confirmar Contraseña"
                         name="confirmpassword"
                         autocomplete="off"
-                    /> */}      
+                    />       
 
-                    {/* <h2>Elegir rol</h2> */}
-                    {/* <select id="rol" name="rol">
+                    {<h2>Elegir rol</h2> }
+                    {<select id="rol" name="rol">
                         <option>Administrador</option>
                         <option>Miembro</option>
                         <option>Organizacion</option>
                         <option>Agente Sectorial</option>
-                    </select> */}
+                    </select>}
 
                     <input
                         type="submit"
