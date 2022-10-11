@@ -1,5 +1,6 @@
 import React from "react";
 import ".././styles/Sidebar.css";
+import { Advices } from "./Advices";
 
 import { Home } from "./Home.jsx";
 export const Sidebar = () => {
@@ -23,6 +24,7 @@ export const Sidebar = () => {
                     <li>Reportes</li>
                     <li>Gestionar Solicitudes</li>
                     <li>Registrar Trayectos</li>
+                    <li>Recomendaciones</li>
                 </ul>
             </div>
             <div className="contenido">

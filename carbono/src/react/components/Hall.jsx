@@ -1,11 +1,11 @@
 import React from "react";
-import ".././styles/Login.css";
+import ".././styles/Hall.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
 
-export const Login = () => {
+export const Hall = () => {
     const [usuario, setUser] = useState({});
     const navigate = useNavigate();
 
@@ -13,12 +13,8 @@ export const Login = () => {
 
     function onSubmit(e) {
         e.preventDefault();
-        axios.post("http://localhost:8080/login", JSON.stringify(usuario)).then((data) => {
-            console.log("funciono", data)
-            navigate("/")
-        }).catch(error => {
-         console.log(error)
-        })
+        axios.post("http://localhost:8080/hall")
+    
     }
 
     
@@ -30,6 +26,7 @@ export const Login = () => {
     function handleChangePassword(e) {
         setUser({ ...usuario, password: e.target.value });
     }
+
 
     return (
         <body>
