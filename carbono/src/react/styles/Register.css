@@ -103,7 +103,7 @@
 	bottom: -40px;
 	width: auto;
 	height: auto;
-    background-image: url("../../main/resources/public/css/images/newyorkparkregister.jpg");
+  background-image: url("../../main/resources/public/css/images/newyorkparkregister.jpg");
 	background-size: cover;
 	-webkit-filter: blur(5px);
 	z-index: 0;

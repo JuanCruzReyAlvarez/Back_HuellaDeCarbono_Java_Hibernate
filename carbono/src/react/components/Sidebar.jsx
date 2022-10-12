@@ -1,8 +1,10 @@
 import React from "react";
 import ".././styles/Sidebar.css";
-import { Advices } from "./Advices";
+import { Advices } from "./Advices.jsx";
+import { Request } from "./Request.jsx";
 
 import { Home } from "./Home.jsx";
+import { Register } from "./Register";
 export const Sidebar = () => {
     return (
         <div className="container">
@@ -26,9 +28,10 @@ export const Sidebar = () => {
                     <li>Registrar Trayectos</li>
                     <li>Recomendaciones</li>
                 </ul>
+                    
             </div>
             <div className="contenido">
-                <Home />
+                <Request/>
             </div>
         </div>
     );

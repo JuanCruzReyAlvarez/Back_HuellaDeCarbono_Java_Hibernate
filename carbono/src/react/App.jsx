@@ -4,6 +4,7 @@ import { Sidebar } from "./components/Sidebar.jsx";
 import { Register } from "./components/Register.jsx";
 import { Login } from "./components/Login.jsx";
 import { Hall } from "./components/Hall.jsx";
+import { Request } from "./components/Request.jsx";
 import { Route, Routes } from "react-router-dom"; // {libreia,libreria}
 import { Advices } from "./components/Advices.jsx";
 
@@ -15,6 +16,7 @@ const App = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/hall" element={<Hall />} />
                 <Route path="/advices" element={<Advices />} />
+                <Route path="/request" element={<Request />} />
                 <Route
                     exact
                     path="/"
