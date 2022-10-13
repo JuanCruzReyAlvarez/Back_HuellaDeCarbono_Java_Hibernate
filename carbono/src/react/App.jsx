@@ -11,6 +11,7 @@ import { RegisterMeasurements } from "./components/RegisterMeasurements.jsx";
 import { ContactsList } from "./components/ContactsList.jsx";
 import { Contacts } from "./components/AddContacts.jsx";
 import { Footer } from "./components/Footer.jsx";
+
 const App = () => {
     return (
         <div>
@@ -23,6 +24,7 @@ const App = () => {
                 <Route path="/registerMeasurements" element={<RegisterMeasurements />} />
                 <Route path="/contactsList" element={<ContactsList />} />
                 <Route path="/AddContacts" element={<Contacts />} />
+                
                 
                 <Route
                     exact
