@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "jquery": "^3.6.1"
+    "chart.js": "^3.9.1",
+    "jquery": "^3.6.1",
+    "react-chartjs-2": "^4.3.1"
   }
 }

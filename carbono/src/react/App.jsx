@@ -10,6 +10,7 @@ import { Advices } from "./components/Advices.jsx";
 import { RegisterMeasurements } from "./components/RegisterMeasurements.jsx";
 import { ContactsList } from "./components/ContactsList.jsx";
 import { Contacts } from "./components/AddContacts.jsx";
+import { Report } from "./components/Report.jsx";
 import { Footer } from "./components/Footer.jsx";
 
 const App = () => {
@@ -23,7 +24,8 @@ const App = () => {
                 <Route path="/request" element={<Request />} />
                 <Route path="/registerMeasurements" element={<RegisterMeasurements />} />
                 <Route path="/contactsList" element={<ContactsList />} />
-                <Route path="/AddContacts" element={<Contacts />} />
+                <Route path="/addContacts" element={<Contacts />} />
+                <Route path="/report" element={<Report />} />
                 
                 
                 <Route
