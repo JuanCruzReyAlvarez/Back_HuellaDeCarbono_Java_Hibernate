@@ -8,6 +8,8 @@ import { Request } from "./components/Request.jsx";
 import { Route, Routes } from "react-router-dom"; // {libreia,libreria}
 import { Advices } from "./components/Advices.jsx";
 import { RegisterMeasurements } from "./components/RegisterMeasurements.jsx";
+import { ContactsList } from "./components/ContactsList.jsx";
+import { Contacts } from "./components/AddContacts.jsx";
 import { Footer } from "./components/Footer.jsx";
 const App = () => {
     return (
@@ -19,6 +21,8 @@ const App = () => {
                 <Route path="/advices" element={<Advices />} />
                 <Route path="/request" element={<Request />} />
                 <Route path="/registerMeasurements" element={<RegisterMeasurements />} />
+                <Route path="/contactsList" element={<ContactsList />} />
+                <Route path="/AddContacts" element={<Contacts />} />
                 
                 <Route
                     exact
@@ -27,6 +31,7 @@ const App = () => {
                         <>
                             <Navbar />
                             <Sidebar />
+                            
                         </>
                     }
                 />

@@ -6,6 +6,8 @@ import { Request } from "./Request.jsx";
 
 import { Home } from "./Home.jsx";
 import { Register } from "./Register";
+import { Hall } from "./Hall";
+import { Contacts } from "./AddContacts";
 export const Sidebar = () => {
     const [usuario, setUser] = useState({});
 
@@ -22,8 +24,16 @@ export const Sidebar = () => {
 
     return (
         <div className="container">
-            <div className="sidebar">
-                <ul>
+            <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu"></input>
+            <label for="openSidebarMenu" class="sidebarIconToggle">
+                <div class="spinner diagonal part-1"></div>
+                <div class="spinner horizontal"></div>
+                <div class="spinner diagonal part-2"></div>
+            </label>
+            <div id="sidebarMenu">
+                <ul class="sidebarMenuInner">
+                    <li>Pagina Principal <span>[nombre de nuestra pagina?]</span></li>
+
                     {/* <!-- Rol de organizacion --> */}
                     {usuario ? (
                         usuario.token && usuario.rol === "ORGANIZACION" ? (
@@ -73,7 +83,7 @@ export const Sidebar = () => {
                 </ul>
             </div>
             <div className="contenido">
-                <Request />
+                <Advices />
             </div>
         </div>
     );
