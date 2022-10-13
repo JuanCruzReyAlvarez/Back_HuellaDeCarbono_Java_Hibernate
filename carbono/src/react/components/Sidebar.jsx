@@ -83,7 +83,7 @@ export const Sidebar = () => {
                 </ul>
             </div>
             <div className="contenido">
-                <Advices />
+                <Contacts />
             </div>
         </div>
     );
