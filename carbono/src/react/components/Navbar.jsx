@@ -1,7 +1,20 @@
 import React from "react";
 import ".././styles/Navbar.css";
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
+const navigate = useNavigate();
+
+
+
+const logOut = () =>{
+    window.localStorage.setItem(
+        "UserLoggedInfo",
+        JSON.stringify({})
+    );
+    navigate("/login");
+}
+
     return (
         <div>
             <nav>
@@ -14,8 +27,7 @@ export const Navbar = () => {
                 </div>
                 <div className="nav">
                     <ul>
-                        {/* si el user esta log */}
-                        <li>Cerrar Session</li>
+                        <li onClick={logOut}>Cerrar Session</li>
                     </ul>
                 </div>
             </nav>

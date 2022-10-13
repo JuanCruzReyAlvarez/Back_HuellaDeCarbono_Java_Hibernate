@@ -4,24 +4,31 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
-
 export const Login = () => {
     const [usuario, setUser] = useState({});
     const navigate = useNavigate();
 
-
-
     function onSubmit(e) {
         e.preventDefault();
-        axios.post("http://localhost:8080/login", JSON.stringify(usuario)).then((data) => {
-            console.log("funciono", data)
-            navigate("/")
-        }).catch(error => {
-         console.log(error)
-        })
+        axios
+            .post("http://localhost:8080/login", JSON.stringify(usuario))
+            .then(({data}) => {
+                console.log("funciono login", data);
+                window.localStorage.setItem(
+                    "UserLoggedInfo",
+                    JSON.stringify({
+                        id: data.user.id,
+                        username: data.user.username, 
+                        rol: data.user.rol,
+                        token: data.token
+                    })
+                );
+                navigate("/");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
-
-    
 
     function handleChangeNombre(e) {
         setUser({ ...usuario, username: e.target.value });

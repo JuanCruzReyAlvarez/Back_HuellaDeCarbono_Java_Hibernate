@@ -10,10 +10,31 @@ export const Request = () => {
     const [usuario, setUser] = useState({});
     const navigate = useNavigate();
 
-    function onSubmit(e) {
-        e.preventDefault();
-        axios.post("http://localhost:8080/request", )
-     }
+ 
+    const aceptarSolicitud = () => {
+       
+        axios.post("http://localhost:8080/request", JSON.stringify({
+            estado : "ACEPTADO"
+        })).then((data) => {
+            console.log("Se acepto la solicitud correctamente", data)
+        }).catch(error => {
+        console.log(error)
+        })
+}
+
+
+    const rechazarSolicitud = () => {
+        
+        axios.post("http://localhost:8080/request", JSON.stringify({
+            estado : "RECHAZADO"
+        })).then((data) => {
+            console.log("Se rechazo la solicitud correctamente", data)
+        }).catch(error => {
+        console.log(error)
+        })
+}
+
+
 
     return (
         
@@ -40,9 +61,9 @@ export const Request = () => {
                         <li>BLABLA</li>
                         </ul>
                         <div className="plan-select-main">
-                        <div class="plan-select"><a href="">Rechazar Solicitud</a></div>
+                        <div class="plan-select"><a  onClick={rechazarSolicitud} href="">Rechazar Solicitud</a></div>
 
-                        <div class="plan-select"><a href="">Aceptar Solicitud</a></div>
+                        <div class="plan-select"><a  onClick={aceptarSolicitud} href="">Aceptar Solicitud</a></div>
                         </div>
                     </div>
                     <div class="plan">

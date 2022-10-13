@@ -7,7 +7,8 @@ import { Hall } from "./components/Hall.jsx";
 import { Request } from "./components/Request.jsx";
 import { Route, Routes } from "react-router-dom"; // {libreia,libreria}
 import { Advices } from "./components/Advices.jsx";
-
+import { RegisterMeasurements } from "./components/RegisterMeasurements.jsx";
+import { Footer } from "./components/Footer.jsx";
 const App = () => {
     return (
         <div>
@@ -17,6 +18,8 @@ const App = () => {
                 <Route path="/hall" element={<Hall />} />
                 <Route path="/advices" element={<Advices />} />
                 <Route path="/request" element={<Request />} />
+                <Route path="/registerMeasurements" element={<RegisterMeasurements />} />
+                
                 <Route
                     exact
                     path="/"
