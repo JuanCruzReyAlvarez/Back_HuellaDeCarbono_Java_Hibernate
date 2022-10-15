@@ -11,7 +11,7 @@ import dds.tp.carbono.services.external.dto.Provincia;
 import dds.tp.carbono.services.external.puntoGeografico.LocalidadService;
 import dds.tp.carbono.services.external.puntoGeografico.MunicipioService;
 import dds.tp.carbono.services.external.puntoGeografico.ProvinciaService;
-import lombok.Getter;
+
 
 public class UbicacionesCache {
     
@@ -21,7 +21,7 @@ public class UbicacionesCache {
     public MunicipioService municipioService;
     public LocalidadService localidadService;
     
-    @Getter private Set<Provincia> provincias;
+    private Set<Provincia> provincias;
     private Set<Municipio> municipios;
     private Set<Localidad> localidades;
 

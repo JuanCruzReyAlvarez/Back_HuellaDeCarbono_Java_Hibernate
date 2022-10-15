@@ -16,11 +16,7 @@ import dds.tp.carbono.services.agenteSectorial.AsignadorDeAgentesSectoriales;
 import dds.tp.carbono.services.auth.HallMiembroService;
 import dds.tp.carbono.services.auth.HallOrganizacionService;
 import dds.tp.carbono.services.auth.SolicitadorDeVinculacionService;
-import dds.tp.carbono.services.external.puntoGeografico.LocalidadService;
-import dds.tp.carbono.services.external.puntoGeografico.MunicipioService;
-import dds.tp.carbono.services.external.puntoGeografico.ProvinciaService;
 import dds.tp.carbono.services.organizacion.OrganizacionService;
-import dds.tp.carbono.services.ubicacion.UbicacionesService;
 import dds.tp.carbono.services.auth.LoginService;
 import dds.tp.carbono.services.auth.RegisterService;
 
