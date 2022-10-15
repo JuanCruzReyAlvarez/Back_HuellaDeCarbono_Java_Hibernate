@@ -68,6 +68,8 @@ public class HallController extends Controller {
             HallController.enableCORS();
             Spark.post(path(Uri.HALL), (rq, rs) -> this.hall(rq, rs));
         }
+
+
     
         private String hall(Request rq, Response rs) throws HttpException {
     
@@ -93,13 +95,15 @@ public class HallController extends Controller {
                             if (input.getFlagSolicitud() == "1"){
                                 serviceSolicitudVinculacion.solicitarVinculacionInicialPorHall(sector ,miembro);
                             }
+                            return json(goodAnswer());
 
                     case "ORGANIZACION":
 
                                 serviceOrganizacion.register(input.getRazonSocial(), input.getClasficacion(),
                                                          input.getCalle(),input.getAltura(), input.getLocalidad(),input.getMunicipio(),
                                                          input.getProvincia(),input.getPais(), input.getTipoOrganizacion());
-
+                                
+                                return json(goodAnswer());      
                     case "AGENTE_SECTORIAL":
 
                             Usuario user= new Usuario(Integer.parseInt(inputAgSec.getId()),inputAgSec.getUsername());
@@ -110,6 +114,8 @@ public class HallController extends Controller {
                             else{
                             Municipio muni =new Municipio(Integer.parseInt(inputAgSec.getIdMunicipio()));
                             asignadorAgenteSectorial.asignar(muni, user);}
+
+                            return json(goodAnswer()); 
                     }
 
             }
@@ -117,7 +123,6 @@ public class HallController extends Controller {
             catch (Exception ex) {
                     System.out.println("No se pudo Asignar el Agente Sectorial");     
             }
-                
             return null;
     
         } 

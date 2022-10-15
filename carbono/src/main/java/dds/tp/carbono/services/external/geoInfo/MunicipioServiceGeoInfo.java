@@ -1,4 +1,4 @@
-package dds.tp.carbono.services.external.geo;
+package dds.tp.carbono.services.external.geoInfo;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public interface MunicipioService {
+public interface MunicipioServiceGeoInfo {
 
     @GET("/api/municipios")
     Call<List<Municipio>> get(@Query("provinciaId") Integer id, @Query("offset") Integer off);

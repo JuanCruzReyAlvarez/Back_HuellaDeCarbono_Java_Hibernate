@@ -1,4 +1,4 @@
-package dds.tp.carbono.http.controllers.admin.ui;
+package dds.tp.carbono.http.controllers.admin;
 
 import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.utils.Uri;

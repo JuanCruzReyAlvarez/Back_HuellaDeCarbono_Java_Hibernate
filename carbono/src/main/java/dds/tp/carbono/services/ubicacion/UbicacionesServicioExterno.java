@@ -26,19 +26,19 @@ public class UbicacionesServicioExterno implements UbicacionesService {
     
     @Override
     public List<Localidad> listadoDeLocalidades(Municipio municipio) throws Exception {
-        Response<List<Localidad>> response = svcExterno.localidades(OFFSET, municipio.getId()).execute();        
+        Response<List<Localidad>> response = svcExterno.localidadesByMunicipio(OFFSET, municipio.getId()).execute();        
         return isSuccessful(response) ? response.body() : new ArrayList<Localidad>();
     }
 
     @Override
     public List<Provincia> listadoDeProvincias() throws Exception {
-        Response<List<Provincia>> response = svcExterno.provincias(OFFSET, ID_PAIS_ARGENTINA).execute();        
+        Response<List<Provincia>> response = svcExterno.provinciasAll(OFFSET, ID_PAIS_ARGENTINA).execute();        
         return isSuccessful(response) ? response.body() : new ArrayList<Provincia>();
     }
 
     @Override
     public List<Municipio> listadoDeMunicipios(Provincia provincia) throws Exception {
-        Response<List<Municipio>> response = svcExterno.municipios(OFFSET, provincia.getId()).execute();        
+        Response<List<Municipio>> response = svcExterno.municipiosByProvincia(OFFSET, provincia.getId()).execute();        
         return isSuccessful(response) ? response.body() : new ArrayList<Municipio>();
     }
     
@@ -55,12 +55,31 @@ public class UbicacionesServicioExterno implements UbicacionesService {
 
     private interface ServicioExterno {
         @GET("localidades")
-        Call<List<Localidad>>localidades(@Query("offset") Integer offset, @Query("municipioId") Integer municipioId);
+        Call<List<Localidad>>localidadesByMunicipio(@Query("offset") Integer offset, @Query("municipioId") Integer municipioId);
+
+        @GET("localidades")
+        Call<List<Localidad>>localidadesAll(@Query("offset") Integer offset, @Query("paisId") Integer paisId);
 
         @GET("provincias")
-        Call<List<Provincia>>provincias(@Query("offset") Integer offset, @Query("paisId") Integer paisId);
+        Call<List<Provincia>>provinciasAll(@Query("offset") Integer offset, @Query("paisId") Integer paisId);
     
         @GET("municipios")
-        Call<List<Municipio>>municipios(@Query("offset") Integer offset, @Query("provinciaId") Integer provinciaId);
+        Call<List<Municipio>>municipiosByProvincia(@Query("offset") Integer offset, @Query("provinciaId") Integer provinciaId);
+
+        @GET("municipios")
+        Call<List<Municipio>>municipiosAll(@Query("offset") Integer offset, @Query("paisId") Integer paisId);
     }
+
+    @Override
+    public List<Municipio> listadoDeMunicipios() throws Exception {
+        Response <List<Municipio>> response = svcExterno.municipiosAll(OFFSET, ID_PAIS_ARGENTINA).execute();        
+        return isSuccessful(response) ? response.body() : new ArrayList<Municipio>();
+    }
+    @Override
+    public List<Localidad> listadoDeLocalidades() throws Exception {
+        Response <List<Localidad>> response = svcExterno.localidadesAll(OFFSET, ID_PAIS_ARGENTINA).execute();        
+        return isSuccessful(response) ? response.body() : new ArrayList<Localidad>();
+    }
+
+
 }

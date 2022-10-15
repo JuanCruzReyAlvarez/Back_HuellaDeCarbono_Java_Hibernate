@@ -19,12 +19,12 @@ public class Routes {
         define(Uri.HALL, "/hall"),
     // -------------------------------------------------------------------------------- admin
         define(Uri.ADMIN, "/admin", 
-        define(Uri.ADMIN_ORG, "/org"), 
+        define(Uri.ADMIN_GEOINFO, "/geoInfoAdmin"),  
         define(Uri.ADMIN_FACTOR_EMISION, "/fe")),
     // -------------------------------------------------------------------------------- member
         define(Uri.MEMBER, "/member",
-        define(Uri.MEMBER_POINTS, "/points",
-        define(Uri.MEMBER_POINTS_AUTOCOMPLETE, "/autocomplete")),
+        define(Uri.MEMBER_POINTS, "/points", 
+        define(Uri.MEMBER_POINTS_AUTOCOMPLETE, "/autocomplete")), 
         define(Uri.MEMBER_TRAYECTOS, "/trayectos",
         define(Uri.MEMBER_TRAYECTOS_AUTOCOMPLETE, "/autocomplete"))),
     // -------------------------------------------------------------------------------- organization  
@@ -32,7 +32,10 @@ public class Routes {
         define(Uri.ORG_METRICS, "/metrics")),
         define(Uri.AGENTE_SECTORIAL, "/agente",
         define(Uri.AGENTE_SECTORIAL_HUELLA, "/huella")));
-           
+    // ------------------------------------------------------------------------------- Dto
+        define(Uri.LOCALIDAD, "/localidad");    
+        define(Uri.MUNICIPIO, "/municipio");
+        define(Uri.PROVINCIA, "/provincia");   
 
 
         paths = api.branches();

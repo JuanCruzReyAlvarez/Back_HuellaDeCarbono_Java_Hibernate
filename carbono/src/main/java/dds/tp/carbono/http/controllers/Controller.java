@@ -13,6 +13,7 @@ import com.google.gson.JsonParseException;
 
 import dds.tp.carbono.contracts.http.IController;
 import dds.tp.carbono.http.Routes;
+import dds.tp.carbono.http.dto.auth.GlobalAnswerDTO;
 import dds.tp.carbono.http.exceptions.BadResquestException;
 import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.Uri;
@@ -59,6 +60,12 @@ public abstract class Controller implements IController {
 
     protected ModelAndView view(String view, Map<String, Object> context) {
         return new ModelAndView(context, view);
+    }
+
+    protected GlobalAnswerDTO goodAnswer(){
+        GlobalAnswerDTO answer = new GlobalAnswerDTO();
+        answer.setAnswer("Ejecucion correcta, sin problemas");
+        return answer;
     }
 
     protected String json(Object obj) {

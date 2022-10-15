@@ -6,6 +6,8 @@ import ".././styles/Hall.css";
 
 export const Hall = () => {
 
+    //HAY QUE PEGARLE A LA API
+
     const navigate = useNavigate();
 
     // DECLARACION DE ESTADOS
@@ -54,7 +56,8 @@ export const Hall = () => {
 
 
 
-    // FUNCIONES js ENVIO FORMS HALL
+    // FUNCIONES js ENVIO FORMS HALL    -> Le devuelvo objeto con mensajito que slaio todo bien.
+
 
     function onSubmitMiembro(e) {
         e.preventDefault();
@@ -156,7 +159,7 @@ export const Hall = () => {
                                     name="altura"
 
                                 />
-                                {/* --------UBI SON DESPLEGABLES: localidad,muni,prov,pais-------- */}
+                                {/* --------UBI SON DESPLEGABLES: localidad,muni,prov PAIS NO -------- */}
 
                                 <input
                                     type="text"

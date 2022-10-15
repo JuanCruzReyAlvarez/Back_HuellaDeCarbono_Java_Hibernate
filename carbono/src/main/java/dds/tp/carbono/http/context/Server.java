@@ -3,7 +3,7 @@ package dds.tp.carbono.http.context;
 import dds.tp.carbono.builder.InsecurePasswordCheckerBuilder;
 import dds.tp.carbono.contracts.http.IController;
 import dds.tp.carbono.http.controllers.admin.FactorEmisionController;
-import dds.tp.carbono.http.controllers.admin.ui.AdminOrganizationController;
+import dds.tp.carbono.http.controllers.admin.AdminGeoInfoController;
 import dds.tp.carbono.http.controllers.agenteSectorial.CalcuarHuellaController;
 import dds.tp.carbono.http.controllers.auth.HallController;
 import dds.tp.carbono.http.controllers.auth.LoginController;
@@ -16,7 +16,11 @@ import dds.tp.carbono.services.agenteSectorial.AsignadorDeAgentesSectoriales;
 import dds.tp.carbono.services.auth.HallMiembroService;
 import dds.tp.carbono.services.auth.HallOrganizacionService;
 import dds.tp.carbono.services.auth.SolicitadorDeVinculacionService;
+import dds.tp.carbono.services.external.puntoGeografico.LocalidadService;
+import dds.tp.carbono.services.external.puntoGeografico.MunicipioService;
+import dds.tp.carbono.services.external.puntoGeografico.ProvinciaService;
 import dds.tp.carbono.services.organizacion.OrganizacionService;
+import dds.tp.carbono.services.ubicacion.UbicacionesService;
 import dds.tp.carbono.services.auth.LoginService;
 import dds.tp.carbono.services.auth.RegisterService;
 
@@ -56,7 +60,7 @@ public class Server implements SparkApplication {
                                 new SolicitadorDeVinculacionService(),
                                 new AsignadorDeAgentesSectoriales() ),
             new OrgMetricsController(),
-            new AdminOrganizationController(),
+            new AdminGeoInfoController(),
             new TrayectosController(),
             new PointController(),
             new FactorEmisionController(),

@@ -6,16 +6,16 @@ import java.util.List;
 
 import dds.tp.carbono.services.external.dto.GeoInfo;
 import dds.tp.carbono.services.external.dto.GeoInfoSearch;
-import dds.tp.carbono.services.external.geo.LocalidadService;
-import dds.tp.carbono.services.external.geo.MunicipioService;
-import dds.tp.carbono.services.external.geo.PaisService;
-import dds.tp.carbono.services.external.geo.ProvinciaService;
+import dds.tp.carbono.services.external.geoInfo.LocalidadServiceGeoInfo;
+import dds.tp.carbono.services.external.geoInfo.MunicipioServiceGeoInfo;
+import dds.tp.carbono.services.external.geoInfo.ProvinciaServiceGeoInfo;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GeoInformationService {
+   
    private static final String TOKEN = "Bearer EEr2L29kocvFdMU6ALKgnM5TucF5Cei7Srphd9qVKTA=";
    private static final String BASE_URL = "https://ddstpa.com.ar/";
    private static Retrofit.Builder builder = new Retrofit.Builder()
@@ -42,10 +42,13 @@ public class GeoInformationService {
 
    public List<? extends GeoInfo> search(GeoInfoSearch info) throws IOException {
       switch (info.getType()) {
-         case "pais": return createService(PaisService.class).get(1).execute().body();
-         case "provincia": return createService(ProvinciaService.class).get(info.getId(), 1).execute().body();
-         case "municipio": return createService(MunicipioService.class).get(info.getId(), 1).execute().body();
-         case "localidad": return createService(LocalidadService.class).get(info.getId(), 1).execute().body();
+
+         // NO TIENE SENTIDO QUE PIDAMOS EL PAIS, NUESTRO SISTEMA POR EL MOMENTO ES NACIONAL.
+         //case "pais": return createService(PaisService.class).get(1).execute().body(); 
+
+         case "provincia": return createService(ProvinciaServiceGeoInfo.class).get(info.getId(), 1).execute().body();
+         case "municipio": return createService(MunicipioServiceGeoInfo.class).get(info.getId(), 1).execute().body();
+         case "localidad": return createService(LocalidadServiceGeoInfo.class).get(info.getId(), 1).execute().body();
          default: return new ArrayList<>();
       }
    }

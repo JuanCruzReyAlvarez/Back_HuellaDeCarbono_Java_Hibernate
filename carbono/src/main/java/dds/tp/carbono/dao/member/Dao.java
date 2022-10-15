@@ -50,6 +50,16 @@ public abstract class Dao<T> {
         return lista;
     }
 
+
+	public void saveAll(List<T> entities) {
+		for (T entity : entities) {
+            EntityManagerHelper.beginTransaction();
+            EntityManagerHelper.getEntityManager().persist(entity);
+            EntityManagerHelper.commit();
+            EntityManagerHelper.closeEntityManager();
+		}
+	}
+
     public void delete(T item) {
         EntityManagerHelper.beginTransaction(); 
         EntityManagerHelper.getEntityManager().remove(item);
