@@ -53,4 +53,8 @@ public class OrganizacionRepository {
             .filter(org -> org.getUbicacion().getLocaldiad().getMunicipio().getProvincia().getId().equals(provincia.getId()))
             .collect(Collectors.toList());
     }
+
+    public List<Organizacion> getAll() {
+        return this.dao.getAll();
+    }
 }

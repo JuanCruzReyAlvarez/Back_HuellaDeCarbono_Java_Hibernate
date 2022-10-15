@@ -1,7 +1,6 @@
 package dds.tp.carbono.http.controllers.auth;
 
 //import java.util.Collections;
-import java.util.Map;
 
 import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.dto.auth.LoginDTO;
@@ -48,12 +47,11 @@ public class LoginController extends Controller {
 
         try {
             
-            Map<String, String> input = formFields(request);
+            
 
-            //System.out.println("segundotry");
 
-            System.out.println(input.get("username"));
-            System.out.println(input.get("password"));
+
+    
 
 
             LoginDTO logger = getBody(request, LoginDTO.class, new LoginDTOValidator());
@@ -67,17 +65,16 @@ public class LoginController extends Controller {
 
 
             System.out.println("sigue en try3");
-
             SessionCookie session = loginService.login(logger.getUsername(), logger.getPassword());
 
-            System.out.println("sigue en try4 ");
+     
 
             response.cookie(TOKEN_COOKIE_NAME, session.getToken());
 
 
            // return session ;               hay que devlver esto 
 
-            System.out.println("sigue en try5 ");
+  
 
             return json(session);
 

@@ -37,4 +37,11 @@ public class OrganizacionService {
     public List<Organizacion> getBy(Provincia provincia) {
         return this.repository.getBy(provincia);
     }
+
+    public List<Organizacion> getAll() {
+        return this.repository.getAll();
+    }
+   
+
+
 }

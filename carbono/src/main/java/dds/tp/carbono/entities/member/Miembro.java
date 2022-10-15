@@ -37,7 +37,7 @@ public class Miembro {
     @Getter @Setter private String apellido;
 
     @Enumerated(value = EnumType.STRING)
-    @Getter @Setter private TipoDocumento tipoDocumento;
+    @Getter  @Setter private TipoDocumento tipoDocumento;
 
     @Column (name = "nro_documento")
     @Getter @Setter private String nroDocumento;
@@ -67,4 +67,6 @@ public class Miembro {
             .allMatch(tramo -> tramo.getCompartidos().size() > 0))
         .collect(Collectors.toList());
     }
+
+   
 }

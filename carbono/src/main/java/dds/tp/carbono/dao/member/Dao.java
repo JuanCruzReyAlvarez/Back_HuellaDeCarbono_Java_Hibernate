@@ -44,7 +44,6 @@ public abstract class Dao<T> {
     }
 
     public List<T> getAll() {
-        
         List<T> lista = castList(clazz, EntityManagerHelper.getEntityManager()
                                                            .createQuery( "from " + clazz.getName() )
                                                            .getResultList());

@@ -5,13 +5,21 @@ import dds.tp.carbono.contracts.http.IController;
 import dds.tp.carbono.http.controllers.admin.FactorEmisionController;
 import dds.tp.carbono.http.controllers.admin.ui.AdminOrganizationController;
 import dds.tp.carbono.http.controllers.agenteSectorial.CalcuarHuellaController;
+import dds.tp.carbono.http.controllers.auth.HallController;
 import dds.tp.carbono.http.controllers.auth.LoginController;
 import dds.tp.carbono.http.controllers.auth.RegisterController;
 import dds.tp.carbono.http.controllers.member.trayectos.PointController;
 import dds.tp.carbono.http.controllers.member.trayectos.TrayectosController;
 import dds.tp.carbono.http.controllers.org.OrgMetricsController;
+import dds.tp.carbono.http.controllers.org.OrganizacionController;
+import dds.tp.carbono.services.agenteSectorial.AsignadorDeAgentesSectoriales;
+import dds.tp.carbono.services.auth.HallMiembroService;
+import dds.tp.carbono.services.auth.HallOrganizacionService;
+import dds.tp.carbono.services.auth.SolicitadorDeVinculacionService;
+import dds.tp.carbono.services.organizacion.OrganizacionService;
 import dds.tp.carbono.services.auth.LoginService;
 import dds.tp.carbono.services.auth.RegisterService;
+
 import spark.TemplateEngine;
 import spark.servlet.SparkApplication;
 import spark.template.mustache.MustacheTemplateEngine;
@@ -42,6 +50,11 @@ public class Server implements SparkApplication {
         return new IController[] {
             new LoginController(new LoginService()),
             new RegisterController(new RegisterService(new InsecurePasswordCheckerBuilder())),
+            new OrganizacionController(new OrganizacionService()),
+            new HallController( new HallMiembroService(),
+                                new HallOrganizacionService(),
+                                new SolicitadorDeVinculacionService(),
+                                new AsignadorDeAgentesSectoriales() ),
             new OrgMetricsController(),
             new AdminOrganizationController(),
             new TrayectosController(),

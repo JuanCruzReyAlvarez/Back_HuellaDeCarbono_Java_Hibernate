@@ -26,9 +26,13 @@ public class SolicitudVinculacionRepository {
                                                             || solicitud.getEstado().equals(EstadoSolicitudVinculacion.ACEPTADO)));
     }
 
+
+
     public SolicitudVinculacion crearSolicitud(SolicitudVinculacion solicitud) {
         return this.dao.save(solicitud);
     }
+
+
 
     public SolicitudVinculacion buscar(SolicitudVinculacion solicitud) throws NoSuchElementException {
         SolicitudVinculacion solicitudEncontrada = this.dao.getAll()

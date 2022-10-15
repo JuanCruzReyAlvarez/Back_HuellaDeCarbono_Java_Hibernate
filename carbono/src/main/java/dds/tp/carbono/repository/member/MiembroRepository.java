@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import dds.tp.carbono.dao.org.MiembroDao;
 import dds.tp.carbono.dao.org.SolicitudVinculacionDao;
 import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.organization.EstadoSolicitudVinculacion;
@@ -14,6 +15,7 @@ import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 public class MiembroRepository {
     
     private SolicitudVinculacionDao soliciturVinculacionDao;
+    private MiembroDao miembroDao;
 
     public MiembroRepository() {
         this.soliciturVinculacionDao = SolicitudVinculacionDao.getInstance();
@@ -41,5 +43,9 @@ public class MiembroRepository {
             .map(sol -> sol.getMiembro()).collect(Collectors.toList()));
         
         return null;
+    }
+
+    public Miembro guardar(Miembro miembro) {
+        return this.miembroDao.save(miembro);
     }
 }

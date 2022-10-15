@@ -79,30 +79,26 @@
 .ccformfield {
 	font-family: 'Lato',Arial,sans-serif;
 }
-.ccbtnR{ /*añadir*/
-	display:block;
-	border:none;
-	background:#f8ae45;
-	color:#FFFFFF;
-	padding:12px 25px;
-	margin-left: 74%;
-	margin-top: -12.3%;
 
-	cursor:pointer;
-	text-decoration:none;
-	font-weight:bold;
+.buttons {
+	display: grid;
+	grid-gap: 25%;
+    grid-template-columns: auto auto;
+	justify-content: center;
+    align-items: center;
+
 }
-
-.ccbtnL{ /*ver lista contactos*/
+.ccbtn{ 
 	display:block;
 	border:none;
-	background:#f8ae45;
-	color:#FFFFFF;
-	padding:12px 25px;
-	margin-left: 0%;
+	background:#4f8049;
+	color:#ffffff;
+	
+	padding:7px 19px;
 	cursor:pointer;
 	text-decoration:none;
-	font-weight:bold;
+	font-weight: lighter;
+	font-size: 15px;
 }
 
 .ccbtn:hover{

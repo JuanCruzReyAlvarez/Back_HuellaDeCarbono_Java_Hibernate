@@ -23,7 +23,11 @@ public class Provincia implements GeoInfo {
     @ManyToOne
     @Getter @Setter private Pais pais;
     
-    public Provincia(String provincia) {
-        this.nombre = provincia;
+  
+     public Provincia(String provincia ) {
+        this.nombre = provincia;  
+    }
+    public Provincia( Integer id ) {
+        this.id = id;  
     }
 }

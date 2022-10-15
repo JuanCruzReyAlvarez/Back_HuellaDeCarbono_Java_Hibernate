@@ -46,6 +46,10 @@ public class Sector {
         this.solicitudes = solicitudes;
     }    
 
+    public Sector(Integer id) {
+        this.id = id;
+    }
+
     public List<Miembro> getMiembros() {
         List<Miembro> miembros = new ArrayList<Miembro>() ;
         solicitudes.stream().

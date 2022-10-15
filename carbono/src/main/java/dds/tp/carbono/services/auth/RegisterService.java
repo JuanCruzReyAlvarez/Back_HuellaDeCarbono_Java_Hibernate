@@ -23,7 +23,6 @@ public class RegisterService {
 
         if (!checker.isSecure(password))
             throw new InsecurePasswordException();
-        System.out.println("papa");
         Usuario usuario = this.buildUsuario(username, password, rol);
         return this.repository.guardar(usuario);
     }

@@ -18,7 +18,8 @@ public class Pais implements GeoInfo {
     @Column
     @Getter @Setter private String nombre;
     
-    public Pais(String pais) {
+    public  Pais(String pais) {
         this.nombre = pais;
     }
+
 }

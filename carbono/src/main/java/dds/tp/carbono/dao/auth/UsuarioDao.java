@@ -21,6 +21,8 @@ public class UsuarioDao extends Dao<Usuario> {
         .getSingleResult();
     
     }
+
+    
 /* 
     public Usuario getUsuarioByContraseña(String contraseña) {
         Usuario prueba =  (Usuario) EntityManagerHelper

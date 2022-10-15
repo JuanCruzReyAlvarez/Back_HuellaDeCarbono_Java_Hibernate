@@ -8,7 +8,11 @@ import { Home } from "./Home.jsx";
 import { Register } from "./Register";
 import { Hall } from "./Hall";
 import { Contacts } from "./AddContacts";
+
+
+
 export const Sidebar = () => {
+    
     const [usuario, setUser] = useState({});
 
     useEffect(() => {
@@ -69,10 +73,26 @@ export const Sidebar = () => {
                         usuario.token && usuario.rol === "MIEMBRO" ? (
                             <>
                                 <li>Calculadora HC</li>
-                                <li>Gestionar Solicitudes</li>
                                 <li>Registrar Trayectos</li>
                                 <li>Recomendaciones</li>
                                 <li>Reportes</li>
+                            </>
+                        ) : (
+                            <></>
+                        )
+                    ) : (
+                        <></>
+                    )}
+                      {/* <!-- Rol Administrados AGREGAR LAS DOS DE CALCULO  --> */}
+                      {usuario ? (
+                        usuario.token && usuario.rol === "ADMINISTRADOR" ? (
+                            <>
+                                <li>Calculadora HC</li>
+                                <li>Registrar Trayectos</li>
+                                <li>Recomendaciones</li>
+                                <li>Reportes</li>
+                                <li>Recomendaciones</li>
+                               
                             </>
                         ) : (
                             <></>

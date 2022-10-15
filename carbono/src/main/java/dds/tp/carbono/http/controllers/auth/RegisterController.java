@@ -27,7 +27,7 @@ public class RegisterController extends Controller {
         this.service = service;
     }
 
-    private static void enableCORS() {
+    static void enableCORS() {
 
         Spark.options("/*",
         (request, response) -> {

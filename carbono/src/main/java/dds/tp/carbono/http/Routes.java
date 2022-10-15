@@ -16,21 +16,23 @@ public class Routes {
     // -------------------------------------------------------------------------------- auth 
         define(Uri.LOGIN, "/login"),
         define(Uri.REGISTER, "/register"),
+        define(Uri.HALL, "/hall"),
     // -------------------------------------------------------------------------------- admin
         define(Uri.ADMIN, "/admin", 
-            define(Uri.ADMIN_ORG, "/org"), 
-            define(Uri.ADMIN_FACTOR_EMISION, "/fe")),
+        define(Uri.ADMIN_ORG, "/org"), 
+        define(Uri.ADMIN_FACTOR_EMISION, "/fe")),
     // -------------------------------------------------------------------------------- member
         define(Uri.MEMBER, "/member",
-            define(Uri.MEMBER_POINTS, "/points",
-                define(Uri.MEMBER_POINTS_AUTOCOMPLETE, "/autocomplete")),
-            define(Uri.MEMBER_TRAYECTOS, "/trayectos",
-                define(Uri.MEMBER_TRAYECTOS_AUTOCOMPLETE, "/autocomplete"))),
+        define(Uri.MEMBER_POINTS, "/points",
+        define(Uri.MEMBER_POINTS_AUTOCOMPLETE, "/autocomplete")),
+        define(Uri.MEMBER_TRAYECTOS, "/trayectos",
+        define(Uri.MEMBER_TRAYECTOS_AUTOCOMPLETE, "/autocomplete"))),
     // -------------------------------------------------------------------------------- organization  
-        define(Uri.ORG, "/org",
-            define(Uri.ORG_METRICS, "/metrics")),
+        define(Uri.ORGANIZACION, "/organizacion",
+        define(Uri.ORG_METRICS, "/metrics")),
         define(Uri.AGENTE_SECTORIAL, "/agente",
-            define(Uri.AGENTE_SECTORIAL_HUELLA, "/huella")));
+        define(Uri.AGENTE_SECTORIAL_HUELLA, "/huella")));
+           
 
 
         paths = api.branches();

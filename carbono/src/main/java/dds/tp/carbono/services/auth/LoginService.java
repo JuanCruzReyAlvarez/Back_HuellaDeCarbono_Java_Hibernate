@@ -19,7 +19,7 @@ public class LoginService {
         
         Usuario usuario = this.repository.getUsuarioByUsername(username);  
 
-        System.out.println(" HHHHHHHHHHHHOOOOOOOOOOOOOOOLLLLLLLLLLLLLLLAAAAAAAAAAAAAAAAA");
+
         System.out.println(usuario.getUsername());
         System.out.println(usuario.getPassword());
 

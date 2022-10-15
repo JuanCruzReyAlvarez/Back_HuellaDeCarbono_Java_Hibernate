@@ -31,13 +31,17 @@ export const Contacts = () => {
                 <input class="ccformfield" type="text" placeholder="Celular"/>
             </div>
             
-            <div class="ccfield-prepend">
-                <input class="ccbtnL" type="submit" value="Ver Lista de Contactos"/>
-            </div>
+            <div className="buttons">
 
-            <div class="ccfield-prepend">
-                <input class="ccbtnR" type="submit" value="Guardar"/>
-            </div>
+                            <div class="ccfield-prepend">
+                                <input class="ccbtn" type="submit" value="Ver Lista de Contactos" />
+                            </div>
+
+                            <div class="ccfield-prepend">
+                                <input class="ccbtn" type="submit" value="Guardar" />
+                            </div>
+
+                        </div>
             </form>
                    
              </div>

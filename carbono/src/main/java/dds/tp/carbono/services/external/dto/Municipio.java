@@ -21,8 +21,11 @@ public class Municipio implements GeoInfo {
     @Getter @Setter private String nombre;
     @ManyToOne
     @Getter @Setter private Provincia provincia;
-    
-    public Municipio(String municipio) {
-        this.nombre = municipio;
+ 
+    public  Municipio(String municipio) {
+        this.nombre = municipio;  
+    }
+    public  Municipio(Integer id) {
+        this.id = id;  
     }
 }

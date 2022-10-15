@@ -32,9 +32,14 @@ public class Usuario {
 
 
     public void setHashPassword(String password2) {
-
         Hash hasheador = new Hash();
-        this.password = hasheador.setHashPassword(password2);
-                
+        this.password = hasheador.setHashPassword(password2);          
+    }
+    public Usuario(Integer id, String username){
+        this.id = id;
+        this.username = username;
+    }
+    public Usuario(){
+
     }
 }

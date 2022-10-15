@@ -117,9 +117,32 @@
     -webkit-filter: blur(3px);
     z-index: 0;
 }
-  
-  
-  
+.salvadora{
+    font-size: 15px;
+}
+
+input[type=checkbox]:checked {
+  background-color: #000;
+}
+
+input[type=checkbox] {
+ 
+  outline: none;
+  height: 15px;
+  width: 15px;
+  border: 1px solid black;
+  color: black;
+  background-color: rgb(16, 16, 16);
+  opacity: 80%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+input[type=checkbox]:checked {
+  background-color: #000;
+}
+
   select,
   textarea,
   input[type="text"],

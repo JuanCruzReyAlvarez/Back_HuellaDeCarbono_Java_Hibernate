@@ -1,5 +1,6 @@
 package dds.tp.carbono.dao.org;
 
+
 import dds.tp.carbono.dao.member.Dao;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 
@@ -13,6 +14,5 @@ public class SolicitudVinculacionDao extends Dao<SolicitudVinculacion> {
 
         return instance;
     }
-
    
 }

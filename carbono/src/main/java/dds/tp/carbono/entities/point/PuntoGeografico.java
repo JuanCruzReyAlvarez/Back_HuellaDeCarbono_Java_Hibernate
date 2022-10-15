@@ -23,7 +23,7 @@ public class PuntoGeografico {
     @Getter @Setter private Integer idLocalidad;
 
     @Column
-    @Getter @Setter private String direccion;
+    @Getter @Setter private String direccion; // ?
 
     @Column
     @Getter @Setter private Double latitud;
