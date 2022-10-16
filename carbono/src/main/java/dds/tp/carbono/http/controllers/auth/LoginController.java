@@ -24,14 +24,10 @@ public class LoginController extends Controller {
     public LoginController(LoginService loginService) {
         this.loginService = loginService;
     }
-
+    
     @Override
     public void routes(TemplateEngine engine) {
 
-        //Spark.get(path(Uri.LOGIN), (rq, rs) -> this.loginView(rq, rs), engine);
-
-
-       // System.out.println("quiere entrar a path login por medio de un post");
 
 
         Spark.post(path(Uri.LOGIN), (rq, rs) -> this.login(rq, rs));
@@ -46,7 +42,8 @@ public class LoginController extends Controller {
         // Esto es paraa un cliente liviano, pero como laburamos por react hay que devolver un json.
 
         try {
- 
+            
+            
             LoginDTO logger = getBody(request, LoginDTO.class, new LoginDTOValidator());
                     // La rq llego y la mandamos con un validador a get body que es un metodo de la clase PADRE PADRE  de los contorladores
                     // este metodo decodifica el json con GSON y obtenemos los valores en una clase LoginDTO, una vez q tenemos esa clase y 

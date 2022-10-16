@@ -48,7 +48,7 @@ public class LocalidadController extends Controller {
 
     @Override
     public void routes(TemplateEngine engine) {
-        LocalidadController.enableCORS();
+        //LocalidadController.enableCORS();
         Spark.post(path(Uri.LOCALIDAD), (rq, rs) -> this.getLocalidades(rq, rs));
     }
 

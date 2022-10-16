@@ -13,6 +13,7 @@ import { Contacts } from "./components/AddContacts.jsx";
 import { Report } from "./components/Report.jsx";
 import { Calculator } from "./components/calculators.jsx";
 import { Footer } from "./components/Footer.jsx";
+import { Aplications } from "./components/Aplications.jsx";
 
 const App = () => {
     return (
@@ -28,6 +29,7 @@ const App = () => {
                 <Route path="/addContacts" element={<Contacts />} />
                 <Route path="/report" element={<Report />} />
                 <Route path="/calculators" element={<Calculator />} />
+                <Route path="/aplications" element={<Aplications />} />
                 
                 
                 

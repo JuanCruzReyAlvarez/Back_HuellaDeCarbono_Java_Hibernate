@@ -9,6 +9,7 @@ import { Register } from "./Register";
 import { Hall } from "./Hall";
 import { Contacts } from "./AddContacts";
 import { Calculator } from "./calculators";
+import { Aplications } from "./Aplications";
 
 
 
@@ -104,7 +105,7 @@ export const Sidebar = () => {
                 </ul>
             </div>
             <div className="contenido">
-                
+                <Aplications/>
             </div>
         </div>
     );

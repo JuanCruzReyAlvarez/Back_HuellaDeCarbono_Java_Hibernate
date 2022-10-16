@@ -1,5 +1,7 @@
 package dds.tp.carbono.services.organizacion;
 
+import java.util.List;
+
 import dds.tp.carbono.entities.organization.notifications.Contacts;
 import dds.tp.carbono.repository.organization.ContactsRepository;
 
@@ -28,6 +30,11 @@ public class ContactsService {
         contacto.setMail(email);
         contacto.setName(celular);
         
+        return null;
+    }
+
+
+    public List<Contacts> getAll() {
         return null;
     }
 
