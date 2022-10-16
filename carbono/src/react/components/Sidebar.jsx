@@ -8,6 +8,7 @@ import { Home } from "./Home.jsx";
 import { Register } from "./Register";
 import { Hall } from "./Hall";
 import { Contacts } from "./AddContacts";
+import { Calculator } from "./calculators";
 
 
 
@@ -103,7 +104,7 @@ export const Sidebar = () => {
                 </ul>
             </div>
             <div className="contenido">
-                <Contacts />
+                <Calculator />
             </div>
         </div>
     );

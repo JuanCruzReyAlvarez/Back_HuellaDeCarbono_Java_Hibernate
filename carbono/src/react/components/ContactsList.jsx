@@ -6,7 +6,7 @@ export const ContactsList = () => {
 
   return (
 
-    <div className="conteiner">
+    <div className="conteinerLista">
 
     <div class="contacts">
       <h1 class="contacts__title">My contacts</h1>

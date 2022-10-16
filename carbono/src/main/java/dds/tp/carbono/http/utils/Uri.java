@@ -20,5 +20,5 @@ public enum Uri {
     ADMIN_GEOINFO,
     LOCALIDAD,
     MUNICIPIO,
-    PROVINCIA
+    PROVINCIA, CONTACTS
 }

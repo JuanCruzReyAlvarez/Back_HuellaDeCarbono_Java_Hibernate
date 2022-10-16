@@ -8,7 +8,7 @@ import dds.tp.carbono.http.dto.validators.LoginDTOValidator;
 import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.SessionCookie;
 import dds.tp.carbono.http.utils.Uri;
-import dds.tp.carbono.services.auth.LoginService;
+import dds.tp.carbono.services.auth.ContactsService;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
@@ -19,9 +19,9 @@ public class LoginController extends Controller {
     //private static final String UNAUTHORIZED_MESSAGE = "Usuario o Password invalido";
     private static final String TOKEN_COOKIE_NAME = "CARBONO-TOKEN";
     
-    private LoginService loginService;
+    private ContactsService loginService;
 
-    public LoginController(LoginService loginService) {
+    public LoginController(ContactsService loginService) {
         this.loginService = loginService;
     }
 

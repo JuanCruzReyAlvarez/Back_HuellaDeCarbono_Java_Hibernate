@@ -7,7 +7,7 @@ import dds.tp.carbono.builder.InsecurePasswordCheckerBuilder;
 import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.exception.InsecurePasswordException;
 import dds.tp.carbono.http.utils.SessionCookie;
-import dds.tp.carbono.services.auth.LoginService;
+import dds.tp.carbono.services.auth.ContactsService;
 import dds.tp.carbono.services.auth.RegisterService;
 
 public class LoginTest {
@@ -16,7 +16,7 @@ public class LoginTest {
     public void loginCheck() throws Exception {
         try {
 
-            LoginService login = new LoginService();
+            ContactsService login = new ContactsService();
 
             SessionCookie cookie = login.login("admin", "admin");
 
@@ -37,7 +37,7 @@ public class LoginTest {
         Assert.assertNotNull(user);
         Assert.assertNotNull(user.getId());
 
-        LoginService login = new LoginService();
+        ContactsService login = new ContactsService();
         SessionCookie cookie = login.login("admin", "Diseniodesistemas12345");
 
         Assert.assertEquals(user, cookie.getUser());

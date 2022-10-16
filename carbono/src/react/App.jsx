@@ -11,6 +11,7 @@ import { RegisterMeasurements } from "./components/RegisterMeasurements.jsx";
 import { ContactsList } from "./components/ContactsList.jsx";
 import { Contacts } from "./components/AddContacts.jsx";
 import { Report } from "./components/Report.jsx";
+import { Calculator } from "./components/calculators.jsx";
 import { Footer } from "./components/Footer.jsx";
 
 const App = () => {
@@ -26,6 +27,8 @@ const App = () => {
                 <Route path="/contactsList" element={<ContactsList />} />
                 <Route path="/addContacts" element={<Contacts />} />
                 <Route path="/report" element={<Report />} />
+                <Route path="/calculators" element={<Calculator />} />
+                
                 
                 
                 <Route
