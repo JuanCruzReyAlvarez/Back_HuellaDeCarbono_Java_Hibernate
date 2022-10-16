@@ -34,9 +34,10 @@ public class Routes {
         define(Uri.AGENTE_SECTORIAL_HUELLA, "/huella")));
         define(Uri.CONTACTS, "/contacts");
     // ------------------------------------------------------------------------------- Dto
+        define(Uri.PROVINCIA, "/provinciasss"); 
         define(Uri.LOCALIDAD, "/localidad");    
         define(Uri.MUNICIPIO, "/municipio");
-        define(Uri.PROVINCIA, "/provincia");   
+          
 
 
         paths = api.branches();

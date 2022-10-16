@@ -17,10 +17,16 @@ import dds.tp.carbono.services.agenteSectorial.AsignadorDeAgentesSectoriales;
 import dds.tp.carbono.services.auth.HallMiembroService;
 import dds.tp.carbono.services.auth.HallOrganizacionService;
 import dds.tp.carbono.services.auth.SolicitadorDeVinculacionService;
+import dds.tp.carbono.services.external.puntoGeografico.LocalidadService;
+import dds.tp.carbono.services.external.puntoGeografico.MunicipioService;
+import dds.tp.carbono.services.external.puntoGeografico.ProvinciaService;
 import dds.tp.carbono.services.organizacion.ContactsService;
 import dds.tp.carbono.services.organizacion.OrganizacionService;
 import dds.tp.carbono.services.auth.LoginService;
 import dds.tp.carbono.services.auth.RegisterService;
+import dds.tp.carbono.http.controllers.puntoGeografico.ProvinciaController;
+import dds.tp.carbono.http.controllers.puntoGeografico.LocalidadController;
+import dds.tp.carbono.http.controllers.puntoGeografico.MunicipioController;
 
 import spark.TemplateEngine;
 import spark.servlet.SparkApplication;
@@ -53,6 +59,9 @@ public class Server implements SparkApplication {
         return new IController[] {
             new LoginController(new LoginService()),
             new RegisterController(new RegisterService(new InsecurePasswordCheckerBuilder())),
+            new ProvinciaController(new ProvinciaService()),
+            new LocalidadController(new LocalidadService()),
+            new MunicipioController(new MunicipioService()),
             new OrganizacionController(new OrganizacionService()),
             new HallController( new HallMiembroService(),
                                 new HallOrganizacionService(),

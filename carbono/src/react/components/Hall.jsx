@@ -14,15 +14,26 @@ export const Hall = () => {
 
     const [usuario, setUser] = useState({});
 
-    const [miembro, setMiembro] = useState({});
+    const [eleccion, setEleccion] = useState({});
 
-    const [organizacion, setOrganizacion] = useState({});
 
-    const [agenteSectorial, setAgenteSectorial] = useState({});
+
 
     const [organizaciones, setOrganizaciones] = useState([]);
 
-    let organizacionesDeData;
+    const [provincias, setProvincias] = useState([]);
+    const [municipios, setMunicipios] = useState([]);
+    const [localidades, setLocalidades] = useState([]);
+
+
+
+
+
+    let organizacionElegida;
+    let provinciaElegida;
+    let municipioElegido;
+
+
 
     // ACCESO A STORAGE
 
@@ -30,354 +41,427 @@ export const Hall = () => {
         const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
         if (isUserLogg) {
             setUser(JSON.parse(isUserLogg));
-            axios.get("http://localhost:8080/organizaciones").then(([data]) => {
+            axios.get("http://localhost:8080/organizacion").then((data) => {
+                console.log("funcionaron la sprovincias ", data)
+                setProvincias(data);
+            }).catch(error => {
+                console.log(error)
+            })
+
+            /*axios.get("http://localhost:8080/organizaciones").then(([data]) => {
                 console.log("funciono el get a organizaciones", data)
                 setOrganizaciones(data)
             }).catch(error => {
                 console.log(error)
             })
+            */
         }
     }, []);
 
 
+    const handleChange = ({ target }) => {
+        setEleccion((eleccion) => {
+            return {
+                ...eleccion,
+                [target.name]: target.value,
+            };
+        });
+    };
 
 
-    // TRAEMOS DESDE LA BASE 
 
-    function dataOrg(e) {
-        e.preventDefault();
-        axios.get("http://localhost:8080/organizaciones").then((data) => {
-            console.log("funciono", data)
-        }).catch(error => {
-            console.log(error)
-        })
-    }
-
-
-    function dataOrg(e) {
-        e.preventDefault();
-        axios.get("http://localhost:8080/sectores", JSON.stringify(organizacion)).then((data) => {
-            console.log("funciono", data)
-        }).catch(error => {
-            console.log(error)
-        })
-    }
-
-    
-
-    // FUNCIONES js ENVIO FORMS HALL    -> Le devuelvo objeto con mensajito que slaio todo bien.
-
-
-    function onSubmitMiembro(e) {
-        e.preventDefault();
-        axios.post("http://localhost:8080/hall", JSON.stringify(miembro)).then((data) => {
-            console.log("funciono", data)
-            navigate("/home")
-        }).catch(error => {
-            console.log(error)
-        })
-    }
-    function onSubmitOrganizacion(e) {
-        e.preventDefault();
-        axios.post("http://localhost:8080/hall", JSON.stringify(organizacion)).then((data) => {
-            console.log("funciono", data)
-            navigate("/home")
-        }).catch(error => {
-            console.log(error)
-        })
-    }
-    function onSubmitAgenteSectorial(e) {
-        e.preventDefault();
-        axios.post("http://localhost:8080/hall", JSON.stringify(agenteSectorial)).then((data) => {
-            console.log("funciono", data)
-            navigate("/home")
-        }).catch(error => {
-            console.log(error)
-        })
-    }
-
-    const handSelectSector = (e) => {
-
-        if(organizacionesDeData === undefined){
-            
-            axios.post("http://localhost:8080/sector", JSON.stringify(e.target.value)).then((data) => {
-
+        function onSubmit(e) {
+            e.preventDefault();
+            axios.post("http://localhost:8080/hall", JSON.stringify(eleccion)).then((data) => { //mando este usuario creado a ese esa url mediando un post obviamente (a mi back), lo mando en tipo json, (por eso json.usuario), (acordarce que este usuario es lo que comenzo como un estado local vacio y se fue haciendo en los inputs y las funciones), y acordarce juan que con el .then estoy haciendo una promesa, es decir hay algo que me va a devolver mi back luego de que yo le mande el usuario y lo tengo que atajar. Si sale todo bien me cae en el then.Esto quiere decir que va a estar en mi data lo que me haya mandado mi back. Acordarce que data es una palabra reservada que puse yo y que va a lamacenar cualquier cosa que yo le mand edel back.
+                //. Si hay problema me va al catch.ya sea problemas de comunicacion de servidor del cliente o nuestro. O tambien puede pasar que no cumpla logica necesaria como que la contraseña no sea correcta, enotnces esto se mando el usuario en json JSON.stringify(usuario)) , ahi se ejecuta un wait() hasta que el back procesa y manda un signal() para que se termine de ejecutar la promesa en el then(), si todo bien too ok, sino cumplio logica como deciamos mi back catghea ese error y le dispara el error a este servidor.
                 console.log("funciono", data)
-    
+                navigate("/login")
             }).catch(error => {
                 console.log(error)
             })
         }
 
+        // TRAEMOS DESDE LA BASE 
+
+
+
+        /*
+            function dataOrg(e) {
+                e.preventDefault();
+                axios.get("http://localhost:8080/sectores", JSON.stringify(organizacion)).then((data) => {
+                    console.log("funciono", data)
+                }).catch(error => {
+                    console.log(error)
+                })
+            }
         
+            
+            }*/
 
-        e.preventDefault();
+        // FUNCIONES js ENVIO FORMS HALL    -> Le devuelvo objeto con mensajito que slaio todo bien.
+
+
+
+        const SelectorProvincia = (e) => {
+
+            
+
+            provinciaElegida = e.target.value
+
+            e.preventDefault();
+
+        }
+
+
+        const SelectorMunicipio = (e) => {
+            axios.post("http://localhost:8080/municipio", JSON.stringify(provinciaElegida)).then((data) => {
+                console.log("funciono", data)
+                municipios = data
+            }).catch(error => {
+                console.log(error)
+            })
+            e.preventDefault();
+            municipioElegido = e.target.value
+
+
+        }
+
+
+
+        const SelectorLocalidad = (e) => {
+            axios.post("http://localhost:8080/localidad", JSON.stringify(municipioElegido)).then((data) => {
+                console.log("funciono", data)
+                localidades = data;
+            }).catch(error => {
+                console.log(error)
+            })
+            e.preventDefault();
+
+        }
+
+
+
+
+        const SelectorDeSelector = (e) => {
+
+
+            axios.get("http://localhost:8080/sector", JSON.stringify(e.target.value)).then((data) => {
+
+                console.log("funciono", data)
+
+            }).catch(error => {
+                console.log(error)
+            })
+
+            e.preventDefault();
+
+        }
+
+
+
+
+
+        function selectorDeOrganizacion(e) {
+
+            organizacionElegida = e.target.value
+
+            axios.get("http://localhost:8080/organizacion", JSON.stringify(eleccion)).then((data) => {
+                console.log("funciono", data)
+            organizaciones = data;
+            }).catch(error => {
+                console.log(error)
+            })
+            
+            e.preventDefault();
+        }
+
+
+
+
+        /*
+            function handleChangeNombre(e) {
+                setRegister({ ...usuario, username: e.target.value });
+            }
         
-       
-      }
+        
+            function handleChangePassword(e) {
+                setRegister({ ...usuario, password: e.target.value });
+            }
+        
+            function handleChangeRol(e) {
+                setRegister({ ...usuario, rol: e.target.value });
+            }
+        */
+        return (
 
-
-    /*
-        function handleChangeNombre(e) {
-            setRegister({ ...usuario, username: e.target.value });
-        }
-    
-    
-        function handleChangePassword(e) {
-            setRegister({ ...usuario, password: e.target.value });
-        }
-    
-        function handleChangeRol(e) {
-            setRegister({ ...usuario, rol: e.target.value });
-        }
-    */
-    return (
-
-        <div>
-            {/* <link
+            <div>
+                {/* <link
                 href="//db.onlinewebfonts.com/c/a4e256ed67403c6ad5d43937ed48a77b?family=Core+Sans+N+W01+35+Light"
                 rel="stylesheet"
                 type="text/css"
             />
             <link rel="stylesheet" href="form.css" type="text/css" /> */}
 
-            <div class="body-content-hall"></div>
+                <div class="body-content-hall"></div>
 
-            <div class="module">
+                <div class="module">
 
-                {/* ------------Rol organizacion------------- */}
-                {usuario ? (
-                    usuario.token && usuario.rol === "ORGANIZACION" ? (
-                        <>
-                            <h1>Registra tus datos</h1>
-                            <h3>Paso 2</h3>
-                            <form
-                                class="form"
-                                action="form.php"
-                                method="post"
-                                enctype="multipart/form-data"
-                                autocomplete="off"
-                                onSubmit={onSubmitOrganizacion}
-                            >
-                                <div class="alert alert-error"></div>
-                                <input
-                                    type="text"
-                                    placeholder="Razon social"
-                                    name="Razon social"
-
-
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="Clasificacion"
-                                    name="Clasificacion"
+                    {/* ------------Rol organizacion------------- */}
+                    {usuario ? (
+                        usuario.token && usuario.rol === "ORGANIZACION" ? (
+                            <>
+                                <h1>Registra tus datos</h1>
+                                <h3>Paso 2</h3>
+                                <form
+                                    class="form"
+                                    action="form.php"
+                                    method="post"
+                                    enctype="multipart/form-data"
                                     autocomplete="off"
+                                    onSubmit={onSubmit}
+                                >
+                                    <div class="alert alert-error"></div>
+                                    <input
+                                        type="text"
+                                        placeholder="Razon social"
+                                        name="Razon social"
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder="Clasificacion"
+                                        name="Clasificacion"
+                                        autocomplete="off"
+                                        onChange={handleChange}
+                                        required
 
-                                />
-                                <h2>Indique su domicilio</h2>
+                                    />
+                                    <h2>Indique su domicilio</h2>
 
-                                <input
-                                    type="text"
-                                    placeholder="calle"
-                                    name="calle"
+                                    <input
+                                        type="text"
+                                        placeholder="calle"
+                                        name="calle"
+                                        onChange={handleChange}
+                                        required
 
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="altura"
-                                    name="altura"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder="altura"
+                                        name="altura"
+                                        onChange={handleChange}
+                                        required
 
-                                />
-                                {/* --------UBI SON DESPLEGABLES: localidad,muni,prov PAIS NO -------- */}
+                                    />
+                                    {/* --------UBI SON DESPLEGABLES: localidad,muni,prov PAIS NO -------- */}
 
-                                <input
-                                    type="text"
-                                    placeholder="localidad"
-                                    name="localidad"
 
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="municipio"
-                                    name="municipio"
+                                    <select id="ElegirProvincia" name="prov" onChange={SelectorProvincia}>
+                                        {
+                                            provincias.length ? (
+                                                provincias.map((item) => {
+                                                    return (
+                                                        <option value={item.nombre}>{item.nombre}</option>
+                                                    )
+                                                })
+                                            ) : <option>No hay provincias</option>
+                                        }
 
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="provincia"
-                                    name="provincia"
+                                    </select>
 
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="pais"
-                                    name="pais"
 
-                                />
 
-                                <h2>Elegir Tipo</h2>
-                                {<select id="Tipo" name="Tipo">
+                                    <select id="ElegirMunicipio" name="muni" onChange={SelectorMunicipio}>
+                                        {
+                                            municipios.length ? (
+                                                municipios.map((item) => {
+                                                    return (
+                                                        <option value={item.nombre}>{item.nombre}</option>
+                                                    )
+                                                })
+                                            ) : <option>No hay municipioss</option>
+                                        }
 
-                                    <option>Gubernamental</option>
-                                    <option>ONG</option>
-                                    <option>Empresa</option>
-                                    <option>Institucion</option>
-                                </select>}
+                                    </select>
 
-                                <input
-                                    type="submit"
-                                    value="Siguiente"
-                                    name="Siguiente"
-                                    class="btn btn-block btn-primary"
-                                />
-                            </form>
-                        </>
+                                    <select id="ElegirLocalidad" name="loc" onChange={SelectorLocalidad}>
+                                        {
+                                            localidades.length ? (
+                                                localidades.map((item) => {
+                                                    return (
+                                                        <option value={item.nombre}>{item.nombre}</option>
+                                                    )
+                                                })
+                                            ) : <option>No hay localidades</option>
+                                        }
+
+                                    </select>
+
+                                    <input
+                                        type="text"
+                                        placeholder="pais"
+                                        name="pais"
+                                        onChange={handleChange}
+                                        required
+                                    />
+
+                                    <h2>Elegir Tipo</h2>
+                                    <select id="Tipo" name="Tipo" onChange={handleChange}>
+                                        <option>Gubernamental</option>
+                                        <option>ONG</option>
+                                        <option>Empresa</option>
+                                        <option>Institucion</option>
+                                    </select>
+
+                                    <input
+                                        type="submit"
+                                        value="Siguiente"
+                                        name="Siguiente"
+                                        class="btn btn-block btn-primary"
+                                    />
+                                </form>
+                            </>
+                        ) : (
+                            <></>
+                        )
                     ) : (
                         <></>
-                    )
-                ) : (
-                    <></>
-                )}
+                    )}
 
 
-                {/* ------------Rol Miembro------------- */}
-                {usuario ? (
-                    usuario.token && usuario.rol === "MIEMBRO" ? (
-                        <>
-                            <h1>Registra tus datos</h1>
-                            <form
-                                class="form"
-                                action="form.php"
-                                method="post"
-                                enctype="multipart/form-data"
-                                autocomplete="off"
-                                onSubmit={onSubmitMiembro}
-                            >
+                    {/* ------------Rol Miembro------------- */}
+                    {usuario ? (
+                        usuario.token && usuario.rol === "MIEMBRO" ? (
+                            <>
+                                <h1>Registra tus datos</h1>
+                                <form
+                                    class="form"
+                                    action="form.php"
+                                    method="post"
+                                    enctype="multipart/form-data"
+                                    autocomplete="off"
+                                    onSubmit={onSubmit}
+                                >
 
-                                <input
-                                    type="text"
-                                    placeholder="Nombre"
-                                    name="Nombre"
+                                    <input
+                                        type="text"
+                                        placeholder="Nombre"
+                                        name="Nombre"
 
-                                />
+                                    />
 
-                                <input
-                                    type="text"
-                                    placeholder="Apellido"
-                                    name="Apellido"
+                                    <input
+                                        type="text"
+                                        placeholder="Apellido"
+                                        name="Apellido"
 
-                                />
+                                    />
 
-                                 <h2>Elegir Organizacion</h2> 
-                                <select  id="ElejirOrganizacion" name="rol" onChange = {handSelectSector}>
+                                    <h2>Elegir Organizacion</h2>
+                                    <select id="ElejirOrganizacion" name="rol" onChange={selectorDeOrganizacion}>
+                                        {
+                                            organizaciones.length ? (
+                                                organizaciones.map((item) => {
+                                                    return (
+
+                                                        <option value={item.nombre}>{item.nombre}</option>
+
+                                                    )
+                                                })
+                                            ) : <option>No hay Organizaciones</option>
+                                        }
+
+                                    </select>
+
+
+                                    <h2>Elegir Tipo de Documento</h2>
+                                    {<select id="Tipo" name="Tipo">
+
+                                        <option>DNI</option>
+                                        <option>Pasaporte</option>
+                                        <option>Libreta</option>
+
+                                    </select>}
+                                    <input
+                                        type="text"
+                                        placeholder="Nro documento"
+                                        name="Nro documento"
+
+                                    />
+
+                                    <label className="salvadora"><input type="checkbox" id="cbox1" value="first_checkbox" />
+                                        Enviar mi solicitud de vinculacion a mi organizacion automaticamente</label><br />
+
+
+
+                                    <input
+                                        type="submit"
+                                        value="Registrar"
+                                        name="Siguiente"
+                                        class="btn btn-block btn-primary" />
+
+                                </form>
+                            </>
+                        ) : (
+                            <></>
+                        )
+                    ) : (
+                        <></>
+                    )}
+
+                    {/* ------------Rol Agente sectorial------------- */}
+                    {usuario ? (
+                        usuario.token && usuario.rol === "AGENTESECTORIAL" ? (
+                            <>
+                                <h1>Registra tus datos</h1>
+
+                                <form
+                                    class="form"
+                                    action="form.php"
+                                    method="post"
+                                    enctype="multipart/form-data"
+                                    autocomplete="off"
+                                    onSubmit={onSubmit}
+                                >
+
+
+                                    <h2>Elegir Tipo de Sector a cargo</h2>
+
+
                                     {
-                                        organizaciones.length?( 
-                                        organizaciones.map((item)=>{
-                                            return (
-                                                
-                                                <option value={item.nombre}>{item.nombre}</option>
-
-                                            )
-                                        })
-                                    ):  <option>No hay Organizaciones</option> 
+                                        <select id="Tipo" name="Tipo">
+                                            <option>Provincia</option>
+                                            <option>Municipio</option>
+                                        </select>
                                     }
 
-                                </select>
+                                    <input
+                                        type="text"
+                                        placeholder="DESPLEGABLE CON MUNICIPIOS/PRIVINCIAS "
+                                        name="Lista organizaciones"
 
-                                <input
-                                    type="text"
-                                    placeholder="DESPLEGABLE CON SECTORES "
-                                    name="Lista sectores"
+                                    />
+                                    <input
+                                        type="submit"
+                                        value="Registrar"
+                                        name="Siguiente"
+                                        class="btn btn-block btn-primary" />
 
-
-                                />
-
-
-                                <h2>Elegir Tipo de Documento</h2>
-                                {<select id="Tipo" name="Tipo">
-
-                                    <option>DNI</option>
-                                    <option>Pasaporte</option>
-                                    <option>Libreta</option>
-
-                                </select>}
-                                <input
-                                    type="text"
-                                    placeholder="Nro documento"
-                                    name="Nro documento"
-
-                                />
-
-                                <label className="salvadora"><input type="checkbox" id="cbox1" value="first_checkbox" />
-                                    Enviar mi solicitud de vinculacion a mi organizacion automaticamente</label><br />
-
-
-
-                                <input
-                                    type="submit"
-                                    value="Registrar"
-                                    name="Siguiente"
-                                    class="btn btn-block btn-primary" />
-
-                            </form>
-                        </>
-                    ) : (
-                        <></>
-                    )
-                ) : (
-                    <></>
-                )}
-
-                {/* ------------Rol Agente sectorial------------- */}
-                {usuario ? (
-                    usuario.token && usuario.rol === "AGENTESECTORIAL" ? (
-                        <>
-                            <h1>Registra tus datos</h1>
-
-                        <form
-                                class="form"
-                                action="form.php"
-                                method="post"
-                                enctype="multipart/form-data"
-                                autocomplete="off"
-                                onSubmit={onSubmitAgenteSectorial}
-                        >
-
-
-                            <h2>Elegir Tipo de Sector a cargo</h2>
-                           
-
-                                {
-                                    <select id="Tipo" name="Tipo">
-                                        <option>Provincia</option>
-                                        <option>Municipio</option>
-                                    </select>
-                                }
-
-                                <input
-                                    type="text"
-                                    placeholder="DESPLEGABLE CON MUNICIPIOS/PRIVINCIAS "
-                                    name="Lista organizaciones"
-
-                                />
-                                <input
-                                    type="submit"
-                                    value="Registrar"
-                                    name="Siguiente"
-                                    class="btn btn-block btn-primary" />
-
-                        </form>
+                                </form>
                             </>
 
-                            ) : (
+                        ) : (
                             <></>
-                            )
-                            ) : (
-                            <></>
-                )}
+                        )
+                    ) : (
+                        <></>
+                    )}
+                
 
-
-                        </div>
-        </div>
-            );
-};
+                </div>
+            </div>
+        );
+    
+    };

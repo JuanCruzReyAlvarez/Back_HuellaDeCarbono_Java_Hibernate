@@ -29,7 +29,7 @@ public class RegisterController extends Controller {
 
 
 
-    private static void enableCORS() {
+    public static void enableCORS() {
 
         Spark.options("/*",
         (request, response) -> {

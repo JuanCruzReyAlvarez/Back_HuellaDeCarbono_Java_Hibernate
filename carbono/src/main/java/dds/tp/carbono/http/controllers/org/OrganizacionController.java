@@ -21,7 +21,7 @@ public class OrganizacionController extends Controller{
     @Override
     public void routes(TemplateEngine engine) {
       
-        Spark.post(path(Uri.ORGANIZACION), (rq, rs) -> this.getOrganizaciones(rq, rs));
+        Spark.get(path(Uri.ORGANIZACION), (rq, rs) -> this.getOrganizaciones(rq, rs));
     }
 
     private String  getOrganizaciones(Request rq, Response rs) throws Exception {

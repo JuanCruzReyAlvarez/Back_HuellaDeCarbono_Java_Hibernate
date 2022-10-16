@@ -23,7 +23,7 @@ export const Login = () => {
                         token: data.token
                     })
                 );
-                navigate("/");
+                navigate("/hall");
             })
             .catch((error) => {
                 console.log(error);

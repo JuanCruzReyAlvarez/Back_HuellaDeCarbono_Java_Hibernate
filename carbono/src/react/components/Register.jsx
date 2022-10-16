@@ -44,6 +44,8 @@ export const Register = () => {
         setRegister({ ...usuario, rol: e.target.value });
     }
 
+    
+
     return (
         <div>
             {/* <link
