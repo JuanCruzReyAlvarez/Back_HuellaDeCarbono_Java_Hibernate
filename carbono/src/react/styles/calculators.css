@@ -1,7 +1,5 @@
 
-.wrapper{
 
-}
 .main-container {
     display: flex;
     flex-direction: column;
@@ -50,7 +48,7 @@
 
 }
 
-.form {
+.formulario {
     background-color: rgba(103, 110, 108, 0.397);
     margin-top: 45px;
     margin-bottom: 45px;

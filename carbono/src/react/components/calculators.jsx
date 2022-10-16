@@ -77,7 +77,7 @@ export const Calculator = () => {
 
   return (
 
-    <div className="wrapper">
+   
 
     <div className="main-container"> {/* CALCULADOR DE ORGANIZACION, ROL ORG */}
       <h1>impacto de la huella de carbono</h1>
@@ -94,7 +94,7 @@ export const Calculator = () => {
 
       </div>
       <div id="formularito">
-        <form class="" action="index.html" method="post">
+        <form class="formulario" action="index.html" method="post">
 
           <div className="radio-buttons">
 
@@ -211,6 +211,6 @@ export const Calculator = () => {
 
     </div>
 
-    </div>
+  
   )
 }
