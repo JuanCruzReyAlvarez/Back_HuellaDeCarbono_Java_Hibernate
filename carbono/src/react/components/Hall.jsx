@@ -20,6 +20,9 @@ export const Hall = () => {
 
     const [agenteSectorial, setAgenteSectorial] = useState({});
 
+    const [organizaciones, setOrganizaciones] = useState([]);
+
+    let organizacionesDeData;
 
     // ACCESO A STORAGE
 
@@ -27,6 +30,12 @@ export const Hall = () => {
         const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
         if (isUserLogg) {
             setUser(JSON.parse(isUserLogg));
+            axios.get("http://localhost:8080/organizaciones").then(([data]) => {
+                console.log("funciono el get a organizaciones", data)
+                setOrganizaciones(data)
+            }).catch(error => {
+                console.log(error)
+            })
         }
     }, []);
 
@@ -54,7 +63,7 @@ export const Hall = () => {
         })
     }
 
-
+    
 
     // FUNCIONES js ENVIO FORMS HALL    -> Le devuelvo objeto con mensajito que slaio todo bien.
 
@@ -86,6 +95,26 @@ export const Hall = () => {
             console.log(error)
         })
     }
+
+    const handSelectSector = (e) => {
+
+        if(organizacionesDeData === undefined){
+            
+            axios.post("http://localhost:8080/sector", JSON.stringify(e.target.value)).then((data) => {
+
+                console.log("funciono", data)
+    
+            }).catch(error => {
+                console.log(error)
+            })
+        }
+
+        
+
+        e.preventDefault();
+        
+       
+      }
 
 
     /*
@@ -238,13 +267,23 @@ export const Hall = () => {
                                     name="Apellido"
 
                                 />
-                                <input
-                                    type="text"
-                                    placeholder="DESPLEGABLE CON ORGANIZACIONES "
-                                    name="Lista organizaciones"
 
+                                 <h2>Elegir Organizacion</h2> 
+                                <select  id="ElejirOrganizacion" name="rol" onChange = {handSelectSector}>
+                                    {
+                                        organizaciones.length?( 
+                                        organizaciones.map((item)=>{
+                                            return (
+                                                
+                                                <option value={item.nombre}>{item.nombre}</option>
 
-                                />
+                                            )
+                                        })
+                                    ):  <option>No hay Organizaciones</option> 
+                                    }
+
+                                </select>
+
                                 <input
                                     type="text"
                                     placeholder="DESPLEGABLE CON SECTORES "

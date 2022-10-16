@@ -3,14 +3,14 @@
     padding:0;
   }
   
-  h1 {
+  .h1 {
     font-size: 2em;
     font-family: "Core Sans N W01 35 Light";
     font-weight: normal;
     margin: .67em 0;
     display: block;
   }
-  h2 {
+  .h2 {
     font-size: 1.5em;
     font-family: "Core Sans N W01 35 Light";
     font-weight: normal;
@@ -35,7 +35,7 @@
       display: block;
   }
   
-  img {
+  .img {
       margin-bottom: 20px;
   }
   
@@ -136,7 +136,7 @@
     border-radius: 2px;
   }
   
-  select,
+  .select,
   textarea,
   input[type="text"],
   input[type="password"],
@@ -148,7 +148,7 @@
     -webkit-transition: background-position 0.2s, background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
     transition: background-position 0.2s, background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
   }
-  select:hover,
+  .select:hover,
   textarea:hover,
   input[type="text"]:hover,
   input[type="password"]:hover,
@@ -157,7 +157,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     color: rgba(255, 255, 255, 0.7);
   }
-  select:focus,
+  .select:focus,
   textarea:focus,
   input[type="text"]:focus,
   input[type="password"]:focus,

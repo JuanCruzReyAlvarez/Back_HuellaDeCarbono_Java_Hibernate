@@ -24,6 +24,11 @@ public class HttpContext {
         return this;
     }
 
+    public HttpContext setip() {
+        Spark.ipAddress("127.0.0.1");
+        return this;
+    }
+
     public HttpContext setStaticFilesLocation(String dir) {
         Spark.staticFiles.location(dir);
         return this;

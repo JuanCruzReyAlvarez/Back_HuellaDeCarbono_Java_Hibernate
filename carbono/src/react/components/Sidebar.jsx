@@ -58,7 +58,7 @@ export const Sidebar = () => {
 
                     {/* <!-- Rol de Agente Sectorial --> */}
                     {usuario ? (
-                        usuario.token && usuario.rol === "AGENTESECTORIAL" ? (
+                        usuario.token && usuario.rol === "AGENTE_SECTORIAL" ? (
                             <>
                                 <li>Reportes</li>
                                 <li>Recomendaciones</li>
@@ -104,7 +104,7 @@ export const Sidebar = () => {
                 </ul>
             </div>
             <div className="contenido">
-                <Calculator />
+                
             </div>
         </div>
     );

@@ -7,10 +7,9 @@ import dds.tp.carbono.http.dto.org.contactsDTO;
 
 import dds.tp.carbono.http.controllers.Controller;
 
-import dds.tp.carbono.http.exceptions.HttpException;
 
 import dds.tp.carbono.http.utils.Uri;
-import dds.tp.carbono.services.auth.ContactsService;
+import dds.tp.carbono.services.organizacion.ContactsService;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
@@ -18,7 +17,6 @@ import spark.TemplateEngine;
 
 public class ContactsController extends Controller {
         
-   
     private ContactsService service;
 
     public ContactsController(ContactsService contactsService) {

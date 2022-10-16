@@ -32,6 +32,7 @@ public class Routes {
         define(Uri.ORG_METRICS, "/metrics")),
         define(Uri.AGENTE_SECTORIAL, "/agente",
         define(Uri.AGENTE_SECTORIAL_HUELLA, "/huella")));
+        define(Uri.CONTACTS, "/contacts");
     // ------------------------------------------------------------------------------- Dto
         define(Uri.LOCALIDAD, "/localidad");    
         define(Uri.MUNICIPIO, "/municipio");

@@ -10,14 +10,16 @@ import dds.tp.carbono.http.controllers.auth.LoginController;
 import dds.tp.carbono.http.controllers.auth.RegisterController;
 import dds.tp.carbono.http.controllers.member.trayectos.PointController;
 import dds.tp.carbono.http.controllers.member.trayectos.TrayectosController;
+import dds.tp.carbono.http.controllers.org.ContactsController;
 import dds.tp.carbono.http.controllers.org.OrgMetricsController;
 import dds.tp.carbono.http.controllers.org.OrganizacionController;
 import dds.tp.carbono.services.agenteSectorial.AsignadorDeAgentesSectoriales;
 import dds.tp.carbono.services.auth.HallMiembroService;
 import dds.tp.carbono.services.auth.HallOrganizacionService;
 import dds.tp.carbono.services.auth.SolicitadorDeVinculacionService;
+import dds.tp.carbono.services.organizacion.ContactsService;
 import dds.tp.carbono.services.organizacion.OrganizacionService;
-import dds.tp.carbono.services.auth.ContactsService;
+import dds.tp.carbono.services.auth.LoginService;
 import dds.tp.carbono.services.auth.RegisterService;
 
 import spark.TemplateEngine;
@@ -34,6 +36,7 @@ public class Server implements SparkApplication {
     public void init() {
 
         HttpContext http = new HttpContext(); 
+        http.setip();
         IController[] controllers = registerControllers(); 
 
         http.setPort(PORT)
@@ -48,7 +51,7 @@ public class Server implements SparkApplication {
 
     private IController[] registerControllers() {
         return new IController[] {
-            new LoginController(new ContactsService()),
+            new LoginController(new LoginService()),
             new RegisterController(new RegisterService(new InsecurePasswordCheckerBuilder())),
             new OrganizacionController(new OrganizacionService()),
             new HallController( new HallMiembroService(),
@@ -60,7 +63,8 @@ public class Server implements SparkApplication {
             new TrayectosController(),
             new PointController(),
             new FactorEmisionController(),
-            new CalcuarHuellaController()
+            new CalcuarHuellaController(),
+            new ContactsController(new ContactsService())
         };
     }
 }
