@@ -1,6 +1,5 @@
 package dds.tp.carbono.entities.huella;
 
-import java.util.List;
 
 import dds.tp.carbono.entities.organization.metrics.TipoActividad;
 import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;

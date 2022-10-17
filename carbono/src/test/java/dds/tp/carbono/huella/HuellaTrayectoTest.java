@@ -15,7 +15,6 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
-import dds.tp.carbono.entities.huella.BuscadorFactorEmision;
 import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.entities.huella.UnidadFE;
 import dds.tp.carbono.entities.member.Tramo;

@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-import dds.tp.carbono.entities.huella.BuscadorFactorEmision;
 import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.huella.UnidadFE;

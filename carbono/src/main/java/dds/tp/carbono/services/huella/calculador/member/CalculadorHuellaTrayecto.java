@@ -1,6 +1,6 @@
 package dds.tp.carbono.services.huella.calculador.member;
 
-import dds.tp.carbono.entities.huella.BuscadorFactorEmision;
+
 import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.member.Tramo;

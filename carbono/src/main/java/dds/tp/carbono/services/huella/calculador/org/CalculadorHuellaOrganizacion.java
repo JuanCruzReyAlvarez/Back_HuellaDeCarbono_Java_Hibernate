@@ -3,7 +3,6 @@ package dds.tp.carbono.services.huella.calculador.org;
 import java.util.ArrayList;
 import java.util.List;
 
-import dds.tp.carbono.entities.huella.BuscadorFactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;

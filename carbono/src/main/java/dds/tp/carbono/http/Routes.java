@@ -21,6 +21,7 @@ public class Routes {
         define(Uri.REQUEST, "/request"),
         define(Uri.MOD_REQUEST, "/modrequest"),
         define(Uri.AGREGAR_SECTORES, "/addsector"),
+        define(Uri.SOL_MIEMBRO, "/solMiembro"),
     // ------------------------------------------------------------------------------- Huella
         define(Uri.CALCULATOR, "/calculators"),
     // ------------------------------------------------------------------------------- Dto 

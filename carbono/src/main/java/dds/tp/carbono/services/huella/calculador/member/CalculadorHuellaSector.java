@@ -2,7 +2,6 @@ package dds.tp.carbono.services.huella.calculador.member;
 
 import java.util.List;
 
-import dds.tp.carbono.entities.huella.BuscadorFactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.member.Trayecto;
 import dds.tp.carbono.entities.organization.IndicadorHCSector;

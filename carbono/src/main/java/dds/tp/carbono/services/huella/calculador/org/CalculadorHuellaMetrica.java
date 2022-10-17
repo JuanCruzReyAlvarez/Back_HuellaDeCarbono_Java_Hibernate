@@ -1,6 +1,5 @@
 package dds.tp.carbono.services.huella.calculador.org;
 
-import dds.tp.carbono.entities.huella.BuscadorFactorEmision;
 import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.huella.KilogramoUnidadHC;

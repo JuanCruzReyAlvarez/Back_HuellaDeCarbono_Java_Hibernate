@@ -25,5 +25,6 @@ public enum Uri {
     REQUEST,
     MOD_REQUEST,
     AGREGAR_SECTORES,
-    CALCULATOR
+    CALCULATOR,
+    SOL_MIEMBRO
 }

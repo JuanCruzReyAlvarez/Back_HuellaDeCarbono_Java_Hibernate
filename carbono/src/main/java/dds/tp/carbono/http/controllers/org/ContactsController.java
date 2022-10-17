@@ -1,6 +1,5 @@
 package dds.tp.carbono.http.controllers.org;
 
-import java.util.List;
 
 import dds.tp.carbono.entities.organization.notifications.Contacts;
 

@@ -61,7 +61,7 @@ function passwordValidation(passwordInput) {
                         </div>
                     <form action="/action_page.php"/>
                     <div className="form-form-1">
-                        <input type="text" id="fname" name="firstname" placeholder="Nombre/s"/>
+                        <input type="text" id="fname" name="firstname" placeholder="DESPLEGABLE ORRGANIZAZION"/>
                     </div>
                     <div className="form-form-2">
                         <input type="text" id="lname" name="lastname" placeholder="Apellido/s"/>
