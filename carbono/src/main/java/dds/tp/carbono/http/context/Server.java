@@ -25,9 +25,13 @@ import dds.tp.carbono.services.organizacion.OrganizacionService;
 import dds.tp.carbono.services.auth.LoginService;
 import dds.tp.carbono.services.auth.RegisterService;
 import dds.tp.carbono.http.controllers.puntoGeografico.ProvinciaController;
+import dds.tp.carbono.repository.member.MiembroRepository;
+import dds.tp.carbono.repository.organization.OrganizacionRepository;
+import dds.tp.carbono.repository.organization.SectorRepository;
 import dds.tp.carbono.http.controllers.puntoGeografico.LocalidadController;
 import dds.tp.carbono.http.controllers.puntoGeografico.MunicipioController;
-
+import dds.tp.carbono.http.controllers.huella.CalculatorController;
+import dds.tp.carbono.http.controllers.huella.CalculatorService;
 import spark.TemplateEngine;
 import spark.servlet.SparkApplication;
 import spark.template.mustache.MustacheTemplateEngine;
@@ -73,7 +77,8 @@ public class Server implements SparkApplication {
             new PointController(),
             new FactorEmisionController(),
             new CalcuarHuellaController(),
-            new ContactsController(new ContactsService())
+            new ContactsController(new ContactsService()),
+            new CalculatorController(new CalculatorService(new OrganizacionRepository(),new SectorRepository(),new MiembroRepository()))
         };
     }
 }

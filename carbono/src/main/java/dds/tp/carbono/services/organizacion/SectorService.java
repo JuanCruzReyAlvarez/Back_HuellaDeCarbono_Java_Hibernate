@@ -14,6 +14,10 @@ public class SectorService {
     public Sector crear(Sector sector) throws Exception {
         return this.repository.guardar(sector);         
     }
+
+    public Sector getByName(String nombre){
+        return this.repository.getByName(nombre);
+    }
     
     /*
     public SolicitudVinculacion getByUser(Usuario user) {

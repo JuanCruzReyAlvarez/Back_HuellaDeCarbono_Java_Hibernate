@@ -7,6 +7,7 @@ import dds.tp.carbono.entities.huella.BuscadorFactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
+import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 import dds.tp.carbono.services.huella.calculador.org.commands.HuellaCommand;
 import dds.tp.carbono.services.huella.calculador.org.commands.HuellaParaMetricasCommand;
 import dds.tp.carbono.services.huella.calculador.org.commands.HuellaParaTrayectosCommand;
@@ -18,21 +19,21 @@ public class CalculadorHuellaOrganizacion {
 
     @Getter @Setter private PeriodoDeImputacion periodo;
     @Getter @Setter private Organizacion organizacion;
-    @Getter @Setter public BuscadorFactorEmision buscador;
+    @Getter @Setter public FactorEmisionRepository repository;
    
     List<HuellaCommand> diferentesCalculosParaOrg; 
 
-    public CalculadorHuellaOrganizacion(Organizacion org, PeriodoDeImputacion periodo, BuscadorFactorEmision buscador) {
+    public CalculadorHuellaOrganizacion(Organizacion org, PeriodoDeImputacion periodo, FactorEmisionRepository repository) {
         this.periodo = periodo;
         this.organizacion = org;
-        this.buscador = buscador;
+        this.repository = repository;
         
     
         TrayectosCompartidosFilter trayectosFilter = new TrayectosCompartidosFilter
         (organizacion.buscador.buscarMiembroPorOrganizacion((organizacion)));
 
         this.diferentesCalculosParaOrg = new ArrayList<HuellaCommand>() {{
-            add(new HuellaParaMetricasCommand(org.getMetricas(periodo),buscador));
+            add(new HuellaParaMetricasCommand(org.getMetricas(periodo),repository));
             add(new HuellaParaTrayectosCommand(trayectosFilter.filtrarCompartidos(), periodo));
         }};
     } 

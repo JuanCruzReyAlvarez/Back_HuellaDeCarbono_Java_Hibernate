@@ -33,4 +33,12 @@ public class SectorRepository {
         return this.dao.findOne(id);
     }
 */
+
+    public Sector getByName(String nombre) {
+        return (Sector) this.dao.getAll().stream().filter(o -> o.getNombre().equals(nombre));
+    }
+
+    public Sector getById(Integer id) {
+        return this.dao.findOne(id);
+    }
 }

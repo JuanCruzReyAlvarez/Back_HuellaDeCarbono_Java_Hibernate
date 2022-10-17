@@ -35,7 +35,7 @@ public class ContactsService {
 
 
     public List<Contacts> getAll() {
-        return null;
+        return this.repository.getAll();
     }
 
 }

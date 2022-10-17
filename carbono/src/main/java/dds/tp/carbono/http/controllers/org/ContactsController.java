@@ -50,7 +50,7 @@ public class ContactsController extends Controller {
         }
     }
 
-
+    /* 
     private String  getContacts(Request rq, Response rs) throws Exception {
         try{
                 List<Contacts> organizaciones = service.getAll();            
@@ -58,5 +58,5 @@ public class ContactsController extends Controller {
             }catch(Exception exc){
                 throw new Exception("In catch Exception geting Contacts was fail: ");
             }  
-    }
+    }*/
 }

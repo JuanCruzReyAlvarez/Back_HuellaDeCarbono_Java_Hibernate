@@ -6,6 +6,7 @@ import java.util.Set;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.organization.Clasificacion;
 import dds.tp.carbono.entities.organization.Organizacion;
+import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 import dds.tp.carbono.services.huella.calculador.org.CalculadorHuellaOrganizacion;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,7 +36,7 @@ public class reporteOrganizacionesClasificacion extends reporte {
         HuellaCarbono hc = new HuellaCarbono();
 
         for(Organizacion org: this.organizaciones){
-            CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(org, this.getPeriodoDeImputacion(), this.getBuscador());
+            CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(org, this.getPeriodoDeImputacion(), new FactorEmisionRepository());
             hc = hc.suma(calculador.calcula());
         }
         

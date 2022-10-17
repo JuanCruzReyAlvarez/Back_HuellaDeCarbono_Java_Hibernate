@@ -21,6 +21,13 @@ public class Routes {
         define(Uri.REQUEST, "/request"),
         define(Uri.MOD_REQUEST, "/modrequest"),
         define(Uri.AGREGAR_SECTORES, "/addsector"),
+    // ------------------------------------------------------------------------------- Huella
+        define(Uri.CALCULATOR, "/calculators"),
+    // ------------------------------------------------------------------------------- Dto 
+        define(Uri.LOCALIDAD, "/localidad"),    
+        define(Uri.MUNICIPIO, "/municipio"),
+    // -------------------------------------------------------------------------------- organization  
+        define(Uri.ORGANIZACION, "/organizacion",
     // -------------------------------------------------------------------------------- admin
         define(Uri.ADMIN, "/admin", 
         define(Uri.ADMIN_GEOINFO, "/geoInfoAdmin"),  
@@ -31,15 +38,14 @@ public class Routes {
         define(Uri.MEMBER_POINTS_AUTOCOMPLETE, "/autocomplete")), 
         define(Uri.MEMBER_TRAYECTOS, "/trayectos",
         define(Uri.MEMBER_TRAYECTOS_AUTOCOMPLETE, "/autocomplete"))),
-    // -------------------------------------------------------------------------------- organization  
-        define(Uri.ORGANIZACION, "/organizacion",
+    
+
+
         define(Uri.ORG_METRICS, "/metrics")),
         define(Uri.AGENTE_SECTORIAL, "/agente",
         define(Uri.AGENTE_SECTORIAL_HUELLA, "/huella")));
         define(Uri.CONTACTS, "/contacts");
-    // ------------------------------------------------------------------------------- Dto 
-        define(Uri.LOCALIDAD, "/localidad");    
-        define(Uri.MUNICIPIO, "/municipio");
+  
           
 
 

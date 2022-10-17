@@ -8,6 +8,8 @@ import dds.tp.carbono.entities.member.Trayecto;
 import dds.tp.carbono.entities.organization.IndicadorHCSector;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
+import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
+import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 import dds.tp.carbono.services.huella.calculador.CalculadorHuella;
 import dds.tp.carbono.services.huella.calculador.org.filter.TrayectosCompartidosFilter;
 import lombok.Getter;
@@ -17,10 +19,12 @@ public class CalculadorHuellaSector extends CalculadorHuella{
 
     @Getter @Setter private Sector sector;
     @Getter @Setter private Organizacion org;
+    @Getter @Setter private PeriodoDeImputacion periodo;
 
-    public CalculadorHuellaSector(Sector sector, BuscadorFactorEmision buscador){
+    public CalculadorHuellaSector(Sector sector, FactorEmisionRepository buscador, PeriodoDeImputacion periodo){
         this.sector = sector;
         this.buscador = buscador;
+        this.periodo = periodo;
     }
 
     @Override
@@ -48,7 +52,7 @@ public class CalculadorHuellaSector extends CalculadorHuella{
         HuellaCarbono hc = new HuellaCarbono();
 
         for(Trayecto trayecto: trayectosFiltrados){
-            CalculadorHuellaMiembro calculador = new CalculadorHuellaMiembro(trayecto.getMiembro(), buscador);
+            CalculadorHuellaMiembro calculador = new CalculadorHuellaMiembro(trayecto.getMiembro(), buscador, periodo);
             hc = hc.suma(calculador.calcular());
         }
         

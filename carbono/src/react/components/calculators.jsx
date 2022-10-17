@@ -100,20 +100,20 @@ export const Calculator = () => {
 
             <div id="calculitoOrg">
               <div class="radio-item">
-                <input type="radio" name="tipo-calculo" value="" />
+                <input type="radio" name="tipo-calculo" value="ORG" />
                 <label for="">HC de la organizacion</label>
               </div>
             </div>
 
             <div id="calculitoSector">
               <div class="radio-item">
-                <input type="radio" name="tipo-calculo" value="" />
+                <input type="radio" name="tipo-calculo" value="SECTOR" />
                 <label for="">Calculo sobre un sector</label>
               </div>
             </div>
             <div id="calculitoMiembro">
               <div class="radio-item">
-                <input type="radio" name="tipo-calculo" value="" />
+                <input type="radio" name="tipo-calculo" value="MIEMBRO" />
                 <label for="">Calculo sobre un miembro</label>
               </div>
             </div>
@@ -179,7 +179,7 @@ export const Calculator = () => {
 
             <div class="grid-item">
               <label for="">Inicio del periodo</label>
-              <input type="text" name="" value="" class="text-input" />
+              <input type="text"  placeholder="formato : DD/MM/AAAA" name="" value="" class="text-input" />
             </div>
 
             <div class="grid-item">

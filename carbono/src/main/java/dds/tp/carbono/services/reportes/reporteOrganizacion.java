@@ -10,6 +10,7 @@ import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
 import dds.tp.carbono.entities.organization.metrics.Periodicidad;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
+import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 import dds.tp.carbono.services.huella.calculador.member.CalculadorHuellaSector;
 import dds.tp.carbono.services.huella.calculador.org.CalculadorHuellaOrganizacion;
 import lombok.Getter;
@@ -26,7 +27,7 @@ public class reporteOrganizacion extends reporte{
 
     @Override
     public HuellaCarbono obtenerHuellaTotal() throws Exception {
-        CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(this.organizacion, this.getPeriodoDeImputacion(), this.getBuscador());
+        CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(this.organizacion, this.getPeriodoDeImputacion(), new FactorEmisionRepository());
         return calculador.calcula();
     }
 
@@ -43,7 +44,7 @@ public class reporteOrganizacion extends reporte{
 
         HuellaCarbono hc = new HuellaCarbono();
 
-        CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(this.organizacion, periodo, this.getBuscador());
+        CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(this.organizacion, periodo, new FactorEmisionRepository() );
         hc = calculador.calcula();
 
         this.listaHCEvolucion.add(i, hc);
@@ -54,12 +55,13 @@ public class reporteOrganizacion extends reporte{
     }
     
 
-    public List<IndicadorHCSector> composicion() throws Exception {
+    public List<IndicadorHCSector> composicion(LocalDate fecha) throws Exception {
         
         Set<Sector> sectores = this.getOrganizacion().getSectores();
+        PeriodoDeImputacion periodo = new PeriodoDeImputacion(fecha, Periodicidad.MENSUAL);
         
         for( Sector s: sectores){
-            CalculadorHuellaSector calculador = new CalculadorHuellaSector(s, getBuscador());
+            CalculadorHuellaSector calculador = new CalculadorHuellaSector(s, new FactorEmisionRepository(), periodo);
             IndicadorHCSector indicador = calculador.getIndicador();
             this.indicadoresSector.add(indicador);
         }

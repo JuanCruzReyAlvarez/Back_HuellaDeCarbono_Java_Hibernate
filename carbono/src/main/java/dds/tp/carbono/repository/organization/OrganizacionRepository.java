@@ -57,4 +57,14 @@ public class OrganizacionRepository {
     public List<Organizacion> getAll() {
         return this.dao.getAll();
     }
+
+    public Organizacion getByRazonSocial(String razonSocial) {
+        return this.dao.getAll().stream()
+            .filter(org -> org.getRazonSocial().equals(razonSocial))
+            .collect(Collectors.toList()).get(0);
+    }
+
+    public Organizacion getById(Integer id) {
+        return this.dao.findOne(id);
+    }
 }

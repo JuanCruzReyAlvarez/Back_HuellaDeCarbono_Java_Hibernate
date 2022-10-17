@@ -8,13 +8,14 @@ import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.member.Trayecto;
 import dds.tp.carbono.entities.organization.metrics.Periodicidad;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
+import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 import dds.tp.carbono.services.huella.calculador.member.CalculadorHuellaTrayecto;
 import lombok.Setter;
 
 public class HuellaParaTrayectosCommand implements HuellaCommand {
 
     private List<Trayecto> trayectos;
-    @Setter private BuscadorFactorEmision buscador;
+    @Setter private FactorEmisionRepository buscador;
     
     public HuellaParaTrayectosCommand(List<Trayecto> trayectos, PeriodoDeImputacion periodo) {
         

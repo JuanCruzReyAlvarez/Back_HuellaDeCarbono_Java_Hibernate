@@ -7,6 +7,7 @@ import dds.tp.carbono.entities.member.Tramo;
 import dds.tp.carbono.entities.member.Trayecto;
 import dds.tp.carbono.entities.organization.metrics.TipoActividad;
 import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
+import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 import dds.tp.carbono.services.huella.calculador.CalculadorHuella;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CalculadorHuellaTrayecto extends CalculadorHuella {
     @Getter @Setter private Trayecto trayecto;
 
-    public CalculadorHuellaTrayecto(Trayecto trayecto,BuscadorFactorEmision buscador) {
+    public CalculadorHuellaTrayecto(Trayecto trayecto,FactorEmisionRepository buscador) {
         this.trayecto = trayecto;
         this.buscador = buscador;
     }
@@ -38,7 +39,7 @@ public class CalculadorHuellaTrayecto extends CalculadorHuella {
         try {
             TipoDeConsumo tipoConsumo = tramo.getTransporte().getCombustible();
             TipoActividad actividad = TipoActividad.Trayecto_Miembros;
-            FactorEmision factorEmision = buscador.buscarPorConsumoActividad(tipoConsumo, actividad);
+            FactorEmision factorEmision = buscador.get(tipoConsumo, actividad);
             huellaTramo.setValor(tramo.obtenerDistancia() * factorEmision.getValor());
         } catch (Exception ex) {
             log.error("Error al calcular HC para tramo", tramo, ex);

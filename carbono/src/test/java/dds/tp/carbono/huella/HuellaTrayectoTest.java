@@ -34,6 +34,7 @@ import dds.tp.carbono.entities.transport.TipoTransportePublico;
 import dds.tp.carbono.entities.transport.TipoVehiculoParticular;
 import dds.tp.carbono.entities.transport.TransportePublico;
 import dds.tp.carbono.entities.transport.VehiculoParticular;
+import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 //import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 import dds.tp.carbono.services.distancia.CalculadorDistanciaServicioExterno;
 import dds.tp.carbono.services.huella.calculador.member.CalculadorHuellaTrayecto;
@@ -46,7 +47,7 @@ public class HuellaTrayectoTest {
     private EstacionesData data = null;
     //private FactorEmisionRepository repositoryMock;
     private CalculadorDistanciaServicioExterno calculadorMock;
-    private BuscadorFactorEmision buscador;
+    private FactorEmisionRepository buscador;
 
     private PuntoGeografico puntoUno = this.buildPuntoGeografico(1, "cordoba", "1100",1);
     private PuntoGeografico puntoDos = this.buildPuntoGeografico(2, "cordoba", "1200",1);
@@ -83,7 +84,7 @@ public class HuellaTrayectoTest {
         factores.add(factorNafta);
         factores.add(factorDiesel);
 
-        this.buscador = new BuscadorFactorEmision(factores);
+        this.buscador = new FactorEmisionRepository();
     }
 
 

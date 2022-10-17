@@ -23,11 +23,12 @@ import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
 import dds.tp.carbono.entities.organization.metrics.TipoActividad;
 import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
 import dds.tp.carbono.entities.organization.metrics.Unidad;
+import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 import dds.tp.carbono.services.huella.calculador.org.CalculadorHuellaMetrica;
 
 public class HuellaMetricaTest {
     
-    private BuscadorFactorEmision buscador;
+    private  FactorEmisionRepository buscador;
 
     //@Before
     //public void inicializarRepositoryMock(){
@@ -43,7 +44,7 @@ public class HuellaMetricaTest {
 
         factores.add(factorGasNatural);
 
-        this.buscador = new BuscadorFactorEmision(factores);
+        this.buscador =new FactorEmisionRepository();
     }
 
     @Test

@@ -7,15 +7,17 @@ import dds.tp.carbono.entities.huella.KilogramoUnidadHC;
 import dds.tp.carbono.entities.organization.metrics.Actividad;
 import dds.tp.carbono.entities.organization.metrics.DatoActividad;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
+import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 import dds.tp.carbono.services.huella.calculador.CalculadorHuella;
 
 public class CalculadorHuellaMetrica extends CalculadorHuella {
     
     private MetricaOrganizacion metricaOrganizacion;
+    private FactorEmisionRepository repository;
 
-    public CalculadorHuellaMetrica(MetricaOrganizacion metrica, BuscadorFactorEmision buscador) {
+    public CalculadorHuellaMetrica(MetricaOrganizacion metrica, FactorEmisionRepository repository) {
         this.metricaOrganizacion = metrica;
-        this.buscador = buscador;
+        this.repository = repository;
     }
 
     @Override
@@ -40,7 +42,7 @@ public class CalculadorHuellaMetrica extends CalculadorHuella {
 
     private FactorEmision getFactorEmision(MetricaOrganizacion metrica){
         Actividad actividad = metrica.getActividad();
-        return buscador.buscarPorConsumoActividad(actividad.getTipoDeConsumo(), actividad.getTipoActividad());       
+        return repository.get(actividad.getTipoDeConsumo(), actividad.getTipoActividad());       
     }
 
     private DatoActividad getDatoActividad(MetricaOrganizacion metrica){

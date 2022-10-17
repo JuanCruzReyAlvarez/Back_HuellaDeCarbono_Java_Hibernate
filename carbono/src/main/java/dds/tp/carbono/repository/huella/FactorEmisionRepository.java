@@ -47,4 +47,6 @@ public class FactorEmisionRepository {
     public List<FactorEmision> getAll() {
         return this.dao.getAll();
     }
+
+   
 }

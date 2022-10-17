@@ -34,6 +34,10 @@ public class MiembroRepository {
         return miembros;
     }
 
+    public Miembro getById(Integer id){
+        return this.miembroDao.findOne(id);
+    }
+
     public List<Miembro> getBySector(Sector sector) {
 
         List<Miembro> miembros = new ArrayList<Miembro>();
