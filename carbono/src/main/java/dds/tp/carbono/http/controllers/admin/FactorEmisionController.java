@@ -10,7 +10,9 @@ import java.util.stream.Stream;
 import org.eclipse.jetty.http.HttpStatus;
 
 import dds.tp.carbono.entities.auth.Rol;
+import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.entities.huella.UnidadFE;
+import dds.tp.carbono.entities.organization.metrics.DatoActividad;
 import dds.tp.carbono.entities.organization.metrics.TipoActividad;
 import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
 import dds.tp.carbono.http.controllers.AuthorizationMiddleware;
@@ -29,7 +31,7 @@ import spark.TemplateEngine;
 
 public class FactorEmisionController extends AuthorizationMiddleware {
 
-    private static final String VIEW_FILE = "admin/factores.emision.html";
+    
     private EditorFactoresEmision editorFE;
 
     public FactorEmisionController() { 
@@ -39,58 +41,58 @@ public class FactorEmisionController extends AuthorizationMiddleware {
     
     @Override
     public void routes(TemplateEngine engine) {
-        Spark.get(path(Uri.ADMIN_FACTOR_EMISION), (rq, rs) -> this.view(VIEW_FILE, getList(getViewData())), engine);
-        Spark.post(path(Uri.ADMIN_FACTOR_EMISION), (rq, rs) -> this.createOrUpdate(rq, rs), engine);
-    }
-
-    private ModelAndView createOrUpdate(Request rq, Response rs) throws HttpException {
-        Map<String, Object> data = getViewData();
+        Spark.post(path(Uri.ADMIN_FACTOR_EMISION), (rq, rs) -> this.getFe(rq, rs));
+        Spark.get(path(Uri.ADMIN_FACTOR_EMISION), (rq, rs) -> this.createOrUpdate(rq, rs));
         
+    }
+
+    private Object getFe(Request rq, Response rs) throws Exception {
+
+        try{
+            List<FactorEmision> fes = editorFE.getAll();            
+            return json(fes); 
+        }catch(Exception exc){
+            throw new Exception("In catch Exception geting Organizaciones was fail: ");
+        } 
+
+    }
+
+    private String createOrUpdate(Request rq, Response rs) throws Exception {
+       
+        FactorEmisionDTO input = getBody(rq,FactorEmisionDTO.class, new FactorEmisionDTOValidator());
+
         try {
-            Map<String, String> input = formFields(rq);
-            FactorEmisionDTO feDTO = validateInput(parseFEfrom(input), new FactorEmisionDTOValidator());
-            editorFE.guardar(feDTO.toFactorEmision());
-            data.put("success", "Factor de Emision guardado correctamente");
+            
+            FactorEmision fe = set(input.getTipoActividad(), input.getTipoConsumo(), input.getUnidad(), input.getValor(), input.getID());
+            editorFE.guardar(fe);
+
+            return json(goodAnswer());
+            
         } catch (BadResquestException badRequest) {
-            data.put("errors", badRequest.getErrors());
+            
             rs.status(HttpStatus.BAD_REQUEST_400);
-        } catch (Exception error) {
-            data.put("errors", Arrays.asList(new ErrorDTO("Error", error.getMessage())));
-            rs.status(HttpStatus.INTERNAL_SERVER_ERROR_500);
-        }
-           
-        data = getList(data);
-        return this.view(VIEW_FILE, data);
-    }
-
-    private Map<String, Object> getList(Map<String, Object> data) {
-        List<FactorEmisionDTO> list = this.editorFE.obtenerTodos()
-                            .stream()
-                            .map(fe -> new FactorEmisionDTO(fe))
-                            .collect(Collectors.toList());
-
-        data.put("showFactoresEmision", list.size() > 0);
-        data.put("factoresEmision", list);
-        return data;
-    }
-
-    private FactorEmisionDTO parseFEfrom(Map<String, String> input) {
-        try {
-            return new FactorEmisionDTO(
-                input.get("actividad"), 
-                input.get("tipoConsumo"), 
-                input.get("unidad"), 
-                input.get("valor"));
-        } catch (NumberFormatException ex) {
-            return null;
+                  
+       
+        return json(goodAnswer());
         }
     }
 
-    private Map<String, Object> getViewData() {
-        return new HashMap<String, Object>() {{
-            put("actividades", Stream.of(TipoActividad.values()).map(Enum::toString).collect(Collectors.toList())); 
-            put("tiposConsumo", Stream.of(TipoDeConsumo.values()).map(Enum::name).collect(Collectors.toList()));
-            put("unidades", Stream.of(UnidadFE.values()).map(Enum::toString).collect(Collectors.toList()));
-        }};
+
+
+
+
+    private FactorEmision set(String tipoActividad, String tipoConsumo, String unidad, String valor, String id) {
+        FactorEmision fe = new FactorEmision();
+
+        fe.setId(Integer.parseInt(id));
+        fe.setValor(Double.parseDouble(valor));
+        fe.setUnidad(UnidadFE.valueOf(unidad.toUpperCase()));
+        fe.setTipoActividad(TipoActividad.valueOf(tipoActividad.toUpperCase()));
+        fe.setTipoDeConsumo(TipoDeConsumo.valueOf(tipoConsumo.toUpperCase()));
+
+        return fe;
     }
 }
+
+    
+   

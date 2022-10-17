@@ -54,7 +54,7 @@ public class LoginController extends Controller {
             System.out.println(logger.getPassword());
 
 
-            System.out.println("sigue en try3");
+           
             SessionCookie session = loginService.login(logger.getUsername(), logger.getPassword());
 
      

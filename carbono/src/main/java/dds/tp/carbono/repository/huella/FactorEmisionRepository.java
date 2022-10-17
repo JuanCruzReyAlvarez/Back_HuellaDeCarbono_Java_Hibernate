@@ -25,24 +25,24 @@ public class FactorEmisionRepository {
                        .orElse(null);
     }
 
+    public FactorEmision getById(Integer id) {
+        return this.dao.getAll()
+                       .stream()
+                       .filter(fe -> fe.getId().equals(id) )
+                       .findFirst()
+                       .orElse(null);
+    }
+
     public FactorEmision guardarOActualizar(FactorEmision fe) {
-        FactorEmision factorEmision = this.get(fe.getTipoDeConsumo(), fe.getTipoActividad());
+        FactorEmision factorEmision = this.getById(fe.getId());
 
         if (factorEmision == null)
             return this.dao.save(fe);
         else 
-            return this.actualizarValor(fe);
+             this.dao.deleteById(fe.getId());
+             return this.dao.save(fe);
     }
 
-    private FactorEmision actualizarValor(FactorEmision updated) {
-        for (FactorEmision fe : this.dao.getAll())
-            if (fe.getTipoDeConsumo().equals(updated.getTipoDeConsumo())) {
-                fe.setValor(updated.getValor());
-                return fe;
-            }
-        
-        return null;
-    }
 
     public List<FactorEmision> getAll() {
         return this.dao.getAll();

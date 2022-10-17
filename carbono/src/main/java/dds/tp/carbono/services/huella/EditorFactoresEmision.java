@@ -29,4 +29,8 @@ public class EditorFactoresEmision {
     public FactorEmision actualizarValor(FactorEmision fe) {
         return this.repository.guardarOActualizar(fe);
     }
+
+    public List<FactorEmision> getAll() {
+        return repository.getAll();
+    }
 }
