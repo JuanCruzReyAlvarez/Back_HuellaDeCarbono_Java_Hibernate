@@ -33,7 +33,8 @@ public class HallOrganizacionService {
         ubi.setAltura(altura);
 
         Pais p = new Pais(pais);
-        Provincia pr = new Provincia(provincia);
+        Provincia pr = new Provincia();
+        pr.setNombre(provincia);
         pr.setPais(p);
         Municipio m = new Municipio(municipio);
         m.setProvincia(pr);

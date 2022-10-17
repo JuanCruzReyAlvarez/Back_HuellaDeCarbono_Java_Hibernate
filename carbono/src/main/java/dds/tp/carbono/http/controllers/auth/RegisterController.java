@@ -83,5 +83,6 @@ public class RegisterController extends Controller {
             System.out.println("Error por contraseña insegura");
             throw new BadResquestException(Collections.singletonMap(PASSWORD_FIELD_NAME, INSECURE_PASSWORD_MESSAGE));
         }
+        
     }
 }

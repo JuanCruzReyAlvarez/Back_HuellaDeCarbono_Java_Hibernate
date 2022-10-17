@@ -28,7 +28,7 @@ export const RegisterSector = () => {
     function onSubmit(e) {
         e.preventDefault();
         axios
-            .post("http://localhost:8080/registerSector", JSON.stringify(sector))
+            .post("http://localhost:8080//addsector", JSON.stringify(sector))
             .then(({data}) => {
                 console.log("funciono login", data);
                 window.localStorage.setItem(

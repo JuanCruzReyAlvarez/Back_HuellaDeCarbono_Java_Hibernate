@@ -82,7 +82,8 @@ public class PointController extends Controller {
 
         public PointDTO(String pais, String provincia, String municipio, String localidad, String calle, String altura, String detalle) {
             this.pais = new Pais(pais);
-            this.provincia = new Provincia(provincia);
+            this.provincia = new Provincia();
+            this.provincia.setNombre(provincia);
             this.municipio = new Municipio(municipio);
             this.localidad = new Localidad(localidad);
             this.calle = calle;

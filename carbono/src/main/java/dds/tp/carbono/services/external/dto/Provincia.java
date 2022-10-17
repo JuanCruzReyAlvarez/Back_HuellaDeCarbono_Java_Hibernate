@@ -1,7 +1,9 @@
 package dds.tp.carbono.services.external.dto;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -20,14 +22,16 @@ public class Provincia implements GeoInfo {
     @Column
     @Getter @Setter private String nombre;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @Getter @Setter private Pais pais;
     
-  
-     public Provincia(String provincia ) {
+    public Provincia() {
+    }
+    /* public Provincia(String provincia ) {
         this.nombre = provincia;  
     }
     public Provincia( Integer id ) {
         this.id = id;  
-    }
+    }*/
+    
 }

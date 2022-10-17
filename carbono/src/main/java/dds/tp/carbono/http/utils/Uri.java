@@ -21,5 +21,8 @@ public enum Uri {
     LOCALIDAD,
     MUNICIPIO,
     PROVINCIA, 
-    CONTACTS
+    CONTACTS,
+    REQUEST,
+    MOD_REQUEST,
+    AGREGAR_SECTORES
 }

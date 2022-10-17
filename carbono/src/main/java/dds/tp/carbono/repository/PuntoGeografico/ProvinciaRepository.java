@@ -17,11 +17,17 @@ public class ProvinciaRepository {
     }
 
       public List<Provincia> getAll() {
-        return this.dao.getAll();
+        //return this.dao.getAll();
+        return this.dao.buscarTodos();
     }
+
     public void saveAll(List<Provincia> provincias) {
        this.dao.saveAll(provincias);;
     }
+
+    public void saveOne(Provincia provincia) {
+        this.dao.save(provincia);
+     }
 }
 
 

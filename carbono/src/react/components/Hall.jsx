@@ -17,8 +17,7 @@ export const Hall = () => {
     const [eleccion, setEleccion] = useState({});
 
 
-
-
+    
     const [organizaciones, setOrganizaciones] = useState([]);
 
     const [provincias, setProvincias] = useState([]);
@@ -40,8 +39,10 @@ export const Hall = () => {
     useEffect(() => {
         const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
         if (isUserLogg) {
+
             setUser(JSON.parse(isUserLogg));
-            axios.get("http://localhost:8080/organizacion").then((data) => {
+
+            axios.get("http://localhost:8080/provinciasss", JSON.stringify(usuario)).then((data) => {
                 console.log("funcionaron la sprovincias ", data)
                 setProvincias(data);
             }).catch(error => {

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+
 import dds.tp.carbono.dao.EntityManagerHelper;
 
 
@@ -44,14 +47,33 @@ public abstract class Dao<T> {
     }
 
     public List<T> getAll() {
+    
+        /*List<T> lista = castList(clazz, EntityManagerHelper.getEntityManager()
+                                                           .createQuery( "from "  + "provincia" )
+                                                           .getResultList()); //Provincia //provincia*/
+
         List<T> lista = castList(clazz, EntityManagerHelper.getEntityManager()
-                                                           .createQuery( "from " + clazz.getName() )
-                                                           .getResultList());
+                                                           .createQuery( "from "  + "organizacion" )
+                                                           .getResultList()); //Provincia //provincia
+
         return lista;
+    
     }
 
 
-	public void saveAll(List<T> entities) {
+    public List<T> buscarTodos() {
+
+    CriteriaBuilder builder = EntityManagerHelper.getEntityManager().getCriteriaBuilder();
+    CriteriaQuery<T> criterios = builder.createQuery(this.clazz);
+    criterios.from(clazz);
+    List<T> entidades = EntityManagerHelper.getEntityManager().createQuery(criterios).getResultList();
+    
+    return entidades;
+    }
+
+
+
+    public void saveAll(List<T> entities) {
 		for (T entity : entities) {
             EntityManagerHelper.beginTransaction();
             EntityManagerHelper.getEntityManager().persist(entity);

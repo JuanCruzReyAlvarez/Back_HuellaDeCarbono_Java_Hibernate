@@ -86,7 +86,8 @@ public class HallController extends Controller {
                             Usuario user= new Usuario(Integer.parseInt(inputAgSec.getId()),inputAgSec.getUsername());
                 
                             if(inputAgSec.getIdMunicipio() == null){
-                            Provincia prov = new Provincia(Integer.parseInt(inputAgSec.getIdProvincia()));
+                            Provincia prov = new Provincia();
+                            prov.setId(Integer.parseInt(inputAgSec.getIdProvincia()));
                             asignadorAgenteSectorial.asignar(prov, user);}
                             else{
                             Municipio muni =new Municipio(Integer.parseInt(inputAgSec.getIdMunicipio()));
@@ -100,7 +101,7 @@ public class HallController extends Controller {
             catch (Exception ex) {
                     System.out.println("No se pudo Asignar el Agente Sectorial");     
             }
-            return null;
+            return json(goodAnswer());
     
         } 
 

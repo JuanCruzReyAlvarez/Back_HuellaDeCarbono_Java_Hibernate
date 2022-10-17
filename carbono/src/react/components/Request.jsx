@@ -3,6 +3,7 @@ import ".././styles/Request.css";
 import _ from 'lodash';
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 
@@ -10,10 +11,23 @@ export const Request = () => {
     const [usuario, setUser] = useState({});
     const navigate = useNavigate();
 
- 
+
+    const [request, setRequest] = useState([]);
+    
+    useEffect(() => {
+            axios.get("http://localhost:8080/request", JSON.stringify(usuario)).then((data) => {
+                console.log("funcionaron las solicitdes,se pudieron traer bien.", data)
+                setRequest(data);
+            }).catch(error => {
+                console.log(error)
+            })
+        
+    }, []);
+    
+
     const aceptarSolicitud = () => {
        
-        axios.post("http://localhost:8080/request", JSON.stringify({
+        axios.post("http://localhost:8080/modrequest", JSON.stringify({
             estado : "ACEPTADO"
         })).then((data) => {
             console.log("Se acepto la solicitud correctamente", data)
@@ -22,10 +36,9 @@ export const Request = () => {
         })
 }
 
-
     const rechazarSolicitud = () => {
         
-        axios.post("http://localhost:8080/request", JSON.stringify({
+        axios.post("http://localhost:8080/modrequest", JSON.stringify({
             estado : "RECHAZADO"
         })).then((data) => {
             console.log("Se rechazo la solicitud correctamente", data)
@@ -46,6 +59,9 @@ export const Request = () => {
                 <h1 class='insetshadow'>los grandes equipos</h1>  
                 <h1 class = 'monserrat'>SOLICITUDES</h1>
                 </div>      
+
+                <h2>Elegir Organizacion</h2>
+
                 <div class="snip1265">
                     <div class="plan">
                         <header><i class="ion-ios-people"></i>

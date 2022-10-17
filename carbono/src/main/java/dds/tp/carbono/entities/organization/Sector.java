@@ -49,6 +49,11 @@ public class Sector {
     public Sector(Integer id) {
         this.id = id;
     }
+    public Sector(String nombre, String idOrg){
+        this.nombre = nombre;
+        this.organizacion = new Organizacion();
+        this.organizacion.setId(Integer.parseInt(idOrg)); 
+    }
 
     public List<Miembro> getMiembros() {
         List<Miembro> miembros = new ArrayList<Miembro>() ;

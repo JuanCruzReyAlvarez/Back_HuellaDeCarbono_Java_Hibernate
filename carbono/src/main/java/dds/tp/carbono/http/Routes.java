@@ -17,6 +17,10 @@ public class Routes {
         define(Uri.LOGIN, "/login"),
         define(Uri.REGISTER, "/register"),
         define(Uri.HALL, "/hall"),
+        define(Uri.PROVINCIA, "/provinciasss"),
+        define(Uri.REQUEST, "/request"),
+        define(Uri.MOD_REQUEST, "/modrequest"),
+        define(Uri.AGREGAR_SECTORES, "/addsector"),
     // -------------------------------------------------------------------------------- admin
         define(Uri.ADMIN, "/admin", 
         define(Uri.ADMIN_GEOINFO, "/geoInfoAdmin"),  
@@ -33,8 +37,7 @@ public class Routes {
         define(Uri.AGENTE_SECTORIAL, "/agente",
         define(Uri.AGENTE_SECTORIAL_HUELLA, "/huella")));
         define(Uri.CONTACTS, "/contacts");
-    // ------------------------------------------------------------------------------- Dto
-        define(Uri.PROVINCIA, "/provinciasss"); 
+    // ------------------------------------------------------------------------------- Dto 
         define(Uri.LOCALIDAD, "/localidad");    
         define(Uri.MUNICIPIO, "/municipio");
           

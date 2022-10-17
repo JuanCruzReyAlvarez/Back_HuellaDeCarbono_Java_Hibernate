@@ -52,7 +52,7 @@ public class Organizacion {
     @Enumerated(value = EnumType.STRING)
     @Getter @Setter private TipoOrganizacion tipo;
 
-    @OneToOne
+    @OneToOne( fetch = FetchType.LAZY)
     @Getter @Setter private PuntoGeografico ubicacion;
 
     @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
@@ -62,7 +62,7 @@ public class Organizacion {
     @Getter @Setter private Usuario user;
 
     @Transient
-    @Setter public BuscadorMiembros buscador;
+    @Setter public BuscadorMiembros buscador ;
     
     @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)           
     private List<MetricaOrganizacion> metricas;
