@@ -41,10 +41,10 @@ public class OrgMetricsController extends AuthorizationMiddleware {
     @Override
     public void routes(TemplateEngine engine) {
         Spark.get(path(Uri.ORG_METRICS), (rq, rs) -> view(VIEW), engine);
-        Spark.post(path(Uri.ORG_METRICS), ACCESS_TYPE, (rq, rs) -> this.uploadFile(rq, rs), engine);
+        Spark.post(path(Uri.ORG_METRICS), ACCESS_TYPE, (rq, rs) -> this.uploadFile(rq, rs));
     }
 
-    private ModelAndView uploadFile(Request request, Response rs) throws HttpException {
+    private String uploadFile(Request request, Response rs) throws HttpException {
 
         request.attribute(MULTIPART_DRIVER, new MultipartConfigElement("/temp"));
         
@@ -58,15 +58,20 @@ public class OrgMetricsController extends AuthorizationMiddleware {
 
             List<MetricaOrganizacion> metricas = metricsService.importExcel(is);
 
-            return view(VIEW, new HashMap<String, Object>() {{
+            //guardar metricas en BD
+            // metricsService.
+
+           
+           return json(cookie);
+            /*return view(VIEW, new HashMap<String, Object>() {{
                 put("data", metricas);
                 put("success", "Excel de Metricas importado correctamente");
-            }});
+            }});*/
             
         } catch (InvalidFileException invalidEx) {
-            return view(VIEW, Collections.singletonMap("errors", Arrays.asList(new ErrorDTO("File", invalidEx.getMessage()))));
+            return json("error");
         } catch (Exception ex) {
-            return view(VIEW, Collections.singletonMap("errors", Arrays.asList(new ErrorDTO("Error", ex.getMessage()))));
+            return json("error");
         }
     }
 }
