@@ -16,7 +16,7 @@ const logOut = () =>{
 }
 
     return (
-        <div>
+        
             <nav>
 
                 <div className="Logo">
@@ -25,12 +25,12 @@ const logOut = () =>{
                         alt="LOGO"
                     />
                 </div>
-                <div className="nav">
+                <div className="nav_">
                     <ul>
                         <li onClick={logOut}>Cerrar Session</li>
                     </ul>
                 </div>
             </nav>
-        </div>
+        
     );
 };

@@ -1,20 +1,18 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { Route, Routes, Link } from "react-router-dom"; // {libreia,libreria}
+
 import ".././styles/Sidebar.css";
-import { Advices } from "./Advices.jsx";
-import { Request } from "./Request.jsx";
 
 import { Home } from "./Home.jsx";
 import { Register } from "./Register";
-import { Hall } from "./Hall";
-import { Contacts } from "./AddContacts";
-import { Calculator } from "./calculators";
-import { Aplications } from "./Aplications";
+
+
 
 
 
 export const Sidebar = () => {
-    
+
     const [usuario, setUser] = useState({});
 
     useEffect(() => {
@@ -30,25 +28,31 @@ export const Sidebar = () => {
 
     return (
         <div className="container">
-            <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu"></input>
-            <label for="openSidebarMenu" class="sidebarIconToggle">
-                <div class="spinner diagonal part-1"></div>
-                <div class="spinner horizontal"></div>
-                <div class="spinner diagonal part-2"></div>
+            <input type="checkbox" className="openSidebarMenu , Ondeta" id="openSidebarMenu"></input>
+            <label for="openSidebarMenu" className="sidebarIconToggle">
+                <div className="spinner diagonal part-1"></div>
+                <div className="spinner horizontal"></div>
+                <div className="spinner diagonal part-2"></div>
             </label>
             <div id="sidebarMenu">
                 <ul class="sidebarMenuInner">
-                    <li>Pagina Principal <span>[nombre de nuestra pagina?]</span></li>
+                    <li></li>
+
+                    {/* <Link to="/"><li>Pagina Principal</li></Link> */}
 
                     {/* <!-- Rol de organizacion --> */}
                     {usuario ? (
                         usuario.token && usuario.rol === "ORGANIZACION" ? (
                             <>
-                                <li>Calculadora HC</li>
-                                <li>Gestionar Solicitudes</li>
-                                <li>Registrar Mediciones</li>
-                                <li>Recomendaciones</li>
-                                <li>Reportes</li>
+                                {/* <Link to="/advices"><li>Recomendaciones</li></Link> */}
+                                <Link to="/addcontacts"><li>AddConacts</li></Link>
+                                {/* <Link to="/contactsList"><li>Contactos</li></Link> */}
+                                <Link to="/request"><li>Gestionar Solicitudes</li></Link>
+                                <Link to="/registerMeasurements"><li>Registrar Mediciones</li></Link>
+                                <Link to="/report"><li>Reportes</li></Link>
+                                <Link to="/calculators"><li>Calculadora HC</li></Link>
+                                <Link to="/registerSector"><li>Registrar Sectores</li></Link>
+
                             </>
                         ) : (
                             <></>
@@ -61,8 +65,9 @@ export const Sidebar = () => {
                     {usuario ? (
                         usuario.token && usuario.rol === "AGENTE_SECTORIAL" ? (
                             <>
-                                <li>Reportes</li>
-                                <li>Recomendaciones</li>
+                                <Link to="/report"><li>Reportes</li></Link>
+                                {/* <Link to="/advices"><li>Recomendaciones</li></Link> */}
+                                <Link to="/calculators"><li>Calculadora HC</li></Link>
                             </>
                         ) : (
                             <></>
@@ -74,10 +79,11 @@ export const Sidebar = () => {
                     {usuario ? (
                         usuario.token && usuario.rol === "MIEMBRO" ? (
                             <>
-                                <li>Calculadora HC</li>
-                                <li>Registrar Trayectos</li>
-                                <li>Recomendaciones</li>
-                                <li>Reportes</li>
+                                <Link to="/calculators"><li>Calculadora HC</li></Link>
+                                {/* <Link to="/advices"><li>Recomendaciones</li></Link> */}
+                                <Link to="/report"><li>Reportes</li></Link>
+                                <Link to="/solMiembro"><li>Crear Solicitud</li></Link>
+                                {/* <Link to="/registrarTrayecto"><li>Registrar Trayecto</li></Link> */}
                             </>
                         ) : (
                             <></>
@@ -85,16 +91,22 @@ export const Sidebar = () => {
                     ) : (
                         <></>
                     )}
-                      {/* <!-- Rol Administrados AGREGAR LAS DOS DE CALCULO  --> */}
-                      {usuario ? (
+                    {/* <!-- Rol Administrados AGREGAR LAS DOS DE CALCULO  --> */}
+                    {usuario ? (
                         usuario.token && usuario.rol === "ADMINISTRADOR" ? (
                             <>
-                                <li>Calculadora HC</li>
-                                <li>Registrar Trayectos</li>
-                                <li>Recomendaciones</li>
-                                <li>Reportes</li>
-                                <li>Recomendaciones</li>
-                               
+
+                                <Link to="/emissions"><li>factores de emision</li></Link>
+                                <Link to="/transports"><li>Agregar Transporte</li></Link>
+                                <Link to="/advices"><li>Recomendaciones</li></Link>
+                                <Link to="/addcontacts"><li>AddConacts</li></Link>
+                                <Link to="/request"><li>Gestionar Solicitudes</li></Link>
+                                <Link to="/registerMeasurements"><li>Registrar Mediciones</li></Link>
+                                <Link to="/registerSector"><li>Registrar Sectores</li></Link>
+                                <Link to="/report"><li>Reportes</li></Link>
+                                <Link to="/calculators"><li>Calculadora HC</li></Link>
+                                {/* <Link to="/registrarTrayecto"><li>Registrar Trayecto</li></Link> */}
+
                             </>
                         ) : (
                             <></>
@@ -105,7 +117,7 @@ export const Sidebar = () => {
                 </ul>
             </div>
             <div className="contenido">
-                <Aplications/>
+
             </div>
         </div>
     );

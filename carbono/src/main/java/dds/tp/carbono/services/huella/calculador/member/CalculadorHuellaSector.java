@@ -14,6 +14,9 @@ import dds.tp.carbono.services.huella.calculador.org.filter.TrayectosCompartidos
 import lombok.Getter;
 import lombok.Setter;
 
+
+
+
 public class CalculadorHuellaSector extends CalculadorHuella{
 
     @Getter @Setter private Sector sector;

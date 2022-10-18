@@ -16,6 +16,10 @@ public class SectorMunicipal extends SectorTerritorial{
     @OneToOne
     @Setter @Getter Municipio municipio;
 
+    public SectorMunicipal(){
+       
+    }
+    
     public Provincia getProvincia(){
         return municipio.getProvincia();
     }

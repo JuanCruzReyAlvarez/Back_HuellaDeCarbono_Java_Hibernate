@@ -14,6 +14,8 @@ public class CombustionFija extends Actividad {
 
     @Embedded
     @Setter @Getter public Consumo consumo;
+    
+    public CombustionFija() {  }
 
     public CombustionFija(Consumo consumo) {
         this.consumo = consumo;
@@ -34,4 +36,5 @@ public class CombustionFija extends Actividad {
     public TipoDeConsumo getTipoDeConsumo() {
         return this.consumo.getTipo();
     }
+     
 }

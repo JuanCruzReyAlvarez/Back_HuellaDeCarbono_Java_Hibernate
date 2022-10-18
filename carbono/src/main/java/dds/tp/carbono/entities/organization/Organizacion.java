@@ -75,15 +75,21 @@ public class Organizacion {
     @Setter @Getter private SectorTerritorial sectorTerritorial;
 
     @Transient
-    @Setter @Getter MedioDeNotificacion medioDeNotificacion;
+    @Setter @Getter MedioDeNotificacion medioDeNotificacion;  
 
-    public Organizacion() {
+    public Organizacion() {}
+
+    public void org() {
+        
         this.sectores = new HashSet<Sector>();
         this.metricas = new ArrayList<MetricaOrganizacion>();
         this.contactos = new ArrayList<Contacts>();
+        
     } 
     
-    public boolean isValid() {
+    
+
+	public boolean isValid() {
         return new OrganizacionValidator().validate(this);
     }
     

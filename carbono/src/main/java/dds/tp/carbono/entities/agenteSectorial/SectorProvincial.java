@@ -13,4 +13,8 @@ public class SectorProvincial extends SectorTerritorial {
     @OneToOne
     @Setter Provincia provincia;
 
+    public SectorProvincial(){
+    
+    }
+
 }

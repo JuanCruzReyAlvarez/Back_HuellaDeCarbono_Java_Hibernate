@@ -14,6 +14,11 @@ public class Clasificacion {
     @Column (name = "clasificacion")
     @Getter @Setter private String nombre;
 
+
+    public Clasificacion() {
+      
+    }
+    
     public Clasificacion(String nombre) {
         this.nombre = nombre;
     }

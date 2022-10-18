@@ -28,6 +28,9 @@ public class MedioNoMotorizado extends MedioDeTransporte {
 
     @Transient
     @Setter private CalculadorDistanciaServicioExterno calculador = new CalculadorDistanciaServicioExterno();
+    
+    public MedioNoMotorizado (){}
+    
     public MedioNoMotorizado(Integer id, TipoMedioNoMotorizado tipo) {
         this.id = id;
         this.tipo = tipo;

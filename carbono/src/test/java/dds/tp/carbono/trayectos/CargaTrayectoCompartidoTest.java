@@ -55,7 +55,7 @@ public class CargaTrayectoCompartidoTest {
         PuntoArbitrario tuCasa = this.buildTuCasa(); 
         Organizacion utn = this.buildOrgUTN();
         
-        Trayecto trayecto = new Trayecto();
+        Trayecto trayecto = new Trayecto(0);
         trayecto.setPuntoPartida(miCasa.getUbicacion());
         trayecto.setPuntoLlegada(utn.getUbicacion());
 
@@ -67,7 +67,7 @@ public class CargaTrayectoCompartidoTest {
         trayecto.getTramos().add(tramoCompartido);
         trayecto.setMiembro(yo);
         
-        Trayecto trayectoCreado = new CreadorDeTrayecto().crear(trayecto);
+        Trayecto trayectoCreado = new CreadorDeTrayecto(09).crear(trayecto);
 
         Assert.assertEquals(Integer.valueOf(1), trayectoCreado.getId());
 
@@ -120,7 +120,7 @@ public class CargaTrayectoCompartidoTest {
     }
 
     private Tramo crearTramo(PuntoGeografico pA, PuntoGeografico pB, MedioDeTransporte transporte) {
-        Tramo tramo = new Tramo();
+        Tramo tramo = new Tramo(0);
         tramo.setPuntoA(pA);
         tramo.setPuntoB(pB);
         tramo.setTransporte(transporte);

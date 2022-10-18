@@ -34,6 +34,8 @@ public class TransportePublico extends MedioDeTransporte {
     @OneToOne
     @Getter @Setter private Linea linea;
 
+    public TransportePublico(){}
+    
     @Override
     public Double calcularDistancia(PuntoGeografico inicio, PuntoGeografico fin) throws Exception {
         Estacion estacionInicio = this.linea.getEstacionByUbicacion(inicio);

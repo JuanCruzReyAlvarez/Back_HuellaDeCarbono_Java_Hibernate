@@ -1,7 +1,9 @@
 
 .container {
 display: flex;
-width: 100%;
+position: absolute;
+z-index: 10;
+width: 10%;
 height: 950px;
 color: #FFFFFF;
 /* border: 1px solid red; */
@@ -14,7 +16,7 @@ html, body {
     overflow-x: hidden;
     height: 100%;
 }
-body {
+.body {
     background: #fff;
     padding: 0;
     margin: 0;
@@ -143,4 +145,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     box-sizing: border-box;
     transform: rotate(-135deg);
     margin-top: -9px;
+}
+.Ondeta{
+    display: none !important;
 }

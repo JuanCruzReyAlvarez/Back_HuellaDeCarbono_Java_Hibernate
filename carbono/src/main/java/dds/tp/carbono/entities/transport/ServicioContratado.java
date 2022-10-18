@@ -30,6 +30,9 @@ public class ServicioContratado extends MedioDeTransporte {
     @Transient
     @Setter private CalculadorDistanciaServicioExterno calculador = new CalculadorDistanciaServicioExterno();
 
+
+    public ServicioContratado(){}
+    
     @Override
     public Double calcularDistancia(PuntoGeografico inicio, PuntoGeografico fin) throws Exception {
         return calculador.calcularDistancia(inicio, fin);

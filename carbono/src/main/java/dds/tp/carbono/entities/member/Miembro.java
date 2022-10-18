@@ -53,6 +53,10 @@ public class Miembro {
     @Getter @Setter private TrayectoPendiente trayecto_pendiente;
     
     public Miembro() {
+       
+    }
+    
+    public Miembro(int a) {
         this.solicitudes = new HashSet<SolicitudVinculacion>();
     }
 

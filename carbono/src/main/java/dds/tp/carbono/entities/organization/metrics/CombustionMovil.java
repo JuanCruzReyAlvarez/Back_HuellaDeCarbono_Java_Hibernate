@@ -12,6 +12,10 @@ public class CombustionMovil extends Actividad {
     @Embedded
     @Setter @Getter public Consumo consumo;
     
+    public CombustionMovil() {
+    
+    }
+    
     public CombustionMovil(Consumo consumo) {
         this.consumo = consumo;
         this.tipoActividad = TipoActividad.Combustion_Movil;

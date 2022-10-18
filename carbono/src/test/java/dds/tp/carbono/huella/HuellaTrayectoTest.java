@@ -148,7 +148,7 @@ public class HuellaTrayectoTest {
 
     //------------------------------- INSTANCIAS -----------------------------------------------------------------------
     private Trayecto crearTrayectoConTodosLosTiposDeTramos() {
-        Trayecto trayecto = new Trayecto();
+        Trayecto trayecto = new Trayecto(0);
 
         Tramo tramoNoMotorizado = this.crearTramoNoMotorizado();
         Tramo tramoServicioContratado = this.crearTramoServicioContratado();
@@ -161,12 +161,12 @@ public class HuellaTrayectoTest {
     }
 
     private Trayecto crearTrayectoSinTramos(){
-        Trayecto trayecto = new Trayecto();
+        Trayecto trayecto = new Trayecto(0);
         return trayecto;
     }
 
     private Trayecto crearTrayectoNoMotorizado(){
-        Trayecto trayecto = new Trayecto();
+        Trayecto trayecto = new Trayecto(0);
 
         Tramo tramoNoMotorizado = this.crearTramoNoMotorizado();
         trayecto.setTramos(Arrays.asList(tramoNoMotorizado));
@@ -228,7 +228,7 @@ public class HuellaTrayectoTest {
     }
 
     private Tramo buildTramo(int id, PuntoGeografico puntoA, PuntoGeografico puntoB, MedioDeTransporte transporte){
-        Tramo tramo = new Tramo();
+        Tramo tramo = new Tramo(0);
         tramo.setId(id);
         tramo.setPuntoA(puntoA);
         tramo.setPuntoB(puntoB);

@@ -17,6 +17,7 @@ public class envioDeNotificacionesTest {
 
     private Organizacion creaOrganizacion(){
         Organizacion organizacion = new Organizacion();
+        organizacion.org();
         MedioDeNotificacion wpp = new Wpp();
         Contacts contacto = crearContacto();
         organizacion.setMedioDeNotificacion(wpp);

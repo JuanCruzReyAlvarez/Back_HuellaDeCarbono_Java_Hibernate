@@ -23,4 +23,8 @@ public class Consumo {
 
     @Enumerated(value = EnumType.STRING)
     @Setter @Getter private TipoDeConsumo tipo;
+
+    public Consumo(){}
+
+
 }

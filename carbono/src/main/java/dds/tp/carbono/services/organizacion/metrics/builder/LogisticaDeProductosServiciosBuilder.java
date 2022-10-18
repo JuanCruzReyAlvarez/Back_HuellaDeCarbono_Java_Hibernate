@@ -15,7 +15,7 @@ public class LogisticaDeProductosServiciosBuilder {
     private ImportableModel[] data;
 
     public LogisticaDeProductosServiciosBuilder(ImportableModel[] importables) {
-        this.actividad = new LogisticaDeProductosServicios();
+        this.actividad = new LogisticaDeProductosServicios(0);
         this.data = importables;
     }
 

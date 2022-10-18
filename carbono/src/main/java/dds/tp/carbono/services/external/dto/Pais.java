@@ -21,5 +21,8 @@ public class Pais implements GeoInfo {
     public Pais(String pais) {
         this.nombre = pais;
     }
+    public Pais() {
+        
+    }
 
 }

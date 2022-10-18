@@ -22,19 +22,26 @@ public class Routes {
         define(Uri.MOD_REQUEST, "/modrequest"),
         define(Uri.AGREGAR_SECTORES, "/addsector"),
         define(Uri.SOL_MIEMBRO, "/solMiembro"),
+        define(Uri.LOCALIDAD, "/localidad"),    
+        define(Uri.MUNICIPIO, "/municipio"),
+        define(Uri.TRAYECTO, "/trayecto"),
+        define(Uri.TRAYECTOS_AUTOCOMPLETE, "/trayectoAutoComplete"),
+        define(Uri.SECTORES, "/sectores"), 
+        define(Uri.MEMBER, "/miembros",
+        define(Uri.ORGANIZACION, "/organizacion",
+        
     // ------------------------------------------------------------------------------- Huella
         define(Uri.CALCULATOR, "/calculators"),
     // ------------------------------------------------------------------------------- Dto 
-        define(Uri.LOCALIDAD, "/localidad"),    
-        define(Uri.MUNICIPIO, "/municipio"),
+
     // -------------------------------------------------------------------------------- organization  
-        define(Uri.ORGANIZACION, "/organizacion",
+        
     // -------------------------------------------------------------------------------- admin
         define(Uri.ADMIN, "/admin", 
         define(Uri.ADMIN_GEOINFO, "/geoInfoAdmin"),  
         define(Uri.ADMIN_FACTOR_EMISION, "/fe")),
     // -------------------------------------------------------------------------------- member
-        define(Uri.MEMBER, "/member",
+       
         define(Uri.MEMBER_POINTS, "/points", 
         define(Uri.MEMBER_POINTS_AUTOCOMPLETE, "/autocomplete")), 
         define(Uri.MEMBER_TRAYECTOS, "/trayectos",

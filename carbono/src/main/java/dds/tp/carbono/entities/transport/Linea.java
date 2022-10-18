@@ -30,6 +30,8 @@ public class Linea {
     @JoinColumn(name="linea_id", referencedColumnName = "id")
     @Getter @Setter private List<Estacion> estaciones;
 
+    public Linea(){}
+
     public Estacion getEstacionByUbicacion(PuntoGeografico ubicacion) throws Exception {
         for (Estacion estacion : this.getEstaciones())
             if (estacion.getUbicacion().getId().equals(ubicacion.getId()))

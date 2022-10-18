@@ -50,8 +50,17 @@ public class Trayecto {
     @Transient
     private Double distancia = null;
 
-    public Trayecto() {
+    public Trayecto(){}
+
+    public Trayecto(int a) {
         this.tramos = new ArrayList<Tramo>();
+    }
+
+     public Trayecto(PuntoGeografico org ,PuntoGeografico dest, List<Tramo> tramos,Miembro miembro ) {
+        this.tramos = tramos;
+        this.puntoPartida = org;
+        this.puntoLlegada= dest;
+       this.miembro= miembro;
     }
 
     public Boolean isValid() {

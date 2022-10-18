@@ -1,5 +1,6 @@
 body {
     margin: 0 auto;
+    
 }
 
 /* Inicio Navbar  */
@@ -27,23 +28,23 @@ nav {
     cursor: pointer;
 }
 
-.nav {
+.nav_ {
     width: 80%;
 }
 
-.nav ul {
+.nav_ ul {
     display: flex;
     width: 95%;
     justify-content: flex-end ;
     list-style: none;
 }
 
-.nav ul li {
+.nav_ ul li {
     margin-right: 15px;
 
 }
 
-.nav ul li:hover {
+.nav_ ul li:hover {
     cursor: pointer;
     text-decoration: underline;
 }

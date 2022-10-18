@@ -92,7 +92,7 @@ export const Advices = () => {
 
     return (
         <body>
-                <div class="container">
+                <div class="AdviceContainer">
                 <section className="background">
                     <div class="content-wrapper">
                     <p class="content-title">¿COMO REDUCIR MI HUELLA DE CARBONO?</p>

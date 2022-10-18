@@ -1,9 +1,6 @@
 package dds.tp.carbono.http.controllers.org;
 
 import java.io.InputStream;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.MultipartConfigElement;
@@ -13,13 +10,11 @@ import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
 import dds.tp.carbono.exception.InvalidFileException;
 import dds.tp.carbono.http.controllers.AuthorizationMiddleware;
-import dds.tp.carbono.http.dto.ErrorDTO;
 import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.SessionCookie;
 import dds.tp.carbono.http.utils.Uri;
 import dds.tp.carbono.services.organizacion.OrganizacionService;
 import dds.tp.carbono.services.organizacion.metrics.MetricsImporterService;
-import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
@@ -57,21 +52,18 @@ public class OrgMetricsController extends AuthorizationMiddleware {
             MetricsImporterService metricsService = new MetricsImporterService(org);
 
             List<MetricaOrganizacion> metricas = metricsService.importExcel(is);
-
-            //guardar metricas en BD
-            // metricsService.
-
-           
-           return json(cookie);
-            /*return view(VIEW, new HashMap<String, Object>() {{
-                put("data", metricas);
-                put("success", "Excel de Metricas importado correctamente");
-            }});*/
             
-        } catch (InvalidFileException invalidEx) {
-            return json("error");
+            metricsService.saveAll(metricas,org.getId() );
+
+           return json(cookie);
+              
+        } 
+        catch (InvalidFileException invalidEx) {
+            System.out.println("Error controller excel");
         } catch (Exception ex) {
-            return json("error");
+            System.out.println("Error controller excel");
         }
+
+        return null;
     }
 }

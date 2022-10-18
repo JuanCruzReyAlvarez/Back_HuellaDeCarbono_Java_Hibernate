@@ -40,7 +40,9 @@ public class Tramo {
     @JoinColumn(name = "tramo_id", referencedColumnName = "id")
     @Getter @Setter private List<Miembro> compartidos;
 
-    public Tramo() {
+    public Tramo(){}
+    
+    public Tramo(int a) {
         this.compartidos = new ArrayList<Miembro>();
     }
     

@@ -40,5 +40,11 @@ public class PuntoGeografico {
     @ManyToOne
     @Getter @Setter private Localidad localdiad;
 
+    public PuntoGeografico(){}
+
+    public PuntoGeografico(Integer idLocalidad){
+            this.idLocalidad=idLocalidad;
+    }
+
     
 }

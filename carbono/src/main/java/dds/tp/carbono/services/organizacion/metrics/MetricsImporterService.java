@@ -8,6 +8,7 @@ import dds.tp.carbono.entities.organization.metrics.ImportableModel;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
 import dds.tp.carbono.exception.InvalidFileException;
 import dds.tp.carbono.reader.ExcelImporter;
+import dds.tp.carbono.repository.organization.MetricaOrganizacionRepository;
 import dds.tp.carbono.repository.organization.OrganizacionRepository;
 import dds.tp.carbono.services.organizacion.metrics.converter.MetricaOrganizacionConverter;
 
@@ -17,6 +18,7 @@ public class MetricsImporterService {
     
     private Organizacion organizacion;
     private OrganizacionRepository repository;
+    private MetricaOrganizacionRepository repositoryMetricas;
     private ExcelImporter importer;
 
     public MetricsImporterService(Organizacion org) {
@@ -34,6 +36,11 @@ public class MetricsImporterService {
         this.repository.addMetrics(metricas, this.organizacion);
 
         return metricas;
+    }
+
+    public void saveAll(List<MetricaOrganizacion> metricas, Integer id) {
+
+        this.repositoryMetricas.saveAll( metricas, id);
     }
 
     //metood guardar metricas, llama al repository

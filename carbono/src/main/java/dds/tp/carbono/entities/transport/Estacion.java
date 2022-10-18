@@ -31,4 +31,6 @@ public class Estacion {
     
     @OneToOne
     @Getter @Setter private Estacion siguiente;
+
+    public Estacion(){}
 }

@@ -13,16 +13,19 @@ import dds.tp.carbono.http.controllers.member.trayectos.TrayectosController;
 import dds.tp.carbono.http.controllers.org.ContactsController;
 import dds.tp.carbono.http.controllers.org.OrgMetricsController;
 import dds.tp.carbono.http.controllers.org.OrganizacionController;
+import dds.tp.carbono.services.MiembroService;
 import dds.tp.carbono.services.agenteSectorial.AsignadorDeAgentesSectoriales;
 import dds.tp.carbono.services.auth.HallMiembroService;
 import dds.tp.carbono.services.auth.HallOrganizacionService;
 import dds.tp.carbono.services.auth.SolicitadorDeVinculacionService;
+import dds.tp.carbono.services.distancia.TrayectoService;
 import dds.tp.carbono.services.external.puntoGeografico.LocalidadService;
 import dds.tp.carbono.services.external.puntoGeografico.MunicipioService;
 import dds.tp.carbono.services.external.puntoGeografico.ProvinciaService;
 import dds.tp.carbono.services.huella.CalculatorService;
 import dds.tp.carbono.services.organizacion.ContactsService;
 import dds.tp.carbono.services.organizacion.OrganizacionService;
+import dds.tp.carbono.services.organizacion.SectorService;
 import dds.tp.carbono.services.auth.LoginService;
 import dds.tp.carbono.services.auth.RegisterService;
 import dds.tp.carbono.http.controllers.puntoGeografico.ProvinciaController;
@@ -73,12 +76,14 @@ public class Server implements SparkApplication {
                                 new AsignadorDeAgentesSectoriales() ),
             new OrgMetricsController(),
             new AdminGeoInfoController(),
-            new TrayectosController(),
+            new TrayectosController(new TrayectoService(), new MiembroService()),
             new PointController(),
             new FactorEmisionController(),
             new CalcuarHuellaController(),
             new ContactsController(new ContactsService()),
-            new CalculatorController(new CalculatorService(new OrganizacionRepository(),new SectorRepository(),new MiembroRepository()))
+            new CalculatorController(new CalculatorService(new OrganizacionRepository() ,new  SectorRepository() ,new MiembroRepository() )
+                            ,new OrganizacionService(),new MiembroService(), new SectorService())
+            
         };
     }
 }

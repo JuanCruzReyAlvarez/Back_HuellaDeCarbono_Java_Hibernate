@@ -1,5 +1,7 @@
 package dds.tp.carbono.services.organizacion;
 
+import java.util.List;
+
 import dds.tp.carbono.entities.organization.Sector;
 import dds.tp.carbono.repository.organization.SectorRepository;
 
@@ -17,6 +19,11 @@ public class SectorService {
 
     public Sector getByName(String nombre){
         return this.repository.getByName(nombre);
+    }
+
+
+    public List<Sector> getByOrg(int id) {
+        return this.repository.getByOrg(id);
     }
     
     /*

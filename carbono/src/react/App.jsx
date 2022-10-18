@@ -12,8 +12,11 @@ import { ContactsList } from "./components/ContactsList.jsx";
 import { Contacts } from "./components/AddContacts.jsx";
 import { Report } from "./components/Report.jsx";
 import { Calculator } from "./components/calculators.jsx";
-import { Footer } from "./components/Footer.jsx";
+import { RegisterSector } from "./components/RegisterSector";
 import { Aplications } from "./components/Aplications.jsx";
+import { Transports } from "./components/Transports.jsx";
+import { Footer } from "./components/Footer.jsx";
+import { Emissions } from "./components/Emissions.jsx";
 
 const App = () => {
     return (
@@ -21,26 +24,34 @@ const App = () => {
             <Routes>
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
+
+                <Route path="/advices" element={
+                    <>
+                        <Sidebar />
+                        <Advices />
+
+                    </>
+                } />
+                <Route path="/registerSector" element={<> <Navbar /> <Sidebar /> <RegisterSector /> <Footer /></>} />
+                <Route path="/calculators" element={<> <Navbar /> <Sidebar /><Calculator /> <Footer /> </>} />
+                <Route path="/registerMeasurements" element={<> <Navbar /> <Sidebar /> <RegisterMeasurements /><Footer /> </>} />
+                <Route path="/request" element={<><Navbar /> <Sidebar /> <Request /><Footer /> </>} />
+                <Route path="/addContacts" element={<> <Navbar /><Sidebar /> <Contacts /> </>} />
+                <Route path="/contactsList" element={<><Navbar /><Sidebar /> <ContactsList /> </>} />
+                <Route path="/report" element={<> <Navbar /><Sidebar /> <Report /> <Footer /></>} />
+                <Route path="/solMiembro" element={<><Navbar /><Sidebar /><Aplications /> <Footer /></>} />
+                <Route path="/transports" element={<><Navbar /><Sidebar /><Transports /><Footer /> </>} />
+                <Route path="/emissions" element={<><Navbar /><Sidebar /><Emissions /><Footer /> </>} />
+
                 <Route path="/hall" element={<Hall />} />
-                <Route path="/advices" element={<Advices />} />
-                <Route path="/request" element={<Request />} />
-                <Route path="/registerMeasurements" element={<RegisterMeasurements />} />
-                <Route path="/contactsList" element={<ContactsList />} />
-                <Route path="/addContacts" element={<Contacts />} />
-                <Route path="/report" element={<Report />} />
-                <Route path="/calculators" element={<Calculator />} />
-                <Route path="/solMiembro" element={<Aplications />} />
-                
-                
-                
+
                 <Route
                     exact
                     path="/"
                     element={
                         <>
-                            <Navbar />
-                            <Sidebar />
-                            
+                            <Sidebar/>
+                            <Advices/>
                         </>
                     }
                 />

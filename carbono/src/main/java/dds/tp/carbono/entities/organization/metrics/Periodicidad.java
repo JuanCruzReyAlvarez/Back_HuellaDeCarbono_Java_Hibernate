@@ -4,6 +4,8 @@ public enum Periodicidad {
     ANUAL,
     MENSUAL;
 
+    
+    
     public static Periodicidad getBy(String nombre) throws Exception {
         if (nombre.equals("ANUAL"))
             return ANUAL;

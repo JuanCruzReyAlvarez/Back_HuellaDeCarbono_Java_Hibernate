@@ -37,7 +37,7 @@ public class ObtenerDistanciaTramoTest {
 
     @Test
     public void distanciaTransportePublico() throws Exception {
-        Tramo tramo = new Tramo();
+        Tramo tramo = new Tramo(0);
         tramo.setId(1);
 
         PuntoGeografico origen = this.buildPuntoGeografico(1, "cordoba", "1500", 1);
@@ -53,7 +53,7 @@ public class ObtenerDistanciaTramoTest {
 
     @Test
     public void distanciaTransportePublico2() throws Exception {
-        Tramo tramo = new Tramo();
+        Tramo tramo = new Tramo(0);
         tramo.setId(1);
 
         PuntoGeografico origen = this.buildPuntoGeografico(1, "cordoba", "1500", 1);
@@ -69,7 +69,7 @@ public class ObtenerDistanciaTramoTest {
 
     @Test
     public void distanciaServicioContratado() throws Exception {
-        Tramo tramo = new Tramo();
+        Tramo tramo = new Tramo(0);
 
         PuntoGeografico origen = this.buildPuntoGeografico(1, "cordoba", "1500", 1);
         PuntoGeografico destino = this.buildPuntoGeografico(3, "cordoba", "3000", 1);

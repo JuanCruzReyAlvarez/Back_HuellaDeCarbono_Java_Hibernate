@@ -1,13 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
 
-.aa {
-    display: flex;
+.TransportsContainer {
+    position: relative;
     background-image: url("../../main/resources/public/css/images/birds.jpg");
     background-size: cover;
+    /*-webkit-filter: blur(5px);*/
+
+    font-weight: 400;
+    font-size: 1em;
     font-family: 'Lato', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    width: 100%; height: 100%;
     
 
 }
@@ -93,8 +96,8 @@
 
 }
 /*////////////////////////*/
-
-/* .conteinerLista{
+/*
+.conteinerLista{
     position: absolute;
       top: -20px;
       left: -20px;
@@ -109,7 +112,7 @@
   
    
   
-  } */
+  }*/
 .conteinerLista {
     position: absolute;
     
@@ -119,13 +122,13 @@
 .contacts {
     
     background-color: rgba(44, 65, 55, 0.356);
-    z-index: 100;
+    
   
     height: 90vh;
     margin-top: 3%;
-    margin-left: 100%;
+    margin-left: 345%;
     width: 120%;
-    /* overflow: scroll; */
+    overflow: scroll;
 }
 
 .contacts__title {

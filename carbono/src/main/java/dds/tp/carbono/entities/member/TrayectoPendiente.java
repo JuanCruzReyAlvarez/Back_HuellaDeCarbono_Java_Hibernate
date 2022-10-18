@@ -28,6 +28,11 @@ public class TrayectoPendiente {
     @OneToMany(mappedBy = "trayecto_pendiente")
     @Getter @Setter private List<Miembro> miembrosPendientes;
 
+    
+    public TrayectoPendiente() {
+        
+    }
+    
     public TrayectoPendiente(Tramo tramo) {
         this.tramoCompartido = tramo;
         this.miembrosPendientes = tramo.getCompartidos();

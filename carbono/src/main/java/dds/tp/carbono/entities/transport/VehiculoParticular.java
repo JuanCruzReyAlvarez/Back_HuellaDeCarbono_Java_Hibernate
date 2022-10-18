@@ -28,6 +28,9 @@ public class VehiculoParticular extends MedioDeTransporte {
     @Enumerated(value = EnumType.STRING)
     @Getter @Setter private TipoDeConsumo combustible;
 
+
+    public VehiculoParticular(){}
+
     @Transient
     @Setter private CalculadorDistanciaServicioExterno calculador = new CalculadorDistanciaServicioExterno();
     @Override

@@ -5,26 +5,22 @@ import { useEffect, useState } from "react";
 import ".././styles/Hall.css";
 
 export const Hall = () => {
-
     //HAY QUE PEGARLE A LA API
-
     const navigate = useNavigate();
-
     // DECLARACION DE ESTADOS
-
     const [usuario, setUser] = useState({});
-
     const [eleccion, setEleccion] = useState({});
-
-
-    
     const [organizaciones, setOrganizaciones] = useState([]);
-
     const [provincias, setProvincias] = useState([]);
     const [municipios, setMunicipios] = useState([]);
     const [localidades, setLocalidades] = useState([]);
 
 
+// {
+// id: 1,
+// nombre: ""
+
+// }
 
 
 
@@ -59,17 +55,21 @@ export const Hall = () => {
         }
     }, []);
 
+//EL JSON QUE TE VA A MANDAR ES ASI:
 
-    const handleChange = ({ target }) => {
-        setEleccion((eleccion) => {
-            return {
-                ...eleccion,
-                [target.name]: target.value,
-            };
-        });
-    };
+/*
+{
+    "razon_social":"",
+    "clasificacion":"",
+    "calle":"",
+    "altura":"",
+    "provinciaID":"",
+    "municipioID":"",
+    "localidadId":"",
+    "tipo":"",
+} 
 
-
+*/
 
         function onSubmit(e) {
             e.preventDefault();
@@ -101,61 +101,65 @@ export const Hall = () => {
 
         // FUNCIONES js ENVIO FORMS HALL    -> Le devuelvo objeto con mensajito que slaio todo bien.
 
-
-
+        const handleChange = ({ target }) => {
+            setEleccion((eleccion) => {
+                return {
+                    ...eleccion,
+                    [target.name]: target.value,
+                };
+            });
+        };
         const SelectorProvincia = (e) => {
-
-            
-
-            provinciaElegida = e.target.value
-
             e.preventDefault();
-
+            let provinciaID = e.target.value
+            setEleccion({...eleccion, provinciaID: provinciaID })
+            axios.get("http://localhost:8080/municipio", JSON.stringify({id: provinciaID })).then(({data}) => {
+                console.log("Municipios traidos de la base: ", data)
+                setMunicipios(data);
+            }).catch(error => {
+                console.log("Error al traer a los municipios", error)
+            })
         }
-
 
         const SelectorMunicipio = (e) => {
-            axios.post("http://localhost:8080/municipio", JSON.stringify(provinciaElegida)).then((data) => {
-                console.log("funciono", data)
-                municipios = data
-            }).catch(error => {
-                console.log(error)
-            })
             e.preventDefault();
-            municipioElegido = e.target.value
+            let municipioID = e.target.value
+            setEleccion({ ...eleccion, municipioID: municipioID });
+            axios.get("http://localhost:8080/localidad", JSON.stringify({id: municipioID })).then(({data}) => {
+                console.log("Localidades traidas de la base: ", data)
+                setLocalidades(data);
+            }).catch(error => {
+                console.log("Error al traer a las localidades", error)
+            })
+        }
 
+        const SelectorLocalidad = (e) =>{
+            e.preventDefault();
+            let localidadId = e.target.value
+            setEleccion({ ...eleccion, localidadId: localidadId });
 
+        }
+   
+        const SelectorTipo = (e)=>{
+            e.preventDefault();
+            let tipo_nombre = e.target.value
+            setEleccion({ ...eleccion, tipo: tipo_nombre });
         }
 
 
 
-        const SelectorLocalidad = (e) => {
-            axios.post("http://localhost:8080/localidad", JSON.stringify(municipioElegido)).then((data) => {
-                console.log("funciono", data)
-                localidades = data;
-            }).catch(error => {
-                console.log(error)
-            })
-            e.preventDefault();
-
-        }
+      
 
 
 
 
         const SelectorDeSelector = (e) => {
-
-
             axios.get("http://localhost:8080/sector", JSON.stringify(e.target.value)).then((data) => {
-
                 console.log("funciono", data)
-
             }).catch(error => {
                 console.log(error)
             })
-
             e.preventDefault();
-
         }
 
 
@@ -163,36 +167,16 @@ export const Hall = () => {
 
 
         function selectorDeOrganizacion(e) {
-
             organizacionElegida = e.target.value
-
             axios.get("http://localhost:8080/organizacion", JSON.stringify(eleccion)).then((data) => {
                 console.log("funciono", data)
             organizaciones = data;
             }).catch(error => {
                 console.log(error)
             })
-            
             e.preventDefault();
         }
 
-
-
-
-        /*
-            function handleChangeNombre(e) {
-                setRegister({ ...usuario, username: e.target.value });
-            }
-        
-        
-            function handleChangePassword(e) {
-                setRegister({ ...usuario, password: e.target.value });
-            }
-        
-            function handleChangeRol(e) {
-                setRegister({ ...usuario, rol: e.target.value });
-            }
-        */
         return (
 
             <div>
@@ -225,14 +209,14 @@ export const Hall = () => {
                                     <input
                                         type="text"
                                         placeholder="Razon social"
-                                        name="Razon social"
+                                        name="razon_social"
                                         onChange={handleChange}
                                         required
                                     />
                                     <input
                                         type="text"
                                         placeholder="Clasificacion"
-                                        name="Clasificacion"
+                                        name="clasificacion"
                                         autocomplete="off"
                                         onChange={handleChange}
                                         required
@@ -264,10 +248,10 @@ export const Hall = () => {
                                             provincias.length ? (
                                                 provincias.map((item) => {
                                                     return (
-                                                        <option value={item.nombre}>{item.nombre}</option>
+                                                        <option value={item.id}>{item.nombre}</option>
                                                     )
                                                 })
-                                            ) : <option>No hay provincias</option>
+                                            ) : <option>Aun no hay Provincias</option>
                                         }
 
                                     </select>
@@ -279,10 +263,10 @@ export const Hall = () => {
                                             municipios.length ? (
                                                 municipios.map((item) => {
                                                     return (
-                                                        <option value={item.nombre}>{item.nombre}</option>
+                                                        <option value={item.id}>{item.nombre}</option>
                                                     )
                                                 })
-                                            ) : <option>No hay municipioss</option>
+                                            ) : <option>Aun no hay Municipios</option>
                                         }
 
                                     </select>
@@ -292,28 +276,20 @@ export const Hall = () => {
                                             localidades.length ? (
                                                 localidades.map((item) => {
                                                     return (
-                                                        <option value={item.nombre}>{item.nombre}</option>
+                                                        <option value={item.id}>{item.nombre}</option>
                                                     )
                                                 })
-                                            ) : <option>No hay localidades</option>
+                                            ) : <option>Aun no hay Localidades</option>
                                         }
 
                                     </select>
 
-                                    <input
-                                        type="text"
-                                        placeholder="pais"
-                                        name="pais"
-                                        onChange={handleChange}
-                                        required
-                                    />
-
                                     <h2>Elegir Tipo</h2>
-                                    <select id="Tipo" name="Tipo" onChange={handleChange}>
-                                        <option>Gubernamental</option>
-                                        <option>ONG</option>
-                                        <option>Empresa</option>
-                                        <option>Institucion</option>
+                                    <select id="Tipo" name="Tipo" onChange={SelectorTipo}>
+                                        <option value="gubernamental">Gubernamental</option>
+                                        <option value="ong">ONG</option>
+                                        <option value="empresa">Empresa</option>
+                                        <option value="institucion">Institucion</option>
                                     </select>
 
                                     <input

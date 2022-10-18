@@ -32,6 +32,9 @@ public class MetricaOrganizacion {
     @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
     @Setter @Getter private Organizacion organizacion;
 
+    
+    public MetricaOrganizacion(){}
+    
     public boolean isValid() {
         return this.actividad != null &&
                 this.periodoDeImputacion != null;

@@ -32,8 +32,7 @@ public class FactorEmision {
     @Enumerated(value = EnumType.STRING)
     @Getter @Setter private UnidadFE unidad;
 
-    public FactorEmision() {
-        this.valor = 0.0;    
+    public FactorEmision() {      
     }
 
     public FactorEmision(TipoDeConsumo tipoDeConsumo, TipoActividad tipoActividad, Double valor, UnidadFE unidad) {

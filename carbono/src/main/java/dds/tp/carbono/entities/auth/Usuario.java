@@ -40,6 +40,5 @@ public class Usuario {
         this.username = username;
     }
     public Usuario(){
-
     }
 }

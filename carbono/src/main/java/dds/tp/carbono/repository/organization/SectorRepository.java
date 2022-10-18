@@ -1,5 +1,8 @@
 package dds.tp.carbono.repository.organization;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import dds.tp.carbono.dao.org.SectorDao;
 import dds.tp.carbono.entities.organization.Sector;
 
@@ -40,5 +43,9 @@ public class SectorRepository {
 
     public Sector getById(Integer id) {
         return this.dao.findOne(id);
+    }
+
+    public List<Sector> getByOrg(int id) {
+        return (List<Sector>) this.dao.getAll().stream().filter(s -> s.getOrganizacion().getId().equals(id)).collect(Collectors.toList());
     }
 }

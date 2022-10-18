@@ -7,6 +7,8 @@ public class TipoServicioContratadoDao extends Dao<TipoServicioContratado> {
 
     private static TipoServicioContratadoDao instance;
 
+    
+    
     public static TipoServicioContratadoDao getInstance() {
         if (instance == null)
             instance = new TipoServicioContratadoDao();

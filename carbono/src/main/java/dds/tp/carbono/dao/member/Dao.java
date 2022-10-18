@@ -48,38 +48,22 @@ public abstract class Dao<T> {
 
     public List<T> getAll() {
     
-        /*List<T> lista = castList(clazz, EntityManagerHelper.getEntityManager()
-                                                           .createQuery( "from "  + "provincia" )
-                                                           .getResultList()); //Provincia //provincia*/
-
-        List<T> lista = castList(clazz, EntityManagerHelper.getEntityManager()
-                                                           .createQuery( "from "  + "organizacion" )
-                                                           .getResultList()); //Provincia //provincia
-
-        return lista;
+        CriteriaBuilder builder = EntityManagerHelper.getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<T> criterios = builder.createQuery(this.clazz);
+        criterios.from(clazz);
+        List<T> entidades = EntityManagerHelper.getEntityManager().createQuery(criterios).getResultList();
+                                                           
+        return entidades;
     
     }
-
-
-    public List<T> buscarTodos() {
-
-    CriteriaBuilder builder = EntityManagerHelper.getEntityManager().getCriteriaBuilder();
-    CriteriaQuery<T> criterios = builder.createQuery(this.clazz);
-    criterios.from(clazz);
-    List<T> entidades = EntityManagerHelper.getEntityManager().createQuery(criterios).getResultList();
-    
-    return entidades;
-    }
-
-
 
     public void saveAll(List<T> entities) {
-		for (T entity : entities) {
-            EntityManagerHelper.beginTransaction();
+		EntityManagerHelper.beginTransaction();
+        for (T entity : entities) {
             EntityManagerHelper.getEntityManager().persist(entity);
             EntityManagerHelper.commit();
-            EntityManagerHelper.closeEntityManager();
-		}
+		} 
+        EntityManagerHelper.closeEntityManager();
 	}
 
     public void delete(T item) {

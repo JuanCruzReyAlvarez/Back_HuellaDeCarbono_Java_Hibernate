@@ -37,7 +37,7 @@ public abstract class SectorTerritorial {
     
     @OneToMany(mappedBy = "sectorTerritorial",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)  
     @Getter @Setter List<Organizacion> organizaciones;
-
+    
     public void agregarOrganizacion (Organizacion x) {
         this.organizaciones.add(x);
         x.setSectorTerritorial(this);

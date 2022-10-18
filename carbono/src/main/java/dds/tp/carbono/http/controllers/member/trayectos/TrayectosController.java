@@ -1,16 +1,18 @@
 package dds.tp.carbono.http.controllers.member.trayectos;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
+import java.util.List;
+import dds.tp.carbono.entities.member.Miembro;
+import dds.tp.carbono.entities.member.Tramo;
+import dds.tp.carbono.entities.member.Trayecto;
+import dds.tp.carbono.entities.point.PuntoGeografico;
 import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.dto.member.trayectos.TrayectoDTO;
 import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.Uri;
-import lombok.Getter;
-import spark.ModelAndView;
+import dds.tp.carbono.services.MiembroService;
+import dds.tp.carbono.services.distancia.TrayectoService;
+
 import spark.Request;
 import spark.Response;
 import spark.Spark;
@@ -18,37 +20,61 @@ import spark.TemplateEngine;
 
 public class TrayectosController extends Controller {
     
-        private static final String VIEW = "member.trayectos.mustache";
+        private TrayectoService service;
+        private MiembroService miembroService;
+        
+
+        public TrayectosController( TrayectoService service, MiembroService miembroService  ) { 
+        this.service = service;
+        this.miembroService =  miembroService;
+        }
         
         @Override
         public void routes(TemplateEngine engine) {
-            Spark.get(path(Uri.MEMBER_TRAYECTOS), (rq, rs) -> this.trayectos(rq, rs), engine);
-            Spark.get(path(Uri.MEMBER_TRAYECTOS_AUTOCOMPLETE), (rq, rs) -> this.autocomplete(rq, rs));
-        }
-    
-        private String autocomplete(Request rq, Response rs) {
-
-            // String typeSearch = rq.queryParams("type");
-            String query = rq.queryParams("q");
-
-            List<AutocompleteDTO> list = new ArrayList<AutocompleteDTO>() {{
-                add(new AutocompleteDTO(true, "UTN FRBA - CAMPUS", 1));
-                add(new AutocompleteDTO(true, "UTN FRBA - MEDRANO", 2));
-            }}.stream().filter(i -> i.label.toLowerCase().contains(query.toLowerCase())).collect(Collectors.toList());
-            
-            return json(list);
+            Spark.get(path(Uri.TRAYECTO), (rq, rs) -> this.trayectos(rq, rs));
+            Spark.get(path(Uri.TRAYECTOS_AUTOCOMPLETE), (rq, rs) -> this.autocomplete(rq, rs));
         }
 
-        private ModelAndView trayectos(Request request, Response rs) throws HttpException {
+        private String trayectos(Request rq, Response rs) throws Exception {
 
-            List<TrayectoDTO> trayectos = new ArrayList<TrayectoDTO>();
+            try {
+            TrayectoDTO input = getBody(rq, TrayectoDTO.class,null);
+            Miembro miembro = miembroService.getById(Integer.parseInt(input.getIdMiembro()));
+            PuntoGeografico desde = new PuntoGeografico(Integer.parseInt(input.getLocalidadDesdeId()));
+            PuntoGeografico hasta = new PuntoGeografico(Integer.parseInt(input.getLocalidadHastaId()));
+            List<Tramo> tramos = input.getTramos(); //Esto esta mal hay que formarlo aca en base  adatos del DTO
+            Trayecto trayecto = new Trayecto(desde,hasta, tramos, miembro); 
 
-            trayectos.add(new TrayectoDTO(1, "Juan B. Justo 456", "UTN FRBA - Medrano", 3));
-            trayectos.add(new TrayectoDTO(2, "UTN FRBA - Medrano", "Juan B. Justo 456", 2));
+            service.crear(trayecto);
 
-            return view(VIEW, Collections.singletonMap("trayectos", trayectos));
+            return (json(goodAnswer()));
+            }catch(HttpException exc)
+            {
+                System.out.println("Error por controller trayectos");
+            }
+			return null;
         }
 
+
+        private String autocomplete(Request rq, Response rs) throws HttpException{
+            /* 
+            try {
+
+                //TrayectoDTO input = getBody(rq, TrayectoDTO.class,null);
+               // Miembro miembro = miembroService.getById(Integer.parseInt(input.getIdMiembro()));
+                //TrayectoPendiente = 
+                //return json(usuario);
+
+            } catch (InsecurePasswordException ex) {
+                System.out.println("Error por controller autocomplete");
+            }
+
+            */
+            return null;
+        }
+
+
+/* 
         private class AutocompleteDTO {
             @Getter private boolean isOrg;
             @Getter private String label;
@@ -60,4 +86,5 @@ public class TrayectosController extends Controller {
                 this.ubicacionId = ubicacionId;
             }
         }
+*/
 }

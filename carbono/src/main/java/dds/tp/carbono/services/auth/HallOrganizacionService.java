@@ -47,6 +47,7 @@ public class HallOrganizacionService {
 
     private Organizacion buildOrg(String razonSocial, String clasficacion, PuntoGeografico ubicacion, String tipoOrganizacion) {
 		Organizacion org = new Organizacion();
+        org.org();
         org.setRazonSocial(razonSocial);
         org.setClasificacion(new Clasificacion(clasficacion));
         org.setUbicacion(ubicacion);

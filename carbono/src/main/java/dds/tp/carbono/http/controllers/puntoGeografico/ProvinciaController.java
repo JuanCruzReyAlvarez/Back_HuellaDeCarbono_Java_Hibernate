@@ -40,14 +40,9 @@ public class ProvinciaController extends Controller {
     public String  getProvincias(Request rq, Response rs) throws HttpException {
         
         try{
-                System.out.println("tefi funco eh");           
+                           
                 List<Provincia> provincias = service.getAll(); 
-                System.out.println("Funciona hasta aca iujiii");
-
-                for(Provincia p : provincias)
-                {
-                    System.out.println(p.getNombre() + " PROVINCIA IMPRESAAA"); 
-                }                
+                
                 return json(provincias); 
             }
             catch(Exception ex){

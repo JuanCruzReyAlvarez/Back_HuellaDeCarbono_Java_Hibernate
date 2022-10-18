@@ -19,6 +19,8 @@ public class PeriodoDeImputacion {
     @Column(name = "fecha", columnDefinition = "DATE")
     @Setter @Getter private LocalDate fechaInicio;                
 
+    public PeriodoDeImputacion (){} 
+
     public PeriodoDeImputacion(String periodo) throws Exception {
         if (periodo.contains("/"))
             this.periodicidadMensual(periodo);

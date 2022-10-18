@@ -9,7 +9,7 @@ main{
     display: block;
 }
 footer{
-    
+    float: bottom;
     height: 400px;
     width: 100%;
     padding: 0%;

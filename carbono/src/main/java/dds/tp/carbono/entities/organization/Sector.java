@@ -36,8 +36,12 @@ public class Sector {
     @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
     @Getter @Setter private Organizacion organizacion;
 
-    @OneToMany(mappedBy = "sector", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "sector", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @Getter @Setter private Set<SolicitudVinculacion> solicitudes;
+    
+    public Sector() {
+     
+    }
     
     public Sector(Integer id, String nombre, Organizacion organizacion, Set<SolicitudVinculacion> solicitudes) {
         this.id = id;
@@ -52,6 +56,7 @@ public class Sector {
     public Sector(String nombre, String idOrg){
         this.nombre = nombre;
         this.organizacion = new Organizacion();
+        this.organizacion.org();
         this.organizacion.setId(Integer.parseInt(idOrg)); 
     }
 

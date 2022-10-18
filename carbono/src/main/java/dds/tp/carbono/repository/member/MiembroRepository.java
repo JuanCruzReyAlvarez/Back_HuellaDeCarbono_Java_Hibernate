@@ -20,6 +20,9 @@ public class MiembroRepository {
     public MiembroRepository() {
         this.soliciturVinculacionDao = SolicitudVinculacionDao.getInstance();
         this.soliciturVinculacionDao.setClazz(SolicitudVinculacion.class);
+
+        this.miembroDao = MiembroDao.getInstance();
+        this.miembroDao.setClazz(Miembro.class);
     }
 
     public List<Miembro> getBy(Organizacion org) {
@@ -51,5 +54,13 @@ public class MiembroRepository {
 
     public Miembro guardar(Miembro miembro) {
         return this.miembroDao.save(miembro);
+    }
+
+    public List<Miembro> getAll() {
+        return this.miembroDao.getAll();
+    }
+
+    public List<Miembro> getByOrg(int id) {
+        return null;
     }
 }

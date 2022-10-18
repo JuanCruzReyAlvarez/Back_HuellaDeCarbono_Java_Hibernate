@@ -20,6 +20,7 @@ public class ElectricidadAdquiridaConsumida extends Actividad {
         this.consumo = consumo;
         this.tipoActividad = TipoActividad.Electricidad_Adquirida_Consumida;
     }
+    public ElectricidadAdquiridaConsumida(){}
 
     @Override
     protected Double getValorDA() {

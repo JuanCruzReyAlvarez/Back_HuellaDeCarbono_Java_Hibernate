@@ -16,6 +16,8 @@ public class TipoServicioContratado {
     @Column( name = "tipoServicioContratado")
     @Getter @Setter private String nombre;
 
+    public TipoServicioContratado(){}
+    
     public TipoServicioContratado(String nombre) {
         this.nombre = nombre;
     }

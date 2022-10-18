@@ -35,7 +35,10 @@ public class LogisticaDeProductosServicios extends Actividad {
     @Enumerated(value = EnumType.STRING)
     @Setter @Getter private TipoDeConsumo tipoDeConsumo; 
 
-    public LogisticaDeProductosServicios() {
+    
+    public LogisticaDeProductosServicios(){}
+
+    public LogisticaDeProductosServicios(int a) {
         this.tipoActividad = TipoActividad.Logistica_De_Productos_Servicios;
     }
 

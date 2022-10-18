@@ -1,29 +1,21 @@
 package dds.tp.carbono.http.controllers.admin;
 
-import java.util.Arrays;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.eclipse.jetty.http.HttpStatus;
 
 import dds.tp.carbono.entities.auth.Rol;
 import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.entities.huella.UnidadFE;
-import dds.tp.carbono.entities.organization.metrics.DatoActividad;
 import dds.tp.carbono.entities.organization.metrics.TipoActividad;
 import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
 import dds.tp.carbono.http.controllers.AuthorizationMiddleware;
-import dds.tp.carbono.http.dto.ErrorDTO;
 import dds.tp.carbono.http.dto.admin.FactorEmisionDTO;
 import dds.tp.carbono.http.dto.validators.FactorEmisionDTOValidator;
 import dds.tp.carbono.http.exceptions.BadResquestException;
-import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.Uri;
 import dds.tp.carbono.services.huella.EditorFactoresEmision;
-import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.Spark;

@@ -16,9 +16,8 @@ public class ProvinciaRepository {
         this.dao.setClazz(Provincia.class);
     }
 
-      public List<Provincia> getAll() {
-        //return this.dao.getAll();
-        return this.dao.buscarTodos();
+    public List<Provincia> getAll() {
+        return this.dao.getAll();
     }
 
     public void saveAll(List<Provincia> provincias) {

@@ -22,7 +22,11 @@ public class Localidad implements GeoInfo {
     @ManyToOne
     @Getter @Setter private Municipio municipio;
     
-   
+    
+    public Localidad() {
+        
+    }
+
     public Localidad(String localidad) {
         this.nombre = localidad;
         

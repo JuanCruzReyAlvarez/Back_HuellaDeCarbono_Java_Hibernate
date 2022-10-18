@@ -29,4 +29,6 @@ public class DatoActividad {
 
     @Enumerated(value = EnumType.STRING)
     @Setter @Getter private Unidad unidad;
+
+    public DatoActividad(){}
 }

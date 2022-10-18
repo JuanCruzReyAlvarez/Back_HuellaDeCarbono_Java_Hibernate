@@ -33,6 +33,10 @@ public class SolicitudVinculacion {
     @Enumerated(value = EnumType.STRING)
     @Getter @Setter private EstadoSolicitudVinculacion estado;
     
+    public SolicitudVinculacion() {
+        
+    }
+
     public SolicitudVinculacion(Miembro miembro, Sector sector) {
         this.miembro = miembro;
         this.sector = sector;
