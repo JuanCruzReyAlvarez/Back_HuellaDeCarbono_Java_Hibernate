@@ -1,8 +1,20 @@
 package dds.tp.carbono.http.controllers.puntoGeografico;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.apache.hadoop.shaded.com.nimbusds.jose.shaded.json.JSONArray;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import dds.tp.carbono.http.controllers.Controller;
+import dds.tp.carbono.http.dto.ProvinciaDTO;
 import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.Uri;
 import dds.tp.carbono.services.external.dto.Provincia;
@@ -41,9 +53,48 @@ public class ProvinciaController extends Controller {
         
         try{
                            
+
+            
                 List<Provincia> provincias = service.getAll(); 
+
+
+
+
+
+
+                ProvinciaDTO obj= new ProvinciaDTO();
+                obj.setId("55");
+                obj.setName("juan dale que s epuede");
+                /* 
+                for (Provincia provincia: provincias){
+                    aaa.add(provincia.getId()+ " "+ provincia.getNombre());
+                     
+                }*/
                 
-                return json(provincias); 
+                //return gson.toJson(Stream.of(provincias).collect(Collectors.toList())); 
+            
+                //Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                /* 
+                ObjectMapper objectMapper = new ObjectMapper();
+                
+                System.out.println("Hola");
+                Gson gson = new Gson();
+                //List<String> a = Arrays.asList("");
+                //List<String> aa = new List<String>();
+
+                List<String> aaa = new ArrayList<String>();
+
+                for (Provincia provincia: provincias){
+                    aaa.add(provincia.getId()+ " "+ provincia.getNombre());
+                     
+                }
+
+                System.out.println("Hola");
+             */
+                // return json(aaa); 
+
+                    
+                return json(obj); 
             }
             catch(Exception ex){
                 System.out.println("In catch Exception geting provincias was fail:");
@@ -52,4 +103,4 @@ public class ProvinciaController extends Controller {
         return null;
     }
 
-}
+  }

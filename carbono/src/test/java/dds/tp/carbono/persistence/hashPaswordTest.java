@@ -8,8 +8,10 @@ import org.junit.Test;
 import dds.tp.carbono.entities.auth.Rol;
 import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.entities.member.Miembro;
+import dds.tp.carbono.repository.PuntoGeografico.ProvinciaRepository;
 import dds.tp.carbono.repository.auth.UsuarioRepository;
 import dds.tp.carbono.repository.member.MiembroRepository;
+import dds.tp.carbono.services.external.dto.Provincia;
 
 
 
@@ -39,10 +41,10 @@ public class hashPaswordTest {
     public void getOrg(){
 
             
-        MiembroRepository repository = new MiembroRepository();
-        List<Miembro> entidades = repository.getAll();
+        ProvinciaRepository repository = new ProvinciaRepository();
+        List<Provincia> entidades = repository.getAll();
                   
-        for(Miembro o :entidades ){
+        for(Provincia o :entidades ){
             System.out.println(o.getNombre());
         }
 

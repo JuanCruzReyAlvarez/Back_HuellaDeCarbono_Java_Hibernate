@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
 
 .aa {
-    display: flex;
+    position: absolute;
     background-image: url("../../main/resources/public/css/images/birds.jpg");
     background-size: cover;
     font-family: 'Lato', Arial, sans-serif;
@@ -14,12 +14,13 @@
 
 .ccform {
     border-radius: 15px;
+    
     background-color: #1a271660;
     position: absolute;
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40%;
+    width: 30%;
     font-family: 'Lato', Arial, sans-serif;
 }
 
@@ -125,7 +126,7 @@
     margin-top: 3%;
     margin-left: 100%;
     width: 120%;
-    /* overflow: scroll; */
+     overflow: scroll; 
 }
 
 .contacts__title {

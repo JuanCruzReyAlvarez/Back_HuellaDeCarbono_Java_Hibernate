@@ -44,7 +44,7 @@ export const Sidebar = () => {
                     {usuario ? (
                         usuario.token && usuario.rol === "ORGANIZACION" ? (
                             <>
-                                {/* <Link to="/advices"><li>Recomendaciones</li></Link> */}
+                                <Link to="/advices"><li>Recomendaciones</li></Link> 
                                 <Link to="/addcontacts"><li>AddConacts</li></Link>
                                 {/* <Link to="/contactsList"><li>Contactos</li></Link> */}
                                 <Link to="/request"><li>Gestionar Solicitudes</li></Link>

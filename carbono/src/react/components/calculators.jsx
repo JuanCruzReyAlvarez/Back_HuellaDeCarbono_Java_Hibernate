@@ -255,13 +255,13 @@ export const Calculator = () => {
 
           <div id="calculitoOrgItems1">
 
-            {/* <div class="grid-item">
+             <div class="grid-item">
               <label for="">Organizacion</label>
               <input type="text" name="" value="" class="text-input" />
-            </div> */}
+            </div> 
 
 
-            <select id="ElegirOrganizacion" name="org" class="text-input" onChange={selectOrg}>
+            {/*<select id="ElegirOrganizacion" name="org" class="text-input" onChange={selectOrg}>
               {
                 organizaciones.length ? (
                   organizaciones.map((item) => {
@@ -272,7 +272,7 @@ export const Calculator = () => {
                 ) : <option>Aun no hay organizaciones</option>
               }
 
-            </select>
+            </select>*/}
 
 
 
@@ -290,12 +290,12 @@ export const Calculator = () => {
 
           <div id="calculitoSectorItems1">
 
-            {/* <div class="grid-item">
+             <div class="grid-item">
               <label for="">Organizacion</label>
               <input type="text" name="" value="" class="text-input" />
-            </div> */}
+            </div> 
 
-            <select id="ElegirOrganizacion" name="org" class="text-input" onChange={selectorOrganizaciones}>
+            {/*<select id="ElegirOrganizacion" name="org" class="text-input" onChange={selectorOrganizaciones}>
               {
                 organizaciones.length ? (
                   organizaciones.map((item) => {
@@ -306,15 +306,15 @@ export const Calculator = () => {
                 ) : <option>Aun no hay organizaciones</option>
               }
 
-            </select>
+            </select>*/}
 
-            {/* <div class="grid-item">
+             <div class="grid-item">
               <label for="">Sector</label>
               <input type="text" name="" value="" class="text-input" />
-            </div> */}
+            </div> 
 
 
-            <select id="ElegirSector" name="sector" class="text-input" onChange={selectorSector} >
+            {/*<select id="ElegirSector" name="sector" class="text-input" onChange={selectorSector} >
               {
                 sector.length ? (
                   sector.map((item) => {
@@ -325,7 +325,7 @@ export const Calculator = () => {
                 ) : <option>Aun no hay sectores</option>
               }
 
-            </select>
+            </select>*/}
 
 
             <div class="grid-item">
@@ -341,12 +341,12 @@ export const Calculator = () => {
 
           <div id="calculitoMiembroItems1">
 
-            {/* <div class="grid-item">
+            <div class="grid-item">
               <label for="">Organizacion</label>
               <input type="text" name="" value="" class="text-input" />
-            </div> */}
+            </div> 
 
-            <select id="ElegirOrganizacion" name="org" onChange={selectorOrganizaciones} class="text-input">
+             {/*<select id="ElegirOrganizacion" name="org" onChange={selectorOrganizaciones} class="text-input">
               {
                 organizaciones.length ? (
                   organizaciones.map((item) => {
@@ -357,14 +357,14 @@ export const Calculator = () => {
                 ) : <option>Aun no hay organizaciones</option>
               }
 
-            </select>
+            </select>*/}
 
-            {/* <div class="grid-item">
+             <div class="grid-item">
               <label for="">Miembro</label>
               <input type="text" name="" value="" class="text-input" />
-            </div> */}
+            </div> 
 
-            <select id="ElegirMiembro" name="miembro" class="text-input" onChange={selectorMiembro}>
+            {/*<select id="ElegirMiembro" name="miembro" class="text-input" onChange={selectorMiembro}>
               {
                 miembros.length ? (
                   miembros.map((item) => {
@@ -388,7 +388,7 @@ export const Calculator = () => {
                 ) : <option>Aun no hay sectores</option>
               }
 
-            </select>
+            </select>*/}
 
 
             <div class="grid-item">

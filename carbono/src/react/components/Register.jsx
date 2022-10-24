@@ -55,9 +55,9 @@ export const Register = () => {
             />
             <link rel="stylesheet" href="form.css" type="text/css" /> */}
 
-            <div class="body-content"></div>
+            <div class="body-contenttt"></div>
 
-            <div class="module">
+            <div class="moduleee">
                 <h1>Crear una cuenta</h1>
                 <form
                     class="form"

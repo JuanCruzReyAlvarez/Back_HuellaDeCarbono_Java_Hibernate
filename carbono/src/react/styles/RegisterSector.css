@@ -8,18 +8,18 @@
   }
   .FormuPrinc{
       margin-right: auto;
-      margin-left: auto;
+      margin-left: 30%;
+      width: 30%;
       box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
       backdrop-filter: blur(7px);
       background-color: rgba(255, 255, 255, 0.2);
       padding: 10px;
-      border: solid 1px;
       border-radius: 15px;
   }
   .FormuPrinc .PrimTit{
     font-size: 45px;
     border-bottom: solid black 4px;
-    width: 50%;
+    width: 20%;
     padding: 0 0 5px 0;
   }
   .FormuPrinc h1,h3{
@@ -35,19 +35,20 @@
   }
   
   .uno input{
-    width: 400px;
+    width: 200px;
     margin-top: 7px;
   }
   .dos select{
-    width: 400px;
+    width: 200px;
     margin-top: 7px;
   }
   .tres h2{
     margin-left: 6%;
-    font-size: 30px;
+    margin-bottom: 5%;
+    font-size: 20px;
   }
   .tres_uno{
-    width: 94%;
+    width: 96%;
     margin-left: 6%;
     margin-bottom: 3%;
     display: flex;

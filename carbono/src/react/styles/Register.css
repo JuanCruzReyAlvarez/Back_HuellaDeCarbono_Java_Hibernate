@@ -43,7 +43,7 @@
       margin: 10px 0 20px 0;
   }
   
-  .module{
+  .moduleee{
     position:relative;
     top:10%;    
     height:65%;
@@ -89,13 +89,13 @@
     background: #037db6;
   }
   
-  body{
+  .body{
     color: #fff;
     background-color:#f0f0f0;
     font-family:helvetica;
   }
   
-  .body-content{
+  .body-contenttt{
 	position: absolute;
 	top: -20px;
 	left: -20px;

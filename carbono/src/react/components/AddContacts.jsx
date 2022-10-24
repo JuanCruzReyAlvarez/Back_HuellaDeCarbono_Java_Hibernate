@@ -23,6 +23,7 @@ export const Contacts = () => {
 
 
             <div id="formularito">
+                
                 <form method="POST" action="addContacts" class="ccform">
                     <h1>AÑADIR NUEVOS CONTACTOS</h1>
                     <div class="ccfield-prepend">
