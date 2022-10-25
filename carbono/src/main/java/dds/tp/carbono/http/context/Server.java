@@ -81,7 +81,7 @@ public class Server implements SparkApplication {
             new FactorEmisionController(),
             new CalcuarHuellaController(),
             new ContactsController(new ContactsService()),
-            new CalculatorController(new CalculatorService(new OrganizacionRepository() ,new  SectorRepository() ,new MiembroRepository() )
+            new CalculatorController(new CalculatorService(new OrganizacionRepository() ,new  SectorRepository() ,new MiembroRepository() ) //se instancia en la clase !!
                             ,new OrganizacionService(),new MiembroService(), new SectorService())
             
         };

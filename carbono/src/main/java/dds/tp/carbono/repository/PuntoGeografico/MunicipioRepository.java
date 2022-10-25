@@ -18,4 +18,8 @@ public class MunicipioRepository {
     public void saveAll(List<Municipio> municipio) {
         this.dao.saveAll(municipio);;
      }
+
+    public List<Municipio> getByIdProvincia(Integer id) {
+        return this.dao.getByIdProvincia(id);
+    }
 }

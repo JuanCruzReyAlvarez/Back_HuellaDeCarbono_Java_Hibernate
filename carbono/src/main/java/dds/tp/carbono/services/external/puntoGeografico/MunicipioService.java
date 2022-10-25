@@ -22,5 +22,10 @@ public class MunicipioService {
     public void SaveAll(List<Municipio> municipio) {
         this.repository.saveAll(municipio);
     }
+
+
+    public List<Municipio> getById(Integer id) {
+        return this.repository.getByIdProvincia(id);
+    }
     
 }

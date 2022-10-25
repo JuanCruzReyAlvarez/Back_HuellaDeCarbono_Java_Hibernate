@@ -1,5 +1,6 @@
 package dds.tp.carbono.dao.PuntoGeografico;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import dds.tp.carbono.dao.member.Dao;
 import dds.tp.carbono.services.external.dto.Municipio;
@@ -7,12 +8,7 @@ import dds.tp.carbono.services.external.dto.Municipio;
 
 public class MunicipioDao extends Dao<Municipio>{
 
-    
     private static MunicipioDao instance;
-
-    public List<Municipio> getAll() {
-        return null;
-    }
 
 	 public static MunicipioDao getInstance() {
         if (instance == null)
@@ -20,8 +16,11 @@ public class MunicipioDao extends Dao<Municipio>{
 
         return instance;
     }
+    
+    public List<Municipio> getByIdProvincia(Integer id) {
+        return getAll().stream().filter(m->m.getProvincia().getId().equals(id)).collect(Collectors.toList());
  
-
+    }
 
 }
     

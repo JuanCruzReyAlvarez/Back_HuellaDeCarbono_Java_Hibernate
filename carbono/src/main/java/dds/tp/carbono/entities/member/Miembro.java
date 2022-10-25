@@ -16,8 +16,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 import lombok.Getter;
 import lombok.Setter;
@@ -51,6 +53,10 @@ public class Miembro {
     @ManyToOne
     @JoinColumn(name = "trayecto_pendiente_id", referencedColumnName = "id")
     @Getter @Setter private TrayectoPendiente trayecto_pendiente;
+
+    @OneToOne
+    @Getter @Setter private Usuario user;
+
     
     public Miembro() {
        

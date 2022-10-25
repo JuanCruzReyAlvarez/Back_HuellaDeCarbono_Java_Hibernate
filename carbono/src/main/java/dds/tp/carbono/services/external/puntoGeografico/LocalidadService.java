@@ -23,5 +23,11 @@ public class LocalidadService {
         this.repository.saveAll(localidad);
     }
 
+
+    public List<Localidad> getById(Integer idMunicipio) {
+
+        return this.repository.getById(idMunicipio);
+    }
+
 }
 

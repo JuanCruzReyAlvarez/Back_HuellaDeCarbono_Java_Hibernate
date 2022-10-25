@@ -7,10 +7,10 @@ import org.junit.Test;
 
 import dds.tp.carbono.entities.auth.Rol;
 import dds.tp.carbono.entities.auth.Usuario;
-import dds.tp.carbono.entities.member.Miembro;
+
 import dds.tp.carbono.repository.PuntoGeografico.ProvinciaRepository;
 import dds.tp.carbono.repository.auth.UsuarioRepository;
-import dds.tp.carbono.repository.member.MiembroRepository;
+
 import dds.tp.carbono.services.external.dto.Provincia;
 
 
@@ -51,5 +51,12 @@ public class hashPaswordTest {
          
         
     }
+
+         
+        
+    
+
+
+
     
 }

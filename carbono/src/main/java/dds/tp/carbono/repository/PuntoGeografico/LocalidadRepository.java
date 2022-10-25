@@ -22,4 +22,8 @@ public class LocalidadRepository {
         this.dao.saveAll(localidad);;
      }
 
+    public List<Localidad> getById(Integer idMunicipio) {
+        return this.dao.getById(idMunicipio);
+    }
+
 }

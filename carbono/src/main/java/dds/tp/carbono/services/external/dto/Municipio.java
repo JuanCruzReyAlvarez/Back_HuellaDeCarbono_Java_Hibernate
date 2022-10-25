@@ -2,8 +2,10 @@ package dds.tp.carbono.services.external.dto;
 
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -19,8 +21,9 @@ public class Municipio implements GeoInfo {
     @Getter @Setter private Integer id;
     @Column
     @Getter @Setter private String nombre;
-    @ManyToOne
+    @ManyToOne( cascade = {CascadeType.ALL}, fetch = FetchType.EAGER )
     @Getter @Setter private Provincia provincia;
+    
     
     public  Municipio() {
           

@@ -73,7 +73,7 @@ public abstract class Dao<T> {
     } 
 
     public T findOne(Integer id ){
-        
+        System.out.println("Llehgue aca");
         return (T)EntityManagerHelper.getEntityManager().find( clazz, id );        
      }
 
