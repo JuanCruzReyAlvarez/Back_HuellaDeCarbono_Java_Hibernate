@@ -8,14 +8,14 @@ import dds.tp.carbono.contracts.http.IController;
 import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.exceptions.HttpExceptionMessage;
 import spark.Spark;
-import spark.TemplateEngine;
+//import spark.TemplateEngine;
 
 public class HttpContext {
 
-    private TemplateEngine templateEngine;
+    //private TemplateEngine templateEngine;
 
     public HttpContext addRouting(IController ...controllers) {
-        Arrays.stream(controllers).forEach(c -> c.routes(this.templateEngine));
+        Arrays.stream(controllers).forEach(c -> c.routes());
         return this;
     }
 
@@ -43,8 +43,8 @@ public class HttpContext {
         return this;
     }
 
-    public HttpContext setTemplateEngine(TemplateEngine templateEngine) {
-        this.templateEngine = templateEngine;
-        return this;
-    }
+   // public HttpContext setTemplateEngine(TemplateEngine templateEngine) {
+        //this.templateEngine = templateEngine;
+       // return this;
+    //}
 }

@@ -23,10 +23,13 @@ public abstract class Dao<T> {
     }
 
     public T save(T item) {
-
+        System.out.println("en el dao 4");
         EntityManagerHelper.beginTransaction();
+        System.out.println("en el dao 5");
         EntityManagerHelper.getEntityManager().persist(item);
+        System.out.println("en el dao 6");
         EntityManagerHelper.commit();
+        System.out.println("en el dao 7");
         EntityManagerHelper.closeEntityManager();
 
         return item;                                                //chekiar
@@ -73,7 +76,7 @@ public abstract class Dao<T> {
     } 
 
     public T findOne(Integer id ){
-        System.out.println("Llehgue aca");
+        
         return (T)EntityManagerHelper.getEntityManager().find( clazz, id );        
      }
 

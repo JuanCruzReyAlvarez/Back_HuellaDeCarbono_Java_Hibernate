@@ -7,7 +7,6 @@ import dds.tp.carbono.http.utils.Uri;
 import dds.tp.carbono.services.ubicacion.UbicacionesCacheDecorator;
 import dds.tp.carbono.services.ubicacion.UbicacionesService;
 import spark.Spark;
-import spark.TemplateEngine;
 import spark.Request;
 import spark.Response;
 
@@ -23,7 +22,7 @@ public class AdminGeoInfoController extends Controller {
 
 
     @Override
-    public void routes(TemplateEngine engine) {
+    public void routes() {
         Spark.post(path(Uri.ADMIN_GEOINFO), (rq, rs) -> this.refreshGeoInfo(rq, rs));
     }
  

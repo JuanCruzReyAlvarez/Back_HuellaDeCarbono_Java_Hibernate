@@ -12,7 +12,6 @@ import dds.tp.carbono.services.external.puntoGeografico.LocalidadService;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
-import spark.TemplateEngine;
 
 public class LocalidadController extends Controller {
 
@@ -24,7 +23,7 @@ public class LocalidadController extends Controller {
     }
 
     @Override
-    public void routes(TemplateEngine engine) {
+    public void routes( ) {
         Spark.post(path(Uri.LOCALIDAD), (rq, rs) -> this.getLocalidades(rq, rs));
     }
 

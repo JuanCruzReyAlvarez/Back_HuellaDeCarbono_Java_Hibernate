@@ -1,3 +1,4 @@
+/* 
 package dds.tp.carbono.http.controllers.agenteSectorial;
 
 import java.util.HashMap;
@@ -16,9 +17,9 @@ import spark.Response;
 import spark.Spark;
 import spark.TemplateEngine;
 
-public class CalcuarHuellaController extends AuthorizationMiddleware  {
+public class AgenteSectorialController extends AuthorizationMiddleware  {
 
-    public CalcuarHuellaController() {
+    public AgenteSectorialController() {
         super(Rol.AGENTE_SECTORIAL);
     }
 
@@ -54,3 +55,4 @@ public class CalcuarHuellaController extends AuthorizationMiddleware  {
         } 
     }
 }
+*/

@@ -27,6 +27,7 @@ public class SolicitadorDeVinculacionService {
     public SolicitudVinculacion solicitarVinculacionInicialPorHall(Sector sector, Miembro miembro) throws Exception {
         
         SolicitudVinculacion solicitud = new SolicitudVinculacion(miembro, sector);
+        System.out.println("en el serviceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee ");
         return this.repository.crearSolicitud(solicitud);        
     }
 

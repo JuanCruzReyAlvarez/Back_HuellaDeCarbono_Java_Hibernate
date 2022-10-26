@@ -11,7 +11,7 @@ import dds.tp.carbono.http.utils.Uri;
 import dds.tp.carbono.services.external.dto.Provincia;
 import dds.tp.carbono.services.external.puntoGeografico.ProvinciaService;
 import spark.Spark;
-import spark.TemplateEngine;
+
 import spark.Request;
 import spark.Response;
 
@@ -29,13 +29,10 @@ public class ProvinciaController extends Controller {
 
 
     @Override
-    public void routes(TemplateEngine engine) {
-        System.out.println("llehgo a compilar las rutas");     
-
-        Spark.get(path(Uri.PROVINCIA), (rq, rs) -> this.getProvincias(rq, rs));
+    public void routes( ) {
         
-
-        System.out.println("llehgo a compilar las rutas  2222"); 
+        Spark.get(path(Uri.PROVINCIA), (rq, rs) -> this.getProvincias(rq, rs));
+    
     }
 
     public String  getProvincias(Request rq, Response rs) throws HttpException {
@@ -55,6 +52,7 @@ public class ProvinciaController extends Controller {
                     listaDTO.add(obj);
                 }
             
+                
                
                 System.out.println("Hola2");
 

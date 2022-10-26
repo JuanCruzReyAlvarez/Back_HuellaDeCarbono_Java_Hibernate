@@ -16,7 +16,6 @@ import dds.tp.carbono.services.distancia.TrayectoService;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
-import spark.TemplateEngine;
 
 public class TrayectosController extends Controller {
     
@@ -30,7 +29,7 @@ public class TrayectosController extends Controller {
         }
         
         @Override
-        public void routes(TemplateEngine engine) {
+        public void routes( ) {
             Spark.get(path(Uri.TRAYECTO), (rq, rs) -> this.trayectos(rq, rs));
             Spark.get(path(Uri.TRAYECTOS_AUTOCOMPLETE), (rq, rs) -> this.autocomplete(rq, rs));
         }

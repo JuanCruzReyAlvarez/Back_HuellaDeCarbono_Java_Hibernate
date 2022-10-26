@@ -28,7 +28,6 @@ public class AsignadorDeAgentesSectoriales {
             sm.setMunicipio(municipio);
             sm.setUsuario(usuario);
             sm.setOrganizaciones(this.asignarOrganiacionesMunicipio(municipio));
-    
             return this.repo.guardar(sm);
         }
 

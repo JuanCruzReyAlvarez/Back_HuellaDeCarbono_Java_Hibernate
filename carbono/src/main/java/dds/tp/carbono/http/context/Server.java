@@ -2,17 +2,14 @@ package dds.tp.carbono.http.context;
 
 import dds.tp.carbono.builder.InsecurePasswordCheckerBuilder;
 import dds.tp.carbono.contracts.http.IController;
-import dds.tp.carbono.http.controllers.admin.FactorEmisionController;
 import dds.tp.carbono.http.controllers.admin.AdminGeoInfoController;
-import dds.tp.carbono.http.controllers.agenteSectorial.CalcuarHuellaController;
 import dds.tp.carbono.http.controllers.auth.HallController;
 import dds.tp.carbono.http.controllers.auth.LoginController;
 import dds.tp.carbono.http.controllers.auth.RegisterController;
-import dds.tp.carbono.http.controllers.member.trayectos.PointController;
 import dds.tp.carbono.http.controllers.member.trayectos.TrayectosController;
 import dds.tp.carbono.http.controllers.org.ContactsController;
-import dds.tp.carbono.http.controllers.org.OrgMetricsController;
 import dds.tp.carbono.http.controllers.org.OrganizacionController;
+import dds.tp.carbono.http.controllers.org.SectorController;
 import dds.tp.carbono.services.MiembroService;
 import dds.tp.carbono.services.agenteSectorial.AsignadorDeAgentesSectoriales;
 import dds.tp.carbono.services.auth.HallMiembroService;
@@ -29,21 +26,16 @@ import dds.tp.carbono.services.organizacion.SectorService;
 import dds.tp.carbono.services.auth.LoginService;
 import dds.tp.carbono.services.auth.RegisterService;
 import dds.tp.carbono.http.controllers.puntoGeografico.ProvinciaController;
-import dds.tp.carbono.repository.member.MiembroRepository;
-import dds.tp.carbono.repository.organization.OrganizacionRepository;
-import dds.tp.carbono.repository.organization.SectorRepository;
 import dds.tp.carbono.http.controllers.puntoGeografico.LocalidadController;
 import dds.tp.carbono.http.controllers.puntoGeografico.MunicipioController;
 import dds.tp.carbono.http.controllers.huella.CalculatorController;
-import spark.TemplateEngine;
 import spark.servlet.SparkApplication;
-import spark.template.mustache.MustacheTemplateEngine;
 
 public class Server implements SparkApplication {
 
     private final int PORT = 8080;
     private final String PUBLIC_DIR = "/public";
-    private final TemplateEngine TEMPLATE_ENGINE = new MustacheTemplateEngine();
+    //private final TemplateEngine TEMPLATE_ENGINE = new MustacheTemplateEngine();
 
     @Override
     public void init() {
@@ -54,7 +46,6 @@ public class Server implements SparkApplication {
 
         http.setPort(PORT)
             .setStaticFilesLocation(PUBLIC_DIR)
-            .setTemplateEngine(TEMPLATE_ENGINE)
             .addExceptionHandling()
             .addRouting(controllers);
     }
@@ -66,6 +57,7 @@ public class Server implements SparkApplication {
         return new IController[] {
             new LoginController(new LoginService()),
             new RegisterController(new RegisterService(new InsecurePasswordCheckerBuilder())),
+            new SectorController(new SectorService()),
             new ProvinciaController(new ProvinciaService()),
             new LocalidadController(new LocalidadService()),
             new MunicipioController(new MunicipioService()),
@@ -73,16 +65,14 @@ public class Server implements SparkApplication {
             new HallController( new HallMiembroService(),
                                 new HallOrganizacionService(),
                                 new SolicitadorDeVinculacionService(),
-                                new AsignadorDeAgentesSectoriales() ),
-            new OrgMetricsController(),
+                                new AsignadorDeAgentesSectoriales(),
+                                new MunicipioService(),
+                                new ProvinciaService(),
+                                new SectorService()),
             new AdminGeoInfoController(),
             new TrayectosController(new TrayectoService(), new MiembroService()),
-            new PointController(),
-            new FactorEmisionController(),
-            new CalcuarHuellaController(),
             new ContactsController(new ContactsService()),
-            new CalculatorController(new CalculatorService(new OrganizacionRepository() ,new  SectorRepository() ,new MiembroRepository() ) //se instancia en la clase !!
-                            ,new OrganizacionService(),new MiembroService(), new SectorService())
+            new CalculatorController(new CalculatorService(),new OrganizacionService(),new MiembroService(), new SectorService())
             
         };
     }

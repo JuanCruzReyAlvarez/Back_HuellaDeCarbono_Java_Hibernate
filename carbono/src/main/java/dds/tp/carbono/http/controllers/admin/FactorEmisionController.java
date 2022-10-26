@@ -1,3 +1,4 @@
+/*
 package dds.tp.carbono.http.controllers.admin;
 
 
@@ -86,5 +87,6 @@ public class FactorEmisionController extends AuthorizationMiddleware {
     }
 }
 
+ */
     
    

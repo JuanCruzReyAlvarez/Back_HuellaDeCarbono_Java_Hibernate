@@ -22,4 +22,7 @@ public class MunicipioRepository {
     public List<Municipio> getByIdProvincia(Integer id) {
         return this.dao.getByIdProvincia(id);
     }
+    public Municipio getByIdMunicipio (Integer id){
+        return dao.findOne(id);
+    }
 }

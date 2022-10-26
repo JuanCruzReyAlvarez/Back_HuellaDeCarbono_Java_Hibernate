@@ -34,7 +34,7 @@ public class HallOrganizacionService {
         this.pgrepository.saveOne(ubicacion);                                  
     System.out.println("2");
         Organizacion organizacion = this.buildOrg(razonSocial, clasficacion,ubicacion,tipoOrganizacion,user);
- 
+                                                    
         return this.repository.guardar(organizacion);
     }
 

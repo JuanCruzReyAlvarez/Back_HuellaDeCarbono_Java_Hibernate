@@ -33,10 +33,7 @@ private Miembro buildMiembro(String nombre, String apellido, String tipoDocument
     Usuario usuario = urepository.getUsuarioById(Integer.parseInt(user)); 
     miembro.setUser(usuario);
 
-    return this.repository.guardar(miembro);
+    return miembro;
 }
 
-
-
-    
 }

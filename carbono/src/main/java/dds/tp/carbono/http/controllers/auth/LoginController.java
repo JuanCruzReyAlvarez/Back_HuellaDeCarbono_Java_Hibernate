@@ -12,7 +12,7 @@ import dds.tp.carbono.services.auth.LoginService;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
-import spark.TemplateEngine;
+
 
 public class LoginController extends Controller {
     //private static final String LOGIN_VIEW = "auth/login.html";
@@ -26,7 +26,7 @@ public class LoginController extends Controller {
     }
     
     @Override
-    public void routes(TemplateEngine engine) {
+    public void routes( ) {
 
 
 
@@ -64,7 +64,7 @@ public class LoginController extends Controller {
 
            // return session ;               hay que devlver esto 
 
-  
+            System.out.println(session.getUser());
 
             return json(session);
 

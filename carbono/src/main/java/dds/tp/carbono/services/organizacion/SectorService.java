@@ -34,10 +34,10 @@ public class SectorService {
     /*
     public List<SolicitudVinculacion> getAll() {
         return this.repository.getAll();
-    }
-    public SolicitudVinculacion getById(Integer id){
+    }*/
+    public Sector getById(Integer id){
         return this.repository.getById(id);
     }
-    */
+    
    
 }

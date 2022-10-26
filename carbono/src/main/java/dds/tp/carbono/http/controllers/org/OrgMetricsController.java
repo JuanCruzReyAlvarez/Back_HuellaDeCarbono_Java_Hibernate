@@ -1,7 +1,11 @@
+
+
 package dds.tp.carbono.http.controllers.org;
 
 import java.io.InputStream;
 import java.util.List;
+
+
 
 import javax.servlet.MultipartConfigElement;
 
@@ -22,7 +26,7 @@ import spark.TemplateEngine;
 
 public class OrgMetricsController extends AuthorizationMiddleware {
     
-    private static final String VIEW = "org/import.metrics.html";
+    //private static final String VIEW = "org/import.metrics.html";
     private static final String ACCESS_TYPE = "multipart/form-data";
     private static final String MULTIPART_DRIVER = "org.eclipse.jetty.multipartConfig";
    
@@ -34,8 +38,8 @@ public class OrgMetricsController extends AuthorizationMiddleware {
     }
 
     @Override
-    public void routes(TemplateEngine engine) {
-        Spark.get(path(Uri.ORG_METRICS), (rq, rs) -> view(VIEW), engine);
+    public void routes( ) {
+        //Spark.get(path(Uri.ORG_METRICS), (rq, rs) -> view(VIEW), engine);
         Spark.post(path(Uri.ORG_METRICS), ACCESS_TYPE, (rq, rs) -> this.uploadFile(rq, rs));
     }
 
@@ -67,3 +71,4 @@ public class OrgMetricsController extends AuthorizationMiddleware {
         return null;
     }
 }
+

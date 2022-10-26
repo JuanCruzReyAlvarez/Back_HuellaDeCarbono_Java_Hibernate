@@ -27,8 +27,10 @@ public class Routes {
         define(Uri.TRAYECTO, "/trayecto"),
         define(Uri.TRAYECTOS_AUTOCOMPLETE, "/trayectoAutoComplete"),
         define(Uri.SECTORES, "/sectores"), 
-        define(Uri.MEMBER, "/miembros",
-        define(Uri.ORGANIZACION, "/organizacion",
+        define(Uri.MEMBER, "/miembros"),
+        define(Uri.ORGANIZACION, "/organizacion"),
+        define(Uri.AGENTE_SECTORIAL, "/agente"),
+        define(Uri.CONTACTS, "/contacts"),
         
     // ------------------------------------------------------------------------------- Huella
         define(Uri.CALCULATOR, "/calculators"),
@@ -45,14 +47,13 @@ public class Routes {
         define(Uri.MEMBER_POINTS, "/points", 
         define(Uri.MEMBER_POINTS_AUTOCOMPLETE, "/autocomplete")), 
         define(Uri.MEMBER_TRAYECTOS, "/trayectos",
-        define(Uri.MEMBER_TRAYECTOS_AUTOCOMPLETE, "/autocomplete"))),
+        define(Uri.MEMBER_TRAYECTOS_AUTOCOMPLETE, "/autocomplete")));
     
 
 
-        define(Uri.ORG_METRICS, "/metrics")),
-        define(Uri.AGENTE_SECTORIAL, "/agente",
-        define(Uri.AGENTE_SECTORIAL_HUELLA, "/huella")));
-        define(Uri.CONTACTS, "/contacts");
+        //define(Uri.ORG_METRICS, "/metrics")),
+        //define(Uri.AGENTE_SECTORIAL_HUELLA, "/huella")));
+        
   
           
 

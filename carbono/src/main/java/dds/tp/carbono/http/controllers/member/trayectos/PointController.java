@@ -1,3 +1,5 @@
+
+/* 
 package dds.tp.carbono.http.controllers.member.trayectos;
 
 import java.io.IOException;
@@ -24,14 +26,14 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
-import spark.TemplateEngine;
+
 
 public class PointController extends Controller {
     
     private static final String VIEW = "member.points.mustache";
     
     @Override
-    public void routes(TemplateEngine engine) {
+    public void routes() {
         Spark.get(path(Uri.MEMBER_POINTS), (rq, rs) -> this.points(rq, rs), engine);
         Spark.post(path(Uri.MEMBER_POINTS), (rq, rs) -> this.createPoint(rq, rs));
         Spark.get(path(Uri.MEMBER_POINTS_AUTOCOMPLETE), (rq, rs) -> this.autocomplete(rq, rs));
@@ -100,4 +102,4 @@ public class PointController extends Controller {
         }
     }
 }
-
+*/

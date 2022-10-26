@@ -8,7 +8,6 @@ import dds.tp.carbono.services.huella.calculador.org.InscriptionService;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
-import spark.TemplateEngine;
 
 public class InscriptionController extends Controller{
     
@@ -19,7 +18,7 @@ public class InscriptionController extends Controller{
     }
 
     @Override
-    public void routes(TemplateEngine engine) {
+    public void routes() {
         Spark.post(path(Uri.SOL_MIEMBRO), (rq, rs) -> this.makeRequest(rq, rs));
     }
 

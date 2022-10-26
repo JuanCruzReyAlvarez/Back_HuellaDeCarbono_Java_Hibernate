@@ -5,12 +5,12 @@ import java.util.List;
 import dds.tp.carbono.repository.PuntoGeografico.MunicipioRepository;
 import dds.tp.carbono.services.external.dto.Municipio;
 
-public class MunicipioService {
+public class SectorTerritorialService {
 
-    private MunicipioRepository repository;
+    private SectorTerritorialRepository repository;
 
     public MunicipioService() {
-        this.repository = new MunicipioRepository();
+        this.repository = new SectorTerritorialRepository();
     }
 
     

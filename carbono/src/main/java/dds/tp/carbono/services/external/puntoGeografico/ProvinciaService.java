@@ -19,6 +19,9 @@ public class ProvinciaService {
     public void saveAll(List<Provincia> provincias) {
         this.repository.saveAll(provincias);
     }
+    public Provincia getById(Integer id) {
+        return this.repository.getByIdProvincia(id);
+    }
 
 
    

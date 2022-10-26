@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ".././styles/Hall.css";
+import $ from 'jquery'
 
 export const Hall = () => {
     //HAY QUE PEGARLE A LA API
@@ -15,19 +16,7 @@ export const Hall = () => {
     const [municipios, setMunicipios] = useState([]);
     const [localidades, setLocalidades] = useState([]);
     const [sectores, setSectores] = useState([]);
-
-
-    // {
-    // id: 1,
-    // nombre: ""
-
-    // }
-
-
-
-    let organizacionElegida;
-    let provinciaElegida;
-    let municipioElegido;
+    const [hallAgentes, setHallAgentes] = useState("");
 
 
 
@@ -42,23 +31,27 @@ export const Hall = () => {
                 rol: user.rol,
                 userId: user.id
             })
-            axios.get("http://localhost:8080/provinciasss", JSON.stringify(usuario)).then(({ data }) => {
-                console.log("funcionaron las provincias ", data)
-                data.unshift({ id: "", name: "Seleccionar" })
-                setProvincias(data);
-            }).catch(error => {
-                console.log(error)
-            })
 
-            // deberia hacer un switch o algo creo 
-            axios.get("http://localhost:8080/organizacion").then(([data]) => {
-                console.log("funciono el get a organizaciones", data)
-                setOrganizaciones(data)
-            }).catch(error => {
-                console.log(error)
-            })
-            
-            
+            if (user.rol === "ORGANIZACION" || user.rol === "AGENTE_SECTORIAL") {
+                axios.get("http://localhost:8080/provinciasss", JSON.stringify(usuario)).then(({ data }) => {
+                    console.log("funcionaron las provincias ", data)
+                    data.unshift({ id: "", name: "Seleccionar" })
+                    setProvincias(data);
+                }).catch(error => {
+                    console.log(error)
+                })
+            }
+            if (user.rol === "MIEMBRO") {
+                axios.get("http://localhost:8080/organizacion", JSON.stringify(usuario)).then(({ data }) => {
+                    console.log("funciono el get a organizaciones", data)
+                    data.unshift({ id: "", razonSocial: "Seleccionar" })
+                    setOrganizaciones(data)
+                }).catch(error => {
+                    console.log(error)
+                })
+            }
+
+
         }
     }, []);
 
@@ -77,6 +70,9 @@ export const Hall = () => {
     } 
     
     */
+
+
+
 
     // console.log("USUARIO", usuario)
     const onSubmit = (e) => {
@@ -120,6 +116,10 @@ export const Hall = () => {
     const SelectorProvincia = (e) => {
         e.preventDefault();
         let provinciaID = e.target.value
+        if (hallAgentes === "P") {
+            setEleccion({ ...eleccion, idProvincia: provinciaID })
+            return
+        }
         if (!provinciaID) return
         console.log("Provincia Id", provinciaID)
         setLocalidades([])
@@ -137,6 +137,10 @@ export const Hall = () => {
         e.preventDefault();
         let idMunicipio = e.target.value
         if (!idMunicipio) return
+        if (usuario.rol === "AGENTE_SECTORIAL") {
+            setEleccion({ ...eleccion, idMunicipio: idMunicipio });
+            return
+        }
         setEleccion({ ...eleccion, idMunicipio: idMunicipio });
         axios.post("http://localhost:8080/localidad", JSON.stringify({ id: idMunicipio })).then(({ data }) => {
             console.log("Localidades traidas de la base: ", data)
@@ -168,35 +172,37 @@ export const Hall = () => {
 
 
 
-/*
-    const SelectorDeSelector = (e) => {
-        axios.get("http://localhost:8080/sector", JSON.stringify(e.target.value)).then((data) => {
-            console.log("funciono", data)
-        }).catch(error => {
-            console.log(error)
-        })
-        e.preventDefault();
-    }
-*/
+    /*
+        const SelectorDeSelector = (e) => {
+            axios.get("http://localhost:8080/sector", JSON.stringify(e.target.value)).then((data) => {
+                console.log("funciono", data)
+            }).catch(error => {
+                console.log(error)
+            })
+            e.preventDefault();
+        }
+    */
 
 
 
 
-    function selectorDeOrganizacion(e) {
+
+    const selectorDeOrganizacion = (e) => {
         e.preventDefault();
         let organizacionID = e.target.value
         if (!organizacionID) return
         console.log("organizacion ID", organizacionID)
-        setOrganizaciones([])
+        // setOrganizaciones([])
         setEleccion({ ...eleccion, idOrganizacion: organizacionID })
-        axios.post("http://localhost:8080/organizacion", JSON.stringify({ id: organizacionID })).then(({ data }) => {
-            console.log("Organizaciones traidas de la base: ", data)
-            data.unshift({ id: "", name: "Seleccionar" })
+        axios.post("http://localhost:8080/sectores", JSON.stringify({ id: organizacionID })).then(({ data }) => {
+            console.log("sectores traidos de la base: ", data)
+            data.unshift({ id: "", nombre: "Seleccionar" })
             setSectores(data);
         }).catch(error => {
-            console.log("Error al traer a los municipios", error)
+            console.log("Error al traer a los sectores", error)
         })
     }
+
 
     const SelectorSectores = (e) => {
         e.preventDefault();
@@ -206,9 +212,33 @@ export const Hall = () => {
 
     }
 
+    const SelectorTipoDni = (e) => {
+        e.preventDefault();
+        let tipo = e.target.value
+        if (!tipo) return
+        setEleccion({ ...eleccion, tipoDocumento: tipo });
+    }
 
-    
-   
+    const isChecked = (e) => {
+        let ischeck = e.target.checked
+        if (ischeck) setEleccion({ ...eleccion, flagSolicitud: "1" });
+        else setEleccion({ ...eleccion, flagSolicitud: "0" });
+    }
+
+
+
+
+
+
+    // -------------------Agente_sectorial----------------------------
+
+    const selectType = (e) => {
+        setHallAgentes(e.target.value)
+    }
+
+
+
+
 
     return (
 
@@ -349,6 +379,24 @@ export const Hall = () => {
 
 
                 {/* ------------Rol Miembro------------- */}
+
+                {/*   
+              @Getter @Setter private String rol;
+                                @Getter @Setter private String userId ; 
+                                    @Getter @Setter private String nombre;
+                                    @Getter @Setter private String apellido;
+                                    @Getter @Setter private String idOrganizacion;
+                                    @Getter @Setter private String idSector;
+                                    @Getter @Setter private String tipoDocumento;
+                                    @Getter @Setter private String nroDocumento;
+                                    @Getter @Setter private String flagSolicitud; 
+
+
+                                    
+                                    */}
+
+
+
                 {usuario ? (
                     usuario.token && usuario.rol === "MIEMBRO" ? (
                         <>
@@ -365,14 +413,15 @@ export const Hall = () => {
                                 <input
                                     type="text"
                                     placeholder="Nombre"
-                                    name="Nombre"
-
+                                    name="nombre"
+                                    onChange={handleChange}
                                 />
 
                                 <input
                                     type="text"
                                     placeholder="Apellido"
-                                    name="Apellido"
+                                    name="apellido"
+                                    onChange={handleChange}
 
                                 />
 
@@ -380,10 +429,10 @@ export const Hall = () => {
                                 <select id="ElegirOrganizacion" name="rol" onChange={selectorDeOrganizacion}>
                                     {
                                         organizaciones.length ? (
-                                            organizaciones.map((item,i) => {
+                                            organizaciones.map((item, i) => {
                                                 return (
-                                                    <option key={i} value={item.id}>{item.name}</option>
-                                                    
+                                                    <option key={i} value={item.id}>{item.razonSocial}</option>
+
                                                 )
                                             })
                                         ) : <option>No hay Organizaciones</option>
@@ -393,11 +442,11 @@ export const Hall = () => {
 
                                 <select id="ElegirSector" name="sect" onChange={SelectorSectores}>
                                     {
-                                        provincias.length ? (
-                                            provincias.map((item, i) => {
-                                                
+                                        sectores.length ? (
+                                            sectores.map((item, i) => {
+
                                                 return (
-                                                    <option key={i} value={item.id}>{item.name}</option>
+                                                    <option key={i} value={item.idSector}>{item.nombre}</option>
                                                 )
                                             })
                                         ) : <option>Aun no hay Sectores</option>
@@ -410,30 +459,31 @@ export const Hall = () => {
 
 
                                 <h2>Elegir Tipo de Documento</h2>
-                                {<select id="Tipo" name="Tipo">
-
-                                    <option>DNI</option>
-                                    <option>Pasaporte</option>
-                                    <option>Libreta</option>
+                                {<select id="Tipo" name="tipo" onChange={SelectorTipoDni}>
+                                    <option value="">Seleccionar</option>
+                                    <option value="dni">DNI</option>
+                                    <option value="pasaporte">Pasaporte</option>
+                                    <option value="libreta">Libreta</option>
 
                                 </select>}
                                 <input
                                     type="text"
-                                    placeholder="Nro documento"
-                                    name="Nro documento"
-
+                                    placeholder="Nro"
+                                    name="nroDocumento"
+                                    onChange={handleChange}
                                 />
 
-                                <label className="salvadora"><input type="checkbox" id="cbox1" value="first_checkbox" />
+                                <label className="salvadora"><input type="checkbox" id="cbox1" value="first_checkbox" onChange={isChecked} />
                                     Enviar mi solicitud de vinculacion a mi organizacion automaticamente</label><br />
 
 
 
                                 <input
                                     type="submit"
-                                    value="Registrar"
+                                    value="Siguiente"
                                     name="Siguiente"
-                                    class="btn btn-block btn-primary" />
+                                    class="btn btn-block btn-primary"
+                                />
 
                             </form>
                         </>
@@ -446,7 +496,7 @@ export const Hall = () => {
 
                 {/* ------------Rol Agente sectorial------------- */}
                 {usuario ? (
-                    usuario.token && usuario.rol === "AGENTESECTORIAL" ? (
+                    usuario.token && usuario.rol === "AGENTE_SECTORIAL" ? (
                         <>
                             <h1>Registra tus datos</h1>
 
@@ -464,18 +514,63 @@ export const Hall = () => {
 
 
                                 {
-                                    <select id="Tipo" name="Tipo">
-                                        <option>Provincia</option>
-                                        <option>Municipio</option>
+                                    <select id="Tipo" name="Tipo" onChange={selectType}>
+                                        <option value="">Seleccionar</option>
+                                        <option value="P">Provincia</option>
+                                        <option value="M">Municipio</option>
                                     </select>
                                 }
 
-                                <input
+                                {
+                                    hallAgentes ? (
+                                        <>
+                                            <select id="ElegirProvincia" name="prov" onChange={SelectorProvincia}>
+                                                {
+                                                    provincias.length ? (
+                                                        provincias.map((item, i) => {
+                                                            return (
+                                                                <option key={i} value={item.id}>{item.name}</option>
+                                                            )
+                                                        })
+                                                    ) : <option>Aun no hay Provincias</option>
+                                                }
+
+                                            </select>
+                                        </>
+                                    ) : <>
+
+
+                                    </>
+                                }
+
+
+                                {
+                                    hallAgentes === "M" ? (
+                                        <>
+                                            <select id="ElegirMunicipio" name="muni" onChange={SelectorMunicipio}>
+                                                {
+                                                    municipios.length ? (
+                                                        municipios.map((item, i) => {
+                                                            return (
+                                                                <option key={i} value={item.id}>{item.name}</option>
+                                                            )
+                                                        })
+                                                    ) : <option>Aun no hay Municipios</option>
+                                                }
+
+                                            </select>
+                                        </>
+                                    ) : <></>
+
+                                }
+                                {/* <input
                                     type="text"
                                     placeholder="DESPLEGABLE CON MUNICIPIOS/PRIVINCIAS "
                                     name="Lista organizaciones"
+                                /> */}
 
-                                />
+
+
                                 <input
                                     type="submit"
                                     value="Registrar"

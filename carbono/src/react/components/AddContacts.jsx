@@ -2,6 +2,8 @@ import React from "react";
 import ".././styles/Contacts.css";
 import $ from 'jquery'
 export const Contacts = () => {
+
+
     $(document).ready(function () {
         $("#listita").hide();
 

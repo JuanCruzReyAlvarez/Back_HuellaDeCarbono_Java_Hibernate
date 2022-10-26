@@ -39,6 +39,9 @@ public class Usuario {
         this.id = id;
         this.username = username;
     }
+    public Usuario(Integer id){
+        this.id = id;
+    }
     public Usuario(){
     }
 }

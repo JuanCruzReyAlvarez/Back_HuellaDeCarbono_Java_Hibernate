@@ -83,6 +83,20 @@ export const Calculator = () => {
 
     });
 
+
+    $("#calculitoAgente").click(function () {
+      
+      
+      $("#calculitoOrgItems1").hide()
+      $("#calculitoMiembroItems1").hide()
+      $("#calculitoSectorItems1").hide()
+      $("#calculitoItems2").show()
+
+
+
+
+    });
+
     $("#calculitoMiembro").click(function () {
 
       $("#calculitoMiembroItems1").show()
@@ -199,6 +213,14 @@ export const Calculator = () => {
                     <div class="radio-item">
                       <input type="radio" name="tipo-calculo" value="MIEMBRO" />
                       <label for="">Calculo sobre un miembro</label>
+                    </div>
+                  </div>
+
+                  <div id="calculitoAgente">
+                    <div class="radio-item">
+                      <input type="radio" name="tipo-calculo" value="AGENTE" />
+                      <label for="">Calculo segun sector territorial </label>
+                      {/*ESTE ES NUEVOOOO HAY QUE AGREGSRLO AL ROL DE AGENTE !!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
                     </div>
                   </div>
 
@@ -416,6 +438,9 @@ export const Calculator = () => {
             </div>
 
           </div>
+
+
+          
 
 
         </form>

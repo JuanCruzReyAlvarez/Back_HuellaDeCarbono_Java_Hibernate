@@ -27,6 +27,9 @@ public class ProvinciaRepository {
     public void saveOne(Provincia provincia) {
         this.dao.save(provincia);
      }
+    public Provincia getByIdProvincia(Integer id){
+        return this.dao.findOne(id);
+    }
 }
 
 

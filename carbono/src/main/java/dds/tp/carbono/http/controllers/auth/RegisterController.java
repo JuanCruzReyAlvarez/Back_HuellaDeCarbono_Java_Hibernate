@@ -14,7 +14,6 @@ import dds.tp.carbono.services.auth.RegisterService;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
-import spark.TemplateEngine;
 
 public class RegisterController extends Controller {
     //private static final String REGISTER_VIEW = "auth/register.html";
@@ -55,7 +54,7 @@ public class RegisterController extends Controller {
     }
 
     @Override
-    public void routes(TemplateEngine engine) {
+    public void routes() {
         RegisterController.enableCORS();
 
         //Spark.get(path(Uri.REGISTER), (request, response) -> {return "Hello";});
