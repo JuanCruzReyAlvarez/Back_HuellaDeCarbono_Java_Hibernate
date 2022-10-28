@@ -54,9 +54,8 @@ public class ContactsController extends Controller {
      
     private String  getContacts(Request rq, Response rs) throws Exception {
         try{
-                List<Contacts> organizaciones = service.getAll();
-
-                 List<ContactsDTO> listaDTO = new ArrayList<ContactsDTO>();
+                
+                List<ContactsDTO> listaDTO = new ArrayList<ContactsDTO>();
                 List<Contacts> contactos = service.getAll();   
 
                 for (Contacts contact:contactos)

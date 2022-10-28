@@ -1,11 +1,11 @@
-package dds.tp.carbono.services.external.puntoGeografico;
+/*package dds.tp.carbono.services.external.puntoGeografico;
 
 import java.util.List;
 
 import dds.tp.carbono.entities.agenteSectorial.SectorTerritorial;
-import dds.tp.carbono.repository.PuntoGeografico.MunicipioRepository;
+
 import dds.tp.carbono.repository.agenteSectorial.SectorTerritorialRepository;
-import dds.tp.carbono.services.external.dto.Municipio;
+
 
 public class SectorTerritorialService {
 
@@ -35,3 +35,4 @@ public class SectorTerritorialService {
     //}
     
 }
+*/

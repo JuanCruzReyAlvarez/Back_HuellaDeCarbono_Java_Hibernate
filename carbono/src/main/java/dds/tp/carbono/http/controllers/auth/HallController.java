@@ -34,6 +34,7 @@ public class HallController extends Controller {
         private AsignadorDeAgentesSectoriales asignadorAgenteSectorial;
         private MunicipioService municipioService;
         private ProvinciaService provinciaService;
+
         private SectorService sectorService;
        
 
@@ -118,7 +119,7 @@ public class HallController extends Controller {
                                 HallAgenteDTO inputA = getBody(rq, HallAgenteDTO.class, null);
                                 Usuario usuario = new Usuario(Integer.parseInt(inputA.getUserId()));
                                 
-                                switch(inputA.getFlagSector()){
+                                switch(inputA.getFlagSector()){  
                                         
                                         case "P": 
 
@@ -133,6 +134,7 @@ public class HallController extends Controller {
 
                                        
                                 }
+                                
                     
                     }    
 

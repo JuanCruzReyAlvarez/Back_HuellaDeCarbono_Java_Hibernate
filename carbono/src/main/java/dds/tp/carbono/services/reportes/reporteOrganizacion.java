@@ -27,7 +27,7 @@ public class reporteOrganizacion extends reporte{
 
     @Override
     public HuellaCarbono obtenerHuellaTotal() throws Exception {
-        CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(this.organizacion, this.getPeriodoDeImputacion(), new FactorEmisionRepository());
+        CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(this.organizacion, this.getPeriodoDeImputacion());
         return calculador.calcula();
     }
 
@@ -44,7 +44,7 @@ public class reporteOrganizacion extends reporte{
 
         HuellaCarbono hc = new HuellaCarbono();
 
-        CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(this.organizacion, periodo, new FactorEmisionRepository() );
+        CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(this.organizacion, periodo );
         hc = calculador.calcula();
 
         this.listaHCEvolucion.add(i, hc);

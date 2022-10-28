@@ -67,8 +67,7 @@ public class CalculatorService {
         PeriodoDeImputacion periodo =  new PeriodoDeImputacion(local_date,(Periodicidad.valueOf(input.getFormaCalculo().toUpperCase())));
 
         CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(this.orgRepo.getById(Integer.parseInt(input.getOrganizacionId())),
-                                                periodo, 
-                                                new FactorEmisionRepository());
+                                                periodo);
                 
         return  calculador.calcula();
     }

@@ -1,52 +1,59 @@
 package dds.tp.carbono.repository.agenteSectorial;
 
-import java.util.List;
-
-import dds.tp.carbono.dao.agenteSectorial.SectorTerritorialDao;
-
+import dds.tp.carbono.dao.agenteSectorial.SectorMunicipalDao;
+import dds.tp.carbono.dao.agenteSectorial.SectorProvincialDao;
+import dds.tp.carbono.entities.agenteSectorial.SectorMunicipal;
+import dds.tp.carbono.entities.agenteSectorial.SectorProvincial;
 import dds.tp.carbono.entities.agenteSectorial.SectorTerritorial;
 import dds.tp.carbono.entities.auth.Usuario;
 
 public class SectorTerritorialRepository {
-    
-    private SectorTerritorialDao dao;
-    
+
+    private SectorMunicipalDao sectorMunicipalDao;
+    private SectorProvincialDao sectorProvincialDao;
+
 
     public SectorTerritorialRepository() {
-        this.dao = SectorTerritorialDao.getInstance();
-        this.dao.setClazz(SectorTerritorial.class);    
+        this.sectorMunicipalDao = SectorMunicipalDao.getInstance();
+        this.sectorProvincialDao = SectorProvincialDao.getInstance();
+
+        this.sectorMunicipalDao.setClazz(SectorMunicipal.class);
+        this.sectorProvincialDao.setClazz(SectorProvincial.class);
     }
+
 
 
     public SectorTerritorial guardar(SectorTerritorial sectorTerritorial) {
- 
-        return this.dao.save(sectorTerritorial);
+
+        if (sectorTerritorial instanceof SectorMunicipal)
+            return this.sectorMunicipalDao.save((SectorMunicipal)sectorTerritorial);
+        else if (sectorTerritorial instanceof SectorProvincial)
+            return this.sectorProvincialDao.save((SectorProvincial)sectorTerritorial);
+
+        return null;
     }
 
     public SectorTerritorial getBy(Usuario usuario) {
-        
-        return this.dao.getAll().stream()
+
+        SectorTerritorial sector = this.sectorProvincialDao.getAll().stream()
             .filter(x -> x.getUsuario().equals(usuario)).findFirst().orElse(null);
+
+        if (sector == null)
+            sector = this.sectorMunicipalDao.getAll().stream()
+                .filter(x -> x.getUsuario().equals(usuario)).findFirst().orElse(null);
+
+        return sector;
     }
 
 
-    public SectorTerritorial getById( Integer id) {
-        return this.dao.findOne(id);
+
+    public SectorTerritorial getById(int id) {
+
+        SectorTerritorial sector = this.sectorProvincialDao.findOne(id);
+         
+       if(sector == null) 
+       return this.sectorMunicipalDao.findOne(id);
+       else
+       return sector;
     }
-
-
-    public List<SectorTerritorial> getAll() {
-            return this.dao.getAll();
-    }
-
-    public void saveAll(List<SectorTerritorial> sectores) {
-        this.dao.saveAll(sectores);
-    }
-
-
-    //public SectorTerritorial getAllByDiscriminacion(String disc) {
-        //return this.dao.getAllByDiscriminacion(disc);
-    //}
-    
-
 }

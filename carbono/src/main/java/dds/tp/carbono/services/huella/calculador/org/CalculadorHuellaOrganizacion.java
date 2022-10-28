@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dds.tp.carbono.entities.huella.HuellaCarbono;
+import dds.tp.carbono.entities.organization.IndicadorHCOrganizacion;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
 import dds.tp.carbono.repository.huella.FactorEmisionRepository;
@@ -22,10 +23,10 @@ public class CalculadorHuellaOrganizacion {
    
     List<HuellaCommand> diferentesCalculosParaOrg; 
 
-    public CalculadorHuellaOrganizacion(Organizacion org, PeriodoDeImputacion periodo, FactorEmisionRepository repository) {
+    public CalculadorHuellaOrganizacion(Organizacion org, PeriodoDeImputacion periodo ) {
         this.periodo = periodo;
         this.organizacion = org;
-        this.repository = repository;
+        this.repository = new FactorEmisionRepository();
         
     
         TrayectosCompartidosFilter trayectosFilter = new TrayectosCompartidosFilter
@@ -47,5 +48,16 @@ public class CalculadorHuellaOrganizacion {
 
         return huellaCarbono;
     }
+
+    public IndicadorHCOrganizacion getIndicador() throws Exception {
+        
+        IndicadorHCOrganizacion indicador = new IndicadorHCOrganizacion();
+        HuellaCarbono hc = this.calcula();
+        
+        indicador.setUnidad(hc);
+        indicador.setValor(hc.getValor()/(organizacion.getSectorTerritorial().getOrganizaciones().size()));
+        return indicador;
+    }
+
 }
  

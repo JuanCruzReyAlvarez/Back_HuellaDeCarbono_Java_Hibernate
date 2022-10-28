@@ -1,4 +1,4 @@
-package dds.tp.carbono.dao.member;
+package dds.tp.carbono.dao;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-
-import dds.tp.carbono.dao.EntityManagerHelper;
 
 
 public abstract class Dao<T> {
@@ -23,16 +21,13 @@ public abstract class Dao<T> {
     }
 
     public T save(T item) {
-        System.out.println("en el dao 4");
+        
         EntityManagerHelper.beginTransaction();
-        System.out.println("en el dao 5");
         EntityManagerHelper.getEntityManager().persist(item);
-        System.out.println("en el dao 6");
         EntityManagerHelper.commit();
-        System.out.println("en el dao 7");
         EntityManagerHelper.closeEntityManager();
 
-        return item;                                                //chekiar
+        return item;                                           
     }
 
     public T update(T item) {

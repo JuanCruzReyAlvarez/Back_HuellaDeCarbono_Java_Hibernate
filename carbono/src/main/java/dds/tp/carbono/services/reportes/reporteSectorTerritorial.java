@@ -5,9 +5,12 @@ import java.util.List;
 
 import dds.tp.carbono.entities.agenteSectorial.SectorTerritorial;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
+import dds.tp.carbono.entities.organization.IndicadorHCOrganizacion;
+import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.metrics.Periodicidad;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
 import dds.tp.carbono.services.huella.calculador.agenteSectorial.CalculadorHuellaSectorTerritorial;
+import dds.tp.carbono.services.huella.calculador.org.CalculadorHuellaOrganizacion;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +19,8 @@ public class reporteSectorTerritorial extends reporte {
     @Getter @Setter private SectorTerritorial sectorTerritorial;
     
     @Getter @Setter private List<HuellaCarbono> listaHCEvolucion;
+
+    @Getter @Setter private List<IndicadorHCOrganizacion> indicadoresOrg;
     
     @Override
     public HuellaCarbono obtenerHuellaTotal() throws Exception {
@@ -41,6 +46,19 @@ public class reporteSectorTerritorial extends reporte {
         }    
 
         return this.listaHCEvolucion;
+    }
+
+    public List<IndicadorHCOrganizacion> composicion() throws Exception {
+        
+        List<Organizacion> organizaciones =  this.getSectorTerritorial().getOrganizaciones();
+        
+        for( Organizacion org: organizaciones){
+            CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(org, getPeriodoDeImputacion());
+            IndicadorHCOrganizacion indicador = calculador.getIndicador();
+            this.indicadoresOrg.add(indicador);
+        }
+
+        return this.indicadoresOrg;
     }
     
     
