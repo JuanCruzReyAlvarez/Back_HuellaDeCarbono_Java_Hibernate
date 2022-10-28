@@ -1,5 +1,6 @@
 package dds.tp.carbono.repository.agenteSectorial;
 
+import java.util.List;
 
 import dds.tp.carbono.dao.agenteSectorial.SectorTerritorialDao;
 
@@ -32,5 +33,20 @@ public class SectorTerritorialRepository {
     public SectorTerritorial getById( Integer id) {
         return this.dao.findOne(id);
     }
+
+
+    public List<SectorTerritorial> getAll() {
+            return this.dao.getAll();
+    }
+
+    public void saveAll(List<SectorTerritorial> sectores) {
+        this.dao.saveAll(sectores);
+    }
+
+
+    //public SectorTerritorial getAllByDiscriminacion(String disc) {
+        //return this.dao.getAllByDiscriminacion(disc);
+    //}
+    
 
 }

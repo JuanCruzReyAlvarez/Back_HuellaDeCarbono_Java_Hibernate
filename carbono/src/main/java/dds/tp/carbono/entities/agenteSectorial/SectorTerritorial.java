@@ -30,6 +30,7 @@ public abstract class SectorTerritorial {
     @Id
     @GeneratedValue
     @Getter @Setter Integer id;
+
     
     @OneToOne
     @Getter @Setter protected Usuario usuario;

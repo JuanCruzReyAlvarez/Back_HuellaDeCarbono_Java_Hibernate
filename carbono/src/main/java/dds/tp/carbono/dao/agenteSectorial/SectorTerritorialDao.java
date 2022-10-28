@@ -13,6 +13,12 @@ public class SectorTerritorialDao extends Dao<SectorTerritorial> {
 
         return instance;
     }
+    //public SectorTerritorial getAllByDiscriminacion(String disc) {
+       // return this.dao.getAll().stream()
+       // .filter(x -> x.getUsuario().equals(usuario)).findFirst().orElse(null);
+        
+       // (disc);
+    //}
 
 
 }
