@@ -1,6 +1,6 @@
 package dds.tp.carbono.dao.admin;
 
-import dds.tp.carbono.dao.member.Dao;
+import dds.tp.carbono.dao.Dao;
 import dds.tp.carbono.entities.transport.TipoServicioContratado;
 
 public class TipoServicioContratadoDao extends Dao<TipoServicioContratado> {

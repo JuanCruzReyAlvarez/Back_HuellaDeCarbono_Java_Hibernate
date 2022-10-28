@@ -1,6 +1,6 @@
 package dds.tp.carbono.dao.huella;
 
-import dds.tp.carbono.dao.member.Dao;
+import dds.tp.carbono.dao.Dao;
 import dds.tp.carbono.entities.huella.FactorEmision;
 
 public class FactorEmisionDao extends Dao<FactorEmision> {
