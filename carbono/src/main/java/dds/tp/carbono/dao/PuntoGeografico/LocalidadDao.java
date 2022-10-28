@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import dds.tp.carbono.services.external.dto.Localidad;
-import dds.tp.carbono.dao.member.Dao;
+import dds.tp.carbono.dao.Dao;
 
 public class LocalidadDao extends Dao<Localidad>{
 

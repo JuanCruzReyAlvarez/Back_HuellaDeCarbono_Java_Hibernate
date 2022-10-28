@@ -79,11 +79,9 @@ public class HallController extends Controller {
             try {
                 
                // Usuario usuario = service.register(input.getUsername(), input.getPassword(), input.getRol());
-
+               System.out.println("antes del try");
                 switch(inputRol.getRol()){
                      
-
-                  
                     case "MIEMBRO": 
                             HallMiembroDTO inputM = getBody(rq, HallMiembroDTO.class, null);
 
@@ -115,21 +113,25 @@ public class HallController extends Controller {
                                 
                                 return json(goodAnswer());      
                     case "AGENTE_SECTORIAL":
-                                
+                                 System.out.println("Entra primer case");
                                 HallAgenteDTO inputA = getBody(rq, HallAgenteDTO.class, null);
+                                System.out.println("getea info");
                                 Usuario usuario = new Usuario(Integer.parseInt(inputA.getUserId()));
+                                System.out.println("crea usuario");
+                                
+                                System.out.println(inputA.getFlagSector());
                                 
                                 switch(inputA.getFlagSector()){  
                                         
                                         case "P": 
 
                                         Provincia provincia = provinciaService.getById( Integer.parseInt(inputA.getIdProvincia()) ) ;
-                                       
                                         asignadorAgenteSectorial.asignar(provincia, usuario);
 
                                         case "M":
-
-                                        Municipio municipio = municipioService.getByIdMunicipio( Integer.parseInt(inputA.getIdMunicipio()) ) ;
+                                        System.out.println("Entro a M ");
+                                        Municipio municipio = municipioService.getByIdMunicipio( Integer.parseInt(inputA.getIdMunicipio()) );
+                                        System.out.println("Cargo bien el municipio");
                                         asignadorAgenteSectorial.asignar(municipio, usuario);
 
                                        

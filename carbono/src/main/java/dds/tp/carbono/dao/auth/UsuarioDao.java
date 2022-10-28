@@ -1,7 +1,7 @@
 package dds.tp.carbono.dao.auth;
 
 import dds.tp.carbono.dao.EntityManagerHelper;
-import dds.tp.carbono.dao.member.Dao;
+import dds.tp.carbono.dao.Dao;
 import dds.tp.carbono.entities.auth.Usuario;
 
 public class UsuarioDao extends Dao<Usuario> {

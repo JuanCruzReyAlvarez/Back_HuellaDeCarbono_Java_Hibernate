@@ -10,6 +10,7 @@ import dds.tp.carbono.entities.auth.Rol;
 import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.entities.organization.EstadoSolicitudVinculacion;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
+import dds.tp.carbono.http.controllers.admin.AdminGeoInfoController;
 import dds.tp.carbono.repository.PuntoGeografico.ProvinciaRepository;
 import dds.tp.carbono.repository.auth.UsuarioRepository;
 
@@ -71,6 +72,17 @@ public class hashPaswordTest {
        
         EntityManagerHelper.closeEntityManager();
         
+    }
+
+    @Test
+
+    public void cargarListadoDeApi() throws Exception
+    {
+
+        AdminGeoInfoController controller = new AdminGeoInfoController();
+        
+        controller.refreshGeoInfoTEST();
+         
     }
 
          

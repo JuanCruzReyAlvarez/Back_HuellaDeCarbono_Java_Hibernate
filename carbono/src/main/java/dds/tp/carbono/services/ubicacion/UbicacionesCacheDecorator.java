@@ -21,10 +21,14 @@ public class UbicacionesCacheDecorator implements UbicacionesService {
 
     @Override
     public List<Provincia> listadoDeProvincias() throws Exception {
+        System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA11");
         Set<Provincia> provincias = this.cache.getProvincias();
-        
+        System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA22");
         if (provincias.size() == 0)
+        System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA22,,55");
             this.cache.addProvincias(this.source.listadoDeProvincias());
+            System.out.println(this.cache.getProvincias());
+            System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA33");
         
         return this.cache.getProvincias().stream().collect(Collectors.toList());
     }

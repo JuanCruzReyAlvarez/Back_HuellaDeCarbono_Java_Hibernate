@@ -21,7 +21,18 @@ public class ProvinciaRepository {
     }
 
     public void saveAll(List<Provincia> provincias) {
-       this.dao.saveAll(provincias);;
+       
+        System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 4.5");
+
+        for (Provincia provincia: provincias){
+            
+             System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA44 555 ");
+            this.dao.save(provincia);
+            System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA44 777 ");
+        }
+
+
+       //this.dao.saveAll(provincias);;
     }
 
     public void saveOne(Provincia provincia) {

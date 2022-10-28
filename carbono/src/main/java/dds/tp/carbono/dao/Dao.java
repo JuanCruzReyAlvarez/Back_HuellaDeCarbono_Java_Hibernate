@@ -56,12 +56,21 @@ public abstract class Dao<T> {
     }
 
     public void saveAll(List<T> entities) {
-		EntityManagerHelper.beginTransaction();
+		System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA44 55555 ");
+        
+        /*EntityManagerHelper.beginTransaction();
+    
         for (T entity : entities) {
             EntityManagerHelper.getEntityManager().persist(entity);
             EntityManagerHelper.commit();
 		} 
-        EntityManagerHelper.closeEntityManager();
+        EntityManagerHelper.closeEntityManager();*/
+
+        for(T entity: entities){
+            System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA44 6666 ");
+            T t = save(entity);
+            System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA44 777 ");
+        }
 	}
 
     public void delete(T item) {

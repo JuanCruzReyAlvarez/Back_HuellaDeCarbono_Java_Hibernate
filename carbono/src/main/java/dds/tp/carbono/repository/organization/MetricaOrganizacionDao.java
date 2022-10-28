@@ -1,6 +1,6 @@
 package dds.tp.carbono.repository.organization;
 
-import dds.tp.carbono.dao.member.Dao;
+import dds.tp.carbono.dao.Dao;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
 
 public class MetricaOrganizacionDao extends Dao<MetricaOrganizacion> {

@@ -1,6 +1,6 @@
 package dds.tp.carbono.dao.PuntoGeografico;
 
-import dds.tp.carbono.dao.member.Dao;
+import dds.tp.carbono.dao.Dao;
 import dds.tp.carbono.entities.point.PuntoGeografico;
 
 public class PuntoGeograficoDao extends Dao<PuntoGeografico>{

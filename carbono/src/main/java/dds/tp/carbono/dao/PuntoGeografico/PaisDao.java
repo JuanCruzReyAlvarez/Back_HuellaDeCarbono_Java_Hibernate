@@ -1,7 +1,7 @@
 package dds.tp.carbono.dao.PuntoGeografico;
 import java.util.List;
 
-import dds.tp.carbono.dao.member.Dao;
+import dds.tp.carbono.dao.Dao;
 import dds.tp.carbono.services.external.dto.Pais;
 
 

@@ -39,4 +39,13 @@ public class AdminGeoInfoController extends Controller {
             }
   
     }
+
+
+    public void  refreshGeoInfoTEST() throws Exception {
+        
+        this.service.listadoDeProvincias();
+        this.service.listadoDeMunicipios();
+        this.service.listadoDeLocalidades();
+  
+    }
 }
