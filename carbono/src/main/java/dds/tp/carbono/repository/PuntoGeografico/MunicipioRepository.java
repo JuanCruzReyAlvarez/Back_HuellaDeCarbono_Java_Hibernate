@@ -23,6 +23,7 @@ public class MunicipioRepository {
         return this.dao.getByIdProvincia(id);
     }
     public Municipio getByIdMunicipio (Integer id){
+        
         return dao.findOne(id);
     }
     public Integer getIdByName(String name){

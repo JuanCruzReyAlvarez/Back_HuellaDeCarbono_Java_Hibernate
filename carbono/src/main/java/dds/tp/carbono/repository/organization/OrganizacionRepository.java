@@ -1,5 +1,6 @@
 package dds.tp.carbono.repository.organization;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,19 +44,36 @@ public class OrganizacionRepository {
     }  
     
     public List<Organizacion> getBy(Municipio municipio) {
-        return this.dao.getAll().stream()
-            .filter(org -> org.getUbicacion().getLocaldiad().getMunicipio().getId().equals(municipio.getId()))
-            .collect(Collectors.toList());
+        List<Organizacion> orgRet = new ArrayList<>() ;
+        for (Organizacion o : this.dao.getAll()){
+            if(o.getUbicacion().getLocaldiad().getMunicipio().getId().equals(municipio.getId())){
+                    orgRet.add(o);
+            }
+        }
+
+        return orgRet;
     }
 
     public List<Organizacion> getBy(Provincia provincia) {
-        return this.dao.getAll().stream()
+        
+        List<Organizacion> orgRet = new ArrayList<>() ;
+        for (Organizacion o : this.dao.getAll()){
+            if(o.getUbicacion().getLocaldiad().getMunicipio().getProvincia().getId().equals(provincia.getId())){
+                    orgRet.add(o);
+            }
+        }
+        
+        return orgRet;/*this.dao.getAll().stream()
             .filter(org -> org.getUbicacion().getLocaldiad().getMunicipio().getProvincia().getId().equals(provincia.getId()))
-            .collect(Collectors.toList());
+            .collect(Collectors.toList());*/
     }
 
     public List<Organizacion> getAll() {
         return this.dao.getAll();
+    }
+
+    public void saveAll(List<Organizacion> o) {
+       this.dao.saveAll(o);
     }
 
     public Organizacion getByRazonSocial(String razonSocial) {

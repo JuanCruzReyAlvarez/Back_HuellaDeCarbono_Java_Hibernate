@@ -52,7 +52,7 @@ public class Organizacion {
     @Enumerated(value = EnumType.STRING)
     @Getter @Setter private TipoOrganizacion tipo;
 
-    @OneToOne( fetch = FetchType.LAZY)
+    @OneToOne( fetch = FetchType.EAGER)
     @Getter @Setter private PuntoGeografico ubicacion;
 
     @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)

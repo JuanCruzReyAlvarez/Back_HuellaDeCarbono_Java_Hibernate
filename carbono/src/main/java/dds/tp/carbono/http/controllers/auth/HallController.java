@@ -114,29 +114,38 @@ public class HallController extends Controller {
                                 return json(goodAnswer());      
                     case "AGENTE_SECTORIAL":
                                  System.out.println("Entra primer case");
-                                HallAgenteDTO inputA = getBody(rq, HallAgenteDTO.class, null);
-                                System.out.println("getea info");
-                                Usuario usuario = new Usuario(Integer.parseInt(inputA.getUserId()));
-                                System.out.println("crea usuario");
                                 
+                                 HallAgenteDTO inputA = getBody(rq, HallAgenteDTO.class, null);
+                                
+                                 System.out.println("getea info");
+                                
+                                 Usuario usuario = new Usuario(Integer.parseInt(inputA.getUserId()));
+                                                                
+                                System.out.println("crea usuario");
+                                System.out.println("ID PROVINCIA"+inputA.getIdProvincia());
+                                System.out.println("ID MUNI"+inputA.getIdMunicipio());
+                                System.out.println(inputA.getRol());
+                                System.out.println(inputA.getUserId());
                                 System.out.println(inputA.getFlagSector());
                                 
-                                switch(inputA.getFlagSector()){  
+                               switch(inputA.getFlagSector()){  
                                         
-                                        case "P": 
+                                    case "P":
+                                    System.out.println("ENTRO A P ");
+                                    Provincia provincia = provinciaService.getById( Integer.parseInt(inputA.getIdProvincia()) ) ;
+                                    System.out.println("TEIENE LA PROVINCIA");
+                                    asignadorAgenteSectorial.asignar(provincia, usuario);
 
-                                        Provincia provincia = provinciaService.getById( Integer.parseInt(inputA.getIdProvincia()) ) ;
-                                        asignadorAgenteSectorial.asignar(provincia, usuario);
-
-                                        case "M":
+                                    case "M":
                                         System.out.println("Entro a M ");
                                         Municipio municipio = municipioService.getByIdMunicipio( Integer.parseInt(inputA.getIdMunicipio()) );
                                         System.out.println("Cargo bien el municipio");
                                         asignadorAgenteSectorial.asignar(municipio, usuario);
-
+                                    
                                        
-                                }
-                                
+                               }
+                               return json(goodAnswer());   
+                               
                     
                     }    
 

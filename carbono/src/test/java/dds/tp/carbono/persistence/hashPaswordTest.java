@@ -4,20 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import dds.tp.carbono.dao.EntityManagerHelper;
+import dds.tp.carbono.dao.org.OrganizacionDao;
+import dds.tp.carbono.entities.agenteSectorial.SectorProvincial;
+import dds.tp.carbono.entities.agenteSectorial.SectorTerritorial;
 import dds.tp.carbono.entities.auth.Rol;
 import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.entities.organization.EstadoSolicitudVinculacion;
+import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 import dds.tp.carbono.http.controllers.admin.AdminGeoInfoController;
 import dds.tp.carbono.repository.PuntoGeografico.MunicipioRepository;
 import dds.tp.carbono.repository.PuntoGeografico.ProvinciaRepository;
+import dds.tp.carbono.repository.agenteSectorial.SectorTerritorialRepository;
 import dds.tp.carbono.repository.auth.UsuarioRepository;
+import dds.tp.carbono.repository.organization.OrganizacionRepository;
 import dds.tp.carbono.services.external.dto.Pais;
 import dds.tp.carbono.services.external.dto.Provincia;
 import dds.tp.carbono.services.external.puntoGeografico.ProvinciaService;
+import dds.tp.carbono.services.organizacion.OrganizacionService;
 import dds.tp.carbono.services.ubicacion.UbicacionesCache;
 import dds.tp.carbono.services.ubicacion.UbicacionesCacheDecorator;
 import dds.tp.carbono.services.ubicacion.UbicacionesService;
@@ -34,7 +42,7 @@ import dds.tp.carbono.services.external.dto.Municipio;
 public class hashPaswordTest {
 
 
-    @Test
+    /*@Test
     public void guardarConstraseñaHasheada(){
         Usuario user = new Usuario();
         UsuarioRepository repository = new UsuarioRepository();
@@ -44,26 +52,48 @@ public class hashPaswordTest {
         user.setHashPassword("stephy");
 
         repository.guardar(user);
-    }
+    }*/
 
 
  
     @Test
     public void getOrg(){
 
-            
-        ProvinciaRepository repository = new ProvinciaRepository();
-        List<Provincia> entidades = repository.getAll();
-                  
-        for(Provincia o :entidades ){
-            System.out.println(o.getNombre());
-        }
+        
+         ProvinciaService provinciaService = new ProvinciaService();
+        Provincia provincia = provinciaService.getById(2) ;    
+        //OrganizacionService orgS = new OrganizacionService();
+       
+        SectorTerritorialRepository repo = new SectorTerritorialRepository();
 
-         
+        SectorTerritorial st = repo.getById(1);
+        
+        OrganizacionRepository dao = new OrganizacionRepository();
+
+        Organizacion oorg = dao.getById(1);
+        oorg.setRazonSocial("NUEVONOMBRE");
+        oorg.setSectorTerritorial(st);
+
+        dao.guardar(oorg);
+        /*for (Organizacion o : oorg) {
+        System.out.println("IMPRI");
+        System.out.println(o.getRazonSocial());}
+
+
+        
+        for (Organizacion o : oorg){
+            
+             if(o.getUbicacion().getLocaldiad().getMunicipio().getProvincia().getId().equals(provincia.getId())){
+             Assert.assertEquals(Integer.valueOf(2), (o.getUbicacion().getLocaldiad().getMunicipio().getProvincia().getId()));
+                  orgRet.add(o);
+            }
+        }*/
+
+       
         
     }
 
-    @Test
+   /*  @Test
     public void guardar(){
 
 
@@ -80,7 +110,7 @@ public class hashPaswordTest {
        
         EntityManagerHelper.closeEntityManager();
         
-    }
+    }*/
 
     @Test
 
