@@ -2,6 +2,8 @@ package dds.tp.carbono.distancia;
 
 import java.util.List;
 
+import org.junit.Test;
+
 import dds.tp.carbono.services.external.dto.Localidad;
 import dds.tp.carbono.services.external.dto.Municipio;
 import dds.tp.carbono.services.external.dto.Provincia;
@@ -10,10 +12,10 @@ import dds.tp.carbono.services.ubicacion.UbicacionesService;
 
 public class UbicacionesServicioExternoCacheTest {
 
-    private static final long DELAY = 2000;
+    private static final long DELAY = 800;
 
     private UbicacionesService service;
-    // @Test
+    //Test
     public void requestLocalidades() throws Exception {
         this.service = new UbicacionesCacheDecorator();
 

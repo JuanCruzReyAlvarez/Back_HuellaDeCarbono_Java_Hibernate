@@ -21,7 +21,9 @@ public class Localidad implements GeoInfo {
     @Getter @Setter private Integer id;
     @Column
     @Getter @Setter private String nombre;
-    @ManyToOne( cascade = {CascadeType.ALL}, fetch = FetchType.EAGER )
+
+    //@ManyToOne( cascade = {CascadeType.ALL}, fetch = FetchType.EAGER )
+    @ManyToOne
     @Getter @Setter private Municipio municipio;
     
     

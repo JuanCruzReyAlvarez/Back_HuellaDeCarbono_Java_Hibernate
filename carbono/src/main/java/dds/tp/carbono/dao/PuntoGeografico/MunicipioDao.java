@@ -21,6 +21,14 @@ public class MunicipioDao extends Dao<Municipio>{
         return getAll().stream().filter(m->m.getProvincia().getId().equals(id)).collect(Collectors.toList());
  
     }
+    public Integer getIdByName(String name) {
+        System.out.println(name);
+        return getAll().stream().filter(l -> l.getNombre().
+                                               contains(name) ).
+                                               collect(Collectors.toList())
+                                               .get(0)
+                                               .getId();   
+}
 
 }
     

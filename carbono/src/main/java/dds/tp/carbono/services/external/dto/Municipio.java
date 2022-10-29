@@ -21,7 +21,8 @@ public class Municipio implements GeoInfo {
     @Getter @Setter private Integer id;
     @Column
     @Getter @Setter private String nombre;
-    @ManyToOne( cascade = {CascadeType.ALL}, fetch = FetchType.EAGER )
+    @ManyToOne
+    //( cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @Getter @Setter private Provincia provincia;
     
     
@@ -34,5 +35,9 @@ public class Municipio implements GeoInfo {
     }
     public  Municipio(Integer id) {
         this.id = id;  
+    }
+    public  Municipio(String nombre,Provincia provincia) {
+        this.nombre = nombre;
+        this.provincia = provincia;  
     }
 }

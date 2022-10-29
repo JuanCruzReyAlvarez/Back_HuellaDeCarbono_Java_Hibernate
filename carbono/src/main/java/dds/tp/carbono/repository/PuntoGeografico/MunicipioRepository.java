@@ -25,4 +25,7 @@ public class MunicipioRepository {
     public Municipio getByIdMunicipio (Integer id){
         return dao.findOne(id);
     }
+    public Integer getIdByName(String name){
+        return this.dao.getIdByName(name);
+    }
 }

@@ -48,9 +48,11 @@ public class UbicacionesCache {
     public void addProvincias(List<Provincia> provincias) {
 
         this.provincias.addAll(provincias); //Para test De Desarrollo
-        for (Provincia p : provincias){
-            System.out.println(p.getNombre());
-        }
+        //for (Provincia p : provincias){
+            //System.out.println(p.getNombre());
+            //System.out.println(p.getId());
+           // System.out.println(p.getPais());
+        //}
         
         this.provinciaService.saveAll(provincias);
     }

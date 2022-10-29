@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
 
+
 public abstract class Dao<T> {
 
     private Class< T > clazz; 
@@ -56,20 +57,8 @@ public abstract class Dao<T> {
     }
 
     public void saveAll(List<T> entities) {
-		System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA44 55555 ");
-        
-        /*EntityManagerHelper.beginTransaction();
-    
-        for (T entity : entities) {
-            EntityManagerHelper.getEntityManager().persist(entity);
-            EntityManagerHelper.commit();
-		} 
-        EntityManagerHelper.closeEntityManager();*/
-
-        for(T entity: entities){
-            System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA44 6666 ");
-            T t = save(entity);
-            System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA44 777 ");
+        for(T entity: entities){ 
+            save(entity);
         }
 	}
 
