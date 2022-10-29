@@ -1,34 +1,25 @@
 package dds.tp.carbono.persistence;
 
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.junit.Assert;
 import org.junit.Test;
 
-import dds.tp.carbono.dao.EntityManagerHelper;
-import dds.tp.carbono.dao.org.OrganizacionDao;
-import dds.tp.carbono.entities.agenteSectorial.SectorProvincial;
+
 import dds.tp.carbono.entities.agenteSectorial.SectorTerritorial;
-import dds.tp.carbono.entities.auth.Rol;
-import dds.tp.carbono.entities.auth.Usuario;
-import dds.tp.carbono.entities.organization.EstadoSolicitudVinculacion;
+
+
 import dds.tp.carbono.entities.organization.Organizacion;
-import dds.tp.carbono.entities.organization.SolicitudVinculacion;
+
 import dds.tp.carbono.http.controllers.admin.AdminGeoInfoController;
 import dds.tp.carbono.repository.PuntoGeografico.MunicipioRepository;
-import dds.tp.carbono.repository.PuntoGeografico.ProvinciaRepository;
 import dds.tp.carbono.repository.agenteSectorial.SectorTerritorialRepository;
-import dds.tp.carbono.repository.auth.UsuarioRepository;
+
 import dds.tp.carbono.repository.organization.OrganizacionRepository;
-import dds.tp.carbono.services.external.dto.Pais;
+
 import dds.tp.carbono.services.external.dto.Provincia;
 import dds.tp.carbono.services.external.puntoGeografico.ProvinciaService;
-import dds.tp.carbono.services.organizacion.OrganizacionService;
-import dds.tp.carbono.services.ubicacion.UbicacionesCache;
-import dds.tp.carbono.services.ubicacion.UbicacionesCacheDecorator;
-import dds.tp.carbono.services.ubicacion.UbicacionesService;
 import dds.tp.carbono.services.ubicacion.UbicacionesServicioExterno;
 import dds.tp.carbono.services.external.dto.Localidad;
 import dds.tp.carbono.services.external.dto.Municipio;
@@ -117,11 +108,39 @@ public class hashPaswordTest {
     public void cargarListadoDeApi() throws Exception
     {
 
-
-
-        AdminGeoInfoController controller = new AdminGeoInfoController();
+      AdminGeoInfoController controller = new AdminGeoInfoController();
         
-        controller.refreshGeoInfoTEST();
+      controller.refreshGeoInfoTEST();
+ 
+ /*
+       List <Localidad> localidadesArreglados = new ArrayList<>();
+       List <Localidad> localidadOrg = new ArrayList<>();
+       List <Municipio> municipios = new ArrayList<>();
+       MunicipioRepository repo = new MunicipioRepository ();
+       
+       UbicacionesServicioExterno ubi= new UbicacionesServicioExterno();
+       municipios = ubi.listadoDeMunicipios();
+       System.out.println(municipios.get(0).getNombre());
+
+       for (Municipio mun : municipios){
+       //if(mun.getNombre()!="SIN INFORMAR"){ 
+       localidadOrg = ubi.listadoDeLocalidades(mun);
+   
+           for(Localidad l : localidadOrg){
+               
+               System.out.println(l.getNombre());  
+               System.out.println(l.getMunicipio().getNombre());
+
+           }
+
+           localidadesArreglados.removeAll(localidadesArreglados);
+        //}
+       }
+
+     
+ */
+
+
 /* 
         List <Localidad> localidadesArreglados = new ArrayList<>();
         List <Localidad> localidadOrg = new ArrayList<>();

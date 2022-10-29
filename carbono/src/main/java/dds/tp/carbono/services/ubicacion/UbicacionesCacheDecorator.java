@@ -79,39 +79,46 @@ public class UbicacionesCacheDecorator implements UbicacionesService {
     public List<Municipio> listadoDeMunicipios() throws Exception {
         Set<Municipio> municipios = this.cache.getMunicipios();
         
+
         if (municipios.size() == 0){
 
         List <Municipio> municipioArreglados = new ArrayList<>();
         List <Municipio> municipioOrg = new ArrayList<>();
-        ProvinciaRepository provRepo = new ProvinciaRepository();
-        municipioOrg = this.source.listadoDeMunicipios();
-        Provincia p = new Provincia();
-        String provin = "BUENOS AIRES";
-        p.setId(provRepo.getIdByName(provin));
-        p.setNombre(provin);
-        Municipio a = new Municipio("LEANDRO N. ALEM",p);
-        Municipio b = new Municipio("LIBERTADOR GENERAL SAN MARTIN",p);      //Es necesario agregar estos municipios porque la API es trucha
-        Municipio c = new Municipio("CONFLUENCIA",p);                        // nos da municipios de localidades , de municipios que no nos da
-        Municipio d = new Municipio("LA PAZ",p);                             // cuando los pedimos solo municipios, presenta inconsistencia, lo arreglamos
-        Municipio e = new Municipio("PACLIN",p);                             // nosotros ya que necesitamos que la appi funcione bien.
-        municipioArreglados.add(a);
-        municipioArreglados.add(b); 
-        municipioArreglados.add(c); 
-        municipioArreglados.add(d);
-        municipioArreglados.add(e);      
+        ProvinciaRepository repo = new ProvinciaRepository();
+  
+        List<Provincia> provincias = new ArrayList<>();        
+        UbicacionesServicioExterno ubi= new UbicacionesServicioExterno();
+        provincias = ubi.listadoDeProvincias();
+        for (Provincia provi : provincias){
+
+        municipioOrg = this.source.listadoDeMunicipios(provi);
+
         for(Municipio o : municipioOrg){
+           
 
                 Municipio muni = new Municipio();
-                ProvinciaRepository repo = new ProvinciaRepository();
+  
                 Provincia prov = new Provincia();
 
                 muni.setNombre(o.getNombre());    
-                prov.setId(repo.getIdByName(o.getProvincia().getNombre()));    
+                System.out.println(o.getNombre());
+                prov.setId(repo.getIdByName(o.getProvincia().getNombre()));   
+                System.out.println(prov.getId());
                 muni.setProvincia(prov);
+
                 municipioArreglados.add(muni);
+                System.out.println(municipioArreglados.size());
+            
+
             }
-            this.cache.addMunicipios(municipioArreglados);
+
+            municipioOrg.removeAll(municipioOrg);
         }
+        
+        this.cache.addMunicipios(municipioArreglados);
+        
+
+    }
         return this.cache.getMunicipios().stream().collect(Collectors.toList());
     }
 
@@ -124,27 +131,42 @@ public class UbicacionesCacheDecorator implements UbicacionesService {
 
         List <Localidad> localidadesArreglados = new ArrayList<>();
         List <Localidad> localidadOrg = new ArrayList<>();
-        
-        localidadOrg = this.source.listadoDeLocalidades();
-        System.out.println("LLEGUE ACAAAAAAAAAAAAAAAAAA 1 ");    
+        List <Municipio> municipios = new ArrayList<>();
+        MunicipioRepository repo = new MunicipioRepository ();
+
+
+        UbicacionesServicioExterno ubi= new UbicacionesServicioExterno();
+        municipios = ubi.listadoDeMunicipios();
+
+        for (Municipio mun : municipios){
+
+        localidadOrg = this.source.listadoDeLocalidades(mun);
+    
             for(Localidad l : localidadOrg){
 
                 Localidad loc = new Localidad();
-                MunicipioRepository repo = new MunicipioRepository ();
+                
                 Municipio muni = new Municipio();
 
                 loc.setNombre(l.getNombre()); 
                 System.out.println(l.getNombre());  
 
                 muni.setId(repo.getIdByName(l.getMunicipio().getNombre())); 
-                System.out.println(repo.getIdByName(l.getMunicipio().getNombre())); 
+               
                 loc.setMunicipio(muni);
+
                 localidadesArreglados.add(loc);
             }
-            System.out.println("LLEGUE ACAAAAAAAAAAAAAAAAAA 2 "); 
+
+            localidadOrg.removeAll(localidadOrg);
+        
+        }
+
             this.cache.addLocalidades(localidadesArreglados);
-            System.out.println("LLEGUE ACAAAAAAAAAAAAAAAAAA 3 "); 
+
         }
         return this.cache.getLocalidades().stream().collect(Collectors.toList());
     }
+    
+
 }

@@ -12,7 +12,6 @@ import dds.tp.carbono.repository.agenteSectorial.SectorTerritorialRepository;
 import dds.tp.carbono.repository.organization.OrganizacionRepository;
 import dds.tp.carbono.services.external.dto.Municipio;
 import dds.tp.carbono.services.external.dto.Provincia;
-import dds.tp.carbono.services.organizacion.OrganizacionService;
 
 public class AsignadorDeAgentesSectoriales {
 
