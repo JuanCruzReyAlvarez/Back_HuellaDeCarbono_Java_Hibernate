@@ -5,11 +5,8 @@ package dds.tp.carbono.http.controllers.org;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.net.SyslogAppender;
 
-import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.organization.EstadoSolicitudVinculacion;
-import dds.tp.carbono.entities.organization.Sector;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.dto.auth.SolicitudDTOShower;

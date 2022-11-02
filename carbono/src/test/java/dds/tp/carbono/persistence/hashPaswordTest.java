@@ -1,8 +1,7 @@
 package dds.tp.carbono.persistence;
 
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.junit.Test;
 
@@ -13,16 +12,14 @@ import dds.tp.carbono.entities.agenteSectorial.SectorTerritorial;
 import dds.tp.carbono.entities.organization.Organizacion;
 
 import dds.tp.carbono.http.controllers.admin.AdminGeoInfoController;
-import dds.tp.carbono.repository.PuntoGeografico.MunicipioRepository;
+
 import dds.tp.carbono.repository.agenteSectorial.SectorTerritorialRepository;
 
 import dds.tp.carbono.repository.organization.OrganizacionRepository;
 
 import dds.tp.carbono.services.external.dto.Provincia;
 import dds.tp.carbono.services.external.puntoGeografico.ProvinciaService;
-import dds.tp.carbono.services.ubicacion.UbicacionesServicioExterno;
-import dds.tp.carbono.services.external.dto.Localidad;
-import dds.tp.carbono.services.external.dto.Municipio;
+
 
 
 

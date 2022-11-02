@@ -2,7 +2,7 @@ package dds.tp.carbono.distancia;
 
 import java.util.List;
 
-import org.junit.Test;
+
 
 import dds.tp.carbono.services.external.dto.Localidad;
 import dds.tp.carbono.services.external.dto.Municipio;
