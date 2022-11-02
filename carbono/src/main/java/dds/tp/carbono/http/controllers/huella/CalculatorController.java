@@ -101,12 +101,16 @@ public class CalculatorController extends Controller {
 
                 case "ORG":               
                 hc = service.calculateOrg(input);
+                break;
                 case "MIEMBRO":
                 hc = service.calculateSector(input);
+                break;
                 case "SECTOR":
                 hc = service.calculateMiembro(input);
+                break;
                 case "AGENTE":
                 hc = service.calculateAgenteSectorial(input);
+                break;
             
             }
             return json(hc);   

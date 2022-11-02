@@ -9,6 +9,7 @@ import dds.tp.carbono.http.controllers.auth.RegisterController;
 import dds.tp.carbono.http.controllers.member.trayectos.TrayectosController;
 import dds.tp.carbono.http.controllers.org.ContactsController;
 import dds.tp.carbono.http.controllers.org.OrganizacionController;
+import dds.tp.carbono.http.controllers.org.RequestController;
 import dds.tp.carbono.http.controllers.org.SectorController;
 import dds.tp.carbono.services.MiembroService;
 import dds.tp.carbono.services.agenteSectorial.AsignadorDeAgentesSectoriales;
@@ -29,6 +30,7 @@ import dds.tp.carbono.http.controllers.puntoGeografico.ProvinciaController;
 import dds.tp.carbono.http.controllers.puntoGeografico.LocalidadController;
 import dds.tp.carbono.http.controllers.puntoGeografico.MunicipioController;
 import dds.tp.carbono.http.controllers.huella.CalculatorController;
+import dds.tp.carbono.services.organizacion.RequestService;
 import spark.servlet.SparkApplication;
 
 public class Server implements SparkApplication {
@@ -72,8 +74,8 @@ public class Server implements SparkApplication {
             new AdminGeoInfoController(),
             new TrayectosController(new TrayectoService(), new MiembroService()),
             new ContactsController(new ContactsService()),
-            new CalculatorController(new CalculatorService(),new OrganizacionService(),new MiembroService(), new SectorService())
-            
+            new CalculatorController(new CalculatorService(),new OrganizacionService(),new MiembroService(), new SectorService()),
+            new RequestController(new RequestService())
         };
     }
 }

@@ -5,7 +5,11 @@ package dds.tp.carbono.http.controllers.org;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.net.SyslogAppender;
+
+import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.organization.EstadoSolicitudVinculacion;
+import dds.tp.carbono.entities.organization.Sector;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.dto.auth.SolicitudDTOShower;
@@ -32,20 +36,30 @@ public class RequestController extends Controller{
         Spark.post(path(Uri.MOD_REQUEST), (rq, rs) -> this.modRequest(rq, rs));
     }
 
+
     private String  getRequest(Request rq, Response rs) throws HttpException {
         try{
             List<SolicitudDTOShower> listaDTO = new ArrayList<SolicitudDTOShower>();
+            System.out.println("ANTES DE GET ALLLLLLLLLLL");
             List<SolicitudVinculacion> solicitudes = service.getAll(); 
+            System.out.println("DESPUES DEL GET ALLLLLLLLLL");
 
+            
             for (SolicitudVinculacion sol:solicitudes )
             {
                 SolicitudDTOShower obj= new SolicitudDTOShower();
                            
                 obj.setNombre(sol.getMiembro().getNombre());
+               
                 obj.setApellido(sol.getMiembro().getApellido());
+                
                 obj.setNroDocumento(sol.getMiembro().getNroDocumento());
+                
                 obj.setSector(sol.getSector().getNombre());
+                
+                obj.setIdReq(String.valueOf(sol.getId()));
                 //obj.setIdReq(Integer.parse(sol).getId());
+                obj.setEstado(matchStringsEnum(sol.getEstado()));
                 
                 listaDTO.add(obj);
             }
@@ -64,22 +78,46 @@ public class RequestController extends Controller{
         try{
                 RequestDTO input = getBody(rq, RequestDTO.class, null);
                 SolicitudVinculacion solicitud = service.getById(Integer.parseInt(input.getIdSolicitud())); 
+                System.out.println(":antes de entrar al sitch");
+                System.out.println(input.getEstado());
                 switch(input.getEstado()){
 
                     // Para aceptaar
                     case "ACEPTAR": 
-                solicitud.setEstado(EstadoSolicitudVinculacion.ACEPTADO);  
+                            System.out.println(solicitud.getEstado());  
+                            solicitud.setEstado(EstadoSolicitudVinculacion.ACEPTADO);
+                            System.out.println(solicitud.getEstado()); 
+                            break; 
                     case  "RECHAZAR":        
-                solicitud.setEstado(EstadoSolicitudVinculacion.RECHAZADO);
+                    solicitud.setEstado(EstadoSolicitudVinculacion.RECHAZADO);
+                            break;
+                }
                 
-                service.repository.guardar(solicitud); //Deberia sobreescribir
+            System.out.println(solicitud.getEstado());
+        
+            System.out.println(solicitud.getMiembro().getId());
+            
+            service.repository.update(solicitud); 
             return(json(goodAnswer()));
 
             }
-            }catch(Exception exc){
+            catch(Exception exc){
                 System.out.println("In catch Exception modificado requestis was fail: ");
             }  
             return null;
+    }
+
+    private String matchStringsEnum(EstadoSolicitudVinculacion estado){
+        switch(estado){
+            case ACEPTADO:
+                return "ACEPTADO";
+            case RECHAZADO:
+                return "RECHAZADO";
+            case PENDIENTE:
+                return "PENDIENTE";
+            default:
+            return "Error switcheando estados";
+        }
     }
 
 }

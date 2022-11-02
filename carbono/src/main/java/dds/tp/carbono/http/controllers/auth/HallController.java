@@ -131,16 +131,18 @@ public class HallController extends Controller {
                                switch(inputA.getFlagSector()){  
                                         
                                     case "P":
-                                    System.out.println("ENTRO A P ");
-                                    Provincia provincia = provinciaService.getById( Integer.parseInt(inputA.getIdProvincia()) ) ;
-                                    System.out.println("TEIENE LA PROVINCIA");
-                                    asignadorAgenteSectorial.asignar(provincia, usuario);
+                                            System.out.println("ENTRO A P ");
+                                            Provincia provincia = provinciaService.getById( Integer.parseInt(inputA.getIdProvincia()) ) ;
+                                            System.out.println("TEIENE LA PROVINCIA");
+                                            asignadorAgenteSectorial.asignar(provincia, usuario);
+                                            break;
 
                                     case "M":
-                                        System.out.println("Entro a M ");
-                                        Municipio municipio = municipioService.getByIdMunicipio( Integer.parseInt(inputA.getIdMunicipio()) );
-                                        System.out.println("Cargo bien el municipio");
-                                        asignadorAgenteSectorial.asignar(municipio, usuario);
+                                            System.out.println("Entro a M ");
+                                            Municipio municipio = municipioService.getByIdMunicipio( Integer.parseInt(inputA.getIdMunicipio()) );
+                                            System.out.println("Cargo bien el municipio");
+                                            asignadorAgenteSectorial.asignar(municipio, usuario);
+                                            break;
                                     
                                        
                                }

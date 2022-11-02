@@ -32,4 +32,9 @@ public class RequestRepository {
     public SolicitudVinculacion getById(Integer id) {
         return this.dao.findOne(id);
     }
+    public void update(SolicitudVinculacion sol) {
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        System.out.println(sol.getEstado());
+        this.dao.update(sol);
+    }
 }

@@ -31,11 +31,17 @@ public abstract class Dao<T> {
         return item;                                           
     }
 
-    public T update(T item) {
+    public void update(T item) {
+        System.out.println("llegueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
         EntityManagerHelper.beginTransaction();
-        T item1 =EntityManagerHelper.getEntityManager().merge( item );
+        System.out.println("llegueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        
+        EntityManagerHelper.getEntityManager().merge(item);
+        System.out.println("llegueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        EntityManagerHelper.commit();
         EntityManagerHelper.closeEntityManager();
-        return item1;
+        System.out.println("llegueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        //return item1;
     }
 
     public static <T> List<T> castList(Class<? extends T> clazz, Collection<?> c) {

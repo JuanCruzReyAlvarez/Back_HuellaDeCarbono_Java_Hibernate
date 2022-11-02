@@ -32,6 +32,9 @@ public class RequestService {
     public SolicitudVinculacion getById(Integer id){
         return this.repository.getById(id);
     }
+    public void update(SolicitudVinculacion sol){
+        this.repository.update(sol);
+    }
    
 
 }

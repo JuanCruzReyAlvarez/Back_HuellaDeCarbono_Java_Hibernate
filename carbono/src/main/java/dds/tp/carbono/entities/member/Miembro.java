@@ -50,7 +50,7 @@ public class Miembro {
     @OneToMany (mappedBy = "miembro",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @Getter @Setter private Set<Trayecto> trayectos;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "trayecto_pendiente_id", referencedColumnName = "id")
     @Getter @Setter private TrayectoPendiente trayecto_pendiente;
 

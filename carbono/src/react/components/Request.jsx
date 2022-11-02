@@ -19,7 +19,11 @@ export const Request = () => {
             setUser(JSON.parse(isUserLogg));
             axios.get("http://localhost:8080/request", JSON.stringify(usuario)).then(({ data }) => {
                 console.log("Solicitudes traidas correctamente:", data)
-                setRequest(data);
+                let newData = data.filter((solicitud)=>{
+                        return solicitud.Estado === "PENDIENTE"
+                })
+                console.log("Arreglo de Solicitudes filtrados por PENDIENTES:", newData)
+                setRequest(newData);
             }).catch(error => {
                 console.log("Error al traer las solicitudes:", error)
             })
@@ -60,7 +64,7 @@ const rechazarSolicitud = () => {
     console.log(error)
     })
 }
-    return (/*
+    return (
 
         <div className="body-contentreq">
             <div className="titlesitos">
@@ -89,37 +93,37 @@ const rechazarSolicitud = () => {
                                         <li>{solicitud.sector}</li>
                                     </ul>
                                     <div className="plan-select-main">
-                                        <div className="plan-select"><a onClick={() => {
-                                            setSolicitudActual({
-                                                tipo: "Rechazada",
-                                                id: solicitud.id_miembro,
-                                            })
-                                            axios.post("http://localhost:8080/modrequest", JSON.stringify({
-                                                estado: "RECHAZADO",
-                                                id_Sector: solicitud.id_sector,
-                                                id_Miembro: solicitud.id_miembro,
-                                                //id del user log
-                                                id_usuario: usuario.id
+                                        <div className="plan-select"><a onClick={(e) => {
+                                            e.preventDefault()
+                                            console.log("FUNCION RECHAZAR")
+                                             axios.post("http://localhost:8080/modrequest", JSON.stringify({
+                                                estado: "RECHAZAR",
+                                                //id del user card
+                                                idSolicitud: solicitud.idReq
                                             })).then((data) => {
                                                 console.log("Se rechazo la solicitud correctamente", data)
+                                                setSolicitudActual({
+                                                    tipo: "Rechazada",
+                                                    id: solicitud.id_miembro,
+                                                })
                                             }).catch(error => {
                                                 console.log(error)
                                             })
                                         }} href="">Rechazar Solicitud</a></div>
 
-                                        <div className="plan-select"><a onClick={() => {
-                                              setSolicitudActual({
-                                                tipo: "Aceptada",
-                                                id: solicitud.id_miembro,
-                                            })
+                                        <div className="plan-select"><a onClick={(e) => {
+                                             e.preventDefault(e)
+                                             console.log("FUNCION ACEPTAR")
                                             axios.post("http://localhost:8080/modrequest", JSON.stringify({
-                                                estado: "ACEPTADO",
-                                                id_Sector: solicitud.id_sector,
-                                                id_Miembro: solicitud.id_miembro,
-                                                //id del user log
-                                                id_usuario: usuario.id
+                                                estado: "ACEPTAR",
+                                                //id del user card
+                                                idSolicitud: solicitud.idReq
                                             })).then((data) => {
                                                 console.log("Se acepto la solicitud correctamente", data)
+                                                setSolicitudActual({
+                                                    tipo: "Aceptada",
+                                                    id: solicitud.id_miembro,
+                                                })
                                             }).catch(error => {
                                                 console.log(error)
                                             })
@@ -134,97 +138,8 @@ const rechazarSolicitud = () => {
             </div>
         </div>
 
-        */
+        
 
-<div className = "body-contentreq">
-                <div className ="titlesitos">
-                <h1 class='elegantshadow'>No son los individuos</h1>
-                <h1 class='insetshadow'> los que hacen las empresas exitosas, </h1>
-                <h1 class='elegantshadow'>sino  </h1>
-                <h1 class='insetshadow'>los grandes equipos</h1>  
-                <h1 class = 'monserrat'>SOLICITUDES</h1>
-                </div>      
-                <div class="snip1265">
-                    <div class="plan">
-                        <header><i class="ion-ios-people"></i>
-                        <h4 class="plan-title">Stephy</h4>
-                        <div class="plan-cost"><span class="plan-price">Developer </span><span class="plan-type"> - utn</span></div>
-                        </header>
-                        <ul class="plan-features">
-                        <li>Desarrollador Web</li>
-                        <li>MySQL Databases</li>
-                        <li>BLABLA</li>
-                        <li>BLABLA</li>
-                        <li>BLABLA</li>
-                        <li>BLABLA</li>
-                        </ul>
-                        <div className="plan-select-main">
-                        <div class="plan-select"><a  onClick={rechazarSolicitud} href="">Rechazar Solicitud</a></div>
-
-                        <div class="plan-select"><a  onClick={aceptarSolicitud} href="">Aceptar Solicitud</a></div>
-                        </div>
-                    </div>
-                    <div class="plan">
-                        <header><i class="ion-ios-people"></i>
-                        <h4 class="plan-title">Juan Cruz Rey</h4>
-                        <div class="plan-cost"><span class="plan-price">Engeener</span><span class="plan-type"> - utn</span></div>
-                        </header>
-                        <ul class="plan-features">
-                        <li>Desarrollador Web</li>
-                        <li>MySQL Databases</li>
-                        <li>BLABLA</li>
-                        <li>BLABLA</li>
-                        <li>BLABLA</li>
-                        <li>BLABLA</li>
-                        </ul>
-                        <div className="plan-select-main">
-                        <div class="plan-select"><a href="">Rechazar Solicitud</a></div>
-
-                        <div class="plan-select"><a href="">Aceptar Solicitud</a></div>
-                        </div>
-                    </div>
-                    <div class="plan">
-                        <header><i class="ion-ios-people"></i>
-                        <h4 class="plan-title">
-                            Professional
-                        </h4>
-                        <div class="plan-cost"><span class="plan-price">Diego Titano</span><span class="plan-type"> -UADE</span></div>
-                        </header>
-                        <ul class="plan-features">
-                        <li>Desarrollador Web</li>
-                        <li>MySQL Databases</li>
-                        <li>BLABLA</li>
-                        <li>BLABLA</li>
-                        <li>BLABLA</li>
-                        <li>BLABLA</li>
-                        </ul>
-                        <div className="plan-select-main">
-                        <div class="plan-select"><a href="">Rechazar Solicitud</a></div>
-
-                        <div class="plan-select"><a href="">Aceptar Solicitud</a></div>
-                        </div>
-                    </div>
-                    <div class="plan">
-                        <header><i class="ion-ios-people"></i>
-                        <h4 class="plan-title">Camila vallejos</h4>
-                        <div class="plan-cost"><span class="plan-price">RRHH</span><span class="plan-type">-UADE</span></div>
-                        </header>
-                        <ul class="plan-features">
-                        <li>Desarrollador Web</li>
-                        <li>MySQL Databases</li>
-                        <li>BLABLA</li>
-                        <li>BLABLA</li>
-                        <li>BLABLA</li>
-                        <li>BLABLA</li>
-                        </ul>
-                        <div className="plan-select-main">
-                        <div class="plan-select"><a href="">Rechazar Solicitud</a></div>
-
-                        <div class="plan-select"><a href="">Aceptar Solicitud</a></div>     
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         
 

@@ -16,6 +16,7 @@ import lombok.Setter;
 
 @Entity
 @Table (name = "solicitud_Vinculacion")
+
 public class SolicitudVinculacion {
     
     @Id
@@ -30,7 +31,7 @@ public class SolicitudVinculacion {
     @JoinColumn(name = "sector_id", referencedColumnName = "id")
     @Getter @Setter private Sector sector;
 
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Getter @Setter private EstadoSolicitudVinculacion estado;
     
     public SolicitudVinculacion() {
