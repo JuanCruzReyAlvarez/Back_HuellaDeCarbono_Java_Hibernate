@@ -12,6 +12,11 @@ import { ContactsList } from "./components/ContactsList.jsx";
 import { Contacts } from "./components/AddContacts.jsx";
 import { Report } from "./components/Report.jsx";
 import { Calculator } from "./components/calculators.jsx";
+import { Hc_organizacion } from "./components/calculators/Hc_organizacion.jsx"
+import { Miembro } from "./components/calculators/Miembro.jsx"
+import { Sector } from "./components/calculators/Sector.jsx"
+import { Sector_Territorial } from "./components/calculators/Sector_Territorial"
+
 import { RegisterSector } from "./components/RegisterSector";
 import { Aplications } from "./components/Aplications.jsx";
 import { Transports } from "./components/Transports.jsx";
@@ -33,7 +38,17 @@ const App = () => {
                     </>
                 } />
                 <Route path="/registerSector" element={<> <Navbar /> <Sidebar /> <RegisterSector /> <Footer /></>} />
-                <Route path="/calculators" element={<> <Navbar /> <Sidebar /><Calculator /> <Footer /> </>} />
+
+
+
+                {/* Inicio de Rutas calculators */}
+                {/* <Route path="/calculators" element={<> <Navbar /> <Sidebar /><Miembro /> <Footer /> </>} /> */}
+                <Route path="/calculators/HcOrg" element={<> <Navbar /> <Sidebar /><Hc_organizacion /> <Footer /> </>} />
+                <Route path="/calculators/Sector" element={<> <Navbar /> <Sidebar /><Sector /> <Footer /> </>} />
+                <Route path="/calculators/Miembro" element={<> <Navbar /> <Sidebar /><Miembro /> <Footer /> </>} />
+                <Route path="/calculators/Sector_Territorial" element={<> <Navbar /> <Sidebar /><Sector_Territorial /> <Footer /> </>} />
+                {/* Fin de rutas calculators */}
+
                 <Route path="/registerMeasurements" element={<> <Navbar /> <Sidebar /> <RegisterMeasurements /><Footer /> </>} />
                 <Route path="/request" element={<><Navbar /> <Sidebar /> <Request /><Footer /> </>} />
                 <Route path="/addContacts" element={<> <Navbar /><Sidebar /> <Contacts /> </>} />
