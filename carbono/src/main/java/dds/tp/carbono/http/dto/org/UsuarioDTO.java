@@ -3,7 +3,8 @@ package dds.tp.carbono.http.dto.org;
 import lombok.Getter;
 import lombok.Setter;
 
-public class OrgDTO {
+public class UsuarioDTO {
     @Getter @Setter private String id;
-    @Getter @Setter private String name;
+    @Getter @Setter private String rol;
+    
 }

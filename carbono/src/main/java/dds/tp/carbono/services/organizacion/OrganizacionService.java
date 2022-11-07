@@ -27,8 +27,8 @@ public class OrganizacionService {
         return this.repository.guardar(organizacion);         
     }
 
-    public Organizacion getByUser(Usuario user) {
-        return this.repository.getByUser(user);
+    public Organizacion getByUser(Integer id) {
+        return this.repository.getByUser(id);
     }
 
     public Organizacion getByRazonSocial(String razonSocial ) {

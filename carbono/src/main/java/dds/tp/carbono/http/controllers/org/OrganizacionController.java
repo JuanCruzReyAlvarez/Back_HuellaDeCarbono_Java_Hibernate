@@ -1,10 +1,11 @@
 package dds.tp.carbono.http.controllers.org;
 import java.util.ArrayList;
 import java.util.List;
+
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.dto.org.OrgDTO;
-import dds.tp.carbono.http.dto.org.OrgNameDTO;
+import dds.tp.carbono.http.dto.org.UsuarioDTO;
 import dds.tp.carbono.http.utils.Uri;
 import dds.tp.carbono.repository.organization.OrganizacionRepository;
 import dds.tp.carbono.services.organizacion.OrganizacionService;
@@ -24,7 +25,7 @@ public class OrganizacionController extends Controller{
     @Override
     public void routes() {
         Spark.get(path(Uri.ORGANIZACION), (rq, rs) -> this.getOrganizaciones(rq, rs));
-        Spark.get(path(Uri.ORGANIZACION_NAME), (rq, rs) -> this.getOrganizacionName(rq, rs));
+        Spark.post(path(Uri.ORGANIZACION_NAME), (rq, rs) -> this.getOrganizacionName(rq, rs));
     }
 
     private String  getOrganizaciones(Request rq, Response rs) throws Exception {
@@ -39,7 +40,7 @@ public class OrganizacionController extends Controller{
                     OrgDTO obj= new OrgDTO();
                                
                     obj.setId(String.valueOf(org.getId()));
-                    obj.setRazonSocial(org.getRazonSocial());
+                    obj.setName(org.getRazonSocial());
 
                     listaDTO.add(obj);
                 }
@@ -56,22 +57,18 @@ public class OrganizacionController extends Controller{
 
         try{
 
-            OrgDTO input = getBody(rq, OrgDTO.class,null); 
+            UsuarioDTO input = getBody(rq, UsuarioDTO.class,null); 
 
-            OrgNameDTO DTO = new OrgNameDTO();
+            OrgDTO DTO = new OrgDTO();
             Organizacion org = new Organizacion();
             OrganizacionRepository repo = new OrganizacionRepository();
-            
-            System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            System.out.println(input.getId());
-            System.out.println("holaaaaaaaaaaaaaaaaa");
-            org = repo.getById(  Integer.valueOf(input.getId())  );
-            System.out.println("hola jejeje2222");
+
+            org = repo.getByUser( (Integer.valueOf( input.getId() ) ) );
             DTO.setName(org.getRazonSocial());
-            System.out.println("hola jejeje33333");
+            DTO.setId(String.valueOf(org.getId()));
 
             return json(DTO); 
-
+            
         }catch(Exception exc){
             throw new Exception("In catch Exception geting the name of Organizacion");
         }

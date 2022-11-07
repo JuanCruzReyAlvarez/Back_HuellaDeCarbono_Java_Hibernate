@@ -55,14 +55,14 @@ public class Organizacion {
     @OneToOne( fetch = FetchType.LAZY)
     @Getter @Setter private PuntoGeografico ubicacion;
 
-    @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @Getter @Setter private Set<Sector> sectores;
 
     @OneToOne
     @Getter @Setter private Usuario user;
 
     @Transient
-    @Setter public BuscadorMiembros buscador ;
+    @Getter @Setter public BuscadorMiembros buscador ;
     
     @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)           
     private List<MetricaOrganizacion> metricas;

@@ -50,7 +50,7 @@ public class OrgMetricsController extends AuthorizationMiddleware {
             
             SessionCookie cookie = getSessionCookie(request.cookie(TOKEN_COOKIE_NAME));
             
-            Organizacion org = this.service.getByUser(cookie.getUser());
+            Organizacion org = this.service.getByUser(cookie.getUser().getId());
             
             MetricsImporterService metricsService = new MetricsImporterService(org);
 

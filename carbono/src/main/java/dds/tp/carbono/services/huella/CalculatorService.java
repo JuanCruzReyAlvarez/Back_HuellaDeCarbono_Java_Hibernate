@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 import dds.tp.carbono.entities.agenteSectorial.SectorTerritorial;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
+import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.metrics.Periodicidad;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
 import dds.tp.carbono.http.dto.huella.CalculatorDTO;
@@ -60,15 +61,18 @@ public class CalculatorService {
 
     public HuellaCarbono calculateOrg(CalculatorDTO input) throws Exception {
 
-        
-        DateTimeFormatter JEFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        DateTimeFormatter JEFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate local_date = LocalDate.parse(input.getInicioPeriodo(), JEFormatter);
 
-        PeriodoDeImputacion periodo =  new PeriodoDeImputacion(local_date,(Periodicidad.valueOf(input.getFormaCalculo().toUpperCase())));
+        System.out.println(local_date);
 
-        CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(this.orgRepo.getById(Integer.parseInt(input.getOrganizacionId())),
-                                                periodo);
-                
+        Organizacion org = this.orgRepo.getById(Integer.parseInt(input.getOrganizacionId()));
+        System.out.println("SIII SEÑORRRR000"); 
+        PeriodoDeImputacion periodo =  new PeriodoDeImputacion(local_date,(Periodicidad.valueOf(input.getFormaCalculo().toUpperCase())));
+        System.out.println("SIII SEÑORRRR111");   
+        CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(org,periodo);
+        System.out.println("SIII SEÑORRRR222");       
         return  calculador.calcula();
     }
 

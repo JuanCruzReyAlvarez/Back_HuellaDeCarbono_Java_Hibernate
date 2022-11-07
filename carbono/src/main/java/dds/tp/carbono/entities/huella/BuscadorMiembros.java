@@ -16,7 +16,10 @@ public class BuscadorMiembros {
     public List<Miembro>buscarMiembroPorOrganizacion(Organizacion org){
        
             List<Miembro> miembros = new ArrayList<Miembro>();
-            this.getSolicitudesOrganizacion(org);
+            
+            solicitudes = this.getSolicitudesOrganizacion(org);
+
+            System.out.println("ACA NOSE COMO PERO LLEGOOOOOO444");
 
             org.getSectores().forEach(sector -> {
                 miembros.addAll(this.solicitudes
@@ -25,6 +28,8 @@ public class BuscadorMiembros {
                 .map(sol -> sol.getMiembro())
                 .collect(Collectors.toList()));
             });
+
+            System.out.println("Funciono hasta aca");
     
             return miembros;
       
@@ -33,7 +38,7 @@ public class BuscadorMiembros {
 
     public List<SolicitudVinculacion> getSolicitudesOrganizacion(Organizacion org) {
         List<SolicitudVinculacion> solicitudes = new ArrayList<SolicitudVinculacion>();
-        org.getSectores().stream().collect(Collectors.toList()).forEach(a->solicitudes.addAll(a.getSolicitudes() ) );
+        org.getSectores().forEach(a->solicitudes.addAll(a.getSolicitudes()));
         return solicitudes;
     }
 }

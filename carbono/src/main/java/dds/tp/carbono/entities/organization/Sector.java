@@ -36,7 +36,7 @@ public class Sector {
     @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
     @Getter @Setter private Organizacion organizacion;
 
-    @OneToMany(mappedBy = "sector", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "sector", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @Getter @Setter private Set<SolicitudVinculacion> solicitudes;
     
     public Sector() {

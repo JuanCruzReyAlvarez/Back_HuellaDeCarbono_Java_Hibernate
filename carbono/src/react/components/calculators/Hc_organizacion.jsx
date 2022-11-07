@@ -17,13 +17,13 @@ export const Hc_organizacion = () => {
         const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
         if (isUserLogg) {
             let user = JSON.parse(isUserLogg);
-            console.log("User log", user);
+            console.log("User log id", user.id);
             setUser(user);
             console.log("Usuarioquemandoaback", usuario);
             axios
-                .get(
+                .post(
                     "http://localhost:8080/organizacionName",
-                    JSON.stringify(usuario)                  // PUSE .ID
+                    JSON.stringify(user)                  // PUSE .ID
                 )
                 .then(({ data }) => {
                     console.log("Organizacion traida correctamente:", data);
@@ -31,9 +31,9 @@ export const Hc_organizacion = () => {
                     setOrganizaciones(data);
                     setCalculo({
                         ...calculo,
-                        rol: user.rol,
+                        calculoSolicitado: user.rol,
                         userId: user.id,
-                        idOrganizacion: data.id,
+                        OrganizacionId: data.id,
                     });
                 })
                 .catch((error) => {
@@ -60,13 +60,13 @@ export const Hc_organizacion = () => {
     const selectFecha = (e) => {
         if (e.target.value === "") return;
         console.log("fecha seleccionada:", e.target.value);
-        setCalculo({ ...calculo, fecha: e.target.value });
+        setCalculo({ ...calculo, InicioPeriodo: e.target.value });
     };
 
     const selectForma = (e) => {
         if (e.target.value === "") return;
         console.log("Forma seleccionada: ", e.target.value);
-        setCalculo({ ...calculo, forma: e.target.value });
+        setCalculo({ ...calculo, FormaCalculo: e.target.value });
     };
 
     const onSubmit = (e) => {
@@ -80,8 +80,8 @@ export const Hc_organizacion = () => {
                 );
                 //Chequear como me mandan el numero y la unidad desde el back.(ACA ESTA Hardcodeado el valor)
                 setValor({
-                    numero: "123",
-                    unidad: "kgms",
+                    numero: data.valor,
+                    unidad: data.unidad,
                 });
             })
             .catch((error) => {

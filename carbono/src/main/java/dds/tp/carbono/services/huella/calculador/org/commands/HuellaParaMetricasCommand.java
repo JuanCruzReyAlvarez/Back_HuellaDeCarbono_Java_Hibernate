@@ -21,10 +21,16 @@ public class HuellaParaMetricasCommand implements HuellaCommand {
     @Override
     public HuellaCarbono calcular() throws Exception {
         HuellaCarbono huella = new HuellaCarbono();
+        System.out.println("LEGAMOS IMPRIMO TAMAÑO METRICAS");
+
+        System.out.println(metricas.size());
+
         
         for (MetricaOrganizacion metrica : this.metricas) {
-            HuellaCarbono huellaMetrica = new CalculadorHuellaMetrica(metrica,repository).calcular();
-            
+            CalculadorHuellaMetrica calculador = new CalculadorHuellaMetrica(metrica,repository);
+
+            HuellaCarbono huellaMetrica = calculador.calcular();
+
             if (huellaMetrica != null)
                 huella = huella.suma(huellaMetrica);
         }

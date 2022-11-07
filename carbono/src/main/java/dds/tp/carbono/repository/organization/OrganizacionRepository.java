@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import dds.tp.carbono.dao.org.OrganizacionDao;
-import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
 import dds.tp.carbono.services.external.dto.Municipio;
@@ -39,8 +38,8 @@ public class OrganizacionRepository {
         }
     }
 
-    public Organizacion getByUser(Usuario user) {
-        return this.dao.getAll().stream().filter(o -> o.getUser().equals(user)).findFirst().orElse(null);
+    public Organizacion getByUser(Integer id) {
+        return this.dao.getAll().stream().filter(o -> o.getUser().getId().equals(id)).findFirst().orElse(null);
     }  
     
     public List<Organizacion> getBy(Municipio municipio) {

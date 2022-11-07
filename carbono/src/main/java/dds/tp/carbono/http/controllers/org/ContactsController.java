@@ -31,13 +31,13 @@ public class ContactsController extends Controller {
     @Override
     public void routes( ) {
 
-        Spark.get(path(Uri.CONTACTS), (rq, rs) -> this.contacts(rq, rs));
+        Spark.get(path(Uri.CONTACTS), (rq, rs) -> this.addContacts(rq, rs));
         Spark.post(path(Uri.CONTACTS), (rq, rs) -> this.getContacts(rq, rs));
     }
 
 
 
-    private String contacts(Request rq, Response rs) throws Exception {
+    private String addContacts(Request rq, Response rs) throws Exception {
 
         ContactsDTO input = getBody(rq, ContactsDTO.class, null);
 

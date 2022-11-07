@@ -3,7 +3,9 @@ package dds.tp.carbono.services.huella.calculador.org;
 import java.util.ArrayList;
 import java.util.List;
 
+import dds.tp.carbono.entities.huella.BuscadorMiembros;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
+import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.organization.IndicadorHCOrganizacion;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
@@ -28,21 +30,41 @@ public class CalculadorHuellaOrganizacion {
         this.organizacion = org;
         this.repository = new FactorEmisionRepository();
         
-    
-        TrayectosCompartidosFilter trayectosFilter = new TrayectosCompartidosFilter
-        (organizacion.buscador.buscarMiembroPorOrganizacion((organizacion)));
+        System.out.println("Dale que avanzamos00000");
+
+        organizacion.setBuscador(new BuscadorMiembros());
+
+        List<Miembro> miembros = new ArrayList<Miembro>() ;
+
+        System.out.println("Dale que avanzamos00,33");
+
+        miembros = organizacion.buscador.buscarMiembroPorOrganizacion((organizacion));
+
+        System.out.println("Dale que avanzamos00,,5555");
+        System.out.println(miembros.size());
+
+        TrayectosCompartidosFilter trayectosFilter = new TrayectosCompartidosFilter(miembros);
+
+        System.out.println("Dale que avanzamos1111");
 
         this.diferentesCalculosParaOrg = new ArrayList<HuellaCommand>() {{
-            add(new HuellaParaMetricasCommand(org.getMetricas(periodo),repository));
-            add(new HuellaParaTrayectosCommand(trayectosFilter.filtrarCompartidos(), periodo));
+            add(new HuellaParaMetricasCommand(org.getMetricas(periodo), repository));
+            //add(new HuellaParaTrayectosCommand(trayectosFilter.filtrarCompartidos(), periodo)); HAY QUE PONERLO
         }};
+
+        System.out.println("Dale que avanzamos22222");
     } 
     
 
     public HuellaCarbono calcula() throws Exception {
 
         HuellaCarbono huellaCarbono = new HuellaCarbono();
+        System.out.println(this.diferentesCalculosParaOrg.size());
+        System.out.println("TAMAÑO COSAS A CALCULAR");
 
+        System.out.println(this.diferentesCalculosParaOrg.get(0).calcular());
+        System.out.println("VALORHUELLADESECOMMAND");
+        
         for (HuellaCommand command : this.diferentesCalculosParaOrg)
             huellaCarbono = huellaCarbono.suma(command.calcular());
 

@@ -13,6 +13,7 @@ import dds.tp.carbono.entities.organization.Sector;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.dto.huella.CalculatorDTO;
+import dds.tp.carbono.http.dto.huella.RTACalculatorDTO;
 import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.Uri;
 import dds.tp.carbono.services.MiembroService;
@@ -95,29 +96,35 @@ public class CalculatorController extends Controller {
         try {
             
             CalculatorDTO input = getBody(request, CalculatorDTO.class, null);
+            RTACalculatorDTO DTO = new RTACalculatorDTO();
             
             HuellaCarbono hc = new HuellaCarbono();
             System.out.println("HOLAAAAAAAAAAAAAAACALCULADORRRRR");
+            
             System.out.println(input.getCalculoSolicitado());
+
             switch(input.getCalculoSolicitado()){
 
                 
-                case "ORG":      
+                case "ORGANIZACION":      
                     System.out.println("HOLAAAAAAAAAAAAAAACALCULADORRRRR3");         
                     hc = service.calculateOrg(input);
                 break;
                 case "MIEMBRO":
-                    hc = service.calculateSector(input);
-                    break;
-                case "SECTOR":
                     hc = service.calculateMiembro(input);
                     break;
-                case "AGENTE":
+                case "SECTOR":
+                hc = service.calculateSector(input);
+                break;
+                case "AGENTE_SECTORIAL":
                     hc = service.calculateAgenteSectorial(input);
                     break;
             
             }
-            return json(hc);   
+            System.out.println("RESULTADO");
+            DTO.setUnidad(String.valueOf(hc.getUnidad().nombre()));
+            DTO.setValor(String.valueOf(hc.getValor()));
+            return json(DTO);   
         } 
         
         catch (Exception ex) {
