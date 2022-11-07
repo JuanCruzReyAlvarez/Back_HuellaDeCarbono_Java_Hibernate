@@ -48,6 +48,8 @@ public class OrgMetricsController extends AuthorizationMiddleware {
         
         try (InputStream is = request.raw().getPart("file").getInputStream()) {
             
+            
+
             SessionCookie cookie = getSessionCookie(request.cookie(TOKEN_COOKIE_NAME));
             
             Organizacion org = this.service.getByUser(cookie.getUser().getId());
@@ -56,7 +58,7 @@ public class OrgMetricsController extends AuthorizationMiddleware {
 
             List<MetricaOrganizacion> metricas = metricsService.importExcel(is);
             
-            metricsService.saveAll(metricas,org.getId() );
+            metricsService.saveAll(metricas,org.getId());
 
            return json(cookie);
               

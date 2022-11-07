@@ -68,5 +68,8 @@ public class CalculadorHuellaMetrica extends CalculadorHuella {
     private DatoActividad getDatoActividad(MetricaOrganizacion metrica){
         return metrica.getActividad().getDatoActividad();
     }
+
+    
+
 }
 
