@@ -22,6 +22,7 @@ import { Aplications } from "./components/Aplications.jsx";
 import { Transports } from "./components/Transports.jsx";
 import { Footer } from "./components/Footer.jsx";
 import { Emissions } from "./components/Emissions.jsx";
+import {Journeys} from "./components/Journeys.jsx";
 
 const App = () => {
     return (
@@ -51,12 +52,14 @@ const App = () => {
 
                 <Route path="/registerMeasurements" element={<> <Navbar /> <Sidebar /> <RegisterMeasurements /><Footer /> </>} />
                 <Route path="/request" element={<><Navbar /> <Sidebar /> <Request /><Footer /> </>} />
+                <Route path="/journeys" element={<><Navbar /> <Sidebar /> <Journeys/> <Footer /> </>} />
                 <Route path="/addContacts" element={<> <Navbar /><Sidebar /> <Contacts /> </>} />
                 <Route path="/contactsList" element={<><Navbar /><Sidebar /> <ContactsList /> </>} />
                 <Route path="/report" element={<> <Navbar /><Sidebar /> <Report /> <Footer /></>} />
                 <Route path="/solMiembro" element={<><Navbar /><Sidebar /><Aplications /> <Footer /></>} />
                 <Route path="/transports" element={<><Navbar /><Sidebar /><Transports /><Footer /> </>} />
                 <Route path="/emissions" element={<><Navbar /><Sidebar /><Emissions /><Footer /> </>} />
+                
 
                 <Route path="/hall" element={<Hall />} />
 

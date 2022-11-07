@@ -52,7 +52,7 @@ public class Organizacion {
     @Enumerated(value = EnumType.STRING)
     @Getter @Setter private TipoOrganizacion tipo;
 
-    @OneToOne( fetch = FetchType.EAGER)
+    @OneToOne( fetch = FetchType.LAZY)
     @Getter @Setter private PuntoGeografico ubicacion;
 
     @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
@@ -70,7 +70,7 @@ public class Organizacion {
     @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @Setter @Getter private List<Contacts> contactos;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sectorTerritorial_id", referencedColumnName = "id")
     @Setter @Getter private SectorTerritorial sectorTerritorial;
 

@@ -198,6 +198,7 @@ input[type=checkbox]:checked {
     background-color: rgba(0, 0, 0, 0.5);
     color: #ffffff;
   }
+
   .btn {
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -215,6 +216,7 @@ input[type=checkbox]:checked {
     -webkit-transition: background-color 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s, color 0.2s;
     transition: background-color 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s, color 0.2s;
   }
+
   .btn.active,
   .btn:active {
     padding: 7px 19px 5px 21px;
@@ -239,6 +241,26 @@ input[type=checkbox]:checked {
     border-color: rgba(255, 255, 255, 0.07);
     box-shadow: inset 1.5px 1.5px 3px rgba(0, 0, 0, 0.5);
   }
+
+  .btn-botonCompletarTrayecto {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 3px 0;
+    padding: 6px 20px;
+    font-size: 30px;
+    line-height: 20px;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.15);
+    color: #00aeff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 rgba(0, 0, 0, 0);
+    border-radius: 2px;
+    -webkit-transition: background-color 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s, color 0.2s;
+    transition: background-color 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s, color 0.2s;
+  }
+
+
   .btn-primary {
     background-color: #098cc8;
     color: #ffffff;
@@ -252,6 +274,21 @@ input[type=checkbox]:checked {
     border: 0;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
   }
+
+  .btn-primaryacomp {
+    background-color: #994d00;
+    color: #ffffff;
+    border: 1px solid transparent;
+    box-shadow: 0 0 rgba(0, 0, 0, 0);
+    border-radius: 2px;
+    -webkit-transition: background-color 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s, color 0.2s;
+    transition: background-color 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s, color 0.2s;
+    background-image: -webkit-linear-gradient(top, #994d00, #994d00);
+    background-image: linear-gradient(to bottom, #994d00, #994d00);
+    border: 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  }
+
   .btn-primary:hover,
   .btn-primary:focus {
     background-color: #21b0f1;
@@ -259,6 +296,7 @@ input[type=checkbox]:checked {
     border-color: transparent;
     box-shadow: 0 0 rgba(0, 0, 0, 0);
   }
+
   .btn-primary:active,
   .btn-primary.active {
     background-color: #006899;
@@ -277,12 +315,59 @@ input[type=checkbox]:checked {
     background-image: linear-gradient(to bottom, #006ea1, #00608d);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6) inset, 0 0 0 1px rgba(255, 255, 255, 0.07) inset;
   }
+
+  .btn-trayectoprimario {
+    background-color: #009963;
+    color: #ffffff;
+    border: 1px solid transparent;
+    box-shadow: 0 0 rgba(0, 0, 0, 0);
+    border-radius: 2px;
+    -webkit-transition: background-color 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s, color 0.2s;
+    transition: background-color 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s, color 0.2s;
+    background-image: -webkit-linear-gradient(top, #009963, #009963);
+    background-image: linear-gradient(to bottom, #009963, #009963);
+    border: 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  }
+  
+  .btn-trayectoprimario:hover,
+  .btn-trayectoprimario:focus {
+    background-color: #1db10c;
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 0 rgba(0, 0, 0, 0);
+  }
+
+  .btn-trayectoprimario:active,
+  .btn-trayectoprimario.active {
+    background-color: #006899;
+    color: rgba(255, 255, 255, 0.7);
+    border-color: transparent;
+    box-shadow: inset 1.5px 1.5px 3px rgba(0, 0, 0, 0.5);
+  }
+  .btn-trayectoprimario:hover,
+  .btn-trayectoprimario:focus {
+    background-image: -webkit-linear-gradient(top, #1db10c, #1db10c);
+    background-image: linear-gradient(to bottom, #1db10c, #1db10c);
+  }
+  .btn-trayectoprimario:active,
+  .btn-trayectoprimario.active {
+    background-image: -webkit-linear-gradient(top, #006ea1, #00608d);
+    background-image: linear-gradient(to bottom, #006ea1, #00608d);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6) inset, 0 0 0 1px rgba(255, 255, 255, 0.07) inset;
+  }
+
+
+
   .btn-block {
     display: block;
     width: 100%;
     padding-left: 0;
     padding-right: 0;
   }
+
+
+
   
   .alert {
     -moz-box-sizing: border-box;

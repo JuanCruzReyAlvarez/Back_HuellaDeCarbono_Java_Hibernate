@@ -19,10 +19,11 @@ export const Hc_organizacion = () => {
             let user = JSON.parse(isUserLogg);
             console.log("User log", user);
             setUser(user);
+            console.log("Usuarioquemandoaback", usuario);
             axios
                 .get(
-                    "http://localhost:8080/organizacion",
-                    JSON.stringify(usuario)
+                    "http://localhost:8080/organizacionName",
+                    JSON.stringify(usuario)                  // PUSE .ID
                 )
                 .then(({ data }) => {
                     console.log("Organizacion traida correctamente:", data);

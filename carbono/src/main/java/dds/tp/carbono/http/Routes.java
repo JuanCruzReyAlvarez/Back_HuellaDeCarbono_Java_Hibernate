@@ -31,6 +31,7 @@ public class Routes {
         define(Uri.ORGANIZACION, "/organizacion"),
         define(Uri.AGENTE_SECTORIAL, "/agente"),
         define(Uri.CONTACTS, "/contacts"),
+        define(Uri.ORGANIZACION_NAME,"/organizacionName"),
         
     // ------------------------------------------------------------------------------- Huella
         define(Uri.CALCULATOR, "/calculators"),

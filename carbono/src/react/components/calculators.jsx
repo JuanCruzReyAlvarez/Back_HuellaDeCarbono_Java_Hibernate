@@ -1,3 +1,4 @@
+/* 
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -22,7 +23,7 @@ export const Calculator = () => {
     const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
     if (isUserLogg) {
       setUser(JSON.parse(isUserLogg));
-      axios.get("http://localhost:8080/organizacion", JSON.stringify(usuario)).then(({ data }) => {
+      axios.get("http://localhost:8080/organizacionName", JSON.stringify(usuario)).then(({ data }) => {
         console.log("Organizaciones traidas correctamente:", data)
         setOrganizaciones(data);
       }).catch(error => {
@@ -141,7 +142,8 @@ export const Calculator = () => {
 
     }
 
-    //Esta funcion esta solo para el primer caso (sin traer miembros ni sectores cuando no hace falta, solo setea con el orgId el estado)
+    //Esta funcion esta solo para el primer caso (sin traer miembros ni sectores cuando no hace falta, solo setea con
+    // el orgId el estado)
     const selectOrg = (e) =>{
       let organizacionId = e.target.value
       setCalculo({ ...calculo, organizacionId: organizacionId })
@@ -172,9 +174,10 @@ export const Calculator = () => {
     }
 
 
-
+*/
+/* 
   return (
-    <div className="main-container"> {/* CALCULADOR DE ORGANIZACION, ROL ORG */}
+    <div className="main-container"> {// CALCULADOR DE ORGANIZACION, ROL ORG //}
       <h1>impacto de la huella de carbono</h1>
 
       <div className="calculator-container">
@@ -220,7 +223,7 @@ export const Calculator = () => {
                     <div class="radio-item">
                       <input type="radio" name="tipo-calculo" value="AGENTE" />
                       <label for="">Calculo segun sector territorial </label>
-                      {/*ESTE ES NUEVOOOO HAY QUE AGREGSRLO AL ROL DE AGENTE !!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
+                      {//ESTE ES NUEVOOOO HAY QUE AGREGSRLO AL ROL DE AGENTE !!!!!!!!!!!!!!!!!!!!!!!!!!!//}
                     </div>
                   </div>
 
@@ -282,8 +285,8 @@ export const Calculator = () => {
               <input type="text" name="" value="" class="text-input" />
             </div> 
 
-
-            {/*<select id="ElegirOrganizacion" name="org" class="text-input" onChange={selectOrg}>
+*/
+          /*  {<select id="ElegirOrganizacion" name="org" class="text-input" onChange={selectOrg}>
               {
                 organizaciones.length ? (
                   organizaciones.map((item) => {
@@ -294,9 +297,9 @@ export const Calculator = () => {
                 ) : <option>Aun no hay organizaciones</option>
               }
 
-            </select>*/}
+            </select>}*/
 
-
+/*
 
 
 
@@ -316,8 +319,8 @@ export const Calculator = () => {
               <label for="">Organizacion</label>
               <input type="text" name="" value="" class="text-input" />
             </div> 
-
-            {/*<select id="ElegirOrganizacion" name="org" class="text-input" onChange={selectorOrganizaciones}>
+*/
+           /* {<select id="ElegirOrganizacion" name="org" class="text-input" onChange={selectorOrganizaciones}>
               {
                 organizaciones.length ? (
                   organizaciones.map((item) => {
@@ -328,15 +331,15 @@ export const Calculator = () => {
                 ) : <option>Aun no hay organizaciones</option>
               }
 
-            </select>*/}
-
+            </select>}*/
+/*
              <div class="grid-item">
               <label for="">Sector</label>
               <input type="text" name="" value="" class="text-input" />
             </div> 
 
-
-            {/*<select id="ElegirSector" name="sector" class="text-input" onChange={selectorSector} >
+*/
+           /* {<select id="ElegirSector" name="sector" class="text-input" onChange={selectorSector} >
               {
                 sector.length ? (
                   sector.map((item) => {
@@ -347,9 +350,9 @@ export const Calculator = () => {
                 ) : <option>Aun no hay sectores</option>
               }
 
-            </select>*/}
+            </select>}*/
 
-
+/*
             <div class="grid-item">
             <label for="">Solicitante</label>
               <input type="text" name="" value="" class="text-input" onChange={selectorSolicitante} />
@@ -358,8 +361,7 @@ export const Calculator = () => {
           </div>
 
 
-
-          {/* CALCULO PARA MIEMBROS */}
+         // { CALCULO PARA MIEMBROS }
 
           <div id="calculitoMiembroItems1">
 
@@ -368,7 +370,9 @@ export const Calculator = () => {
               <input type="text" name="" value="" class="text-input" />
             </div> 
 
-             {/*<select id="ElegirOrganizacion" name="org" onChange={selectorOrganizaciones} class="text-input">
+    
+*/        
+         /*    {<select id="ElegirOrganizacion" name="org" onChange={selectorOrganizaciones} class="text-input">
               {
                 organizaciones.length ? (
                   organizaciones.map((item) => {
@@ -379,14 +383,14 @@ export const Calculator = () => {
                 ) : <option>Aun no hay organizaciones</option>
               }
 
-            </select>*/}
+            </select>}*/
 
-             <div class="grid-item">
-              <label for="">Miembro</label>
-              <input type="text" name="" value="" class="text-input" />
-            </div> 
+            // <div class="grid-item">
+              //<label for="">Miembro</label>
+             // <input type="text" name="" value="" class="text-input" />
+           // </div> 
 
-            {/*<select id="ElegirMiembro" name="miembro" class="text-input" onChange={selectorMiembro}>
+           /* {<select id="ElegirMiembro" name="miembro" class="text-input" onChange={selectorMiembro}>
               {
                 miembros.length ? (
                   miembros.map((item) => {
@@ -410,9 +414,9 @@ export const Calculator = () => {
                 ) : <option>Aun no hay sectores</option>
               }
 
-            </select>*/}
-
-
+            </select>}
+*/
+/*
             <div class="grid-item">
               <label for="">Solicitante</label>
               <input type="text" name="" value="" class="text-input" onChange={selectorSolicitante} />
@@ -464,3 +468,4 @@ export const Calculator = () => {
 
   )
 }
+*/

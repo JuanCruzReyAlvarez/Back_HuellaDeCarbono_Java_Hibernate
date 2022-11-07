@@ -95,22 +95,26 @@ public class CalculatorController extends Controller {
         try {
             
             CalculatorDTO input = getBody(request, CalculatorDTO.class, null);
+            
             HuellaCarbono hc = new HuellaCarbono();
-
+            System.out.println("HOLAAAAAAAAAAAAAAACALCULADORRRRR");
+            System.out.println(input.getCalculoSolicitado());
             switch(input.getCalculoSolicitado()){
 
-                case "ORG":               
-                hc = service.calculateOrg(input);
+                
+                case "ORG":      
+                    System.out.println("HOLAAAAAAAAAAAAAAACALCULADORRRRR3");         
+                    hc = service.calculateOrg(input);
                 break;
                 case "MIEMBRO":
-                hc = service.calculateSector(input);
-                break;
+                    hc = service.calculateSector(input);
+                    break;
                 case "SECTOR":
-                hc = service.calculateMiembro(input);
-                break;
+                    hc = service.calculateMiembro(input);
+                    break;
                 case "AGENTE":
-                hc = service.calculateAgenteSectorial(input);
-                break;
+                    hc = service.calculateAgenteSectorial(input);
+                    break;
             
             }
             return json(hc);   
