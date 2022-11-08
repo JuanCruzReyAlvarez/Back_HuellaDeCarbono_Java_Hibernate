@@ -60,7 +60,7 @@ public class Server implements SparkApplication {
         return new IController[] {
             new LoginController(new LoginService()),
             new RegisterController(new RegisterService(new InsecurePasswordCheckerBuilder())),
-            new SectorController(new SectorService()),
+            new SectorController(new SectorService(),new OrganizacionService()),
             new ProvinciaController(new ProvinciaService()),
             new LocalidadController(new LocalidadService()),
             new MunicipioController(new MunicipioService()),

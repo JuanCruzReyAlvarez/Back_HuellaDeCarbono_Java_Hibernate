@@ -28,6 +28,7 @@ public class Routes {
         define(Uri.TRAYECTOS_AUTOCOMPLETE, "/trayectoAutoComplete"),
         define(Uri.SECTORES, "/sectores"), 
         define(Uri.MEMBER, "/miembros"),
+        define(Uri.SECTORES_BY, "/sectoresOrg"),
         define(Uri.ORGANIZACION, "/organizacion"),
         define(Uri.AGENTE_SECTORIAL, "/agente"),
         define(Uri.CONTACTS, "/contacts"),

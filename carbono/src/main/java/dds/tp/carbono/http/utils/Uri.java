@@ -27,6 +27,7 @@ public enum Uri {
     MOD_REQUEST,
     AGREGAR_SECTORES,
     SECTORES,
+    SECTORES_BY,
     CALCULATOR,
     SOL_MIEMBRO,
     TRAYECTO,

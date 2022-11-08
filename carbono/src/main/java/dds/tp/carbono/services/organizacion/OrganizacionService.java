@@ -29,6 +29,9 @@ public class OrganizacionService {
     public Organizacion getByUser(Integer id) {
         return this.repository.getByUser(id);
     }
+    public Organizacion getById(Integer id) {
+        return this.repository.getById(id);
+    }
 
     public Organizacion getByRazonSocial(String razonSocial ) {
         return this.repository.getByRazonSocial(razonSocial);
