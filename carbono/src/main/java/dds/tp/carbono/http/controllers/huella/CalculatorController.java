@@ -2,15 +2,8 @@ package dds.tp.carbono.http.controllers.huella;
 
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import dds.tp.carbono.entities.huella.HuellaCarbono;
-import dds.tp.carbono.entities.member.Miembro;
-import dds.tp.carbono.entities.organization.EstadoSolicitudVinculacion;
-import dds.tp.carbono.entities.organization.Sector;
-import dds.tp.carbono.entities.organization.SolicitudVinculacion;
+
 import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.dto.huella.CalculatorDTO;
 import dds.tp.carbono.http.dto.huella.RTACalculatorDTO;
@@ -46,7 +39,7 @@ public class CalculatorController extends Controller {
         
         //Spark.post(path(Uri.ORGANIZACION), (rq, rs) -> this.getOrganizaciones(rq, rs));
         Spark.post(path(Uri.CALCULATOR), (rq, rs) -> this.calculate(rq, rs));
-        Spark.post(path(Uri.MEMBER), (rq, rs) -> this.getMiembros(rq, rs));
+        //Spark.post(path(Uri.MEMBER), (rq, rs) -> this.getMiembros(rq, rs));
         //Spark.post(path(Uri.SECTORES), (rq, rs) -> this.getSectores(rq, rs));
         
     }
@@ -61,7 +54,7 @@ public class CalculatorController extends Controller {
 
         return json(sectores);
 	}*/
-
+    /*
 	private String getMiembros(Request request, Response rs) throws HttpException {
 
         List<Miembro> miembros = new ArrayList<Miembro>();
@@ -79,7 +72,7 @@ public class CalculatorController extends Controller {
         }
 
 		return json(miembros);
-	}
+	} */
 
 	/*private String getOrganizaciones(Request rq, Response rs) throws Exception {
         try{

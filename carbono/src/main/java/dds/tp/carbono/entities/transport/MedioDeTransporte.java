@@ -1,15 +1,19 @@
 package dds.tp.carbono.entities.transport;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-
+import javax.persistence.Inheritance;
+import javax.persistence.Table;
+import javax.persistence.InheritanceType;
 import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
 import dds.tp.carbono.entities.point.PuntoGeografico;
 import lombok.Getter;
 import lombok.Setter;
 
-@MappedSuperclass
+@Entity
+@Table(name = "Medio_de_transporte")
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class MedioDeTransporte {
 
     @Id

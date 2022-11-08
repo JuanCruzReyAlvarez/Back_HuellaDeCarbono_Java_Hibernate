@@ -4,9 +4,7 @@ package dds.tp.carbono.entities.transport;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
+
 import javax.persistence.Transient;
 
 
@@ -16,10 +14,12 @@ import dds.tp.carbono.services.distancia.CalculadorDistanciaTransportePublico;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+
 
 @Entity
-@Table(name = "transporte_Publico")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
+@PrimaryKeyJoinColumn(name="medio_transporte_id")
 public class TransportePublico extends MedioDeTransporte {
 
     @Transient

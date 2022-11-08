@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import dds.tp.carbono.services.external.dto.Localidad;
 import lombok.Getter;
@@ -19,16 +20,16 @@ public class PuntoGeografico {
     @GeneratedValue
     @Getter @Setter private Integer id;
 
-    @Column
-    @Getter @Setter private Integer idLocalidad;
+    @Transient
+    @Getter @Setter private Integer idLocalidad;//?
 
-    @Column
+    @Transient
     @Getter @Setter private String direccion; // ?
 
-    @Column
+    @Transient
     @Getter @Setter private Double latitud;
 
-    @Column
+    @Transient
     @Getter @Setter private Double longitud;
 
     @Column

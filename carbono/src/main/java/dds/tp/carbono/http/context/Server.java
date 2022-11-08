@@ -8,6 +8,7 @@ import dds.tp.carbono.http.controllers.auth.LoginController;
 import dds.tp.carbono.http.controllers.auth.RegisterController;
 import dds.tp.carbono.http.controllers.member.trayectos.TrayectosController;
 import dds.tp.carbono.http.controllers.org.ContactsController;
+import dds.tp.carbono.http.controllers.org.MiembroController;
 import dds.tp.carbono.http.controllers.org.OrganizacionController;
 import dds.tp.carbono.http.controllers.org.RequestController;
 import dds.tp.carbono.http.controllers.org.SectorController;
@@ -73,6 +74,7 @@ public class Server implements SparkApplication {
                                 new SectorService()),
             new AdminGeoInfoController(),
             new TrayectosController(new TrayectoService(), new MiembroService()),
+            new MiembroController (new MiembroService(), new SectorService()),
             new ContactsController(new ContactsService()),
             new CalculatorController(new CalculatorService(),new OrganizacionService(),new MiembroService(), new SectorService()),
             new RequestController(new RequestService())

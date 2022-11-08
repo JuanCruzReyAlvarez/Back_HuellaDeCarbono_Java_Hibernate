@@ -104,7 +104,7 @@ public class hashPaswordTest {
 
     public void cargarListadoDeApi() throws Exception
     {
-
+        //para que funcione tiene que estar argentina id 1 cargado en la base
       AdminGeoInfoController controller = new AdminGeoInfoController();
         
       controller.refreshGeoInfoTEST();

@@ -21,6 +21,10 @@ public class MiembroService {
     public List<Miembro> getByOrg(int id) {
         return this.repository.getByOrg(id);
     }
+
+    public List<Miembro> getAll() {
+        return this.repository.getAll();
+    }
 }
 
 
