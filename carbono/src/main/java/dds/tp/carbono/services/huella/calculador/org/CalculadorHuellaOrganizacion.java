@@ -12,7 +12,6 @@ import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
 import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 import dds.tp.carbono.services.huella.calculador.org.commands.HuellaCommand;
 import dds.tp.carbono.services.huella.calculador.org.commands.HuellaParaMetricasCommand;
-import dds.tp.carbono.services.huella.calculador.org.commands.HuellaParaTrayectosCommand;
 import dds.tp.carbono.services.huella.calculador.org.filter.TrayectosCompartidosFilter;
 import lombok.Getter;
 import lombok.Setter;

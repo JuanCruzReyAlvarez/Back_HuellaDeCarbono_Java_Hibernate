@@ -64,7 +64,7 @@ public class Organizacion {
     @Transient
     @Getter @Setter public BuscadorMiembros buscador ;
     
-    @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)           
+    @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)           
     private List<MetricaOrganizacion> metricas;
 
     @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)

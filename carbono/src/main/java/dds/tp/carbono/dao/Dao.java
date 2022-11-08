@@ -75,8 +75,6 @@ public abstract class Dao<T> {
     } 
 
     public T findOne(Integer id ){
-        System.out.println("Entro a M ");
-        
         return (T)EntityManagerHelper.getEntityManager().find( clazz, id );        
      }
 

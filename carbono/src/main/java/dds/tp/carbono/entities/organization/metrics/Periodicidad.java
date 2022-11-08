@@ -4,15 +4,15 @@ public enum Periodicidad {
     ANUAL,
     MENSUAL;
 
-    
-    
-    public static Periodicidad getBy(String nombre) throws Exception {
-        if (nombre.equals("ANUAL"))
-            return ANUAL;
 
-        if (nombre.equals("MENSUAL"))
-            return MENSUAL;
-            
-        throw new Exception("Periodicidad no existente");
-    }
+public static Periodicidad getBy(String nombre) throws Exception {
+    if (nombre.equals("ANUAL"))
+        return Periodicidad.ANUAL;
+
+    if (nombre.equals("MENSUAL"))
+        return Periodicidad.MENSUAL;
+        
+    throw new Exception("Periodicidad no existente");
+}
+
 }

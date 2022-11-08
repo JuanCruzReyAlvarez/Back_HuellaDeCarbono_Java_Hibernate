@@ -23,6 +23,9 @@ public enum TipoActividad {
         }
    }
 
+   
+
+
    @Override
    public String toString() {
         String str = super.toString();

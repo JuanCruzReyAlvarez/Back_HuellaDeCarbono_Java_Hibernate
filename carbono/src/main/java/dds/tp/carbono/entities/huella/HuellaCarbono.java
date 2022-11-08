@@ -1,31 +1,17 @@
 package dds.tp.carbono.entities.huella;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import dds.tp.carbono.conveters.UnidadHcConverter;
 import lombok.Getter;
 import lombok.Setter;
 
 
-
-
-@Entity
-@Table(name="Huella_Carbono")
 public class HuellaCarbono {
 
-    @Id
-    @GeneratedValue
+   
     @Getter @Setter private Integer id;
 
-    @Column
     @Getter @Setter private Double valor;
     
-    @Convert(converter = UnidadHcConverter.class )
+    
     @Getter @Setter private UnidadHC unidad;
 
     public HuellaCarbono() {

@@ -2,15 +2,14 @@ package dds.tp.carbono.entities.organization.metrics;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Embedded;
-
-
+import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
-@DiscriminatorValue("combustionFija")
+@PrimaryKeyJoinColumn(name="actividadId")
 public class CombustionFija extends Actividad {
+
+    
 
     @Embedded
     @Setter @Getter public Consumo consumo;

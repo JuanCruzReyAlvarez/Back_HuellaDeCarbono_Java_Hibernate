@@ -6,18 +6,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-
-
+import javax.persistence.Transient;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@DiscriminatorValue("logisticaDeProductosServicios")
+@PrimaryKeyJoinColumn(name="actividadId")
 public class LogisticaDeProductosServicios extends Actividad {
 
-    @Column
+    
+
+    @Transient
     private static final double FACTOR_K = 1;
     
     @Column
@@ -34,6 +36,7 @@ public class LogisticaDeProductosServicios extends Actividad {
 
     @Enumerated(value = EnumType.STRING)
     @Setter @Getter private TipoDeConsumo tipoDeConsumo; 
+
 
     
     public LogisticaDeProductosServicios(){}

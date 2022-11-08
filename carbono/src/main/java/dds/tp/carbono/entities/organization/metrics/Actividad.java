@@ -1,30 +1,27 @@
 package dds.tp.carbono.entities.organization.metrics;
 
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.persistence.InheritanceType;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="actividad")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name= "tipoDeActividad")
+@Table(name = "Actividad")
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Actividad {
 
     @Id
     @GeneratedValue
-    @Getter @Setter Integer id;
-
-    @Transient
+    @Getter @Setter private Integer id;
+    
+    @Enumerated(value = EnumType.STRING) 
     @Setter @Getter protected TipoActividad tipoActividad;
 
     public DatoActividad getDatoActividad() {

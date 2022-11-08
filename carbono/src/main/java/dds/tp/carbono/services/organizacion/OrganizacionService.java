@@ -2,7 +2,6 @@ package dds.tp.carbono.services.organizacion;
 
 import java.util.List;
 
-import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.repository.organization.OrganizacionRepository;
 import dds.tp.carbono.services.external.dto.Municipio;

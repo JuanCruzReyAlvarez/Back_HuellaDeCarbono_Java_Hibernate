@@ -5,6 +5,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,16 +14,16 @@ import lombok.Setter;
 public class Consumo {
 
     @Column
-    @Setter @Getter private Double valor;
+    @Setter @Getter public Double valor;
 
     @Enumerated(value = EnumType.STRING)
-    @Setter @Getter private Periodicidad periodicidad;
+    @Setter @Getter public Periodicidad periodicidad;
     
     @Enumerated(value = EnumType.STRING)
-    @Setter @Getter private Unidad unidad;
+    @Setter @Getter public Unidad unidad;
 
     @Enumerated(value = EnumType.STRING)
-    @Setter @Getter private TipoDeConsumo tipo;
+    @Setter @Getter public TipoDeConsumo tipo;
 
     public Consumo(){}
 

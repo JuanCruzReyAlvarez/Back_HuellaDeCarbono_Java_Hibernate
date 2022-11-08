@@ -1,9 +1,9 @@
 package dds.tp.carbono.services.huella.calculador.org;
 
+
 import dds.tp.carbono.entities.huella.FactorEmision;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.huella.KilogramoUnidadHC;
-import dds.tp.carbono.entities.organization.metrics.Actividad;
 import dds.tp.carbono.entities.organization.metrics.DatoActividad;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
 import dds.tp.carbono.repository.huella.FactorEmisionRepository;
@@ -53,15 +53,11 @@ public class CalculadorHuellaMetrica extends CalculadorHuella {
     }
 
     private FactorEmision getFactorEmision(MetricaOrganizacion metrica){
-        //System.out.println();
+  
         FactorEmision factor = new FactorEmision();
-        System.out.println("ENTRE AL GET");
-        Actividad actividad = metrica.getActividad();
-        System.out.println(actividad.getId());
-        System.out.println(actividad.getTipoDeConsumo());
-        System.out.println(actividad.getTipoActividad());
-        factor = repository.get(actividad.getTipoDeConsumo(), actividad.getTipoActividad());
-        System.out.println(factor.getId());       
+
+        factor = repository.get(metrica.getActividad().getTipoDeConsumo(), metrica.getActividad().getTipoActividad());
+
         return factor;
     }
 
