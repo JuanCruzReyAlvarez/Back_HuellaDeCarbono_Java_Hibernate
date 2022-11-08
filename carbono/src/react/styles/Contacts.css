@@ -1,3 +1,152 @@
+
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web);
+html {
+  height: 100%;
+}
+
+bodynew {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  font: 14px "Titillium Web", sans-serif;
+  letter-spacing: 2px;
+  background: linear-gradient(130deg, #543958 0%, #a06060 25%, #bea27b 50%, #9ca898 75%, #506d8d 100%) no-repeat center center fixed;
+}
+
+section {
+  align-self: top;
+  margin: 150px 0;
+  display: block;
+  position: relative;
+  width: 380px;
+  max-height: 550px;
+  color: rgba(244, 230, 254, 0.7);
+  background: rgba(199, 131, 252, 0.05);
+  border-top: 15px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 40px solid rgba(0, 0, 0, 0.06);
+  filter: drop-shadow(26px 26px 20px rgba(0, 0, 0, 0.5));
+  box-shadow: -4vh -6vh 16vh -6vh rgba(0, 0, 0, 0.2), -4vh 6vh 16vh -6vh rgba(0, 0, 0, 0.15);
+}
+section header {
+  padding: 1em 1.4em;
+  background: rgba(0, 0, 0, 0.12);
+  margin: 0 auto 0 auto;
+}
+section header h4 {
+  height: 3rem;
+  margin: 0 0 1rem 0;
+  padding: 0;
+  line-height: 1.1rem;
+  text-align: center;
+  border-radius: 3px;
+  font-size: 1.1rem;
+}
+section header h4 span {
+  padding: 1.2rem;
+}
+section header h4 span.c {
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.045);
+  border-bottom: 2px solid rgba(233, 205, 254, 0.8);
+}
+section header input[type=search] {
+  margin: 0 0.5rem;
+  padding: 0.5rem;
+  width: 95%;
+  color: rgba(244, 230, 254, 0.8);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(210, 158, 250, 0.5);
+  font-size: 1.15rem;
+  transition: translateX 6s ease-in;
+}
+section header input[type=search]:focus {
+  outline: none;
+  border: 1px solid rgba(210, 158, 250, 0.5);
+}
+section header input[type=search]:focus::-webkit-input-placeholder {
+  transform: translateX(70%);
+  opacity: 0;
+}
+section header input[type=search]:focus::-webkit-input-placeholder:-moz-placeholder {
+  transform: translateX(70%);
+  opacity: 0;
+}
+section header input[type=search]:focus::-webkit-input-placeholder::-moz-placeholder {
+  transform: translateX(70%);
+  opacity: 0;
+}
+section header input[type=search]:focus::-webkit-input-placeholder:-ms-input-placeholder {
+  transform: translateX(70%);
+  opacity: 0;
+}
+section header input[type=search]:focus::-webkit-input-placeholder::-ms-input-placeholder {
+  transform: translateX(70%);
+  opacity: 0;
+}
+section header input[type=search]::-webkit-input-placeholder {
+  color: rgba(233, 205, 254, 0.8);
+  -webkit-transition: ease-in 0.3s;
+  transition: ease-in 0.3s;
+  transform-origin: 0 50%;
+}
+section header input[type=search]:-moz-placeholder {
+  color: rgba(233, 205, 254, 0.8);
+  -moz-transition: ease-in 0.3s;
+  transition: ease-in 0.3s;
+  transform-origin: 0 50%;
+}
+section header input[type=search]::-moz-placeholder {
+  color: rgba(233, 205, 254, 0.8);
+  -moz-transition: ease-in 0.3s;
+  transition: ease-in 0.3s;
+  transform-origin: 0 50%;
+}
+section header input[type=search]:-ms-input-placeholder {
+  color: rgba(233, 205, 254, 0.8);
+  -ms-transition: ease-in 0.3s;
+  transition: ease-in 0.3s;
+  transform-origin: 0 50%;
+}
+section header input[type=search]::-ms-input-placeholder {
+  color: rgba(233, 205, 254, 0.8);
+  -ms-transition: ease-in 0.3s;
+  transition: ease-in 0.3s;
+  transform-origin: 0 50%;
+}
+section .filter {
+  padding: 1rem 0;
+}
+section .filter li {
+  width: 100%;
+  padding: 1rem 0;
+  line-height: 1.5rem;
+  filter: drop-shadow(26px 26px 20px rgba(0, 0, 0, 0.7));
+  list-style-type: none;
+  text-align: left;
+}
+section .filter li span {
+  font-size: 1.15rem;
+  padding: 1.8rem;
+}
+section .filter li:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.03);
+  margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
 
 .aa {
@@ -94,8 +243,8 @@
 
 }
 /*////////////////////////*/
-
-/* .conteinerLista{
+ 
+.conteinerLista{
     position: absolute;
       top: -20px;
       left: -20px;
@@ -104,17 +253,12 @@
       width: auto;
       height: auto;
      background-image: url("../../main/resources/public/css/images/birds.jpg");
-      background-size: cover;
-      
+      background-size: cover; 
       z-index: 0;
-  
-   
-  
-  } */
+  } 
+
 .conteinerLista {
     position: absolute;
-    
-
 }
 
 .contacts {

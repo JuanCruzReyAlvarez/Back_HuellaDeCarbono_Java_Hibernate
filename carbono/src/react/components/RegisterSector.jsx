@@ -25,7 +25,7 @@ export const RegisterSector = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         axios
-            .post("http://localhost:8080/addsector", JSON.stringify(eleccion))
+            .post("http://localhost:8080/addSector", JSON.stringify(eleccion))
             .then(({ data }) => {
                 console.log("funciono ADDsector", data);
                 if (document.getElementById("textBox").value) document.getElementById("textBox").value = ""
@@ -51,11 +51,24 @@ export const RegisterSector = () => {
         <div class="Formu">
             <div className="FormuPrinc">
                 <form onSubmit={onSubmit}>
-                    <h1 class="PrimTit">Agregar Organización</h1>
-                    <h3>Lorem ipsum dolor sit amet consectetur adipi.</h3>
+                    <h1 class="PrimTit"> Agregar Sector</h1>
+                    <h3>Agrega nuevos sectores a tu organizacion.</h3>
+                    <br></br>
                     <div class="cuatro">
                         <div class="sector">
-                            <h1>Sectores</h1>
+                        <br></br>
+                            <br></br>
+                           
+                            <h1>Introduce el nombre</h1>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
                             <input type="text" name="sector" placeholder="Agregar sector..." id="textBox" onChange={handleChange} />
                             <input type="submit" value="Agregar" id="SectorAg" />
                         </div>

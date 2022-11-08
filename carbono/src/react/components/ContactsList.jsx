@@ -1,3 +1,4 @@
+{/* 
 import React from "react";
 import ".././styles/contactsList.css";
 
@@ -62,3 +63,4 @@ export const ContactsList = () => {
 
   )
 }
+*/}

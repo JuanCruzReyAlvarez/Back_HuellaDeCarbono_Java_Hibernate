@@ -31,19 +31,23 @@ public class ContactsController extends Controller {
     @Override
     public void routes( ) {
 
-        Spark.get(path(Uri.CONTACTS), (rq, rs) -> this.addContacts(rq, rs));
-        Spark.post(path(Uri.CONTACTS), (rq, rs) -> this.getContacts(rq, rs));
+        Spark.post(path(Uri.ADD_CONTACTS), (rq, rs) -> this.addContacts(rq, rs));
+        Spark.get(path(Uri.CONTACTS), (rq, rs) -> this.getContacts(rq, rs));
     }
 
 
 
     private String addContacts(Request rq, Response rs) throws Exception {
 
+        System.out.println("HOLAAAAAAA");
         ContactsDTO input = getBody(rq, ContactsDTO.class, null);
+        System.out.println("HOLAAAAAAA");
 
         try {
-            Contacts contact = service.obtenerContacto(input.getNombre(), input.getEmail(), input.getCelular());
-            return json(contact);
+            System.out.println("HOLAAAAAAA");
+            service.guardarContacto(input.getNombre(), input.getEmail(), input.getCelular(), input.getUserId());
+            System.out.println("HOLAAAAAAA");
+            return json(goodAnswer());
 
         } catch (Exception ex) {
            

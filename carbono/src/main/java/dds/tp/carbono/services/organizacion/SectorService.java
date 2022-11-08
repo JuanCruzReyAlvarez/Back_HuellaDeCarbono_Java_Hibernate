@@ -12,6 +12,10 @@ public class SectorService {
         this.repository = new SectorRepository();
     }
 
+    public void save(Sector sector){
+        repository.guardar(sector);
+    }
+
      
     public Sector crear(Sector sector) throws Exception {
         return this.repository.guardar(sector);         

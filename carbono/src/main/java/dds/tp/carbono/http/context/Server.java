@@ -77,7 +77,7 @@ public class Server implements SparkApplication {
             new MiembroController (new MiembroService(), new SectorService()),
             new ContactsController(new ContactsService()),
             new CalculatorController(new CalculatorService(),new OrganizacionService(),new MiembroService(), new SectorService()),
-            new RequestController(new RequestService())
+            new RequestController(new RequestService()),
         };
     }
 }

@@ -46,6 +46,6 @@ public class SectorRepository {
     }
 
     public List<Sector> getByOrg(int id) {
-        return (List<Sector>) this.dao.getAll().stream().filter(s -> s.getOrganizacion().getId().equals(id)).collect(Collectors.toList());
+        return this.dao.getAll().stream().filter(s -> s.getOrganizacion().getId().equals(id)).collect(Collectors.toList());
     }
 }

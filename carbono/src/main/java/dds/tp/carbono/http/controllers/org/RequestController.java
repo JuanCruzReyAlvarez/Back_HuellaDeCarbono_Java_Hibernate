@@ -5,15 +5,18 @@ package dds.tp.carbono.http.controllers.org;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.organization.EstadoSolicitudVinculacion;
+import dds.tp.carbono.entities.organization.Sector;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.dto.auth.SolicitudDTOShower;
 import dds.tp.carbono.http.dto.org.RequestDTO;
 import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.Uri;
+import dds.tp.carbono.services.MiembroService;
 import dds.tp.carbono.services.organizacion.RequestService;
+import dds.tp.carbono.services.organizacion.SectorService;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
@@ -31,6 +34,7 @@ public class RequestController extends Controller{
       
         Spark.get(path(Uri.REQUEST), (rq, rs) -> this.getRequest(rq, rs));
         Spark.post(path(Uri.MOD_REQUEST), (rq, rs) -> this.modRequest(rq, rs));
+        Spark.post(path(Uri.CREATE_REQUEST), (rq, rs) -> this.createRequest(rq, rs));
     }
 
 
@@ -70,6 +74,43 @@ public class RequestController extends Controller{
             } 
         return null;
     }
+
+    private String  createRequest(Request rq, Response rs) throws HttpException {
+        try{
+
+            System.out.println("HOLA COMO ESTAS JAJAJA");
+
+            SolicitudDTOShower input = getBody(rq, SolicitudDTOShower.class, null);
+
+            MiembroService serviceMiembro = new MiembroService();
+            SectorService serviceSector = new SectorService();
+
+            System.out.println("HOLA COMO ESTAS JAJAJA");
+            System.out.println(Integer.parseInt(input.getUserId()));
+            Miembro miembro = serviceMiembro.getByUserId(Integer.parseInt(input.getUserId()));
+            System.out.println("HOLA COMO ESTAS JAJAJA");
+            System.out.println(Integer.parseInt(input.getIdSector()));
+            Sector sector = serviceSector.getById(Integer.parseInt(input.getIdSector()));
+            System.out.println("HOLA COMO ESTAS JAJAJA");
+
+             
+            SolicitudVinculacion solicitud = new SolicitudVinculacion();
+            solicitud.setEstado(EstadoSolicitudVinculacion.PENDIENTE); 
+            solicitud.setMiembro(miembro);
+            solicitud.setSector(sector);
+
+            service.save(solicitud);
+
+            return json(goodAnswer()); 
+
+            }catch(Exception exc){
+                System.out.println("In catch Exception geting Request was fail: ");
+            } 
+        return null;
+    }
+
+    
+
 
     private String  modRequest(Request rq, Response rs) throws HttpException {
         try{

@@ -29,7 +29,7 @@ public class SolicitudVinculacion {
 
     @ManyToOne
     @JoinColumn(name = "sector_id", referencedColumnName = "id")
-    @Getter @Setter private Sector sector;
+    @Getter @Setter public Sector sector;
 
     @Enumerated(EnumType.STRING)
     @Getter @Setter private EstadoSolicitudVinculacion estado;

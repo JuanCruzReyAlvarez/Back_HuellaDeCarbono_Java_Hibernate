@@ -35,6 +35,9 @@ public class RequestService {
     public void update(SolicitudVinculacion sol){
         this.repository.update(sol);
     }
+    public void save(SolicitudVinculacion sol){
+        this.repository.guardar(sol);
+    }
    
 
 }

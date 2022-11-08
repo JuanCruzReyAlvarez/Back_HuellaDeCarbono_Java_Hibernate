@@ -19,7 +19,6 @@ export const Aplications = () => {
             let user = JSON.parse(isUserLogg)
             setUser(user);
             setEleccion({
-                rol: user.rol,
                 userId: user.id
             })
             axios.get("http://localhost:8080/organizacion", JSON.stringify(usuario)).then(({ data }) => {
@@ -41,8 +40,8 @@ export const Aplications = () => {
         if (!organizacionID) return
         console.log("organizacion ID", organizacionID)
         setOrganizaciones([])
-        setEleccion({ ...eleccion, idOrganizacion: organizacionID })
-        axios.post("http://localhost:8080/sectores", JSON.stringify({ id: organizacionID })).then(({ data }) => {
+        // setEleccion({ ...eleccion, idOrganizacion: organizacionID })
+        axios.post("http://localhost:8080/sectoresOrg", JSON.stringify({ id: organizacionID })).then(({ data }) => {
             console.log("sectores traidos de la base: ", data)
             data.unshift({ id: "", nombre: "Seleccionar" })
             setSectores(data);
@@ -64,22 +63,22 @@ export const Aplications = () => {
 
 
     const handleChange = ({ target }) => {
-        setEleccion((eleccion) => {
-            return {
-                ...eleccion,
-                [target.name]: target.value,
-            };
-        });
+        // setEleccion((eleccion) => {
+        //     return {
+        //         ...eleccion,
+        //         [target.name]: target.value,
+        //     };
+        // });
     };
 
 
     const onSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8080/solMiembro", JSON.stringify(eleccion)).then((data) => { //mando este usuario creado a ese esa url mediando un post obviamente (a mi back), lo mando en tipo json, (por eso json.usuario), (acordarce que este usuario es lo que comenzo como un estado local vacio y se fue haciendo en los inputs y las funciones), y acordarce juan que con el .then estoy haciendo una promesa, es decir hay algo que me va a devolver mi back luego de que yo le mande el usuario y lo tengo que atajar. Si sale todo bien me cae en el then.Esto quiere decir que va a estar en mi data lo que me haya mandado mi back. Acordarce que data es una palabra reservada que puse yo y que va a lamacenar cualquier cosa que yo le mand edel back.
+        axios.post("http://localhost:8080/createRequest", JSON.stringify(eleccion)).then((data) => { //mando este usuario creado a ese esa url mediando un post obviamente (a mi back), lo mando en tipo json, (por eso json.usuario), (acordarce que este usuario es lo que comenzo como un estado local vacio y se fue haciendo en los inputs y las funciones), y acordarce juan que con el .then estoy haciendo una promesa, es decir hay algo que me va a devolver mi back luego de que yo le mande el usuario y lo tengo que atajar. Si sale todo bien me cae en el then.Esto quiere decir que va a estar en mi data lo que me haya mandado mi back. Acordarce que data es una palabra reservada que puse yo y que va a lamacenar cualquier cosa que yo le mand edel back.
             //. Si hay problema me va al catch.ya sea problemas de comunicacion de servidor del cliente o nuestro. O tambien puede pasar que no cumpla logica necesaria como que la contraseña no sea correcta, enotnces esto se mando el usuario en json JSON.stringify(usuario)) , ahi se ejecuta un wait() hasta que el back procesa y manda un signal() para que se termine de ejecutar la promesa en el then(), si todo bien too ok, sino cumplio logica como deciamos mi back catghea ese error y le dispara el error a este servidor.
-            console.log("funciono el solMiembro", data)
+            console.log("funciono el createRequest", data)
         }).catch(error => {
-            console.log("No funciono el solMiembro", error)
+            console.log("No funciono el createRequest", error)
         })
     }
 

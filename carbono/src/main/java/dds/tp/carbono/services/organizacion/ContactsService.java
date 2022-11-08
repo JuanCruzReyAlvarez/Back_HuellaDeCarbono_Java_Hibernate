@@ -2,8 +2,10 @@ package dds.tp.carbono.services.organizacion;
 
 import java.util.List;
 
+import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.notifications.Contacts;
 import dds.tp.carbono.repository.organization.ContactsRepository;
+import dds.tp.carbono.repository.organization.OrganizacionRepository;
 
 
 public class ContactsService {
@@ -15,22 +17,29 @@ public class ContactsService {
     }
 
 
-    public Contacts obtenerContacto(String nombre, String email, String celular) {
+    public Contacts guardarContacto(String nombre, String email, String celular, String user) {
         
-        Contacts contacto = this.buildContacto(nombre, email, celular);
+        Contacts contacto = this.buildContacto(nombre, email, celular, user);
+
+        OrganizacionRepository orgService = new OrganizacionRepository();
+        Organizacion organizacion = new Organizacion();
         
+        organizacion = orgService.getByUser(Integer.parseInt(user));
+        contacto.setOrganizacion(organizacion);
+
         return this.repository.guardar(contacto);
     }
 
 
-    private Contacts buildContacto(String nombre, String email, String celular) {
+    public Contacts buildContacto(String nombre, String email, String celular, String user) {
         
         Contacts contacto = new Contacts();
         contacto.setCelular(celular);
         contacto.setMail(email);
         contacto.setName(celular);
-        
-        return null;
+
+
+        return contacto;
     }
 
 
