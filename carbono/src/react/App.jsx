@@ -16,7 +16,6 @@ import { Hc_organizacion } from "./components/calculators/Hc_organizacion.jsx"
 import { Miembro } from "./components/calculators/Miembro.jsx"
 import { Sector } from "./components/calculators/Sector.jsx"
 import { Sector_Territorial } from "./components/calculators/Sector_Territorial"
-
 import { RegisterSector } from "./components/RegisterSector";
 import { Aplications } from "./components/Aplications.jsx";
 import { Transports } from "./components/Transports.jsx";
@@ -31,13 +30,7 @@ const App = () => {
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
 
-                <Route path="/advices" element={
-                    <>
-                        <Sidebar />
-                        <Advices />
-
-                    </>
-                } />
+                <Route path="/advices" element={<><Sidebar /><Advices /></>} />
                 <Route path="/registerSector" element={<> <Navbar /> <Sidebar /> <RegisterSector /> <Footer /></>} />
 
 

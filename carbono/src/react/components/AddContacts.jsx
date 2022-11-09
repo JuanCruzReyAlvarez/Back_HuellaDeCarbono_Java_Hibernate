@@ -35,7 +35,6 @@ export const Contacts = () => {
     });
 
     /* 
-
     document.addEventListener("DOMContentLoaded", function() {
         "use strict"
         var style = ""
@@ -125,8 +124,9 @@ export const Contacts = () => {
 
 
     return (
+        <>
         <div class="aa">
-             <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"></link>
+            <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"></link>
             <div id="formularito">
 
                 <form method="POST" action="addContacts" class="ccform">
@@ -158,7 +158,7 @@ export const Contacts = () => {
                     <div className="buttons">
                         <div id="botonsito">
                             <div class="ccfield-prepend">
-                                <input name="botonShowContacts" class="ccbtn" type="button" value="Ver Lista de Contactos" onClick={showContacts} />
+                                <input name="botonShowContacts" class="ccbtn" type="button" value="Ver Lista de Contactos"  />
                             </div>
                         </div>
 
@@ -171,60 +171,27 @@ export const Contacts = () => {
 
             </div>
 
-
-                <section>
-                <header>
-                <h4>
-                    <span>Log</span>
-                    <span>Favorites</span>
-                    <span class ='c'>Contacts</span>
-                </h4>
-                <input type = 'search' placeholder="🔍 Search" autofocus class="filter"/>
-                </header>
-                <ul class="filter">
-                <li><span class='img'>👦</span><span class='name'>John</span> <span class='ph'>609-579-1254</span></li>
-                <li><span class='img'>👧</span><span class='name'>Diane</span> <span class='ph'>908-240-2297</span></li>
-                <li><span class='img'>👦</span><span class='name'>Mike</span> <span class='ph'>303-539-1425</span></li>
-                <li><span class='img'>👧</span><span class='name'>Mary</span> <span class='ph'>424-308-9976</span></li>
-                <li><span class='img'>👦</span><span class='name'>Adam</span> <span class='ph'>509-998-0025</span></li>
-                <li><span class='img'>👦</span><span class='name'>Billy</span> <span class='ph'>609-898-3325</span></li>
-                </ul>
-                </section>
-
-
-
-
-
-
-            <div id="listita" class="conteinerLista">
-                <div class="contacts">
-                    <h1 class="contacts__title">My contacts</h1>
-                    <section class="contacts__section">
-                        <h2 class="contacts__subtitle">A</h2>
-                        <ul class="contacts__list">
-                            {
-                                contacts.length ? (
-                                    contacts.map((contact, i) => {
-                                        console.log("HOLA")
-                                        return (<>
-                                            <li class="contacts__item" key={i}>{contact.nombre}</li>
-                                            <a href="#" class="boton rojo">X</a>
-                                            <a href="#" class="boton verde">Edit</a>
-
-                                        </>)
-                                    })
-                                ) : (<></>)
-                            }
-                        </ul>
-
-                    </section>
-
-                </div>
-            </div>
         </div >
 
-
-
-
+            <section id = "listita" className="sectioncontacts">
+                <header>
+                    <h4>
+                        <span>Log</span>
+                        <span>Favorites</span>
+                        <span class='c'>Contacts</span>
+                    </h4>
+                    <input type='search' placeholder="🔍 Search" autofocus class="filter" />
+                </header>
+                <ul class="filter">
+                    <li><span class='img'>👦</span><span class='name'>John</span> <span class='ph'>609-579-1254</span></li>
+                    <li><span class='img'>👧</span><span class='name'>Diane</span> <span class='ph'>908-240-2297</span></li>
+                    <li><span class='img'>👦</span><span class='name'>Mike</span> <span class='ph'>303-539-1425</span></li>
+                    <li><span class='img'>👧</span><span class='name'>Mary</span> <span class='ph'>424-308-9976</span></li>
+                    <li><span class='img'>👦</span><span class='name'>Adam</span> <span class='ph'>509-998-0025</span></li>
+                    <li><span class='img'>👦</span><span class='name'>Billy</span> <span class='ph'>609-898-3325</span></li>
+                </ul>
+            </section>
+        
+            </>
     )
 }
