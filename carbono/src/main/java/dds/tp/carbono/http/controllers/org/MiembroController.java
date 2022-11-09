@@ -33,7 +33,7 @@ public class MiembroController extends Controller{
     @Override
     public void routes() {
         
-        Spark.get(path(Uri.MEMBER), (rq, rs) -> this.getMiembrosbyOrg(rq, rs));
+        Spark.post(path(Uri.MEMBER), (rq, rs) -> this.getMiembrosbyOrg(rq, rs));
             
     }
 
@@ -59,8 +59,8 @@ public class MiembroController extends Controller{
                 MiembroDTO obj= new MiembroDTO();
                                
                 obj.setId(String.valueOf(m.getId()));
-                obj.setName(m.getNombre() + " "+ m.getApellido());
-
+                obj.setName(m.getNombre() +" "+ m.getApellido());
+                
                 listaDTO.add(obj);
             }
                 

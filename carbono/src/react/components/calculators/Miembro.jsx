@@ -19,74 +19,65 @@ export const Miembro = () => {
             console.log("User log", user);
             setUser(user);
             axios
-                .get(
-                    "http://localhost:8080/organizacion",
-                    JSON.stringify(usuario)
+                .post(
+                    "http://localhost:8080/organizacionName",
+                    JSON.stringify(user)
                 )
                 .then(({ data }) => {
-                    console.log("Organizacion traida correctamente:", data);
+                    let dataOrg = data
+                    console.log("Organizacion traida correctamente:", dataOrg);
                     //Mandenme las organizacion como "name"
-                    setOrganizaciones({ name: "ferrari", id: "19" });
-                    //TENGO QUE PEDIR EL MIEMBRO (no se la ruta pero dejo esto para "setear el estado mientras (HARDCODEADO)")
+                    setOrganizaciones(dataOrg);
                     axios
-                        .get(
-                            "http://localhost:8080/miembro",
-                            JSON.stringify(usuario)
+                        .post(
+                            "http://localhost:8080/miembros",
+                            JSON.stringify({ OrganizacionId: dataOrg.id })
                         )
-                        .then(({ dataMiembro }) => {
+                        .then(({data }) => {
                             console.log("Miembro traido correctamente:", data);
                             //Mandenme el miembro como "name"
-                            setMiembros(dataMiembro);
+                            data.unshift({ id: "", nombre: "Seleccionar" });
+                            setMiembros(data);
                             setCalculo({
                                 ...calculo,
                                 rol: user.rol,
                                 userId: user.id,
-                                idOrganizacion: data.id,
-                                iDmiembro: dataMiembro.id,
+                                idOrganizacion: dataOrg.id,
+
                             });
                         })
                         .catch((error) => {
-                            //ESTE SETCALCULO BORRAR DESPUES.
-                            setMiembros({ name: "juanjuaun" });
-                            setCalculo({
-                                ...calculo,
-                                rol: user.rol,
-                                userId: user.id,
-                                idOrganizacion: "14",
-                                iDmiembro: "13",
-                            });
-                            //
                             console.log("Error al traer al miembro", error);
                         });
                 })
                 .catch((error) => {
-                    //ESTOS SETS BORRAR DESPUES.
-                    setOrganizaciones({ name: "ferrari" });
-                    setCalculo({
-                        ...calculo,
-                        rol: user.rol,
-                        userId: user.id,
-                        idOrganizacion: "14",
-                    });
                     console.log("Error al traer a la organizacion", error);
                 });
         }
     }, []);
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("#cartelito").hide();
-        $("#botonsito").click(function() {
+        $("#botonsito").click(function () {
             $("#formularito").hide();
             $("#botonsito").hide();
             $("#cartelito").show();
         });
 
-        $("#crucecita").click(function() {
+        $("#crucecita").click(function () {
             $("#cartelito").hide();
             $("#formularito").show();
             $("#botonsito").show();
         });
     });
+
+
+    const SelectorMiembro = (e) => {
+        e.preventDefault();
+        let iDmiembro = e.target.value;
+        if (!iDmiembro) return;
+        setCalculo({ ...calculo, iDmiembro: iDmiembro });
+    }
 
     const selectFecha = (e) => {
         if (e.target.value === "") return;
@@ -157,13 +148,31 @@ export const Miembro = () => {
                                 </div>
 
                                 <div class="grid-item">
-                                    <label for="">Miembro</label>
+                                    {/*  <label for="">Miembro</label>
                                     <input
                                         type="text"
                                         name=""
                                         value={miembros.name}
                                         class="text-input"
-                                    />
+                                    /> */}
+
+
+
+                                    <select id="ElegirMiembro" 
+                                    class="text-input"
+                                    name="prov" onChange={SelectorMiembro}>
+                                        {
+                                            miembros.length ? (
+                                                miembros.map((item, i) => {
+
+                                                    return (
+                                                        <option key={i} value={item.id}>{item.name}</option>
+                                                    )
+                                                })
+                                            ) : <option>Aun no hay Miembros</option>
+                                        }
+
+                                    </select>
                                 </div>
                             </div>
                             <div id="calculitoItems2">

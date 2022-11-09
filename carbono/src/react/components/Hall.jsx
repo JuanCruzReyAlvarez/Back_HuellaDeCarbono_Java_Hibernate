@@ -44,7 +44,7 @@ export const Hall = () => {
             if (user.rol === "MIEMBRO") {
                 axios.get("http://localhost:8080/organizacion", JSON.stringify(usuario)).then(({ data }) => {
                     console.log("funciono el get a organizaciones", data)
-                    data.unshift({ id: "", razonSocial: "Seleccionar" })
+                    data.unshift({ id: "", name: "Seleccionar" })
                     setOrganizaciones(data)
                 }).catch(error => {
                     console.log(error)

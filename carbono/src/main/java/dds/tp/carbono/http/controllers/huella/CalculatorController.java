@@ -83,7 +83,7 @@ public class CalculatorController extends Controller {
             }  
     }*/
    
-
+/* 
     public String calculate(Request request, Response response) throws HttpException {
         
         try {
@@ -94,26 +94,42 @@ public class CalculatorController extends Controller {
             HuellaCarbono hc = new HuellaCarbono();
             System.out.println("HOLAAAAAAAAAAAAAAACALCULADORRRRR");
             
-            System.out.println(input.getCalculoSolicitado());
+            //System.out.println(input.getCalculoSolicitado());
 
-            switch(input.getCalculoSolicitado()){
+
+            System.out.println(input.getCalculoSolicitado());
+            System.out.println(input.getFormaCalculo());
+            System.out.println(input.getMiembroId());
+            System.out.println(input.getOrganizacionId());
+            System.out.println(input.getSectorId());
+            System.out.println(input.getInicioPeriodo());
+          
+
+
+            hc = service.calculateMiembro(input);
+            System.out.println(hc.getValor());
+
+            /*switch(input.getCalculoSolicitado()){
 
                 
-                case "ORGANIZACION":      
-                    System.out.println("HOLAAAAAAAAAAAAAAACALCULADORRRRR3");         
-                    hc = service.calculateOrg(input);
+                case "ORGANIZACION":        
+                hc = service.calculateOrg(input);
                 break;
+
                 case "MIEMBRO":
-                    hc = service.calculateMiembro(input);
-                    break;
+                System.out.println("entre a switch");
+                hc = service.calculateMiembro(input);
+                break;
+
                 case "SECTOR":
                 hc = service.calculateSector(input);
                 break;
+
                 case "AGENTE_SECTORIAL":
-                    hc = service.calculateAgenteSectorial(input);
-                    break;
+                hc = service.calculateAgenteSectorial(input);
+                break;
             
-            }
+            }*/ /* 
             System.out.println("RESULTADO");
             DTO.setUnidad(String.valueOf(hc.getUnidad().nombre()));
             DTO.setValor(String.valueOf(hc.getValor()));
@@ -122,10 +138,64 @@ public class CalculatorController extends Controller {
         
         catch (Exception ex) {
             System.out.println("Error IN CALCULATORS");
-            
+            return json("error"); 
         }
-        return json("error"); //puede fallar
+      
 
     }}
 
-   
+   */
+
+
+  public String calculate(Request request, Response response) throws HttpException {
+        
+    try {
+        
+        CalculatorDTO input = getBody(request, CalculatorDTO.class, null);
+        RTACalculatorDTO DTO = new RTACalculatorDTO();
+        
+        HuellaCarbono hc = new HuellaCarbono();
+        System.out.println("HOLAAAAAAAAAAAAAAACALCULADORRRRR");
+        
+        System.out.println(input.getCalculoSolicitado());
+        System.out.println(input.getCalculoSolicitado());
+        System.out.println(input.getFormaCalculo());
+        System.out.println(input.getMiembroId());
+        System.out.println(input.getOrganizacionId());
+        System.out.println(input.getSectorId());
+        System.out.println(input.getInicioPeriodo());
+        // IMPRIMTE TODO NULL 
+
+
+
+        switch(input.getCalculoSolicitado()){
+
+            
+            case "ORGANIZACION":      
+                System.out.println("HOLAAAAAAAAAAAAAAACALCULADORRRRR3");         
+                hc = service.calculateOrg(input);
+            break;
+            case "MIEMBRO":
+                hc = service.calculateMiembro(input);
+                break;
+            case "SECTOR":
+            hc = service.calculateSector(input);
+            break;
+            case "AGENTE_SECTORIAL":
+                hc = service.calculateAgenteSectorial(input);
+                break;
+        
+        }
+        System.out.println("RESULTADO");
+        DTO.setUnidad(String.valueOf(hc.getUnidad().nombre()));
+        DTO.setValor(String.valueOf(hc.getValor()));
+        return json(DTO);   
+    } 
+    
+    catch (Exception ex) {
+        System.out.println("Error IN CALCULATORS");
+        
+    }
+    return json("error"); //puede fallar
+
+}}

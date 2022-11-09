@@ -1,6 +1,7 @@
 package dds.tp.carbono.services.huella.calculador.member;
 
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -17,7 +18,7 @@ import lombok.Setter;
 public class CalculadorHuellaMiembro extends CalculadorHuella {
 
     @Getter @Setter private Miembro miembro;
-    private List<Trayecto> trayectos;
+   
 
     public CalculadorHuellaMiembro(Miembro miembro,FactorEmisionRepository buscador,PeriodoDeImputacion periodo ) {
         this.miembro = miembro;
@@ -35,41 +36,68 @@ public class CalculadorHuellaMiembro extends CalculadorHuella {
     private HuellaCarbono calcularHuellaMiembro() throws Exception {
         
         HuellaCarbono hcMiembro = new HuellaCarbono();
-        filtraPorPeriodo(this.getMiembro().getTrayectos(), periodo);
+
+        List<Trayecto> trayectos = new ArrayList<Trayecto>();
+
+        trayectos = filtraPorPeriodo(this.getMiembro().getTrayectos(), periodo);
+
 
         for (Trayecto trayecto : trayectos) {
+            
             CalculadorHuellaTrayecto calculador = new CalculadorHuellaTrayecto(trayecto, buscador);
+           
             
             hcMiembro = hcMiembro.suma(calculador.calcular());
+           
         }
         
         return hcMiembro;
     }
 
-    private void filtraPorPeriodo(Set<Trayecto> trayectos, PeriodoDeImputacion periodo) {
+    private List<Trayecto> filtraPorPeriodo(Set<Trayecto> trayectos, PeriodoDeImputacion periodo) {
         
+        List<Trayecto> trayectosFiltrados = new ArrayList<Trayecto>();
+
         if (periodo.getPeriodicidad().equals(Periodicidad.MENSUAL)){
-        filtrarPorMes(periodo.getFechaInicio().getMonth(), trayectos);
+           
+        trayectosFiltrados = filtrarPorMes(periodo.getFechaInicio().getMonth(), trayectos);
         }
-        filtrarPorAnio(periodo.getFechaInicio().getYear(), trayectos);
+
+        trayectosFiltrados = filtrarPorAnio(periodo.getFechaInicio().getYear(), trayectos);
+        
+        return trayectosFiltrados;
         
     }
 
     
-    private void filtrarPorAnio(int i, Set<Trayecto> trayectos2) {
+    private List<Trayecto> filtrarPorAnio(int i, Set<Trayecto> trayectos2) {
+        
+        List<Trayecto> trayectosFiltrados = new ArrayList<Trayecto>();
+       
+        for (Trayecto trayecto: trayectos2) {
+        System.out.println(trayecto.getId() + " "+ trayecto.getFecha());}
 
-        for (Trayecto trayecto: this.trayectos) {
+        for (Trayecto trayecto: trayectos2) {
+            
             if(i == trayecto.getFecha().getYear()){
-                this.trayectos.add(trayecto);
+                
+                trayectosFiltrados.add(trayecto);
+              
             }
         }
+
+        return trayectosFiltrados;
     }
 
-    private void filtrarPorMes(Month month, Set<Trayecto> trayectos2) {
-        for (Trayecto trayecto: this.trayectos) {
+    private List<Trayecto> filtrarPorMes(Month month, Set<Trayecto> trayectos2) {
+        
+        List<Trayecto> trayectosFiltrados = new ArrayList<Trayecto>();
+
+        for (Trayecto trayecto: trayectos2) {
             if(month.equals(trayecto.getFecha().getMonth())){
-                this.trayectos.add(trayecto);
+                trayectosFiltrados.add(trayecto);
             }
         }
+        return trayectosFiltrados;  
     }
 }

@@ -44,17 +44,17 @@ public class Miembro {
     @Column (name = "nro_documento")
     @Getter @Setter private String nroDocumento;
 
-    @OneToMany (mappedBy = "miembro",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToMany (mappedBy = "miembro",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @Getter @Setter private Set<SolicitudVinculacion> solicitudes;
 
-    @OneToMany (mappedBy = "miembro",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToMany (mappedBy = "miembro",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @Getter @Setter private Set<Trayecto> trayectos;
 
     @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "trayecto_pendiente_id", referencedColumnName = "id")
     @Getter @Setter private TrayectoPendiente trayecto_pendiente;
 
-    @OneToOne
+    @OneToOne( fetch = FetchType.EAGER)
     @Getter @Setter private Usuario user;
 
     

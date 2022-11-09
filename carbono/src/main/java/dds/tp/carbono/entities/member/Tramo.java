@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -26,13 +27,13 @@ public class Tramo {
     @GeneratedValue
     @Getter @Setter private Integer id;
 
-    @OneToOne
+    @OneToOne( fetch = FetchType.EAGER)
     @Getter @Setter private PuntoGeografico puntoA;
     
-    @OneToOne
+    @OneToOne( fetch = FetchType.EAGER)
     @Getter @Setter private PuntoGeografico puntoB;
 
-    @OneToOne
+    @OneToOne( fetch = FetchType.EAGER)
     @Getter @Setter private MedioDeTransporte transporte;
 
     @OneToMany
@@ -47,6 +48,7 @@ public class Tramo {
     
     public Double obtenerDistancia() {
         try {
+
             return this.transporte.calcularDistancia(puntoA, puntoB);
         } catch (Exception ex) {
             return Double.valueOf(0);

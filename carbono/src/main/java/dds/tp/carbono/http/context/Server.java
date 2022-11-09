@@ -64,7 +64,7 @@ public class Server implements SparkApplication {
             new ProvinciaController(new ProvinciaService()),
             new LocalidadController(new LocalidadService()),
             new MunicipioController(new MunicipioService()),
-            new OrganizacionController(new OrganizacionService()),
+            new OrganizacionController(new OrganizacionService(), new MiembroService()),
             new HallController( new HallMiembroService(),
                                 new HallOrganizacionService(),
                                 new SolicitadorDeVinculacionService(),

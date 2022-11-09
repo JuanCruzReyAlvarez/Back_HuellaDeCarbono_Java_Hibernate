@@ -3,20 +3,26 @@ package dds.tp.carbono.persistence;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import org.junit.Test;
 
 
 import dds.tp.carbono.entities.agenteSectorial.SectorTerritorial;
-
-
+import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.organization.Organizacion;
-
+import dds.tp.carbono.entities.organization.Sector;
+import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 import dds.tp.carbono.http.controllers.admin.AdminGeoInfoController;
 
 import dds.tp.carbono.repository.agenteSectorial.SectorTerritorialRepository;
 
 import dds.tp.carbono.repository.organization.OrganizacionRepository;
-
+import dds.tp.carbono.repository.organization.SectorRepository;
+import dds.tp.carbono.services.MiembroService;
 import dds.tp.carbono.services.external.dto.Provincia;
 import dds.tp.carbono.services.external.puntoGeografico.ProvinciaService;
 
@@ -165,4 +171,50 @@ public class hashPaswordTest {
 
 
     }
+
+    @Test
+
+    public void buscarOrgPorIDUserMiembro() throws Exception
+    {
+
+        
+        Miembro r = new Miembro();
+
+        MiembroService ms = new MiembroService();
+
+        List<Miembro> miembros =  ms.getAll(); 
+
+        for (Miembro m:miembros   ){
+            System.out.println(m.getNombre());
+            if((m.getUser().getId()).equals(8) ){
+                     r = m;
+            }
+            
+        }
+
+        List<SolicitudVinculacion> items = new ArrayList<>();
+ 
+        // inserta cada elemento del conjunto en la lista
+        for (SolicitudVinculacion e: r.getSolicitudes()) {
+            items.add(e);
+        }
+     
+
+
+        System.out.println( "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        System.out.println( r.getNombre());
+
+        System.out.println(items.get(0).getId() + "id soli");
+        System.out.println( items.get(0).getSector().getId()+ " id sector");
+
+        
+        SectorRepository repo = new SectorRepository();
+
+        Sector sector =  repo.getById(items.get(0).getSector().getId());
+
+        System.out.println(sector.getOrganizacion().getId() + "id org!!!!");
+    }
+        
+        
+      
 }

@@ -18,9 +18,9 @@ export const Sector = () => {
             let user = JSON.parse(isUserLogg);
             setUser(user);
             axios
-                .get(
-                    "http://localhost:8080/organizacion",
-                    JSON.stringify(usuario)
+                .post( 
+                    "http://localhost:8080/organizacionName",
+                    JSON.stringify(user)
                 )
                 .then(({ data }) => {
                     console.log("Organizacion traida correctamente:", data);
@@ -35,7 +35,7 @@ export const Sector = () => {
 
                     //TRAER LOS SECTORES POR ID DE ORG una vez que la ruta responda bien con la org:
                     axios
-                        .get(
+                        .post( 
                             "http://localhost:8080/sectores",
                             JSON.stringify({ id: data.id })
                         )

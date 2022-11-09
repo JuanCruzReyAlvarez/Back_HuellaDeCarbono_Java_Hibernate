@@ -37,19 +37,24 @@ public class CalculatorService {
 
     public HuellaCarbono calculateMiembro(CalculatorDTO input) throws Exception {
         
-        DateTimeFormatter JEFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate local_date = LocalDate.parse(input.getInicioPeriodo(), JEFormatter);
-        PeriodoDeImputacion periodo =  new PeriodoDeImputacion(local_date,(Periodicidad.valueOf(input.getFormaCalculo().toUpperCase())));
         
-        CalculadorHuellaMiembro calculador = new CalculadorHuellaMiembro(this.miembroRepo.getById((Integer.parseInt(input.getMiembroId()))), new FactorEmisionRepository(), periodo);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate local_date = LocalDate.parse(input.getInicioPeriodo(), formatter);// input.getInicioPeriodo()
+
+        
+        System.out.println(local_date);
+        PeriodoDeImputacion periodo =  new PeriodoDeImputacion(local_date, Periodicidad.valueOf(input.getFormaCalculo().toUpperCase()));//Periodicidad.valueOf(input.getFormaCalculo().toUpperCase()))
+        
+        CalculadorHuellaMiembro calculador = new CalculadorHuellaMiembro(this.miembroRepo.getById((Integer.parseInt(input.getMiembroId()))), new FactorEmisionRepository(), periodo);//input.getMiembroId()
         
         return calculador.calcular();
     }
 
     public HuellaCarbono calculateSector(CalculatorDTO input) throws Exception {
 
-        DateTimeFormatter JEFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate local_date = LocalDate.parse(input.getInicioPeriodo(), JEFormatter);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate local_date = LocalDate.parse(input.getInicioPeriodo(), formatter);// input.getInicioPeriodo()
+        
         PeriodoDeImputacion periodo =  new PeriodoDeImputacion(local_date,(Periodicidad.valueOf(input.getFormaCalculo().toUpperCase())));
         
         CalculadorHuellaSector calculador = new CalculadorHuellaSector(this.sectorRepo.getById(Integer.parseInt(input.getSectorId())),
@@ -68,17 +73,17 @@ public class CalculatorService {
         System.out.println(local_date);
 
         Organizacion org = this.orgRepo.getById(Integer.parseInt(input.getOrganizacionId()));
-        System.out.println("SIII SEÑORRRR000"); 
+       
         PeriodoDeImputacion periodo =  new PeriodoDeImputacion(local_date,(Periodicidad.valueOf(input.getFormaCalculo().toUpperCase())));
-        System.out.println("SIII SEÑORRRR111");   
+     
         CalculadorHuellaOrganizacion calculador = new CalculadorHuellaOrganizacion(org,periodo);
-        System.out.println("SIII SEÑORRRR222");       
+          
         return  calculador.calcula();
     }
 
     public HuellaCarbono calculateAgenteSectorial(CalculatorDTO input) throws Exception {
 
-         DateTimeFormatter JEFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+         DateTimeFormatter JEFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate local_date = LocalDate.parse(input.getInicioPeriodo(), JEFormatter);
 
         PeriodoDeImputacion periodo =  new PeriodoDeImputacion(local_date,(Periodicidad.valueOf(input.getFormaCalculo().toUpperCase())));

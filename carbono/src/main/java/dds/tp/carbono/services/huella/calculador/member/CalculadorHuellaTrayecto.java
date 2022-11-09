@@ -26,10 +26,12 @@ public class CalculadorHuellaTrayecto extends CalculadorHuella {
     public HuellaCarbono calcular() throws Exception {
         HuellaCarbono huellaTotal = new HuellaCarbono();
 
-        for (Tramo tramo: trayecto.getTramos())
+        for (Tramo tramo: trayecto.getTramos()){
+
             if(tramo.esCalculable())
                 huellaTotal = huellaTotal.suma(this.calcular(tramo));
-
+          
+            }
         return huellaTotal;             
     }
 
@@ -40,7 +42,9 @@ public class CalculadorHuellaTrayecto extends CalculadorHuella {
             TipoDeConsumo tipoConsumo = tramo.getTransporte().getCombustible();
             TipoActividad actividad = TipoActividad.Trayecto_Miembros;
             FactorEmision factorEmision = buscador.get(tipoConsumo, actividad);
+    
             huellaTramo.setValor(tramo.obtenerDistancia() * factorEmision.getValor());
+
         } catch (Exception ex) {
             log.error("Error al calcular HC para tramo", tramo, ex);
         }
