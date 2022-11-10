@@ -22,6 +22,4 @@ public class ContactsRepository {
         return this.dao.getAll();
     }
 
-
-
 }

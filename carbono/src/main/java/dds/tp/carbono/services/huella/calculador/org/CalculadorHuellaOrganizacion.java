@@ -6,12 +6,14 @@ import java.util.List;
 import dds.tp.carbono.entities.huella.BuscadorMiembros;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.entities.member.Miembro;
+import dds.tp.carbono.entities.member.Trayecto;
 import dds.tp.carbono.entities.organization.IndicadorHCOrganizacion;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
 import dds.tp.carbono.repository.huella.FactorEmisionRepository;
 import dds.tp.carbono.services.huella.calculador.org.commands.HuellaCommand;
 import dds.tp.carbono.services.huella.calculador.org.commands.HuellaParaMetricasCommand;
+import dds.tp.carbono.services.huella.calculador.org.commands.HuellaParaTrayectosCommand;
 import dds.tp.carbono.services.huella.calculador.org.filter.TrayectosCompartidosFilter;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +23,7 @@ public class CalculadorHuellaOrganizacion {
     @Getter @Setter private PeriodoDeImputacion periodo;
     @Getter @Setter private Organizacion organizacion;
     @Getter @Setter public FactorEmisionRepository repository;
+    @Getter @Setter private  List<Trayecto> trayectos ;
    
     List<HuellaCommand> diferentesCalculosParaOrg; 
 
@@ -28,6 +31,7 @@ public class CalculadorHuellaOrganizacion {
         this.periodo = periodo;
         this.organizacion = org;
         this.repository = new FactorEmisionRepository();
+        this.trayectos = new ArrayList<Trayecto>();
         
         System.out.println("Dale que avanzamos00000");
 
@@ -43,26 +47,39 @@ public class CalculadorHuellaOrganizacion {
         System.out.println(miembros.size());
 
         TrayectosCompartidosFilter trayectosFilter = new TrayectosCompartidosFilter(miembros);
-
+        
         System.out.println("Dale que avanzamos1111");
 
-        this.diferentesCalculosParaOrg = new ArrayList<HuellaCommand>() {{
-            add(new HuellaParaMetricasCommand(org.getMetricas(periodo), repository));
-            //add(new HuellaParaTrayectosCommand(trayectosFilter.filtrarCompartidos(), periodo)); HAY QUE PONERLO
-        }};
+        this.trayectos = trayectosFilter.filtrarCompartidos();
+        
+        if(trayectos.size()>0){
+            this.diferentesCalculosParaOrg = new ArrayList<HuellaCommand>() {{
+                add(new HuellaParaMetricasCommand(org.getMetricas(periodo), repository));
+                add(new HuellaParaTrayectosCommand(trayectos, periodo)); 
+            }};
+        }else{
+            this.diferentesCalculosParaOrg = new ArrayList<HuellaCommand>() {{
+                add(new HuellaParaMetricasCommand(org.getMetricas(periodo), repository));
+            }};
 
-        System.out.println("Dale que avanzamos22222");
+        }
+
+
+        
+
+        System.out.println("Dale que avanzamos2222222222222222222222222");
     } 
     
 
     public HuellaCarbono calcula() throws Exception {
 
         HuellaCarbono huellaCarbono = new HuellaCarbono();
+
         System.out.println(this.diferentesCalculosParaOrg.size());
         System.out.println("TAMAÑO COSAS A CALCULAR");
 
-        System.out.println(this.diferentesCalculosParaOrg.get(0).calcular());
-        System.out.println("VALORHUELLADESECOMMAND");
+        //System.out.println(this.diferentesCalculosParaOrg.get(0).calcular());
+       // System.out.println("VALORHUELLADESECOMMAND");
         
         for (HuellaCommand command : this.diferentesCalculosParaOrg)
             huellaCarbono = huellaCarbono.suma(command.calcular());

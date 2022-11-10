@@ -166,7 +166,7 @@ public class CalculatorController extends Controller {
         System.out.println(input.getInicioPeriodo());
         // IMPRIMTE TODO NULL 
 
-
+        
 
         switch(input.getCalculoSolicitado()){
 

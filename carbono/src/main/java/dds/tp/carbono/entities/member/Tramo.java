@@ -48,7 +48,6 @@ public class Tramo {
     
     public Double obtenerDistancia() {
         try {
-
             return this.transporte.calcularDistancia(puntoA, puntoB);
         } catch (Exception ex) {
             return Double.valueOf(0);

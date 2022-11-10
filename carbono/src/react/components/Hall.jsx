@@ -432,7 +432,7 @@ export const Hall = () => {
                                         organizaciones.length ? (
                                             organizaciones.map((item, i) => {
                                                 return (
-                                                    <option key={i} value={item.id}>{item.razonSocial}</option>
+                                                    <option key={i} value={item.id}>{item.name}</option>
 
                                                 )
                                             })

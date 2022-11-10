@@ -17,10 +17,15 @@ public class CalculadorDistanciaServicioExterno {
     }
    
     public Double calcularDistancia(PuntoGeografico origen, PuntoGeografico destino) throws Exception {
-        Response<Distancia> response = this.svcExterno.distancias(
-            origen.getIdLocalidad(), origen.getCalle(), origen.getAltura(),
-            destino.getIdLocalidad(), destino.getCalle(), destino.getAltura()).execute();
+        System.out.println("TRAMOS FINAL SEÑORES DALE QUE SALE");
+        System.out.println(origen.getLocaldiad().getId());
+        System.out.println(destino.getLocaldiad().getId());
 
+        Response<Distancia> response = this.svcExterno.distancias(
+            origen.getLocaldiad().getId(), origen.getCalle(), origen.getAltura(),
+            destino.getLocaldiad().getId(), destino.getCalle(), destino.getAltura()).execute();
+
+         System.out.println(Double.parseDouble(response.body().getValor()));       
         return this.isSuccessful(response) ? Double.parseDouble(response.body().getValor()) : 0;
     }
 

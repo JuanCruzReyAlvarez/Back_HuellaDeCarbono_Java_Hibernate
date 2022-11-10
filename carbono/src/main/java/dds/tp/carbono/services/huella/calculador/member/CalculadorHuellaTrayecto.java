@@ -39,10 +39,22 @@ public class CalculadorHuellaTrayecto extends CalculadorHuella {
         HuellaCarbono huellaTramo = new HuellaCarbono();
         
         try {
+            System.out.println("BUENAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAS");
             TipoDeConsumo tipoConsumo = tramo.getTransporte().getCombustible();
+            System.out.println(tipoConsumo.toString());
             TipoActividad actividad = TipoActividad.Trayecto_Miembros;
+            System.out.println(actividad.toString());
             FactorEmision factorEmision = buscador.get(tipoConsumo, actividad);
-    
+            System.out.println(factorEmision.getValor());
+
+            System.out.println(tramo.getTransporte().getClass());
+            System.out.println(tramo.getTransporte().getId());
+            System.out.println(tramo.getTransporte().getCombustible());
+            System.out.println(tramo.getPuntoA().getLocaldiad().getId());
+
+
+
+            System.out.println(tramo.obtenerDistancia());
             huellaTramo.setValor(tramo.obtenerDistancia() * factorEmision.getValor());
 
         } catch (Exception ex) {

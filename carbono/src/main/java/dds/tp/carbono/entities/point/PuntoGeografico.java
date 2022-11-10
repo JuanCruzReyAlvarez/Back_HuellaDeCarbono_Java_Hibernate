@@ -2,6 +2,7 @@ package dds.tp.carbono.entities.point;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -21,9 +22,6 @@ public class PuntoGeografico {
     @Getter @Setter private Integer id;
 
     @Transient
-    @Getter @Setter private Integer idLocalidad;//?
-
-    @Transient
     @Getter @Setter private String direccion; // ?
 
     @Transient
@@ -38,13 +36,13 @@ public class PuntoGeografico {
     @Column
     @Getter @Setter private String altura;
 
-    @ManyToOne
+    @ManyToOne( fetch = FetchType.EAGER)
     @Getter @Setter private Localidad localdiad;
 
     public PuntoGeografico(){}
 
     public PuntoGeografico(Integer idLocalidad){
-            this.idLocalidad=idLocalidad;
+            this.localdiad.setId(idLocalidad); 
     }
 
     
