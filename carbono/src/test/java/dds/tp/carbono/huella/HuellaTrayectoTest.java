@@ -222,7 +222,7 @@ public class HuellaTrayectoTest {
         punto.setId(id);
         punto.setCalle(calle);
         punto.setAltura(altura);
-        punto.setIdLocalidad(localidadId);
+        punto.getLocaldiad().setId(localidadId);
 
         return punto;
     }
