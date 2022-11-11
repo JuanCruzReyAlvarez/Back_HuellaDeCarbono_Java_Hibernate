@@ -33,16 +33,16 @@ export const Miembro = () => {
                             "http://localhost:8080/miembros",
                             JSON.stringify({ OrganizacionId: dataOrg.id })
                         )
-                        .then(({data }) => {
+                        .then(({ data }) => {
                             console.log("Miembro traido correctamente:", data);
                             //Mandenme el miembro como "name"
-                            data.unshift({ id: "", nombre: "Seleccionar" });
+                            data.unshift({ id: "", name: "Seleccionar" });
                             setMiembros(data);
                             setCalculo({
                                 ...calculo,
-                                rol: user.rol,
+                                calculoSolicitado: "MIEMBRO",
                                 userId: user.id,
-                                idOrganizacion: dataOrg.id,
+                                OrganizacionId: dataOrg.id,
 
                             });
                         })
@@ -76,19 +76,19 @@ export const Miembro = () => {
         e.preventDefault();
         let iDmiembro = e.target.value;
         if (!iDmiembro) return;
-        setCalculo({ ...calculo, iDmiembro: iDmiembro });
+        setCalculo({ ...calculo, MiembroId: iDmiembro });
     }
 
     const selectFecha = (e) => {
         if (e.target.value === "") return;
         console.log("fecha seleccionada:", e.target.value);
-        setCalculo({ ...calculo, fecha: e.target.value });
+        setCalculo({ ...calculo, InicioPeriodo: e.target.value });
     };
 
     const selectForma = (e) => {
         if (e.target.value === "") return;
         console.log("Forma seleccionada: ", e.target.value);
-        setCalculo({ ...calculo, forma: e.target.value });
+        setCalculo({ ...calculo, FormaCalculo: e.target.value });
     };
 
     const onSubmit = (e) => {
@@ -102,8 +102,8 @@ export const Miembro = () => {
                 );
                 //Chequear como me mandan el numero y la unidad desde el back.(ACA ESTA Hardcodeado el valor)
                 setValor({
-                    numero: "123",
-                    unidad: "kgms",
+                    numero: data.valor,
+                    unidad: data.unidad,
                 });
             })
             .catch((error) => {
@@ -157,10 +157,10 @@ export const Miembro = () => {
                                     /> */}
 
 
-
-                                    <select id="ElegirMiembro" 
-                                    class="text-input"
-                                    name="prov" onChange={SelectorMiembro}>
+                                    <label for="">Miembro</label>
+                                    <select id="ElegirMiembro"
+                                        class="text-input"
+                                        name="prov" onChange={SelectorMiembro}>
                                         {
                                             miembros.length ? (
                                                 miembros.map((item, i) => {

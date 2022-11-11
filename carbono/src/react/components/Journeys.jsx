@@ -170,6 +170,7 @@ export const Journeys = () => {
 
 
     return (
+        
         <div class="bodyJour">
             <div>
                 <div class="outer">
@@ -496,5 +497,7 @@ export const Journeys = () => {
                                             
             </div>
         </div>    
+        
+         
     );
 };

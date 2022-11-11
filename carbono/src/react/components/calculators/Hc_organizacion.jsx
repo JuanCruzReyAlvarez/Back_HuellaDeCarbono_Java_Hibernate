@@ -31,7 +31,7 @@ export const Hc_organizacion = () => {
                     setOrganizaciones(data);
                     setCalculo({
                         ...calculo,
-                        calculoSolicitado: user.rol,
+                        calculoSolicitado: "ORGANIZACION",
                         userId: user.id,
                         OrganizacionId: data.id,
                     });

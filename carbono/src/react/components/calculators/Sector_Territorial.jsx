@@ -19,6 +19,7 @@ export const Sector_Territorial = () => {
             setUser(JSON.parse(isUserLogg));
             setCalculo({
                 userId: user.id,
+                calculoSolicitado: "AGENTE_SECTORIAL",
             });
         }
     }, []);
@@ -86,7 +87,7 @@ export const Sector_Territorial = () => {
                             <h2>Calculo segun sector territorial</h2>
 
                             <div id="botonsito">
-                                <p class="pop-up-button">Calcular</p>
+                                <p class="pop-up-button" onClick={onSubmit}>Calcular</p>
                             </div>
                         </div>
                     </div>

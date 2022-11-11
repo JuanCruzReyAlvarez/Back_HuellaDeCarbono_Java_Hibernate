@@ -30,7 +30,8 @@ export const Sector = () => {
                         ...calculo,
                         rol: user.rol,
                         userId: user.id,
-                        idOrganizacion: data.name,
+                        calculoSolicitado: "SECTOR",
+                        OrganizacionId: data.id,
                     });
 
                     //TRAER LOS SECTORES POR ID DE ORG una vez que la ruta responda bien con la org:
@@ -75,19 +76,19 @@ export const Sector = () => {
         e.preventDefault();
         let idSector = e.target.value;
         if (!idSector) return;
-        setCalculo({ ...calculo, idSector: idSector });
+        setCalculo({ ...calculo, SectorId: idSector });
     };
 
     const selectFecha = (e) => {
         if (e.target.value === "") return;
         console.log("fecha seleccionada:", e.target.value);
-        setCalculo({ ...calculo, fecha: e.target.value });
+        setCalculo({ ...calculo, InicioPeriodo: e.target.value });
     };
 
     const selectForma = (e) => {
         if (e.target.value === "") return;
         console.log("Forma seleccionada: ", e.target.value);
-        setCalculo({ ...calculo, forma: e.target.value });
+        setCalculo({ ...calculo, FormaCalculo: e.target.value });
     };
 
     const onSubmit = (e) => {
@@ -101,8 +102,8 @@ export const Sector = () => {
                 );
                 //Chequear como me mandan el numero y la unidad desde el back.(ACA ESTA Hardcodeado el valor)
                 setValor({
-                    numero: "123",
-                    unidad: "kgms",
+                    numero: data.valor,
+                    unidad: data.unidad,
                 });
             })
             .catch((error) => {
