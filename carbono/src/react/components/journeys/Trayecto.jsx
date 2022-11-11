@@ -155,6 +155,39 @@ export const Trayecto = () => {
         setContador(contador - 1);
 
         //Limpiar TODOS los inputs aca despues
+        clearInputs();
+    };
+
+    const clearInputs = () => {
+        if (document.getElementById("clearInput1"))
+            document.getElementById("clearInput1").value = "";
+        if (document.getElementById("clearInput2"))
+            document.getElementById("clearInput2").value = "";
+
+        if (document.getElementById("clearInput3"))
+            document.getElementById("clearInput3").value = "";
+        if (document.getElementById("clearInput4"))
+            document.getElementById("clearInput4").value = "";
+
+        //selects
+        if (
+            document.getElementById("ElegirProvincia1") &&
+            document.getElementById("ElegirProvincia")
+        ) {
+            document.getElementById("ElegirProvincia1").value = "";
+            document.getElementById("ElegirProvincia1").name = "Seleccionar";
+            document.getElementById("ElegirProvincia").value = "";
+            document.getElementById("ElegirProvincia").name = "Seleccionar";
+            setMunicipios([]);
+            setLocalidades([]);
+        }
+
+        //Medio de transporte
+        if (document.getElementById("transportes")) {
+            document.getElementById("transportes").value = "";
+            document.getElementById("transportes").name = "Seleccionar";
+            setType("");
+        }
     };
 
     const onSubmit = (e) => {
@@ -173,9 +206,8 @@ export const Trayecto = () => {
                     "Trayecto realizado correctamente, valor obtenido:",
                     data
                 );
-
-                //ESTA FUNCION RECARGA LA PAGINA PARA EMPEZAR DE CERO UNA VEZ QUE SE CARGA TODO BIEN EN LA DB
-                // window.location.reload();
+                //Este estado setea denuevo el contador de tramos a 0 una vez que se haya completado TODO para poder hacer denuevo un trayecto
+                setCantidadTramos();
             })
             .catch((error) => {
                 console.log("Error al cargar el trayecto", error);
@@ -233,7 +265,7 @@ export const Trayecto = () => {
                                             />
 
                                             <select
-                                                id="ElegirProvincia"
+                                                id="ElegirProvincia1"
                                                 name="provinciaInicial"
                                                 onChange={SelectorProvincia}
                                             >
@@ -317,6 +349,7 @@ export const Trayecto = () => {
                                                 type="text"
                                                 placeholder="calle"
                                                 name="calleFinal"
+                                                id="clearInput3"
                                                 onChange={handleChange}
                                                 required
                                             />
@@ -324,6 +357,7 @@ export const Trayecto = () => {
                                                 type="text"
                                                 placeholder="altura"
                                                 name="alturaFinal"
+                                                id="clearInput4"
                                                 onChange={handleChange}
                                                 required
                                             />
@@ -418,8 +452,8 @@ export const Trayecto = () => {
                                             <h2>MEDIO DE TRANSPORTE</h2>
 
                                             <select
-                                                id="Tipo"
                                                 name="Tipo_Medio_De_Transporte"
+                                                id="transportes"
                                                 onChange={selectType}
                                             >
                                                 <option value="">
@@ -520,6 +554,17 @@ export const Trayecto = () => {
                                                         class="btn-botonCompletarTrayecto btn-block btn-trayectoprimario"
                                                         onClick={onSubmit}
                                                     />
+
+                                                    <label className="salvadora">
+                                                        <input
+                                                            type="checkbox"
+                                                            id="cbox1"
+                                                            value="first_checkbox"
+                                                            onChange={isChecked}
+                                                        />
+                                                        Agregar mis tramos
+                                                        compartidos
+                                                    </label>
                                                 </>
                                             )}
 
@@ -530,15 +575,7 @@ export const Trayecto = () => {
                                             <br />
 
                                             <br />
-                                            <label className="salvadora">
-                                                <input
-                                                    type="checkbox"
-                                                    id="cbox1"
-                                                    value="first_checkbox"
-                                                    onChange={isChecked}
-                                                />
-                                                Agregar mis tramos compartidos
-                                            </label>
+
                                             <br />
                                         </form>
                                     </>

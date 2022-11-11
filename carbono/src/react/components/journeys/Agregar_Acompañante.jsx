@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 export const Agregar_Acompañante = ({
     setAcompañante,
-    selectDocumento,
     setAcompañantesTotales,
 }) => {
     const [acompañanteNumber, setAcompañanteNumber] = useState();
@@ -16,9 +15,9 @@ export const Agregar_Acompañante = ({
     const handleChange = ({ target }) => {
         // console.log(target.value);
         // console.log(target.name);
-        setEleccionAcompañante((eleccion) => {
+        setEleccionAcompañante((eleccionAcompañante) => {
             return {
-                ...eleccion,
+                ...eleccionAcompañante,
                 [target.name]: target.value,
             };
         });
@@ -31,6 +30,7 @@ export const Agregar_Acompañante = ({
         setContadorAcompañante(contadorAcompañante - 1);
 
         //Limpiar TODOS los inputs aca despues
+        clearInputs()
     };
 
     const onSubmitFinal = (e) => {
@@ -39,7 +39,9 @@ export const Agregar_Acompañante = ({
             listaAcompañantes.push(eleccionAcompañante);
         }
         console.log("ACOMPAÑANTES a mandar:", listaAcompañantes);
-        setAcompañantesTotales(listaAcompañantes)
+        setAcompañantesTotales(listaAcompañantes);
+        setCantidadTramos()
+        clearInputs();
     };
 
     // const sumandoAcompañantes = (e) => {
@@ -56,6 +58,30 @@ export const Agregar_Acompañante = ({
         e.preventDefault();
         setCantidadTramos(acompañanteNumber);
         setContadorAcompañante(acompañanteNumber);
+    };
+
+    const clearInputs = () => {
+        if (document.getElementById("clearInput6"))
+            document.getElementById("clearInput6").value = "";
+        if (document.getElementById("clearInput7"))
+            document.getElementById("clearInput7").value = "";
+        if (document.getElementById("clearInput8"))
+            document.getElementById("clearInput8").value = "";
+
+        //Select Documento
+        if (document.getElementById("TipoDocumento")) {
+            document.getElementById("TipoDocumento").value = "";
+            document.getElementById("TipoDocumento").name = "Seleccionar";
+        }
+    };
+
+    const selectDocumento = ({ target }) => {
+        let documento = target.value;
+        if (!documento) return;
+        setEleccionAcompañante({
+            ...eleccionAcompañante,
+            ["TipoDocumentoAcompañante"]: target.value,
+        });
     };
 
     return (
@@ -86,18 +112,20 @@ export const Agregar_Acompañante = ({
                 <>
                     {console.log("ACOMPAÑANTES ", acompañanteNumber)}
                     <div id="AgregarMiembroAcompañante">
-                        <h1>ACOMPAÑASTE TOTALES: {acompañanteNumber}</h1>
+                        {/* <h1>ACOMPAÑASTE TOTALES: {acompañanteNumber}</h1> */}
                         <input
                             type="text"
                             placeholder="Nombre"
                             name="nombre_Acompañante"
                             onChange={handleChange}
+                            id="clearInput6"
                             required
                         />
                         <input
                             type="text"
                             placeholder="Apellido"
                             name="apellido_Acompañante"
+                            id="clearInput7"
                             onChange={handleChange}
                             required
                         />
@@ -118,6 +146,7 @@ export const Agregar_Acompañante = ({
                             placeholder="Numero"
                             name="numero_Acompañante"
                             onChange={handleChange}
+                            id="clearInput8"
                             AgregarMiembroAcompañante
                         />
 
@@ -126,7 +155,7 @@ export const Agregar_Acompañante = ({
                                 <div id="CancelarAgregarAcompañante">
                                     <input
                                         type="button"
-                                        value="Siguiente"
+                                        value="Siguiente Acompañante"
                                         name="CancelarAgregacionAcompañante"
                                         class="btn btn-primaryacomp"
                                         onClick={setNewEleccion}
@@ -138,7 +167,7 @@ export const Agregar_Acompañante = ({
                                 <div id="CancelarAgregarAcompañante">
                                     <input
                                         type="button"
-                                        value="Guardar"
+                                        value="Guardar Acompañante/s"
                                         name="acompañante"
                                         class="btn btn-primaryacomp"
                                         onClick={onSubmitFinal}

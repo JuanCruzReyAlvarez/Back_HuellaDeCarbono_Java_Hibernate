@@ -49,8 +49,8 @@ const App = () => {
                 <Route path="/request" element={<><Navbar /> <Sidebar /> <Request /><Footer /> </>} />
 
                 {/* Trayectos */}
-                <Route path="/journeys" element={<><Navbar /> <Sidebar /> <Journeys /> <Footer /> </>} />
-                <Route path="/trayecto" element={<><Navbar /> <Sidebar /> <Trayecto /> <Footer /> </>} />
+
+                <Route path="/journeys" element={<><Navbar /> <Sidebar /> <Trayecto /> <Footer /> </>} />
 
 
                 <Route path="/addContacts" element={<> <Navbar /><Sidebar /> <Contacts /> </>} />
