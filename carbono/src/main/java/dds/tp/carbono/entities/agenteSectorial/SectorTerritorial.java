@@ -44,4 +44,8 @@ public abstract class SectorTerritorial {
         x.setSectorTerritorial(this);
     }
 
+    public String tipo() {
+        return " ";
+    }
+
 }

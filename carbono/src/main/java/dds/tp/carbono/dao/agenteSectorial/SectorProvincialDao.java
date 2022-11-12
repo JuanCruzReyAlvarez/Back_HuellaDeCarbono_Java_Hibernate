@@ -14,6 +14,10 @@ public class SectorProvincialDao extends Dao<SectorProvincial> {
         return instance;
     }
 
+    public SectorProvincial getById(Integer idSectorProvincial) {
+        return findOne(idSectorProvincial);
+    }
+
 
 }
 	

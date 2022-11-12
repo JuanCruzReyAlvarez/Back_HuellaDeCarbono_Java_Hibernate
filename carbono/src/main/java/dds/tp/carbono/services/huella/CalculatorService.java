@@ -83,17 +83,15 @@ public class CalculatorService {
 
     public HuellaCarbono calculateAgenteSectorial(CalculatorDTO input) throws Exception {
 
-         DateTimeFormatter JEFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    
+        DateTimeFormatter JEFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate local_date = LocalDate.parse(input.getInicioPeriodo(), JEFormatter);
-
+        
         PeriodoDeImputacion periodo =  new PeriodoDeImputacion(local_date,(Periodicidad.valueOf(input.getFormaCalculo().toUpperCase())));
 
         SectorTerritorial sector = this.terriRepo.getById(Integer.parseInt(input.getSectorTerritorialId()));
-
         CalculadorHuellaSectorTerritorial calculador = new CalculadorHuellaSectorTerritorial(sector, periodo );
-                
         return  calculador.calcular();
-
         
     }
     

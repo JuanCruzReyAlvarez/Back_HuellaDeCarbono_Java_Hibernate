@@ -36,143 +36,31 @@ public class CalculatorController extends Controller {
 
     @Override
     public void routes() {
-        
-        //Spark.post(path(Uri.ORGANIZACION), (rq, rs) -> this.getOrganizaciones(rq, rs));
-        Spark.post(path(Uri.CALCULATOR), (rq, rs) -> this.calculate(rq, rs));
-        //Spark.post(path(Uri.MEMBER), (rq, rs) -> this.getMiembros(rq, rs));
-        //Spark.post(path(Uri.SECTORES), (rq, rs) -> this.getSectores(rq, rs));
-        
+    
+        Spark.post(path(Uri.CALCULATOR), (rq, rs) -> this.calculate(rq, rs));    
     }
-
-
-    /*private Object getSectores(Request request, Response rs) throws HttpException {
-		
-        CalculatorDTO input = getBody(request, CalculatorDTO.class, null);
-
-        List<Sector> sectores = sectorService.getByOrg(Integer.parseInt(input.getOrganizacionId()));
-        
-
-        return json(sectores);
-	}*/
-    /*
-	private String getMiembros(Request request, Response rs) throws HttpException {
-
-        List<Miembro> miembros = new ArrayList<Miembro>();
-
-        CalculatorDTO input = getBody(request, CalculatorDTO.class, null);
-
-        List<Sector> sectores = sectorService.getByOrg(Integer.parseInt(input.getOrganizacionId()));
-
-        for (Sector sector: sectores){
-            List<SolicitudVinculacion> solicitudes = sector.getSolicitudes().stream()
-                                                        .filter(s->s.getEstado().equals(EstadoSolicitudVinculacion.ACEPTADO))
-                                                        .collect(Collectors.toList());
-            for(SolicitudVinculacion s:solicitudes)
-             miembros.add(s.getMiembro()); 
-        }
-
-		return json(miembros);
-	} */
-
-	/*private String getOrganizaciones(Request rq, Response rs) throws Exception {
-        try{
-                List<Organizacion> organizaciones = organizacionService.getAll();            
-                return json(organizaciones); 
-            }catch(Exception exc){
-                throw new Exception("In catch Exception geting Organizaciones was fail: ");
-            }  
-    }*/
-   
-/* 
-    public String calculate(Request request, Response response) throws HttpException {
-        
-        try {
-            
-            CalculatorDTO input = getBody(request, CalculatorDTO.class, null);
-            RTACalculatorDTO DTO = new RTACalculatorDTO();
-            
-            HuellaCarbono hc = new HuellaCarbono();
-            System.out.println("HOLAAAAAAAAAAAAAAACALCULADORRRRR");
-            
-            //System.out.println(input.getCalculoSolicitado());
-
-
-            System.out.println(input.getCalculoSolicitado());
-            System.out.println(input.getFormaCalculo());
-            System.out.println(input.getMiembroId());
-            System.out.println(input.getOrganizacionId());
-            System.out.println(input.getSectorId());
-            System.out.println(input.getInicioPeriodo());
-          
-
-
-            hc = service.calculateMiembro(input);
-            System.out.println(hc.getValor());
-
-            /*switch(input.getCalculoSolicitado()){
-
-                
-                case "ORGANIZACION":        
-                hc = service.calculateOrg(input);
-                break;
-
-                case "MIEMBRO":
-                System.out.println("entre a switch");
-                hc = service.calculateMiembro(input);
-                break;
-
-                case "SECTOR":
-                hc = service.calculateSector(input);
-                break;
-
-                case "AGENTE_SECTORIAL":
-                hc = service.calculateAgenteSectorial(input);
-                break;
-            
-            }*/ /* 
-            System.out.println("RESULTADO");
-            DTO.setUnidad(String.valueOf(hc.getUnidad().nombre()));
-            DTO.setValor(String.valueOf(hc.getValor()));
-            return json(DTO);   
-        } 
-        
-        catch (Exception ex) {
-            System.out.println("Error IN CALCULATORS");
-            return json("error"); 
-        }
-      
-
-    }}
-
-   */
-
 
   public String calculate(Request request, Response response) throws HttpException {
         
     try {
         
         CalculatorDTO input = getBody(request, CalculatorDTO.class, null);
-        RTACalculatorDTO DTO = new RTACalculatorDTO();
-        
-        HuellaCarbono hc = new HuellaCarbono();
-        System.out.println("HOLAAAAAAAAAAAAAAACALCULADORRRRR");
-        
+    
         System.out.println(input.getCalculoSolicitado());
-        System.out.println(input.getCalculoSolicitado());
+        
         System.out.println(input.getFormaCalculo());
         System.out.println(input.getMiembroId());
         System.out.println(input.getOrganizacionId());
         System.out.println(input.getSectorId());
         System.out.println(input.getInicioPeriodo());
-        // IMPRIMTE TODO NULL 
 
-        
+        RTACalculatorDTO DTO = new RTACalculatorDTO();
+        HuellaCarbono hc = new HuellaCarbono();
 
         switch(input.getCalculoSolicitado()){
 
             
-            case "ORGANIZACION":      
-                System.out.println("HOLAAAAAAAAAAAAAAACALCULADORRRRR3");         
+            case "ORGANIZACION":               
                 hc = service.calculateOrg(input);
             break;
             case "MIEMBRO":
@@ -183,6 +71,7 @@ public class CalculatorController extends Controller {
             break;
             case "AGENTE_SECTORIAL":
                 hc = service.calculateAgenteSectorial(input);
+                
                 break;
         
         }
@@ -196,6 +85,7 @@ public class CalculatorController extends Controller {
         System.out.println("Error IN CALCULATORS");
         
     }
-    return json("error"); //puede fallar
+    return json("error"); 
 
-}}
+}
+}
