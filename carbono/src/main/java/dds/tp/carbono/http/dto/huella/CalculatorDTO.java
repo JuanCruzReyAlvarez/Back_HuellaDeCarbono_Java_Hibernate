@@ -13,6 +13,7 @@ public class CalculatorDTO {
     @Getter @Setter private String MiembroId;
     @Getter @Setter private String InicioPeriodo;
     @Getter @Setter private String FormaCalculo;
+    @Getter @Setter private String idUserAgente;
 
 }
 

@@ -87,4 +87,18 @@ public class SectorTerritorialRepository {
         
         return sectoresMfiltrados;
     }
+
+
+
+    public SectorTerritorial getByIdUser(Integer idUser) {
+        
+        SectorTerritorial sector = this.sectorProvincialDao.getAll().stream()
+        .filter(x -> x.getUsuario().getId().equals(idUser)).findFirst().orElse(null);
+
+        if (sector == null)
+        sector = this.sectorMunicipalDao.getAll().stream()
+            .filter(x -> x.getUsuario().getId().equals(idUser)).findFirst().orElse(null);
+
+         return sector;
+    }
 }

@@ -37,8 +37,6 @@ public class OrganizacionController extends Controller{
 
     private String  getOrganizaciones(Request rq, Response rs) throws Exception {
         try{
-
-                System.out.println("PRUEBAJEJJE 99 ");
                 List<OrgDTO> listaDTO = new ArrayList<OrgDTO>();
                 List<Organizacion> organizaciones = service.getAll();     
 
@@ -104,7 +102,7 @@ public class OrganizacionController extends Controller{
                 orgDTO.setId(String.valueOf(org.getId()));
                 return json(orgDTO); 
                 }
-                case "AGENTE_SECTORIAL": 
+                
             
         }
         

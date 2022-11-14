@@ -89,7 +89,7 @@ public class CalculatorService {
         
         PeriodoDeImputacion periodo =  new PeriodoDeImputacion(local_date,(Periodicidad.valueOf(input.getFormaCalculo().toUpperCase())));
 
-        SectorTerritorial sector = this.terriRepo.getById(Integer.parseInt(input.getSectorTerritorialId()));
+        SectorTerritorial sector = this.terriRepo.getByIdUser(Integer.parseInt(input.getIdUserAgente())); //no me puede mandar el id agente ?
         CalculadorHuellaSectorTerritorial calculador = new CalculadorHuellaSectorTerritorial(sector, periodo );
         return  calculador.calcular();
         
