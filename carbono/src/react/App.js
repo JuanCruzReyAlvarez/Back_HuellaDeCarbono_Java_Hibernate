@@ -7,7 +7,7 @@ import { Hall } from "./components/Hall.jsx";
 import { Request } from "./components/Request.jsx";
 import { Route, Routes } from "react-router-dom"; // {libreia,libreria}
 import { Advices } from "./components/Advices.jsx";
-import { RegisterMeasurements } from "./components/RegisterMeasurements.jsx";
+import { RegisterMeasurements } from "./components/RegisterMeasurements.js";
 import { ContactsList } from "./components/ContactsList.jsx";
 import { Contacts } from "./components/AddContacts.jsx";
 import { Report } from "./components/Report.jsx";

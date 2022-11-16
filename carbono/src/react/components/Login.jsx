@@ -12,18 +12,31 @@ export const Login = () => {
         e.preventDefault();
         axios
             .post("http://localhost:8080/login", JSON.stringify(usuario))
-            .then(({data}) => {
+            .then(({ data }) => {
                 console.log("funciono login", data);
                 window.localStorage.setItem(
                     "UserLoggedInfo",
                     JSON.stringify({
                         id: data.user.id,
-                        username: data.user.username, 
+                        username: data.user.username,
                         rol: data.user.rol,
                         token: data.token
                     })
                 );
-                navigate("/hall");
+                axios.get("http://localhost:8080/logExist", JSON.stringify(usuario)).then(({ data }) => {
+                    if (data.toLowerCase()) {
+                        navigate("/");
+                        return
+                    }
+                    navigate("/hall");
+                }).catch((error) => {
+                    console.log("Error memberLog", error);
+                })
+
+
+
+
+
             })
             .catch((error) => {
                 console.log(error);
