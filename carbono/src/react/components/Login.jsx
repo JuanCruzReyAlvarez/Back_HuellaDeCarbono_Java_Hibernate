@@ -22,9 +22,16 @@ export const Login = () => {
                         rol: data.user.rol,
                         token: data.token
                     })
-                );
-                axios.get("http://localhost:8080/logExist", JSON.stringify(usuario)).then(({ data }) => {
-                    if (data.toLowerCase()) {
+                )
+                let user = {
+                    id: data.user.id,
+                    username: data.user.username,
+                    rol: data.user.rol,
+                    token: data.token
+                }
+                console.log("USUARI00O LOG", user)
+                axios.post("http://localhost:8080/logExist", JSON.stringify(user)).then(({ data }) => {
+                    if (data) {
                         navigate("/");
                         return
                     }
@@ -32,11 +39,6 @@ export const Login = () => {
                 }).catch((error) => {
                     console.log("Error memberLog", error);
                 })
-
-
-
-
-
             })
             .catch((error) => {
                 console.log(error);

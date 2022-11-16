@@ -56,8 +56,8 @@ public class TrayectosController extends Controller {
 
                 for(TramoDTO tramoDTO: tramosDTO){
                     Tramo tramo = new Tramo();
-                    tramo = service.setPuntosLlegadasTramo(tramoDTO);
                     tramo = service.setTransporte(tramo,tramoDTO);
+                    tramo = service.setPuntosLlegadasTramo(tramoDTO);
                     tramo = service.setAcompaniantes(tramo,tramoDTO);
 
                     tramos.add(tramo);
@@ -69,6 +69,8 @@ public class TrayectosController extends Controller {
                 trayecto = service.setInicioYFin(trayecto);
 
                 System.out.println("Acaaaa5555");
+                System.out.println(trayecto.getTramos().get(0).getCompartidos().get(0).getNombre());
+
 
                 service.crear(trayecto);
 

@@ -22,6 +22,7 @@ import dds.tp.carbono.entities.transport.TransportePublico;
 import dds.tp.carbono.entities.transport.VehiculoParticular;
 import dds.tp.carbono.http.controllers.member.trayectos.AcompanianteDTO;
 import dds.tp.carbono.http.controllers.member.trayectos.TramoDTO;
+import dds.tp.carbono.repository.PuntoGeografico.PuntoGeograficoRepository;
 //import dds.tp.carbono.repository.PuntoGeografico.PuntoGeograficoRepository;
 import dds.tp.carbono.repository.admin.LineaRepository;
 import dds.tp.carbono.services.distancia.TrayectoService;
@@ -30,15 +31,21 @@ public class TrayectoService {
 
     private TrayectoRepository repository;
     private MiembroRepository miembroRepository;
-    //private PuntoGeograficoRepository puntoGeograficoRepository;
+    private PuntoGeograficoRepository puntoGeograficoRepository;
+
 
     public TrayectoService() {
         this.repository = new TrayectoRepository();
         this.miembroRepository = new MiembroRepository();
-       // this.puntoGeograficoRepository = new PuntoGeograficoRepository();
+        this.puntoGeograficoRepository = new PuntoGeograficoRepository();
     }
 
     public void crear(Trayecto trayecto)  {
+           
+           //puntoGeograficoRepository.saveOne(trayecto.getPuntoLlegada());
+           //puntoGeograficoRepository.saveOne(trayecto.getPuntoPartida());
+           this.procesarTransporte(trayecto);
+           
            repository.guardar(trayecto);
     }
 
@@ -70,6 +77,7 @@ public class TrayectoService {
                 MedioNoMotorizado medioNoMotorizado = new MedioNoMotorizado();
                 medioNoMotorizado.setTipoMedioNoMotorizadoByString(tramoDTO.getTipo_de_No_Motorizado());
                 tramo.setTransporte(medioNoMotorizado);
+                
                 return tramo; 
             case "Servicio_Contratado": 
                 ServicioContratado medioContratado = new ServicioContratado();
@@ -139,5 +147,11 @@ public class TrayectoService {
             return trayecto;
             
         }  
+
+        public void procesarTransporte (Trayecto trayecto){
+
+
+
+        }
     
 }

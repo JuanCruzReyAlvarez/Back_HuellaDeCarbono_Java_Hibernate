@@ -27,19 +27,12 @@ public class LoginController extends Controller {
     
     @Override
     public void routes( ) {
-
-
-
         Spark.post(path(Uri.LOGIN), (rq, rs) -> this.login(rq, rs));
-
-
     }
 
 
 
     public String login(Request request, Response response) throws HttpException {
-        
-        // Esto es paraa un cliente liviano, pero como laburamos por react hay que devolver un json.
 
         try {
             
@@ -64,7 +57,7 @@ public class LoginController extends Controller {
 
            // return session ;               hay que devlver esto 
 
-            System.out.println(session.getUser());
+            System.out.println(session.getUser().getUsername());
 
             return json(session);
 

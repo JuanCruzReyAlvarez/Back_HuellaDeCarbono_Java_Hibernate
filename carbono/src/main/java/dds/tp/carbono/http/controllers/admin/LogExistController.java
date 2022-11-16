@@ -27,12 +27,18 @@ public class LogExistController extends Controller {
     private String logExist(Request rq, Response rs) throws Exception {
 
         try{
+            System.out.println("LLEGUE");
             RolDTO input = getBody(rq, RolDTO.class, null);
             Boolean rta = false;
+            System.out.println("LLEGUE");
+            System.out.println(input.getRol());
+            System.out.println(input.getId());
             switch(input.getRol()){
                      
                 case "MIEMBRO": 
-                      rta = service.miembroExists(Integer.parseInt(input.getId()));   
+                      System.out.println("LLEGUE");
+                      rta = service.miembroExists(Integer.parseInt(input.getId()));  
+                      System.out.println(rta); 
                       break;  
                 case "ORGANIZACION":
                       rta = service.organizacionExists(Integer.parseInt(input.getId()));   
@@ -41,7 +47,7 @@ public class LogExistController extends Controller {
                       rta = service.sectorExists(Integer.parseInt(input.getId()));   
                       break; 
                 }
-
+                System.out.println(rta);
                 return json(rta); 
 
             }catch(Exception exc){

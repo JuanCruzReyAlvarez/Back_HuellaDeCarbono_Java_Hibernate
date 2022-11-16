@@ -15,9 +15,10 @@ public class LoginService {
     public SessionCookie login(String username, String password) throws Exception {
 
         if (!this.repository.isValidLogin(username, password))
-            throw new Exception("Unauthorized");   
+            throw new Exception("Unauthorized, Contraseña Incorrecta");   
 
-        Usuario usuario = this.repository.getUsuarioByUsername(username);  
+        Usuario usuario = new Usuario();
+        usuario = this.repository.getUsuarioByUsername(username);  
 
 
         System.out.println(usuario.getUsername());

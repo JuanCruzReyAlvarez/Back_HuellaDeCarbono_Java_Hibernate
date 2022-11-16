@@ -426,34 +426,6 @@ export const Hall = () => {
 
                                 />
 
-                                <h2>Elegir Organizacion</h2>
-                                <select id="ElegirOrganizacion" name="rol" onChange={selectorDeOrganizacion}>
-                                    {
-                                        organizaciones.length ? (
-                                            organizaciones.map((item, i) => {
-                                                return (
-                                                    <option key={i} value={item.id}>{item.name}</option>
-
-                                                )
-                                            })
-                                        ) : <option>No hay Organizaciones</option>
-                                    }
-
-                                </select>
-
-                                <select id="ElegirSector" name="sect" onChange={SelectorSectores}>
-                                    {
-                                        sectores.length ? (
-                                            sectores.map((item, i) => {
-
-                                                return (
-                                                    <option key={i} value={item.idSector}>{item.nombre}</option>
-                                                )
-                                            })
-                                        ) : <option>Aun no hay Sectores</option>
-                                    }
-
-                                </select>
 
 
 
@@ -473,9 +445,6 @@ export const Hall = () => {
                                     name="nroDocumento"
                                     onChange={handleChange}
                                 />
-
-                                <label className="salvadora"><input type="checkbox" id="cbox1" value="first_checkbox" onChange={isChecked} />
-                                    Enviar mi solicitud de vinculacion a mi organizacion automaticamente</label><br />
 
 
 

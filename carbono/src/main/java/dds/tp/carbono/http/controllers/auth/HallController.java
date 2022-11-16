@@ -2,7 +2,6 @@ package dds.tp.carbono.http.controllers.auth;
 
 import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.entities.member.Miembro;
-import dds.tp.carbono.entities.organization.Sector;
 import dds.tp.carbono.http.controllers.Controller;
 //import dds.tp.carbono.http.dto.auth.HallAsigAgenteDTO;
 import dds.tp.carbono.http.dto.auth.HallAgenteDTO;
@@ -30,7 +29,7 @@ public class HallController extends Controller {
 
         private HallMiembroService serviceMiembro;
         private HallOrganizacionService serviceOrganizacion; 
-        private SolicitadorDeVinculacionService serviceSolicitudVinculacion;
+        //private SolicitadorDeVinculacionService serviceSolicitudVinculacion;
         private AsignadorDeAgentesSectoriales asignadorAgenteSectorial;
         private MunicipioService municipioService;
         private ProvinciaService provinciaService;
@@ -47,7 +46,7 @@ public class HallController extends Controller {
                              SectorService sectorService) {
             this.serviceMiembro = serviceMiembro;
             this.serviceOrganizacion = serviceOrganizacion;
-            this.serviceSolicitudVinculacion = serviceSolicitudVinculacion;
+            //this.serviceSolicitudVinculacion = serviceSolicitudVinculacion;
             this.asignadorAgenteSectorial = asignadorAgenteSectorial;
             this.municipioService = municipioService;
             this.provinciaService = provinciaService;
@@ -94,12 +93,12 @@ public class HallController extends Controller {
 
                             //Sector sector = new Sector(Integer.parseInt(inputM.getIdSector()));
                             
-                            Sector sector = sectorService.getById(Integer.parseInt(inputM.getIdSector()));
+                            //Sector sector = sectorService.getById(Integer.parseInt(inputM.getIdSector()));
                             
-                            if ((inputM.getFlagSolicitud()).equals("1")){
+                           // if ((inputM.getFlagSolicitud()).equals("1")){
                               
-                                serviceSolicitudVinculacion.solicitarVinculacionInicialPorHall(sector ,miembro);
-                            }
+                                //serviceSolicitudVinculacion.solicitarVinculacionInicialPorHall(sector ,miembro);
+                            //}
                             return json(goodAnswer());
                   
                     case "ORGANIZACION":

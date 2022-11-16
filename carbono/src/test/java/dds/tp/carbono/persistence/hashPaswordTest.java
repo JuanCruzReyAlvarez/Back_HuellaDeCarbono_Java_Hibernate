@@ -15,8 +15,13 @@ import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
+import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
+import dds.tp.carbono.entities.transport.MedioNoMotorizado;
+import dds.tp.carbono.entities.transport.TipoVehiculoParticular;
+import dds.tp.carbono.entities.transport.VehiculoParticular;
 import dds.tp.carbono.http.controllers.admin.AdminGeoInfoController;
-
+import dds.tp.carbono.repository.admin.TransporteNoMotorizadoRepository;
+import dds.tp.carbono.repository.admin.TransporteParticularRepository;
 import dds.tp.carbono.repository.agenteSectorial.SectorTerritorialRepository;
 
 import dds.tp.carbono.repository.organization.OrganizacionRepository;
@@ -104,72 +109,59 @@ public class hashPaswordTest {
         EntityManagerHelper.closeEntityManager();
         
     }*/
-
+    //NNNOOOO BBOORRAARRR------------------------------------------------
     @Test
-
-    public void cargarListadoDeApi() throws Exception
+    public void InicializateProyect() throws Exception   //NO BORRAR
     {
-        //para que funcione tiene que estar argentina id 1 cargado en la base
-      AdminGeoInfoController controller = new AdminGeoInfoController();
-        
+
+      AdminGeoInfoController controller = new AdminGeoInfoController();  
       controller.refreshGeoInfoTEST();
- 
- /*
-       List <Localidad> localidadesArreglados = new ArrayList<>();
-       List <Localidad> localidadOrg = new ArrayList<>();
-       List <Municipio> municipios = new ArrayList<>();
-       MunicipioRepository repo = new MunicipioRepository ();
-       
-       UbicacionesServicioExterno ubi= new UbicacionesServicioExterno();
-       municipios = ubi.listadoDeMunicipios();
-       System.out.println(municipios.get(0).getNombre());
 
-       for (Municipio mun : municipios){
-       //if(mun.getNombre()!="SIN INFORMAR"){ 
-       localidadOrg = ubi.listadoDeLocalidades(mun);
-   
-           for(Localidad l : localidadOrg){
-               
-               System.out.println(l.getNombre());  
-               System.out.println(l.getMunicipio().getNombre());
+      TransporteNoMotorizadoRepository repositoryMedioNoMotorizado = new TransporteNoMotorizadoRepository();
+      MedioNoMotorizado bicicleta = new MedioNoMotorizado();
+      MedioNoMotorizado monopatin = new MedioNoMotorizado();
+      MedioNoMotorizado pie = new MedioNoMotorizado();
+      MedioNoMotorizado otro = new MedioNoMotorizado();
 
-           }
+      bicicleta.setTipoMedioNoMotorizadoByString("BICICLETA");
+      monopatin.setTipoMedioNoMotorizadoByString("MONOPATIN");
+      pie.setTipoMedioNoMotorizadoByString("PIE");
+      otro.setTipoMedioNoMotorizadoByString("OTRO");
 
-           localidadesArreglados.removeAll(localidadesArreglados);
-        //}
-       }
+      repositoryMedioNoMotorizado.guardar(bicicleta);
+      repositoryMedioNoMotorizado.guardar(monopatin);
+      repositoryMedioNoMotorizado.guardar(pie);
+      repositoryMedioNoMotorizado.guardar(otro);
 
-     
- */
+      TransporteParticularRepository transporteParticularRepository = new TransporteParticularRepository();
+      
+      VehiculoParticular auto1 = new VehiculoParticular(TipoVehiculoParticular.AUTO,TipoDeConsumo.Nafta);
+      VehiculoParticular auto2 = new VehiculoParticular(TipoVehiculoParticular.AUTO,TipoDeConsumo.GNC);
+      VehiculoParticular auto3 = new VehiculoParticular(TipoVehiculoParticular.AUTO,TipoDeConsumo.Diesel);
+      VehiculoParticular auto4 = new VehiculoParticular(TipoVehiculoParticular.AUTO,TipoDeConsumo.Electricidad);
+      VehiculoParticular auto5 = new VehiculoParticular(TipoVehiculoParticular.CAMIONETA,TipoDeConsumo.Nafta);
+      VehiculoParticular auto6 = new VehiculoParticular(TipoVehiculoParticular.CAMIONETA,TipoDeConsumo.GNC);
+      VehiculoParticular auto7 = new VehiculoParticular(TipoVehiculoParticular.CAMIONETA,TipoDeConsumo.Diesel);
+      VehiculoParticular auto8 = new VehiculoParticular(TipoVehiculoParticular.CAMIONETA,TipoDeConsumo.Electricidad);
+      VehiculoParticular auto9 = new VehiculoParticular(TipoVehiculoParticular.MOTO,TipoDeConsumo.Nafta);
+      VehiculoParticular auto10 = new VehiculoParticular(TipoVehiculoParticular.MOTO,TipoDeConsumo.GNC);
+      VehiculoParticular auto11 = new VehiculoParticular(TipoVehiculoParticular.MOTO,TipoDeConsumo.Diesel);
+      VehiculoParticular auto12 = new VehiculoParticular(TipoVehiculoParticular.MOTO,TipoDeConsumo.Electricidad);
 
+      transporteParticularRepository.guardar(auto1);
+      transporteParticularRepository.guardar(auto2);
+      transporteParticularRepository.guardar(auto3);
+      transporteParticularRepository.guardar(auto4);
+      transporteParticularRepository.guardar(auto5);
+      transporteParticularRepository.guardar(auto6);
+      transporteParticularRepository.guardar(auto7);
+      transporteParticularRepository.guardar(auto8);
+      transporteParticularRepository.guardar(auto9);
+      transporteParticularRepository.guardar(auto10);
+      transporteParticularRepository.guardar(auto11);
+      transporteParticularRepository.guardar(auto12);
 
-/* 
-        List <Localidad> localidadesArreglados = new ArrayList<>();
-        List <Localidad> localidadOrg = new ArrayList<>();
-
-        UbicacionesServicioExterno ubi= new UbicacionesServicioExterno();
-
-        localidadOrg = ubi.listadoDeLocalidades();
-            
-            for(Localidad l : localidadOrg){
-
-                Localidad loc = new Localidad();
-                MunicipioRepository repo = new MunicipioRepository ();
-                Municipio muni = new Municipio();
-
-                //loc.setNombre(l.getNombre());   
-               // System.out.println("localidad: " + l.getNombre());
-                System.out.println("municipio: "+l.getMunicipio().getNombre());
-                //muni.setId(repo.getIdByName(l.getMunicipio().getNombre()));  
-                //loc.setMunicipio(muni);
-                //localidadesArreglados.add(loc);
-            }
-
-*/
-
-
-
-    }
+     }
 
     @Test
 

@@ -5,4 +5,6 @@ public enum TipoMedioNoMotorizado {
     MONOPATIN,
     PIE,
     OTRO
+
+    
 }
