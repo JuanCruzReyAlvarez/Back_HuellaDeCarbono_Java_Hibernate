@@ -35,5 +35,6 @@ public enum Uri {
     TRAYECTO,
     ADD_CONTACTS,
     TRAYECTOS_AUTOCOMPLETE,
-    LINEAS
+    LINEAS,
+    LOGEXIST
 }

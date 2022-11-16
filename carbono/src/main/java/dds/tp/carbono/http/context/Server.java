@@ -3,6 +3,7 @@ package dds.tp.carbono.http.context;
 import dds.tp.carbono.builder.InsecurePasswordCheckerBuilder;
 import dds.tp.carbono.contracts.http.IController;
 import dds.tp.carbono.http.controllers.admin.AdminGeoInfoController;
+import dds.tp.carbono.http.controllers.admin.LogExistController;
 import dds.tp.carbono.http.controllers.auth.HallController;
 import dds.tp.carbono.http.controllers.auth.LoginController;
 import dds.tp.carbono.http.controllers.auth.RegisterController;
@@ -13,6 +14,7 @@ import dds.tp.carbono.http.controllers.org.OrganizacionController;
 import dds.tp.carbono.http.controllers.org.RequestController;
 import dds.tp.carbono.http.controllers.org.SectorController;
 import dds.tp.carbono.services.MiembroService;
+import dds.tp.carbono.services.admin.LogExistService;
 import dds.tp.carbono.services.agenteSectorial.AsignadorDeAgentesSectoriales;
 import dds.tp.carbono.services.auth.HallMiembroService;
 import dds.tp.carbono.services.auth.HallOrganizacionService;
@@ -81,6 +83,7 @@ public class Server implements SparkApplication {
             new CalculatorController(new CalculatorService(),new OrganizacionService(),new MiembroService(), new SectorService()),
             new RequestController(new RequestService()),
             new LineaController( new LineaService()),
+            new LogExistController(new LogExistService())
         };
     }
 }
