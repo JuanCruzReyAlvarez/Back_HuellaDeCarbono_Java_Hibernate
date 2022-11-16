@@ -36,6 +36,11 @@ public class TransportePublico extends MedioDeTransporte {
 
     public TransportePublico(){}
     
+    public TransportePublico(TipoTransportePublico tipo, TipoDeConsumo combustible){
+        this.setTipo(tipo);
+        this.setCombustible(combustible);
+    }
+    
     @Override
     public Double calcularDistancia(PuntoGeografico inicio, PuntoGeografico fin) throws Exception {
 

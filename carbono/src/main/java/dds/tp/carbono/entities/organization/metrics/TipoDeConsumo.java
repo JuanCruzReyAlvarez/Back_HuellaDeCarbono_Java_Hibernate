@@ -45,6 +45,22 @@ public enum TipoDeConsumo {
                 throw new Exception("Tipo de consumo no existente");
         }
    }
+   public static TipoDeConsumo getByDTO(String nombre)  {
+    switch (nombre) {
+
+        case "NAFTA": 
+            return Nafta;
+        case "ELECTRICIDAD": 
+            return Electricidad;
+        case "DIESEL": 
+            return Diesel;
+        case "GNC": 
+            return GNC;
+        default: 
+            System.out.println("Tipo de consumo proveniente de react no existente");
+    }
+    return null;
+}
 
    public static TipoDeConsumo getBy(TransporteLogistica transporte, CategoriaLogistica categoria) throws Exception {
         if (transporte.equals(TransporteLogistica.camion_de_carga))

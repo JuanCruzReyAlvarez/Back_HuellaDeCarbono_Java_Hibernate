@@ -46,7 +46,7 @@ export const Vehiculo_Particular = ({
                 <h2>VEHICULO</h2>
                 <select
                     id="Tipo"
-                    name="Tipo_Vehiculo_Particular"
+                    name="tipo_Vehiculo_Particular"
                     onChange={selectVehiculo}
                 >
                     <option value="">Seleccionar</option>
@@ -60,7 +60,7 @@ export const Vehiculo_Particular = ({
 
             <select
                 id="Tipo"
-                name="Tipo_combustible_Vehiculo_Particular"
+                name="tipo_combustible_Vehiculo_Particular"
                 onChange={selectVehiculo}
             >
                 <option value="">Seleccionar</option>

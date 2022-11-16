@@ -36,6 +36,8 @@ public class Routes {
         define(Uri.ORGANIZACION_NAME,"/organizacionName"),
         define(Uri.SECTORES_ADD,"/addsector"),
         define(Uri.CREATE_REQUEST,"/createRequest"),
+        define(Uri.LINEAS,"/lineas"),
+        
         
         
         

@@ -57,7 +57,7 @@ export const Servicio_Contratado = ({
 
             <select
                 id="Tipo"
-                name="Tipo_combustible_Servicio_Contratado"
+                name="tipo_combustible_Servicio_Contratado"
                 onChange={selectVehiculo}
             >
                 <option value="">Seleccionar</option>

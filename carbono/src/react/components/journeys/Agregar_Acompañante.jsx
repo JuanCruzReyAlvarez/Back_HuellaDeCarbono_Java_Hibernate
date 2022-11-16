@@ -80,7 +80,7 @@ export const Agregar_Acompañante = ({
         if (!documento) return;
         setEleccionAcompañante({
             ...eleccionAcompañante,
-            ["TipoDocumentoAcompañante"]: target.value,
+            ["TipoDocumentoAcompaniante"]: target.value,
         });
     };
 
@@ -116,7 +116,7 @@ export const Agregar_Acompañante = ({
                         <input
                             type="text"
                             placeholder="Nombre"
-                            name="nombre_Acompañante"
+                            name="nombre_Acompaniante"
                             onChange={handleChange}
                             id="clearInput6"
                             required
@@ -124,14 +124,14 @@ export const Agregar_Acompañante = ({
                         <input
                             type="text"
                             placeholder="Apellido"
-                            name="apellido_Acompañante"
+                            name="apellido_Acompaniante"
                             id="clearInput7"
                             onChange={handleChange}
                             required
                         />
                         <select
                             id="TipoDocumento"
-                            name="TipoDocumentoAcompañante"
+                            name="TipoDocumentoAcompaniante"
                             onChange={selectDocumento}
                         >
                             <option value="">
@@ -144,7 +144,7 @@ export const Agregar_Acompañante = ({
                         <input
                             type="text"
                             placeholder="Numero"
-                            name="numero_Acompañante"
+                            name="numero_Acompaniante"
                             onChange={handleChange}
                             id="clearInput8"
                             AgregarMiembroAcompañante

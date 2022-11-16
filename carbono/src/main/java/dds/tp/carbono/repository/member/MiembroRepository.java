@@ -45,6 +45,15 @@ public class MiembroRepository {
         return this.miembroDao.getAll().stream().filter(o -> o.getUser().getId().equals(id)).findFirst().orElse(null);
     }
 
+    public Miembro getByNameAndLastName(String apellido, String nombre) {
+        return this.miembroDao.getAll()
+                               .stream()
+                               .filter(o -> o.getApellido().equals(apellido)
+                                                             && o.getNombre().equals(nombre))
+                                                             .findFirst()
+                                                             .orElse(null);
+    }
+
     
 
     public List<Miembro> getBySector(Sector sector) {

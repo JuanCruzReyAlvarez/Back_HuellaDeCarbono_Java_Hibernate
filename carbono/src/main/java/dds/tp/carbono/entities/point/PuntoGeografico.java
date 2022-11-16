@@ -44,6 +44,11 @@ public class PuntoGeografico {
     public PuntoGeografico(Integer idLocalidad){
             this.localdiad.setId(idLocalidad); 
     }
+    public PuntoGeografico(String altura, String calle, Integer localidad_id){
+        this.setAltura(altura);
+        this.setCalle(calle);
+        this.setLocaldiad(new Localidad(localidad_id)); 
+}
 
     
 }

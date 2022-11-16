@@ -1,17 +1,23 @@
 package dds.tp.carbono.http.controllers.member.trayectos;
 
 
+import java.util.ArrayList;
 import java.util.List;
+
 import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.member.Tramo;
 import dds.tp.carbono.entities.member.Trayecto;
-import dds.tp.carbono.entities.point.PuntoGeografico;
 import dds.tp.carbono.http.controllers.Controller;
-import dds.tp.carbono.http.dto.member.trayectos.TrayectoDTO;
 import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.Uri;
 import dds.tp.carbono.services.MiembroService;
 import dds.tp.carbono.services.distancia.TrayectoService;
+
+import java.lang.reflect.Type;
+import java.time.LocalDate;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import spark.Request;
 import spark.Response;
@@ -30,28 +36,53 @@ public class TrayectosController extends Controller {
         
         @Override
         public void routes( ) {
-            Spark.get(path(Uri.TRAYECTO), (rq, rs) -> this.trayectos(rq, rs));
+            Spark.post(path(Uri.TRAYECTO), (rq, rs) -> this.trayectos(rq, rs));
             Spark.get(path(Uri.TRAYECTOS_AUTOCOMPLETE), (rq, rs) -> this.autocomplete(rq, rs));
         }
 
         private String trayectos(Request rq, Response rs) throws Exception {
 
             try {
-            TrayectoDTO input = getBody(rq, TrayectoDTO.class,null);
-            Miembro miembro = miembroService.getById(Integer.parseInt(input.getIdMiembro()));
-            PuntoGeografico desde = new PuntoGeografico(Integer.parseInt(input.getLocalidadDesdeId()));
-            PuntoGeografico hasta = new PuntoGeografico(Integer.parseInt(input.getLocalidadHastaId()));
-            List<Tramo> tramos = input.getTramos(); //Esto esta mal hay que formarlo aca en base  adatos del DTO
-            Trayecto trayecto = new Trayecto(desde,hasta, tramos, miembro); 
+                List<TramoDTO> tramosDTO = new ArrayList<TramoDTO>();
+                Type listType = new TypeToken<ArrayList<TramoDTO>>(){}.getType();
+                tramosDTO = new Gson().fromJson(rq.body(), listType);
 
-            service.crear(trayecto);
+
+                Trayecto trayecto = new Trayecto();
+                List<Tramo> tramos = new ArrayList<Tramo>();
+                Miembro miembro = new Miembro();
+                miembro = miembroService.getByUserId(Integer.parseInt(tramosDTO.get(0).getUserId()));
+                trayecto.setMiembro(miembro);
+
+                for(TramoDTO tramoDTO: tramosDTO){
+                    Tramo tramo = new Tramo();
+                    tramo = service.setPuntosLlegadasTramo(tramoDTO);
+                    tramo = service.setTransporte(tramo,tramoDTO);
+                    tramo = service.setAcompaniantes(tramo,tramoDTO);
+
+                    tramos.add(tramo);
+
+                    
+                }
+                trayecto.setTramos(tramos);
+                trayecto.setFecha(LocalDate.now());
+                trayecto = service.setInicioYFin(trayecto);
+
+                System.out.println("Acaaaa5555");
+
+                service.crear(trayecto);
 
             return (json(goodAnswer()));
-            }catch(HttpException exc)
+            
+            }catch(Exception exc)
             {
                 System.out.println("Error por controller trayectos");
             }
-			return null;
+            
+            
+			
+            return null ;
+
         }
 
 
@@ -71,6 +102,8 @@ public class TrayectosController extends Controller {
             */
             return null;
         }
+
+       
 
 
 /* 

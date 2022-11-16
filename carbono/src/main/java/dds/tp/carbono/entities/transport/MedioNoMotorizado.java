@@ -44,6 +44,24 @@ public class MedioNoMotorizado extends MedioDeTransporte {
     public TipoDeConsumo getCombustible() throws Exception {
         throw new Exception("no tiene combustible");
     }
+    
+    public void setTipoMedioNoMotorizadoByString( String tipo ){
 
+        switch (tipo) {
+            case "BICICLETA":
+                this.setTipo(TipoMedioNoMotorizado.BICICLETA);
+                break;
+            case "MONOPATIN": 
+                this.setTipo(TipoMedioNoMotorizado.MONOPATIN);
+                break;
+            case "PIE": 
+                this.setTipo(TipoMedioNoMotorizado.PIE);
+                break;
+            case "OTRO":
+                this.setTipo(TipoMedioNoMotorizado.OTRO); 
+                break;
+
+        }
+    }
 }
 

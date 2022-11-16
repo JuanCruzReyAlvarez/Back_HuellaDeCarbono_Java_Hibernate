@@ -52,7 +52,7 @@ export const Trayecto = () => {
 
     const setAcompañantesTotales = (data) => {
         console.log("DATA DE ACOMPAÑANTES", data);
-        setEleccion({ ...eleccion, acompañante: data });
+        setEleccion({ ...eleccion, acompaniante: data });
     };
 
     const handleChange = ({ target }) => {
@@ -144,7 +144,7 @@ export const Trayecto = () => {
             setType("");
             return;
         }
-        setEleccion({ ...eleccion, [e.target.name]: e.target.value });
+        setEleccion({ ...eleccion, ["tipo_Medio_De_Transporte"]: e.target.value });
         setType(e.target.value);
     };
 
@@ -198,7 +198,7 @@ export const Trayecto = () => {
         console.log("Trayecto a mandar:", listaDeElecciones);
         axios
             .post(
-                "http://localhost:8080/trayectos",
+                "http://localhost:8080/trayecto",
                 JSON.stringify(listaDeElecciones)
             )
             .then(({ data }) => {
@@ -472,7 +472,7 @@ export const Trayecto = () => {
                                                     Vehiculo Particular
                                                 </option>
                                             </select>
-                                            {type !== "" ? (
+                                            {type !== "" || type !== "Seleccionar" ? (
                                                 type === "No_Motorizado" ? (
                                                     <>
                                                         <No_Motorizado
@@ -493,6 +493,9 @@ export const Trayecto = () => {
                                                             }
                                                             setAcompañantesTotales={
                                                                 setAcompañantesTotales
+                                                            }
+                                                            handleChange={
+                                                                handleChange
                                                             }
                                                         />
                                                     </>

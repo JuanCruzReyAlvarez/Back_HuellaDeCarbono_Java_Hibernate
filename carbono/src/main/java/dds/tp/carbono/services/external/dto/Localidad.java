@@ -28,11 +28,12 @@ public class Localidad implements GeoInfo {
     
 
     public Localidad() {
-        
     }
 
     public Localidad(String localidad) {
-        this.nombre = localidad;
-        
+        this.nombre = localidad;   
+    }
+    public Localidad(Integer id) {
+        this.setId(id);
     }
 }

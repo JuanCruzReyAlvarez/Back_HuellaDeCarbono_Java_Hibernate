@@ -7,7 +7,7 @@ export const Transporte_Publico = ({ handleChange, selectVehiculo }) => {
 
             <select
                 id="Tipo"
-                name="Tipo_transporte_publico"
+                name="tipo_transporte_publico"
                 onChange={selectVehiculo}
             >
                 <option value="">Seleccionar</option>

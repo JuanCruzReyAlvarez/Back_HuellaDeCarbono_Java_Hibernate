@@ -31,20 +31,20 @@ public class Trayecto {
     @Getter @Setter private Integer id;
 
     @OneToOne
-    @Getter @Setter private PuntoGeografico puntoPartida;
+    @Getter @Setter public PuntoGeografico puntoPartida;
 
     @ManyToOne
-    @Getter @Setter private PuntoGeografico puntoLlegada;
+    @Getter @Setter public PuntoGeografico puntoLlegada;
 
     @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    @Getter @Setter private List<Tramo> tramos;
+    @Getter @Setter public List<Tramo> tramos;
 
     @ManyToOne
     @JoinColumn(name = "miembro_id", referencedColumnName = "id" )
-    @Getter @Setter private Miembro miembro;
+    @Getter @Setter public Miembro miembro;
 
     @Column(name = "fecha", columnDefinition = "DATE")
-    @Setter @Getter private LocalDate fecha;                
+    @Setter @Getter public LocalDate fecha;                
 
 
     @Transient

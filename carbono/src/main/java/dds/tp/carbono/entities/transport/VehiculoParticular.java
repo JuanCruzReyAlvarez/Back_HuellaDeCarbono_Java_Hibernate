@@ -30,6 +30,11 @@ public class VehiculoParticular extends MedioDeTransporte {
 
     public VehiculoParticular(){}
 
+    public VehiculoParticular(TipoVehiculoParticular tipo, TipoDeConsumo combustible){
+        this.setTipo(tipo);
+        this.setCombustible(combustible);
+    }
+
     @Transient
     @Setter private CalculadorDistanciaServicioExterno calculador = new CalculadorDistanciaServicioExterno();
     @Override

@@ -1,14 +1,12 @@
 package dds.tp.carbono.persistence;
 
-import java.sql.Date;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
-import dds.tp.carbono.dao.agenteSectorial.SectorMunicipalDao;
-import dds.tp.carbono.entities.agenteSectorial.SectorMunicipal;
+
 import dds.tp.carbono.entities.agenteSectorial.SectorTerritorial;
-import dds.tp.carbono.entities.huella.HuellaCarbono;
+
 import dds.tp.carbono.entities.organization.metrics.Periodicidad;
 import dds.tp.carbono.entities.organization.metrics.PeriodoDeImputacion;
 import dds.tp.carbono.repository.agenteSectorial.SectorTerritorialRepository;
