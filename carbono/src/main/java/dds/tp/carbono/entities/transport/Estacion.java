@@ -27,7 +27,7 @@ public class Estacion {
     @Getter @Setter private PuntoGeografico ubicacion;
 
     @Column
-    @Getter @Setter private Double distanciaEstacionAnterior;
+    @Getter @Setter private Integer distanciaEstacionAnterior;
     
     @OneToOne
     @Getter @Setter private Estacion siguiente;

@@ -1,34 +1,25 @@
 package dds.tp.carbono.persistence;
-
-
-
-
 import java.util.ArrayList;
 import java.util.List;
-
-
 import org.junit.Test;
-
-
-import dds.tp.carbono.entities.agenteSectorial.SectorTerritorial;
 import dds.tp.carbono.entities.member.Miembro;
-import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.Sector;
 import dds.tp.carbono.entities.organization.SolicitudVinculacion;
 import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
+import dds.tp.carbono.entities.point.PuntoGeografico;
+import dds.tp.carbono.entities.transport.Estacion;
+import dds.tp.carbono.entities.transport.Linea;
 import dds.tp.carbono.entities.transport.MedioNoMotorizado;
 import dds.tp.carbono.entities.transport.TipoVehiculoParticular;
 import dds.tp.carbono.entities.transport.VehiculoParticular;
 import dds.tp.carbono.http.controllers.admin.AdminGeoInfoController;
+import dds.tp.carbono.repository.PuntoGeografico.PuntoGeograficoRepository;
+import dds.tp.carbono.repository.admin.LineaRepository;
 import dds.tp.carbono.repository.admin.TransporteNoMotorizadoRepository;
 import dds.tp.carbono.repository.admin.TransporteParticularRepository;
-import dds.tp.carbono.repository.agenteSectorial.SectorTerritorialRepository;
-
-import dds.tp.carbono.repository.organization.OrganizacionRepository;
 import dds.tp.carbono.repository.organization.SectorRepository;
 import dds.tp.carbono.services.MiembroService;
-import dds.tp.carbono.services.external.dto.Provincia;
-import dds.tp.carbono.services.external.puntoGeografico.ProvinciaService;
+
 
 
 
@@ -53,7 +44,7 @@ public class hashPaswordTest {
     }*/
 
 
- 
+ /* 
     @Test
     public void getOrg(){
 
@@ -73,6 +64,7 @@ public class hashPaswordTest {
         oorg.setSectorTerritorial(st);
 
         dao.guardar(oorg);
+        */
         /*for (Organizacion o : oorg) {
         System.out.println("IMPRI");
         System.out.println(o.getRazonSocial());}
@@ -85,11 +77,16 @@ public class hashPaswordTest {
              Assert.assertEquals(Integer.valueOf(2), (o.getUbicacion().getLocaldiad().getMunicipio().getProvincia().getId()));
                   orgRet.add(o);
             }
-        }*/
+        }
+        
+        
+     }
+        
+        */
 
        
         
-    }
+
 
    /*  @Test
     public void guardar(){
@@ -161,7 +158,261 @@ public class hashPaswordTest {
       transporteParticularRepository.guardar(auto11);
       transporteParticularRepository.guardar(auto12);
 
+
      }
+
+     @Test
+     public void LineaCreator60() throws Exception
+     {
+
+        List<Estacion> estaciones= new ArrayList<Estacion>();
+
+
+
+        PuntoGeografico cuatro = new PuntoGeografico("4444", "4444", 1546);// EL JUNCAL
+        PuntoGeografico tres = new PuntoGeografico("3333", "3333", 1546);  // EL JUCAL 
+        PuntoGeografico dos = new PuntoGeografico("2222", "2222", 1566);   // GUARDIA MITRE
+        PuntoGeografico uno = new PuntoGeografico("1111", "1111", 1566);   // GUARDIA MITRE
+  
+        PuntoGeograficoRepository puntoGeograficoRepository = new PuntoGeograficoRepository();
+        puntoGeograficoRepository.saveOne(cuatro);
+        puntoGeograficoRepository.saveOne(tres);
+        puntoGeograficoRepository.saveOne(dos);
+        puntoGeograficoRepository.saveOne(uno);
+        
+        Estacion estacion1 = new Estacion();
+        Estacion estacion2 = new Estacion();
+        Estacion estacion3 = new Estacion();
+        Estacion estacion4 = new Estacion();
+  
+        estacion4.setNombre("Martinez");
+        estacion4.setSiguiente(null);
+        estacion4.setUbicacion(cuatro); //Localidad El Juncal
+        estacion4.setDistanciaEstacionAnterior(40);
+        
+        estacion3.setNombre("San Isidro");
+        estacion3.setSiguiente(estacion4);
+        estacion3.setUbicacion(tres); //Localidad El Juncal
+        estacion3.setDistanciaEstacionAnterior(40);
+        
+        estacion2.setNombre("Beccar");
+        estacion2.setSiguiente(estacion3);
+        estacion2.setUbicacion(dos); //Localidad Guardia Mitre
+        estacion2.setDistanciaEstacionAnterior(40);
+  
+        estacion1.setNombre("Victoria");
+        estacion1.setSiguiente(estacion2);
+        estacion1.setUbicacion(uno); //Localidad Guardia Mitre
+        estacion1.setDistanciaEstacionAnterior(40);
+  
+  
+        estaciones.add(estacion4);
+        estaciones.add(estacion3);
+        estaciones.add(estacion2);
+        estaciones.add(estacion1);
+  
+        Linea linea = new Linea();
+  
+        linea.setEstaciones(estaciones);
+        linea.setNombre("60");
+        
+  
+        LineaRepository lineaRepository = new LineaRepository();
+  
+        lineaRepository.save(linea);
+  
+
+     }
+
+     @Test
+     public void LineaCreator202() throws Exception
+     {
+
+        List<Estacion> estaciones= new ArrayList<Estacion>();
+
+
+
+        PuntoGeografico cuatro = new PuntoGeografico("1616", "1616", 1546);
+        PuntoGeografico tres = new PuntoGeografico("1515", "1515", 1546);
+        PuntoGeografico dos = new PuntoGeografico("1414", "1414", 1566);
+        PuntoGeografico uno = new PuntoGeografico("1313", "1313", 1566);
+  
+        PuntoGeograficoRepository puntoGeograficoRepository = new PuntoGeograficoRepository();
+        puntoGeograficoRepository.saveOne(cuatro);
+        puntoGeograficoRepository.saveOne(tres);
+        puntoGeograficoRepository.saveOne(dos);
+        puntoGeograficoRepository.saveOne(uno);
+        
+        Estacion estacion1 = new Estacion();
+        Estacion estacion2 = new Estacion();
+        Estacion estacion3 = new Estacion();
+        Estacion estacion4 = new Estacion();
+  
+        estacion4.setNombre("Martinez");
+        estacion4.setSiguiente(null);
+        estacion4.setUbicacion(cuatro); //Localidad El Juncal
+        estacion4.setDistanciaEstacionAnterior(40);
+        
+        estacion3.setNombre("San Isidro");
+        estacion3.setSiguiente(estacion4);
+        estacion3.setUbicacion(tres); //Localidad El Juncal
+        estacion3.setDistanciaEstacionAnterior(40);
+        
+        estacion2.setNombre("Beccar");
+        estacion2.setSiguiente(estacion3);
+        estacion2.setUbicacion(dos); //Localidad Guardia Mitre
+        estacion2.setDistanciaEstacionAnterior(40);
+  
+        estacion1.setNombre("Victoria");
+        estacion1.setSiguiente(estacion2);
+        estacion1.setUbicacion(uno); //Localidad Guardia Mitre
+        estacion1.setDistanciaEstacionAnterior(40);
+  
+  
+        estaciones.add(estacion4);
+        estaciones.add(estacion3);
+        estaciones.add(estacion2);
+        estaciones.add(estacion1);
+  
+        Linea linea = new Linea();
+  
+        linea.setEstaciones(estaciones);
+        linea.setNombre("202");
+        
+  
+        LineaRepository lineaRepository = new LineaRepository();
+  
+        lineaRepository.save(linea);
+  
+
+     }
+     @Test
+     public void LineaCreator365() throws Exception
+     {
+
+        List<Estacion> estaciones= new ArrayList<Estacion>();
+
+
+
+        PuntoGeografico cuatro = new PuntoGeografico("1212", "1212", 1546);
+        PuntoGeografico tres = new PuntoGeografico("1111", "1111", 1546);
+        PuntoGeografico dos = new PuntoGeografico("1010", "1010", 1566);
+        PuntoGeografico uno = new PuntoGeografico("9999", "9999", 1566);
+  
+        PuntoGeograficoRepository puntoGeograficoRepository = new PuntoGeograficoRepository();
+        puntoGeograficoRepository.saveOne(cuatro);
+        puntoGeograficoRepository.saveOne(tres);
+        puntoGeograficoRepository.saveOne(dos);
+        puntoGeograficoRepository.saveOne(uno);
+        
+        Estacion estacion1 = new Estacion();
+        Estacion estacion2 = new Estacion();
+        Estacion estacion3 = new Estacion();
+        Estacion estacion4 = new Estacion();
+  
+        estacion4.setNombre("Martinez");
+        estacion4.setSiguiente(null);
+        estacion4.setUbicacion(cuatro); //Localidad El Juncal
+        estacion4.setDistanciaEstacionAnterior(40);
+        
+        estacion3.setNombre("San Isidro");
+        estacion3.setSiguiente(estacion4);
+        estacion3.setUbicacion(tres); //Localidad El Juncal
+        estacion3.setDistanciaEstacionAnterior(40);
+        
+        estacion2.setNombre("Beccar");
+        estacion2.setSiguiente(estacion3);
+        estacion2.setUbicacion(dos); //Localidad Guardia Mitre
+        estacion2.setDistanciaEstacionAnterior(40);
+  
+        estacion1.setNombre("Victoria");
+        estacion1.setSiguiente(estacion2);
+        estacion1.setUbicacion(uno); //Localidad Guardia Mitre
+        estacion1.setDistanciaEstacionAnterior(40);
+  
+  
+        estaciones.add(estacion4);
+        estaciones.add(estacion3);
+        estaciones.add(estacion2);
+        estaciones.add(estacion1);
+  
+        Linea linea = new Linea();
+  
+        linea.setEstaciones(estaciones);
+        linea.setNombre("365");
+        
+  
+        LineaRepository lineaRepository = new LineaRepository();
+  
+        lineaRepository.save(linea);
+  
+
+     }
+
+     @Test
+     public void LineaCreator7() throws Exception
+     {
+
+        List<Estacion> estaciones= new ArrayList<Estacion>();
+
+
+
+        PuntoGeografico cuatro = new PuntoGeografico("8888", "8888", 1546);
+        PuntoGeografico tres = new PuntoGeografico("7777", "7777", 1546);
+        PuntoGeografico dos = new PuntoGeografico("6666", "6666", 1566);
+        PuntoGeografico uno = new PuntoGeografico("5555", "5555", 1566);
+  
+        PuntoGeograficoRepository puntoGeograficoRepository = new PuntoGeograficoRepository();
+        puntoGeograficoRepository.saveOne(cuatro);
+        puntoGeograficoRepository.saveOne(tres);
+        puntoGeograficoRepository.saveOne(dos);
+        puntoGeograficoRepository.saveOne(uno);
+        
+        Estacion estacion1 = new Estacion();
+        Estacion estacion2 = new Estacion();
+        Estacion estacion3 = new Estacion();
+        Estacion estacion4 = new Estacion();
+  
+        estacion4.setNombre("UTN");
+        estacion4.setSiguiente(null);
+        estacion4.setUbicacion(cuatro); 
+        estacion4.setDistanciaEstacionAnterior(40);
+        
+        estacion3.setNombre("Deportivo Español");
+        estacion3.setSiguiente(estacion4);
+        estacion3.setUbicacion(tres); 
+        estacion3.setDistanciaEstacionAnterior(40);
+        
+        estacion2.setNombre("Facultad de Medicina UBA");
+        estacion2.setSiguiente(estacion3);
+        estacion2.setUbicacion(dos); 
+        estacion2.setDistanciaEstacionAnterior(40);
+  
+        estacion1.setNombre("Retiro");
+        estacion1.setSiguiente(estacion2);
+        estacion1.setUbicacion(uno); 
+        estacion1.setDistanciaEstacionAnterior(40);
+  
+  
+        estaciones.add(estacion4);
+        estaciones.add(estacion3);
+        estaciones.add(estacion2);
+        estaciones.add(estacion1);
+  
+        Linea linea = new Linea();
+  
+        linea.setEstaciones(estaciones);
+        linea.setNombre("7");
+        
+  
+        LineaRepository lineaRepository = new LineaRepository();
+  
+        lineaRepository.save(linea);
+  
+
+     }
+
+
 
     @Test
 

@@ -2,6 +2,7 @@ package dds.tp.carbono.entities.transport;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,8 +18,6 @@ import lombok.Setter;
 @Entity
 @Table(name = "linea")
 public class Linea {
-
-
     @Id
     @GeneratedValue
     @Getter @Setter private Integer id;
@@ -26,7 +25,7 @@ public class Linea {
     @Column
     @Getter @Setter private String nombre;
 
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="linea_id", referencedColumnName = "id")
     @Getter @Setter private List<Estacion> estaciones;
 
