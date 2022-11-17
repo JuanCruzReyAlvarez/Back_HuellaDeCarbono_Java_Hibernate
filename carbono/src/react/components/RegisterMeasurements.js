@@ -22,52 +22,83 @@ export const RegisterMeasurements = () => {
     }
   }, []);
 
-  const readExcel = (file) => {
-    const promise = new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
+  /*  const readExcel = (file) => {
+     const promise = new Promise((resolve, reject) => {
+       const fileReader = new FileReader();
+ 
+       fileReader.readAsArrayBuffer(file);
+ 
+       fileReader.onload = (e) => {
+         const bufferArray = e.target.result;
+ 
+         const wb = XLSX.read(bufferArray, { type: "buffer" });
+ 
+         const wsname = wb.SheetNames[0];
+ 
+         const ws = wb.Sheets[wsname];
+         const data = XLSX.utils.sheet_to_json(ws);
+         resolve(data);
+       };
+ 
+       fileReader.onerror = (error) => {
+         reject(error);
+       };
+     });
+ 
+ 
+     //ACA TE ENVIO EL EXCEL, No estoy mandando ni el user ID ni el rol, avisenme si lo necesitamos
+     promise.then((d) => {
+       const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
+       let user = JSON.parse(isUserLogg);
+       let fieldAndUser = [
+         {
+           user: user,
+           excel: d
+         }
+       ]
+       d.push(user)
+       console.log("EXCEL DATOS", fieldAndUser);
+       axios
+         .post("http://localhost:8080/metrics", JSON.stringify(fieldAndUser))
+         .then(({ data }) => {
+           console.log("funcionaron la subida del excel ", data);
+         })
+         .catch((error) => {
+           console.log("Error al enviar el excel", error);
+         });
+     });
+   }; */
 
-      fileReader.readAsArrayBuffer(file);
-
-      fileReader.onload = (e) => {
-        const bufferArray = e.target.result;
-
-        const wb = XLSX.read(bufferArray, { type: "buffer" });
-
-        const wsname = wb.SheetNames[0];
-
-        const ws = wb.Sheets[wsname];
-        const data = XLSX.utils.sheet_to_json(ws);
-        resolve(data);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
+  const subirArchivos = (e) => {
+    setArchivo(e)
+  }
 
 
-    //ACA TE ENVIO EL EXCEL, No estoy mandando ni el user ID ni el rol, avisenme si lo necesitamos
-    promise.then((d) => {
-      const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
-      let user = JSON.parse(isUserLogg);
-      let fieldAndUser = [
-        {
-          user: user,
-          excel: d
-        }
-      ]
-      d.push(user)
-      console.log("EXCEL DATOS", fieldAndUser);
-      axios
-        .post("http://localhost:8080/metrics", JSON.stringify(fieldAndUser))
-        .then(({ data }) => {
-          console.log("funcionaron la subida del excel ", data);
-        })
-        .catch((error) => {
-          console.log("Error al enviar el excel", error);
-        });
-    });
-  };
+  const insertarArchivos = async () => {
+    const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
+    let user = JSON.parse(isUserLogg);
+    const f = new FormData();
+
+    for (let i = 0; i < archivo.length; i++) {
+      f.append("file", archivo[i])
+      f.append("cookie", user.id)
+
+    }
+
+
+    await axios
+      .post("http://localhost:8080/metrics", f, { headers: { "Content-Type": "multipart/form-data" } })
+      .then(({ data }) => {
+        console.log("funcionaron la subida del excel ", data);
+      })
+      .catch((error) => {
+        console.log("Error al enviar el excel", error);
+      });
+
+  }
+
+
+
 
   return (
     <div className="RegistrarMediciones">
@@ -91,9 +122,9 @@ export const RegisterMeasurements = () => {
               className="file-upload-input"
               name="files"
               type="file"
+              multiple
               onChange={(e) => {
-                const file = e.target.files[0];
-                readExcel(file);
+                subirArchivos(e.target.files);
               }}
             />
             <div className="drag-text">
@@ -110,6 +141,7 @@ export const RegisterMeasurements = () => {
             />
           </div>
         </div>
+        <button onClick={() => insertarArchivos()}> Enviar archivo </button>
       </div>
     </div>
   );

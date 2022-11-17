@@ -28,13 +28,29 @@ public class OrganizacionRepository {
     }
 
     public void addMetrics(List<MetricaOrganizacion> metricas, Organizacion organizacion) {
-        Organizacion org = this.dao.getAll()
-            .stream().filter(o -> o.getRazonSocial().equals(organizacion.getRazonSocial()))
-            .findFirst().orElse(null);
+        System.out.println("LLEGUE A ADD METRICAS");
+
+
+        Organizacion org= new Organizacion();
+        org = this.dao.findOne(organizacion.getId());
+
+        System.out.println(org.getId());
+
+        for(MetricaOrganizacion metrica : metricas){
+            metrica.setOrganizacion(org);
+           }
+
+
+        //Organizacion org = this.dao.getAll()
+            //.stream().filter(o -> o.getRazonSocial().equals(organizacion.getRazonSocial()))
+           //.findFirst().orElse(null);
         
         if (org != null) {
             org.addMetricas(metricas);
+            System.out.println("Metricas agregadas a org, falta persistir");
+            System.out.println(org.getId());
             this.dao.update(org);
+            System.out.println("MERGIADO BIEN");
         }
     }
 

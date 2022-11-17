@@ -32,15 +32,16 @@ public abstract class Dao<T> {
     }
 
     public void update(T item) {
-        System.out.println("llegueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        System.out.println("llegueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee11");
         EntityManagerHelper.beginTransaction();
-        System.out.println("llegueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        System.out.println("llegueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee22");
         
         EntityManagerHelper.getEntityManager().merge(item);
-        System.out.println("llegueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        System.out.println("llegueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee33");
         EntityManagerHelper.commit();
+        System.out.println("llegueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee44");
         EntityManagerHelper.closeEntityManager();
-        System.out.println("llegueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        System.out.println("llegueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee55");
         //return item1;
     }
 

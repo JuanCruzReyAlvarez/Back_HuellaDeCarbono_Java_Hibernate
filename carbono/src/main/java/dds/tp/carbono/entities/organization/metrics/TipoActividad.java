@@ -11,8 +11,11 @@ public enum TipoActividad {
 
     public static TipoActividad getBy(String nombre) throws Exception {
 
+        System.out.println(nombre);
+        System.out.println(formatNombre(nombre));
         switch (formatNombre(nombre)) {
-            case "combustionFija" : return Combustion_Fija;
+            
+            case "combustionfija" : return Combustion_Fija;
             case "combustionmovil" : return Combustion_Movil;
             case "electricidadadquiridayconsumida" : return Electricidad_Adquirida_Consumida;
             case "logisticadeproductosyservicios" : return Logistica_De_Productos_Servicios; 

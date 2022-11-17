@@ -3,22 +3,18 @@
 package dds.tp.carbono.http.controllers.org;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 
 
 import javax.servlet.MultipartConfigElement;
 
-import com.google.gson.Gson;
-
 import dds.tp.carbono.entities.auth.Rol;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
-import dds.tp.carbono.exception.InvalidFileException;
-import dds.tp.carbono.http.controllers.AuthorizationMiddleware;
 import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.exceptions.HttpException;
-import dds.tp.carbono.http.utils.SessionCookie;
 import dds.tp.carbono.http.utils.Uri;
 import dds.tp.carbono.services.organizacion.OrganizacionService;
 import dds.tp.carbono.services.organizacion.metrics.MetricsImporterService;
@@ -34,10 +30,10 @@ public class OrgMetricsController extends Controller {
    
     private OrganizacionService service;
 
-    //public OrgMetricsController() { 
-       // super(Rol.ORGANIZACION); 
-        //this.service = new OrganizacionService();
-    //}
+    public OrgMetricsController() { 
+       //super(Rol.ORGANIZACION); 
+       this.service = new OrganizacionService();
+    }
 
     @Override
     public void routes( ) {
@@ -46,38 +42,44 @@ public class OrgMetricsController extends Controller {
     }
 
     private String uploadFile(Request request, Response rs) throws HttpException {
+
         request.attribute(MULTIPART_DRIVER, new MultipartConfigElement("/temp"));
-        System.out.println("JAJAJAJJAJAJAJAJAJAJAJJABUENAS");
-        //InputStream is = request.raw().getPart("file").getInputStream()
-        try{
 
-           
+        try (InputStream is = request.raw().getPart("file").getInputStream()) {
             
-            String tramosDTO = new Gson().toJson(request.body());
+          Integer userId = Integer.parseInt(request.queryParams("cookie")) ;
 
-            System.out.println(tramosDTO);
-            
-            System.out.println("JEJEJEJJEJEJE");
-            InputStream is = request.raw().getInputStream();
-            System.out.println(is);   
-            //SessionCookie cookie = getSessionCookie(request.cookie(TOKEN_COOKIE_NAME));
-            
-            //Organizacion org = this.service.getByUser(cookie.getUser().getId());
-            
-            //MetricsImporterService metricsService = new MetricsImporterService(org);
+          System.out.println("HOLAAAA1");
 
-            //List<MetricaOrganizacion> metricas = metricsService.importExcel(is);
-            
-           // metricsService.saveAll(metricas,org.getId());
+          Organizacion organizacion = new Organizacion();
+          
+          organizacion = this.service.getByUser(userId);
 
-           return json(goodAnswer());
-              
-        } 
-        catch(Exception ex) {
-            System.out.println("Error controller excel");
+          System.out.println("HOLAAAA2");
+            
+          MetricsImporterService metricsService = new MetricsImporterService(organizacion);
+
+          System.out.println("HOLAAAA3");
+
+          List<MetricaOrganizacion> metricas = new ArrayList();
+
+          metricas = metricsService.importExcel(is);
+
+          
+
+          System.out.println("HOLAAAA4");
+          System.out.println(organizacion.getId());
+          System.out.println(metricas.get(0).getOrganizacion().getId());
+            
+          //metricsService.updateAll(metricas,organizacion.getId());
+
+          System.out.println("HOLAAAA5");
+
+          return json(goodAnswer());
         }
-
-        return null;
+        catch (Exception ex) {
+            System.out.println("Error en el controlador del excel en Spark");
+        }
+        return json(goodAnswer());
     }
 }
-

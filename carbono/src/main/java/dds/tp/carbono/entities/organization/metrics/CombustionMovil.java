@@ -11,14 +11,10 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(name="actividadId")
 public class CombustionMovil extends Actividad {
     
-    
     @Embedded
     @Setter @Getter public Consumo consumo;
 
-
-    
     public CombustionMovil() {
-    
     }
     
     public CombustionMovil(Consumo consumo) {

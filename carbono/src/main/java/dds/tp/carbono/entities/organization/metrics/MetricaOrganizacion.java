@@ -1,6 +1,7 @@
 package dds.tp.carbono.entities.organization.metrics;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,13 +24,13 @@ public class MetricaOrganizacion {
     @GeneratedValue
     @Getter @Setter Integer id;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
     @Setter @Getter private Actividad actividad;
     
     @Embedded
     @Setter @Getter private PeriodoDeImputacion periodoDeImputacion;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
     @Setter @Getter private Organizacion organizacion;
 

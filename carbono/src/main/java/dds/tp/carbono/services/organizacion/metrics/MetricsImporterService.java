@@ -1,6 +1,7 @@
 package dds.tp.carbono.services.organizacion.metrics;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import dds.tp.carbono.entities.organization.Organizacion;
@@ -25,23 +26,34 @@ public class MetricsImporterService {
         this.organizacion = org;
         this.repository = new OrganizacionRepository();
         this.importer = new ExcelImporter();
+        this.repositoryMetricas = new MetricaOrganizacionRepository();
     }
     
     public List<MetricaOrganizacion> importExcel(InputStream excelInputStream) throws InvalidFileException, Exception {
-        List<ImportableModel> importables = this.importer.importFrom(excelInputStream, ImportableModel.class);
-
+        System.out.println("Paso1");
+        List<ImportableModel> importables = new ArrayList<ImportableModel>();
+        importables = this.importer.importFrom(excelInputStream, ImportableModel.class);
+        System.out.println("Paso2");
         MetricaOrganizacionConverter converter = new MetricaOrganizacionConverter();
-        List<MetricaOrganizacion> metricas = converter.convertir(importables);
+        System.out.println("Paso3");
+        List<MetricaOrganizacion> metricas = new ArrayList<MetricaOrganizacion>();
+        System.out.println("Paso4");
+        System.out.println(importables.size());
+        metricas = converter.convertir(importables);
+        System.out.println("Paso10");
        
         this.repository.addMetrics(metricas, this.organizacion);
+
+        System.out.println("PASO20");
 
         return metricas;
     }
 
-    public void saveAll(List<MetricaOrganizacion> metricas, Integer id) {
-
-        this.repositoryMetricas.saveAll( metricas, id);
+    public void updateAll(List<MetricaOrganizacion> metricas, Integer id) {
+        System.out.println("En save all");
+        this.repositoryMetricas.updateAll( metricas, id);
     }
+
 
     //metood guardar metricas, llama al repository
 }
