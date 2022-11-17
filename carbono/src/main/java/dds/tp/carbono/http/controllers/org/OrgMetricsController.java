@@ -9,11 +9,14 @@ import java.util.List;
 
 import javax.servlet.MultipartConfigElement;
 
+import com.google.gson.Gson;
+
 import dds.tp.carbono.entities.auth.Rol;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
 import dds.tp.carbono.exception.InvalidFileException;
 import dds.tp.carbono.http.controllers.AuthorizationMiddleware;
+import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.SessionCookie;
 import dds.tp.carbono.http.utils.Uri;
@@ -23,7 +26,7 @@ import spark.Request;
 import spark.Response;
 import spark.Spark;
 
-public class OrgMetricsController extends AuthorizationMiddleware {
+public class OrgMetricsController extends Controller {
     
     //private static final String VIEW = "org/import.metrics.html";
     private static final String ACCESS_TYPE = "multipart/form-data";
@@ -31,10 +34,10 @@ public class OrgMetricsController extends AuthorizationMiddleware {
    
     private OrganizacionService service;
 
-    public OrgMetricsController() { 
-        super(Rol.ORGANIZACION); 
-        this.service = new OrganizacionService();
-    }
+    //public OrgMetricsController() { 
+       // super(Rol.ORGANIZACION); 
+        //this.service = new OrganizacionService();
+    //}
 
     @Override
     public void routes( ) {
@@ -43,29 +46,34 @@ public class OrgMetricsController extends AuthorizationMiddleware {
     }
 
     private String uploadFile(Request request, Response rs) throws HttpException {
-
         request.attribute(MULTIPART_DRIVER, new MultipartConfigElement("/temp"));
-        
-        try (InputStream is = request.raw().getPart("file").getInputStream()) {
-            
-            
+        System.out.println("JAJAJAJJAJAJAJAJAJAJAJJABUENAS");
+        //InputStream is = request.raw().getPart("file").getInputStream()
+        try{
 
-            SessionCookie cookie = getSessionCookie(request.cookie(TOKEN_COOKIE_NAME));
+           
             
-            Organizacion org = this.service.getByUser(cookie.getUser().getId());
-            
-            MetricsImporterService metricsService = new MetricsImporterService(org);
+            String tramosDTO = new Gson().toJson(request.body());
 
-            List<MetricaOrganizacion> metricas = metricsService.importExcel(is);
+            System.out.println(tramosDTO);
             
-            metricsService.saveAll(metricas,org.getId());
+            System.out.println("JEJEJEJJEJEJE");
+            InputStream is = request.raw().getInputStream();
+            System.out.println(is);   
+            //SessionCookie cookie = getSessionCookie(request.cookie(TOKEN_COOKIE_NAME));
+            
+            //Organizacion org = this.service.getByUser(cookie.getUser().getId());
+            
+            //MetricsImporterService metricsService = new MetricsImporterService(org);
 
-           return json(cookie);
+            //List<MetricaOrganizacion> metricas = metricsService.importExcel(is);
+            
+           // metricsService.saveAll(metricas,org.getId());
+
+           return json(goodAnswer());
               
         } 
-        catch (InvalidFileException invalidEx) {
-            System.out.println("Error controller excel");
-        } catch (Exception ex) {
+        catch(Exception ex) {
             System.out.println("Error controller excel");
         }
 

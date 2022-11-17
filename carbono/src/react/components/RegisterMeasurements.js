@@ -48,9 +48,18 @@ export const RegisterMeasurements = () => {
 
     //ACA TE ENVIO EL EXCEL, No estoy mandando ni el user ID ni el rol, avisenme si lo necesitamos
     promise.then((d) => {
-      console.log("EXCEL DATOS", d);
+      const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
+      let user = JSON.parse(isUserLogg);
+      let fieldAndUser = [
+        {
+          user: user,
+          excel: d
+        }
+      ]
+      d.push(user)
+      console.log("EXCEL DATOS", fieldAndUser);
       axios
-        .get("http://localhost:8080/EXCEL", JSON.stringify(d))
+        .post("http://localhost:8080/metrics", JSON.stringify(fieldAndUser))
         .then(({ data }) => {
           console.log("funcionaron la subida del excel ", data);
         })

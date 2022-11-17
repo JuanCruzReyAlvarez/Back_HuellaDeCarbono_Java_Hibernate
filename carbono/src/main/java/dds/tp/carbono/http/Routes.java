@@ -38,6 +38,7 @@ public class Routes {
         define(Uri.CREATE_REQUEST,"/createRequest"),
         define(Uri.LINEAS,"/lineas"),
         define(Uri.LOGEXIST,"/logExist"),
+        define(Uri.ORG_METRICS, "/metrics"),
         
         
         
@@ -62,7 +63,7 @@ public class Routes {
     
 
 
-        //define(Uri.ORG_METRICS, "/metrics")),
+   
         //define(Uri.AGENTE_SECTORIAL_HUELLA, "/huella")));
         
   
