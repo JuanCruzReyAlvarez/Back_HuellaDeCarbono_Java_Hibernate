@@ -27,4 +27,11 @@ public class PuntoGeograficoRepository {
         this.dao.save(puntoGeografico);
      }
 
+    public boolean ExistePuntoEnBase(PuntoGeografico puntoGeografico){
+        return this.dao.getAll().stream().anyMatch(servicio -> servicio.getAltura().equals(puntoGeografico.getAltura())
+                                                            && servicio.getCalle().equals(puntoGeografico.getCalle())
+                                                            && servicio.getLocaldiad().getId().equals(puntoGeografico.getLocaldiad().getId()) );
+    }
+    
+
 }

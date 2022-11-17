@@ -45,10 +45,10 @@ public class TrayectoPendiente {
 
         return this.miembrosPendientes.size();
     }
-
+/* 
     public void agregarMiemrbo (Miembro x) {
         this.miembrosPendientes.add(x);
         x.setTrayecto_pendiente(this);
         }
-        
+ */       
 }

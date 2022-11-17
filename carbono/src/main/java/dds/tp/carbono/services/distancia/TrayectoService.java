@@ -25,6 +25,8 @@ import dds.tp.carbono.http.controllers.member.trayectos.TramoDTO;
 import dds.tp.carbono.repository.PuntoGeografico.PuntoGeograficoRepository;
 //import dds.tp.carbono.repository.PuntoGeografico.PuntoGeograficoRepository;
 import dds.tp.carbono.repository.admin.LineaRepository;
+import dds.tp.carbono.repository.admin.ServicioContratadoRepository;
+import dds.tp.carbono.repository.admin.TransporteParticularRepository;
 import dds.tp.carbono.services.distancia.TrayectoService;
 
 public class TrayectoService {
@@ -32,24 +34,21 @@ public class TrayectoService {
     private TrayectoRepository repository;
     private MiembroRepository miembroRepository;
     private PuntoGeograficoRepository puntoGeograficoRepository;
+    //private TramoRepository tramoRepository;
 
 
     public TrayectoService() {
         this.repository = new TrayectoRepository();
         this.miembroRepository = new MiembroRepository();
         this.puntoGeograficoRepository = new PuntoGeograficoRepository();
+        //this.tramoRepository = new TramoRepository();
     }
 
     public void crear(Trayecto trayecto)  {
-           
-           //puntoGeograficoRepository.saveOne(trayecto.getPuntoLlegada());
-           //puntoGeograficoRepository.saveOne(trayecto.getPuntoPartida());
-           this.procesarTransporte(trayecto);
-           
            repository.guardar(trayecto);
     }
 
-    public Tramo setPuntosLlegadasTramo( TramoDTO tramoDTO ){
+    public Tramo setPuntosLlegadasTramo( TramoDTO tramoDTO, Tramo tramo ){
 
         PuntoGeografico inicio = new PuntoGeografico(tramoDTO.getAlturaInicial()
                                     ,tramoDTO.getCalleInicial()
@@ -60,9 +59,11 @@ public class TrayectoService {
                                     ,Integer.parseInt(tramoDTO.getLocalidadFinal())); 
 
 
-        Tramo tramo = new Tramo();
+        
         tramo.setPuntoA(inicio);
         tramo.setPuntoB(finall);
+
+        //this.procesarPuntosGeograficos(inicio,finall);
 
         return tramo;
     }
@@ -86,7 +87,7 @@ public class TrayectoService {
                 medioContratado.setTipo(tipoServicioContratado);
                 medioContratado.setCombustible(TipoDeConsumo.getByDTO(tramoDTO.getTipo_combustible_Servicio_Contratado()));
                 tramo.setTransporte(medioContratado);
-                
+                this.procesarTransporteContratado(medioContratado);
                 return tramo;
             case "Transporte_Publico": 
                 System.out.println("Entre Atransporte publico");
@@ -105,9 +106,15 @@ public class TrayectoService {
                 tramo.setTransporte(transportePublico);
                 return tramo;
             case "Vehiculo_Particular": 
-                VehiculoParticular vehiculoParticular = new VehiculoParticular(TipoVehiculoParticular.getByDTO(tramoDTO.getTipo_Vehiculo_Particular())
-                                                                             ,TipoDeConsumo.getByDTO(tramoDTO.getTipo_combustible_Vehiculo_Particular()));
-                tramo.setTransporte(vehiculoParticular);
+                VehiculoParticular vehiculoParticular = new VehiculoParticular();
+                TransporteParticularRepository transporteParticularRepository = new TransporteParticularRepository();
+
+                vehiculoParticular = transporteParticularRepository.getByTipoYCombustible(TipoDeConsumo.getByDTO(tramoDTO.getTipo_combustible_Vehiculo_Particular()),
+                                                                     TipoVehiculoParticular.getByDTO(tramoDTO.getTipo_Vehiculo_Particular()));
+                System.out.println("BEUNBANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                System.out.println(vehiculoParticular.getTipo().toString());
+                System.out.println(vehiculoParticular.getId());
+                tramo.setTransporte(vehiculoParticular);                                                             
                 return tramo;
             default: System.out.println("Medio De Transporte Desconocido");
         }
@@ -117,7 +124,11 @@ public class TrayectoService {
     }
 
         public Tramo setAcompaniantes(Tramo tramo, TramoDTO tramoDTO){
-           List<AcompanianteDTO> acompaniantes = new ArrayList<AcompanianteDTO>();
+
+            List<AcompanianteDTO> acompaniantes = new ArrayList<AcompanianteDTO>();
+            acompaniantes = tramoDTO.getAcompaniante();
+            System.out.println(acompaniantes != null);
+           if( acompaniantes != null){
            List<Miembro> miembros = new ArrayList<Miembro>(); 
            acompaniantes = tramoDTO.getAcompaniante();
 
@@ -128,7 +139,7 @@ public class TrayectoService {
             }
 
             tramo.setCompartidos(miembros);
-
+        }
             return tramo;
                  
         }
@@ -148,10 +159,43 @@ public class TrayectoService {
             
         }  
 
-        public void procesarTransporte (Trayecto trayecto){
+        public void procesarTransporteContratado (ServicioContratado medioDeTransporte){
 
-
-
+            ServicioContratadoRepository tipoServicioContratadoRepository = new ServicioContratadoRepository();
+            if(tipoServicioContratadoRepository.existeEmpresaConEsteCombustible(medioDeTransporte.getTipo().getNombre()
+                                                                                ,medioDeTransporte.getCombustible()))
+            {
+                    tipoServicioContratadoRepository.guardar(medioDeTransporte);
+            }
         }
+
+        public void procesarPuntosGeograficos (PuntoGeografico punto1,PuntoGeografico punto2){
+           if(puntoGeograficoRepository.ExistePuntoEnBase(punto1)){}else{
+            puntoGeograficoRepository.saveOne(punto1);
+           }
+           if(puntoGeograficoRepository.ExistePuntoEnBase(punto2)){}else{
+            puntoGeograficoRepository.saveOne(punto2);
+           }
+        }
+
+        /* 
+        public void setTramosCompartidos(Tramo tramo){
+
+            
+            if(tramo.getCompartidos().size()>0){
+            TrayectoPendienteRepository trayectoPendienteRepository = new TrayectoPendienteRepository();
+            TrayectoPendiente trayectoPendiente = new TrayectoPendiente();
+
+            List<Miembro> listaMiembros = new ArrayList<Miembro>();
+            listaMiembros = tramo.getCompartidos();
+            trayectoPendiente.setMiembrosPendientes(listaMiembros);
+
+            trayectoPendiente.setTramoCompartido(tramo);
+            trayectoPendienteRepository.guardar(trayectoPendiente);
+            }
+        }
+        */
+
+
     
 }

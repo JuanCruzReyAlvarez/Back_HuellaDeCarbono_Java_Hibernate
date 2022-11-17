@@ -3,6 +3,7 @@ package dds.tp.carbono.entities.member;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,13 +28,13 @@ public class Tramo {
     @GeneratedValue
     @Getter @Setter private Integer id;
 
-    @OneToOne( fetch = FetchType.EAGER)
+    @OneToOne( cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
     @Getter @Setter private PuntoGeografico puntoA;
     
-    @OneToOne( fetch = FetchType.EAGER)
+    @OneToOne( cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
     @Getter @Setter private PuntoGeografico puntoB;
 
-    @OneToOne( fetch = FetchType.EAGER)
+    @OneToOne( cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
     @Getter @Setter private MedioDeTransporte transporte;
 
     @OneToMany

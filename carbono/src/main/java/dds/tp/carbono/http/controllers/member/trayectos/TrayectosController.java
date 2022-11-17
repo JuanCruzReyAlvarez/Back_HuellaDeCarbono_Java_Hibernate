@@ -57,19 +57,28 @@ public class TrayectosController extends Controller {
                 for(TramoDTO tramoDTO: tramosDTO){
                     Tramo tramo = new Tramo();
                     tramo = service.setTransporte(tramo,tramoDTO);
-                    tramo = service.setPuntosLlegadasTramo(tramoDTO);
+                    System.out.println("SETIE LOS TRANSPORTES");
+
+                    tramo = service.setPuntosLlegadasTramo(tramoDTO,tramo);
+                    System.out.println("SETIE LOS PUNTOS DE LLEGADA");
+
                     tramo = service.setAcompaniantes(tramo,tramoDTO);
+                    System.out.println("SETIEACOMPANIANTES");
+
+                    
+
 
                     tramos.add(tramo);
 
                     
                 }
+
                 trayecto.setTramos(tramos);
                 trayecto.setFecha(LocalDate.now());
                 trayecto = service.setInicioYFin(trayecto);
 
                 System.out.println("Acaaaa5555");
-                System.out.println(trayecto.getTramos().get(0).getCompartidos().get(0).getNombre());
+                //System.out.println(trayecto.getTramos().get(0).getCompartidos().get(0).getNombre());
 
 
                 service.crear(trayecto);

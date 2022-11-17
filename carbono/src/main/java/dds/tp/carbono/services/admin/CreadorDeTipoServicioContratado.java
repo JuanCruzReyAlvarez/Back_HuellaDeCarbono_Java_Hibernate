@@ -1,16 +1,17 @@
+/*
 package dds.tp.carbono.services.admin;
 
 import dds.tp.carbono.entities.transport.TipoServicioContratado;
-import dds.tp.carbono.repository.admin.TipoServicioContratadoRepository;
+import dds.tp.carbono.repository.admin.ServicioContratadoRepository;
 
 //Es un service no es de nuestro dominio, esta bien el acceso al repository.
 
 public class CreadorDeTipoServicioContratado {
     
-    private TipoServicioContratadoRepository repository;
+    private ServicioContratadoRepository repository;
 
     public CreadorDeTipoServicioContratado() {
-        this.repository = new TipoServicioContratadoRepository();
+        this.repository = new ServicioContratadoRepository();
     }
 
     public TipoServicioContratado crear(String nombre) throws Exception {
@@ -20,3 +21,4 @@ public class CreadorDeTipoServicioContratado {
         throw new Exception("Tipo de servicio contratado ya existe");
     }
 }
+ */

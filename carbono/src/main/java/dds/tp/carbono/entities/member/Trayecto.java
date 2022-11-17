@@ -30,16 +30,16 @@ public class Trayecto {
     @GeneratedValue
     @Getter @Setter private Integer id;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @Getter @Setter public PuntoGeografico puntoPartida;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @Getter @Setter public PuntoGeografico puntoLlegada;
 
     @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @Getter @Setter public List<Tramo> tramos;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "miembro_id", referencedColumnName = "id" )
     @Getter @Setter public Miembro miembro;
 
