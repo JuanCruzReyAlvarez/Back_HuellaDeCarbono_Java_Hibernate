@@ -32,7 +32,7 @@ export const Transporte_Publico = ({ handleChange, selectVehiculo }) => {
 
             <h2>LINEA</h2>
 
-            <select id="ElegirLineas" name="linea" onChange={selectVehiculo}>
+            <select id="ElegirLineas" name="idLinea" onChange={selectVehiculo}>
                 {
                     lineas.length ? (
                         lineas.map((item, i) => {
@@ -48,7 +48,7 @@ export const Transporte_Publico = ({ handleChange, selectVehiculo }) => {
 
             <select
                 id="Tipo"
-                name="tipo_combustible_Vehiculo_Particular"
+                name="tipo_combustible_Transporte_Publico"
                 onChange={selectVehiculo}
             >
                 <option value="">Seleccionar</option>

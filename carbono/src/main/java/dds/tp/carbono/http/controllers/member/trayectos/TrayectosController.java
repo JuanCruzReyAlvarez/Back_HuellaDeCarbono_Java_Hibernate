@@ -65,12 +65,8 @@ public class TrayectosController extends Controller {
                     tramo = service.setAcompaniantes(tramo,tramoDTO);
                     System.out.println("SETIEACOMPANIANTES");
 
-                    
-
-
                     tramos.add(tramo);
-
-                    
+            
                 }
 
                 trayecto.setTramos(tramos);

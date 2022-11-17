@@ -4,10 +4,8 @@ package dds.tp.carbono.services.distancia;
 import dds.tp.carbono.entities.member.Trayecto;
 import dds.tp.carbono.repository.member.MiembroRepository;
 import dds.tp.carbono.repository.member.TrayectoRepository;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.member.Tramo;
 import dds.tp.carbono.entities.organization.metrics.TipoDeConsumo;
@@ -78,8 +76,8 @@ public class TrayectoService {
                 MedioNoMotorizado medioNoMotorizado = new MedioNoMotorizado();
                 medioNoMotorizado.setTipoMedioNoMotorizadoByString(tramoDTO.getTipo_de_No_Motorizado());
                 tramo.setTransporte(medioNoMotorizado);
-                
                 return tramo; 
+
             case "Servicio_Contratado": 
                 ServicioContratado medioContratado = new ServicioContratado();
                 TipoServicioContratado tipoServicioContratado = new TipoServicioContratado(
@@ -89,22 +87,19 @@ public class TrayectoService {
                 tramo.setTransporte(medioContratado);
                 this.procesarTransporteContratado(medioContratado);
                 return tramo;
+
             case "Transporte_Publico": 
                 System.out.println("Entre Atransporte publico");
                 TransportePublico transportePublico = new TransportePublico(TipoTransportePublico.getByDTO(tramoDTO.getTipo_transporte_publico())
                                                                            ,TipoDeConsumo.getByDTO(tramoDTO.getTipo_combustible_Transporte_Publico()));
                 
-                System.out.println(111111111);
                 LineaRepository lineaRepository = new LineaRepository();
-                System.out.println(111111111);
                 Linea linea = new Linea();
-                System.out.println(111111111);
                 linea = lineaRepository.getById(Integer.parseInt(tramoDTO.getIdLinea()));
-                System.out.println(111111111);
                 transportePublico.setLinea(linea); 
-                System.out.println(111111111);
                 tramo.setTransporte(transportePublico);
                 return tramo;
+
             case "Vehiculo_Particular": 
                 VehiculoParticular vehiculoParticular = new VehiculoParticular();
                 TransporteParticularRepository transporteParticularRepository = new TransporteParticularRepository();
@@ -114,7 +109,8 @@ public class TrayectoService {
                 System.out.println("BEUNBANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                 System.out.println(vehiculoParticular.getTipo().toString());
                 System.out.println(vehiculoParticular.getId());
-                tramo.setTransporte(vehiculoParticular);                                                             
+                tramo.setTransporte(vehiculoParticular);  
+                                                                           
                 return tramo;
             default: System.out.println("Medio De Transporte Desconocido");
         }
