@@ -1,16 +1,8 @@
-
-
 package dds.tp.carbono.http.controllers.org;
-
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-
-
 import javax.servlet.MultipartConfigElement;
-
-import dds.tp.carbono.entities.auth.Rol;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.entities.organization.metrics.MetricaOrganizacion;
 import dds.tp.carbono.http.controllers.Controller;
@@ -24,14 +16,12 @@ import spark.Spark;
 
 public class OrgMetricsController extends Controller {
     
-    //private static final String VIEW = "org/import.metrics.html";
+
     private static final String ACCESS_TYPE = "multipart/form-data";
     private static final String MULTIPART_DRIVER = "org.eclipse.jetty.multipartConfig";
-   
+    
     private OrganizacionService service;
-
     public OrgMetricsController() { 
-       //super(Rol.ORGANIZACION); 
        this.service = new OrganizacionService();
     }
 

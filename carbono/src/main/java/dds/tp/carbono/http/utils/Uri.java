@@ -36,5 +36,6 @@ public enum Uri {
     ADD_CONTACTS,
     TRAYECTOS_AUTOCOMPLETE,
     LINEAS,
-    LOGEXIST
+    LOGEXIST,
+    ORG_REPORT
 }

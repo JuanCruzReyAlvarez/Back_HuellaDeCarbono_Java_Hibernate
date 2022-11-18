@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class CalculatorDTO {
-
     @Getter @Setter private String calculoSolicitado;
     @Getter @Setter private String OrganizacionId;
     @Getter @Setter private String sectorTerritorialId;
@@ -14,7 +13,6 @@ public class CalculatorDTO {
     @Getter @Setter private String InicioPeriodo;
     @Getter @Setter private String FormaCalculo;
     @Getter @Setter private String idUserAgente;
-
 }
 
 

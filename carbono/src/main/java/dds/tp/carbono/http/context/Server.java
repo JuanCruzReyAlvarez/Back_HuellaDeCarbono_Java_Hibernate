@@ -28,10 +28,12 @@ import dds.tp.carbono.services.huella.CalculatorService;
 import dds.tp.carbono.services.organizacion.ContactsService;
 import dds.tp.carbono.services.organizacion.OrganizacionService;
 import dds.tp.carbono.services.organizacion.SectorService;
+import dds.tp.carbono.services.reportes.ServicioReportes;
 import dds.tp.carbono.services.transport.LineaService;
 import dds.tp.carbono.services.auth.LoginService;
 import dds.tp.carbono.services.auth.RegisterService;
 import dds.tp.carbono.http.controllers.puntoGeografico.ProvinciaController;
+import dds.tp.carbono.http.controllers.reportes.ReportesController;
 import dds.tp.carbono.http.controllers.transports.LineaController;
 import dds.tp.carbono.http.controllers.puntoGeografico.LocalidadController;
 import dds.tp.carbono.http.controllers.puntoGeografico.MunicipioController;
@@ -81,11 +83,12 @@ public class Server implements SparkApplication {
             new TrayectosController(new TrayectoService(), new MiembroService()),
             new MiembroController (new MiembroService(), new SectorService()),
             new ContactsController(new ContactsService()),
-            new CalculatorController(new CalculatorService(),new OrganizacionService(),new MiembroService(), new SectorService()),
+            new CalculatorController(new CalculatorService(),new OrganizacionService(),new MiembroService(), new SectorService(), new ServicioReportes()),
             new RequestController(new RequestService()),
             new LineaController( new LineaService()),
             new LogExistController(new LogExistService()),
-            new OrgMetricsController()
+            new OrgMetricsController(),
+            new ReportesController(new ServicioReportes())
         };
     }
 }

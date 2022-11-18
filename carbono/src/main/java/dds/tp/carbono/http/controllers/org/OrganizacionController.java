@@ -71,7 +71,7 @@ public class OrganizacionController extends Controller{
                 {
 
                 Miembro r = new Miembro();
-                OrgDTO sDTO = new OrgDTO();
+                OrgDTO sDTO= new OrgDTO();
                 SectorRepository repo = new SectorRepository();
 
                 List<Miembro> miembros =  ms.getAll(); 

@@ -39,6 +39,8 @@ public class Routes {
         define(Uri.LINEAS,"/lineas"),
         define(Uri.LOGEXIST,"/logExist"),
         define(Uri.ORG_METRICS, "/metrics"),
+        define(Uri.ORG_REPORT, "/getReport"),
+
         
         
         

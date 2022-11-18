@@ -13,6 +13,7 @@ import dds.tp.carbono.services.MiembroService;
 import dds.tp.carbono.services.huella.CalculatorService;
 import dds.tp.carbono.services.organizacion.OrganizacionService;
 import dds.tp.carbono.services.organizacion.SectorService;
+import dds.tp.carbono.services.reportes.ServicioReportes;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
@@ -25,12 +26,19 @@ public class CalculatorController extends Controller {
     OrganizacionService organizacionService; 
     MiembroService miembrosService;
     SectorService sectorService;
+    ServicioReportes serviceReport;
+
     
-    public CalculatorController ( CalculatorService service, OrganizacionService organizacionService, MiembroService miembrosService,   SectorService sectorService){
+    public CalculatorController ( CalculatorService service
+                                , OrganizacionService organizacionService
+                                , MiembroService miembrosService
+                                , SectorService sectorService
+                                , ServicioReportes serviceReport){
         this.service = service;
         this.organizacionService = organizacionService;
         this.miembrosService = miembrosService;
         this.sectorService = sectorService;
+        this.serviceReport = serviceReport;
         
     }
 
@@ -62,9 +70,11 @@ public class CalculatorController extends Controller {
             
             case "ORGANIZACION":               
                 hc = service.calculateOrg(input);
+                serviceReport.saveToReportOrganizacion(hc,Integer.parseInt(input.getOrganizacionId()));
             break;
             case "MIEMBRO":
                 hc = service.calculateMiembro(input);
+                serviceReport.saveToReportMiembro(hc,Integer.parseInt(input.getMiembroId()));
                 break;
             case "SECTOR":
             hc = service.calculateSector(input);
@@ -75,6 +85,7 @@ public class CalculatorController extends Controller {
                 break;
         
         }
+
         System.out.println("RESULTADO");
         DTO.setUnidad(String.valueOf(hc.getUnidad().nombre()));
         DTO.setValor(String.valueOf(hc.getValor()));
