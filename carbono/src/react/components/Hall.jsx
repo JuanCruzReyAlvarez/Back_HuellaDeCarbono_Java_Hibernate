@@ -117,14 +117,14 @@ export const Hall = () => {
         e.preventDefault();
         let provinciaID = e.target.value
         if (hallAgentes === "P") {
-            setEleccion({ ...eleccion, idProvincia: provinciaID, flagSector: "P"  })
-            
+            setEleccion({ ...eleccion, idProvincia: provinciaID, flagSector: "P" })
+
             return
         }
         if (!provinciaID) return
         console.log("Provincia Id", provinciaID)
         setLocalidades([])
-        setEleccion({ ...eleccion, idProvincia: provinciaID,flagSector: "P"   })
+        setEleccion({ ...eleccion, idProvincia: provinciaID, flagSector: "P" })
         axios.post("http://localhost:8080/municipio", JSON.stringify({ id: provinciaID })).then(({ data }) => {
             console.log("Municipios traidos de la base: ", data)
             data.unshift({ id: "", name: "Seleccionar" })
@@ -139,10 +139,10 @@ export const Hall = () => {
         let idMunicipio = e.target.value
         if (!idMunicipio) return
         if (usuario.rol === "AGENTE_SECTORIAL") {
-            setEleccion({ ...eleccion, idMunicipio: idMunicipio,  flagSector: "M"  });
+            setEleccion({ ...eleccion, idMunicipio: idMunicipio, flagSector: "M" });
             return
         }
-        setEleccion({ ...eleccion, idMunicipio: idMunicipio,  flagSector: "M"  });
+        setEleccion({ ...eleccion, idMunicipio: idMunicipio, flagSector: "M" });
         axios.post("http://localhost:8080/localidad", JSON.stringify({ id: idMunicipio })).then(({ data }) => {
             console.log("Localidades traidas de la base: ", data)
             data.unshift({ id: "", name: "Seleccionar" })
@@ -234,6 +234,13 @@ export const Hall = () => {
     // -------------------Agente_sectorial----------------------------
 
     const selectType = (e) => {
+        window.localStorage.setItem(
+            "tipoAgente",
+            JSON.stringify({
+                tipoAgente: e.target.value
+            })
+        )
+
         setHallAgentes(e.target.value)
     }
 

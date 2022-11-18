@@ -7,7 +7,7 @@ import { LineChart } from "./chart/LineChart"
 import { Line } from "react-chartjs-2";
 
 export const Report = () => {
-  
+
 
     const [report, setReportes] = useState("");
     const [eleccion, setEleccion] = useState({});
@@ -62,13 +62,33 @@ export const Report = () => {
         const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
         if (isUserLogg) {
             let user = JSON.parse(isUserLogg)
-          
-            setEleccion({
-                rol: user.rol,
-                userId: user.id
-            })
 
+            if (user.rol === "AGENTE_SECTORIAL" && window.localStorage.getItem("tipoAgente")) {
+                let {tipoAgente} = JSON.parse(window.localStorage.getItem("tipoAgente"))
+                let newAgente;
+                    if(tipoAgente === "P") {
+                        newAgente = "PROVINCIAL"
+
+                    } else {
+                        newAgente = "MUNICIPAL"
+                    }
+
+
+                setEleccion({
+                    rol: user.rol,
+                    userId: user.id,
+                    tipoAgente: newAgente
+                })
+
+            } else {
+                setEleccion({
+                    rol: user.rol,
+                    userId: user.id
+                })
+            }
         }
+
+
     }, []);
 
     const selectType = ({ target, }) => {
@@ -90,7 +110,7 @@ export const Report = () => {
                     borderColor: "red",
                     scaleFontColor: "#FFFFFF",
                 }]
-                
+
             })
         }).catch(error => {
             console.log("Error con los reportes", error)
@@ -111,7 +131,7 @@ export const Report = () => {
                     <div class="module">
 
                         {/* ------------Rol organizacion------------- */}
-                        
+
                         <h1 className="tituloReportes">REPORTES</h1>
 
                         <form
@@ -126,7 +146,7 @@ export const Report = () => {
                             <div class="chartss">
                                 <BarChart chartData={report} />
                             </div>
-                     
+
 
                             <div class="chartss">
                                 <LineChart lineChart={report} />
@@ -177,13 +197,13 @@ export const Report = () => {
                             <label for="start">Fecha Inicio:</label>
                             <div class="clasefechita">
                                 <input type="date" id="start" name="trip-start"
-                                   
+
                                     min="2022-01-01" max="2030-12-31"></input>
                             </div>
                             <label for="finish">Fecha Final:</label>
                             <div class="clasefechita">
                                 <input type="date" id="start" name="trip-start"
-                                 
+
                                     min="2022-01-01" max="2030-12-31"></input>
                             </div>
                             {/* 
