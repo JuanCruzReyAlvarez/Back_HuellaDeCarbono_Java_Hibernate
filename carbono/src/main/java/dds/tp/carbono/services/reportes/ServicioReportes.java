@@ -2,11 +2,9 @@ package dds.tp.carbono.services.reportes;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import dds.tp.carbono.entities.huella.HuellaCarbono;
+import dds.tp.carbono.http.dto.org.HuellaReporteDTO;
 import dds.tp.carbono.http.dto.org.ReportDTO;
 import dds.tp.carbono.repository.member.ReportMiembroRepository;
 import dds.tp.carbono.repository.organization.ReportOrganizacionRepository;
@@ -39,27 +37,33 @@ public class ServicioReportes {
     }
 
     public ReportDTO getReportOrganizacion(Integer id,ReportDTO report ){
-        Map<String, Double> map = new HashMap<String, Double>();
+        List<HuellaReporteDTO> listaDeReportes = new ArrayList<HuellaReporteDTO>();
         List<ReportOrganizacion>reportesOrganizacion = new ArrayList<ReportOrganizacion>();
          ;
         reportesOrganizacion = repositoryOrganizacion.getAllReportesByIdOrganizacion(id);
 
         for (ReportOrganizacion reporte : reportesOrganizacion){
-            map.put(reporte.getFechaGeneracion().toString(), reporte.getHuellaCarbono());
+            HuellaReporteDTO valorHuella = new HuellaReporteDTO();
+            valorHuella.setFecha(reporte.getFechaGeneracion().toString());
+            valorHuella.setValor(Double.toString(reporte.getHuellaCarbono()));
+            listaDeReportes.add(valorHuella);
         }
-        report.setReporte(map);
+        report.setReporte(listaDeReportes);
         return report;
     }
 
     public ReportDTO getReportMiembro(Integer id,ReportDTO report){
-        Map<String, Double> map = new HashMap<String, Double>();
+        List<HuellaReporteDTO> listaDeReportes = new ArrayList<HuellaReporteDTO>();
         List<ReportMiembro> reportesMiembros = new ArrayList<ReportMiembro>();
         reportesMiembros = repositoryMiembro.getAllReportesByIdMiembro(id);
 
         for (ReportMiembro reporte : reportesMiembros){
-            map.put(reporte.getFechaGeneracion().toString(), reporte.getHuellaCarbono());
+            HuellaReporteDTO valorHuella = new HuellaReporteDTO();
+            valorHuella.setFecha(reporte.getFechaGeneracion().toString());
+            valorHuella.setValor(Double.toString(reporte.getHuellaCarbono()));
+            listaDeReportes.add(valorHuella);
         }
-        report.setReporte(map);
+        report.setReporte(listaDeReportes);
         return report;
     }
 }

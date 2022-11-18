@@ -34,9 +34,10 @@ public class ContactsService {
     public Contacts buildContacto(String nombre, String email, String celular, String user) {
         
         Contacts contacto = new Contacts();
+        contacto.setName(nombre);
         contacto.setCelular(celular);
         contacto.setMail(email);
-        contacto.setName(celular);
+        
 
 
         return contacto;

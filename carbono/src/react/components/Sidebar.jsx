@@ -71,6 +71,7 @@ export const Sidebar = () => {
                                 <Link to="/report">
                                     <li>Reportes</li>
                                 </Link>
+                                
 
                                 <li id="calculadora">
                                     Calculadora HC

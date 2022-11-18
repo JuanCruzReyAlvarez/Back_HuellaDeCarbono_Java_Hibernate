@@ -1,10 +1,10 @@
 package dds.tp.carbono.http.dto.org;
 
-import java.util.Map;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
 
 public class ReportDTO {
-    @Getter @Setter Map<String, Double> reporte;
+    @Getter @Setter List<HuellaReporteDTO> reporte;
 }

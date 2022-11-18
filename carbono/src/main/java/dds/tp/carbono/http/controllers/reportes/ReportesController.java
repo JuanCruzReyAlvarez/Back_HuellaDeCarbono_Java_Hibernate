@@ -24,7 +24,8 @@ public class ReportesController extends Controller{
     
         @Override
         public void routes() {
-            Spark.get(path(Uri.ORG_REPORT), (rq, rs) -> this.orgReport(rq, rs));
+            System.out.println("Estoy mappeado");
+            Spark.post(path(Uri.ORG_REPORT), (rq, rs) -> this.orgReport(rq, rs));
         }
     
         private String orgReport(Request rq, Response rs) throws HttpException {
@@ -32,20 +33,22 @@ public class ReportesController extends Controller{
                     RequestReportDTO input = getBody(rq, RequestReportDTO.class,null); 
                     ReportDTO report = new ReportDTO();
 
+                    System.out.println("Entro");
 
-                    switch (input.getFlag()) {
-                        case "O": 
+
+                    switch (input.getRol()) {
+                        case "ORGANIZACION": 
                             OrganizacionRepository orgrep = new OrganizacionRepository();
                             Organizacion orgg = orgrep.getByUser(Integer.parseInt(input.getUserId()));
                             report = serviceReport.getReportOrganizacion(orgg.getId(),report);
                             break;
-                        case "M": 
+                        case "MIEMBRO": 
                             MiembroRepository miemrep = new MiembroRepository();
                             Miembro miemm = miemrep.getByUserId((Integer.parseInt(input.getUserId())));
                             report = serviceReport.getReportMiembro(miemm.getId(),report);
                             break;
                     }
-                   
+                    
                     return json(report);
                     
                    
