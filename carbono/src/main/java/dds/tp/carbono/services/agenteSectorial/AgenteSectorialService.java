@@ -26,6 +26,13 @@ public class AgenteSectorialService {
         return new CalculadorHuellaSectorTerritorial(sector, periodo).calcular();
     }
 
+    public SectorTerritorial getSectorById(Integer id){
+            return repo.getByIdUser(id);
+    }
+
+
+
+
     
 
 }

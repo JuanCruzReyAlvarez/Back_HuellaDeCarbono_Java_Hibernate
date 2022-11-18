@@ -1,5 +1,6 @@
 package dds.tp.carbono.http.controllers.reportes;
 
+import dds.tp.carbono.entities.agenteSectorial.SectorTerritorial;
 import dds.tp.carbono.entities.member.Miembro;
 import dds.tp.carbono.entities.organization.Organizacion;
 import dds.tp.carbono.http.controllers.Controller;
@@ -8,6 +9,7 @@ import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.Uri;
 import dds.tp.carbono.repository.member.MiembroRepository;
 import dds.tp.carbono.repository.organization.OrganizacionRepository;
+import dds.tp.carbono.services.agenteSectorial.AgenteSectorialService;
 import dds.tp.carbono.services.reportes.ServicioReportes;
 import dds.tp.carbono.http.dto.org.RequestReportDTO;
 import spark.Request;
@@ -46,6 +48,12 @@ public class ReportesController extends Controller{
                             Miembro miemm = miemrep.getByUserId((Integer.parseInt(input.getUserId())));
                             report = serviceReport.getReportMiembro(miemm.getId(),report);
                             break;
+                        case "AGENTE_SECTORIAL": 
+                            AgenteSectorialService agenteService = new AgenteSectorialService();
+                            SectorTerritorial sector =agenteService.getSectorById(Integer.parseInt(input.getUserId()));
+                            report = serviceReport.getReportAgenteSectorial(report,sector,input.getTipoAgente());
+                            break;
+                            
                     }
                     
                     return json(report);

@@ -4,6 +4,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -21,7 +22,7 @@ public class Localidad implements GeoInfo {
     @Getter @Setter private String nombre;
 
     //@ManyToOne( cascade = {CascadeType.ALL}, fetch = FetchType.EAGER )
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER )
     @Getter @Setter private Municipio municipio;
     
     

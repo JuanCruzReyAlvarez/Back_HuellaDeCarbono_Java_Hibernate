@@ -3,11 +3,17 @@ package dds.tp.carbono.services.reportes;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import dds.tp.carbono.entities.agenteSectorial.SectorMunicipal;
+import dds.tp.carbono.entities.agenteSectorial.SectorProvincial;
+import dds.tp.carbono.entities.agenteSectorial.SectorTerritorial;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.http.dto.org.HuellaReporteDTO;
 import dds.tp.carbono.http.dto.org.ReportDTO;
 import dds.tp.carbono.repository.member.ReportMiembroRepository;
 import dds.tp.carbono.repository.organization.ReportOrganizacionRepository;
+import dds.tp.carbono.services.external.dto.Municipio;
+import dds.tp.carbono.services.external.dto.Provincia;
 
 public class ServicioReportes {
     
@@ -39,7 +45,6 @@ public class ServicioReportes {
     public ReportDTO getReportOrganizacion(Integer id,ReportDTO report ){
         List<HuellaReporteDTO> listaDeReportes = new ArrayList<HuellaReporteDTO>();
         List<ReportOrganizacion>reportesOrganizacion = new ArrayList<ReportOrganizacion>();
-         ;
         reportesOrganizacion = repositoryOrganizacion.getAllReportesByIdOrganizacion(id);
 
         for (ReportOrganizacion reporte : reportesOrganizacion){
@@ -51,6 +56,7 @@ public class ServicioReportes {
         report.setReporte(listaDeReportes);
         return report;
     }
+
 
     public ReportDTO getReportMiembro(Integer id,ReportDTO report){
         List<HuellaReporteDTO> listaDeReportes = new ArrayList<HuellaReporteDTO>();
@@ -66,4 +72,43 @@ public class ServicioReportes {
         report.setReporte(listaDeReportes);
         return report;
     }
+
+
+    public ReportDTO getReportAgenteSectorial(ReportDTO report, SectorTerritorial sector, String tipoAgente){
+        ReportOrganizacionRepository repoorgrepository = new ReportOrganizacionRepository();
+        List<HuellaReporteDTO> listaDeReportes = new ArrayList<HuellaReporteDTO>();
+        List<ReportOrganizacion>reportesOrganizacion = new ArrayList<ReportOrganizacion>();
+        switch (tipoAgente) {
+            case "PROVINCIAL":
+                    SectorProvincial sectorProvincial = new SectorProvincial();
+                    Provincia provincia = sectorProvincial.getProvincia();
+                    reportesOrganizacion = repoorgrepository.getAllReportesByProvinciaOrganizacion(provincia.getNombre());
+
+                    for (ReportOrganizacion reporte : reportesOrganizacion){
+                        HuellaReporteDTO valorHuella = new HuellaReporteDTO();
+                        valorHuella.setFecha(reporte.getFechaGeneracion().toString());
+                        valorHuella.setValor(Double.toString(reporte.getHuellaCarbono()));
+                        listaDeReportes.add(valorHuella);
+                    }
+                    report.setReporte(listaDeReportes);
+                return report;
+            case "MUNICIPAL":
+                    SectorMunicipal sectorMunicipal = new SectorMunicipal();
+                    Municipio municipio = sectorMunicipal.getMunicipio();
+                    reportesOrganizacion = repoorgrepository.getAllReportesByMunicipioOrganizacion(municipio.getNombre());
+                    for (ReportOrganizacion reporte : reportesOrganizacion){
+                        HuellaReporteDTO valorHuella = new HuellaReporteDTO();
+                        valorHuella.setFecha(reporte.getFechaGeneracion().toString());
+                        valorHuella.setValor(Double.toString(reporte.getHuellaCarbono()));
+                        listaDeReportes.add(valorHuella);
+                    }
+                    report.setReporte(listaDeReportes);
+             
+                    return report;
+
+                
+        }
+        return null;
+    }
+
 }

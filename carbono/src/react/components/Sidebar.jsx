@@ -116,11 +116,15 @@ export const Sidebar = () => {
                     {usuario ? (
                         usuario.token && usuario.rol === "AGENTE_SECTORIAL" ? (
                             <>
-                                <Link to="/report">
-                                    <li>Reportes</li>
-                                </Link>
-                                {/* <Link to="/advices"><li>Recomendaciones</li></Link> */}
 
+                                {/* <Link to="/advices"><li>Recomendaciones</li></Link> */}
+                                <li></li>
+                                <Link to="/advices">
+                                    <li>Recomendaciones</li>
+                                 </Link>
+                                 <Link to="/report">
+                                     <li>Reportes</li>
+                                </Link>
                                 <li>
                                     Calculadora HC
                                     <ul
@@ -133,6 +137,7 @@ export const Sidebar = () => {
                                             </li>
                                         </Link>
                                     </ul>
+   
                                 </li>
                             </>
                         ) : (

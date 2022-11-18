@@ -96,6 +96,27 @@ public class OrganizacionRepository {
             .filter(org -> org.getRazonSocial().equals(razonSocial))
             .collect(Collectors.toList()).get(0);
     }
+    public List<Organizacion> getAllByProvincia(String NombreProvincia) {
+
+        return this.dao.getAll().stream()
+            .filter(org -> org.getUbicacion().getLocaldiad()
+                                              .getMunicipio()
+                                              .getProvincia()
+                                              .getNombre()
+                                              .equals(NombreProvincia))
+                                              .collect(Collectors.toList());
+            
+    }
+    public List<Organizacion> getAllByMunicipio(String NombreMunicipio) {
+
+        return this.dao.getAll().stream()
+            .filter(org -> org.getUbicacion().getLocaldiad()
+                                              .getMunicipio()
+                                              .getNombre()
+                                              .equals(NombreMunicipio))
+                                              .collect(Collectors.toList());
+            
+    }
 
     public Organizacion getById(Integer id) {
         return this.dao.findOne(id);

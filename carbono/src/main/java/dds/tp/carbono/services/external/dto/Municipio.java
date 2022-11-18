@@ -4,6 +4,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -19,8 +20,9 @@ public class Municipio implements GeoInfo {
     @Getter @Setter private Integer id;
     @Column
     @Getter @Setter private String nombre;
-    @ManyToOne
+
     //( cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @Getter @Setter private Provincia provincia;
     
     

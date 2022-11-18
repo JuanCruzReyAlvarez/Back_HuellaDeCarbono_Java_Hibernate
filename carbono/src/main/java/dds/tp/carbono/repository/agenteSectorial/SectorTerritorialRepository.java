@@ -51,6 +51,18 @@ public class SectorTerritorialRepository {
         return sector;
     }
 
+    public SectorTerritorial getByUsuarioId(Integer id) {
+
+        SectorTerritorial sector = this.sectorProvincialDao.getAll().stream()
+            .filter(x -> x.getUsuario().getId().equals(id)).findFirst().orElse(null);
+
+        if (sector == null)
+            sector = this.sectorMunicipalDao.getAll().stream()
+                .filter(x -> x.getUsuario().getId().equals(id)).findFirst().orElse(null);
+
+        return sector;
+    }
+
 
 
     public SectorTerritorial getById(int id) {
