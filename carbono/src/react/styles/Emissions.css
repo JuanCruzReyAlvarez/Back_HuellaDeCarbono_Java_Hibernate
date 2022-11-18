@@ -21,7 +21,7 @@
 
   .factoresDeEmisiontransporteclass{
     position:absolute;
-    top:75%;    
+    top:85%;    
     height:8%;
     width:600px;
     margin-left:250px;
@@ -34,7 +34,7 @@
   }
   .factoresDeEmisionclass{
       position:absolute;
-      top:50%;    
+      top:65%;    
       height:8%;
       width:600px;
       margin-left:250px;
@@ -101,7 +101,7 @@
 
   .botonBaseDeDatosTransporte{
     position:absolute;
-    top:50%;    
+    top:48%;    
     height:100%;
     width: 80%; 
     height: 100%;
@@ -110,8 +110,7 @@
 
   .botonBaseDeDatos{
     position:absolute;
-    top:20%;    
-    height:100%;
+    top:30%;    
     width: 80%; 
     height: 100%;
     text-align: right;

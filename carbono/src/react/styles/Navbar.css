@@ -40,7 +40,10 @@ nav {
 }
 
 .nav_ ul li {
-    margin-right: 15px;
+    margin-right: 15px;;
+    height: 30px;
+
+    
 
 }
 

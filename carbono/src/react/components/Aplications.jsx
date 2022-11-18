@@ -33,7 +33,7 @@ export const Aplications = () => {
 
         }
     }, []);
-  
+
     const selectorDeOrganizacion = (e) => {
         e.preventDefault();
         let organizacionID = e.target.value
@@ -77,9 +77,32 @@ export const Aplications = () => {
         axios.post("http://localhost:8080/createRequest", JSON.stringify(eleccion)).then((data) => { //mando este usuario creado a ese esa url mediando un post obviamente (a mi back), lo mando en tipo json, (por eso json.usuario), (acordarce que este usuario es lo que comenzo como un estado local vacio y se fue haciendo en los inputs y las funciones), y acordarce juan que con el .then estoy haciendo una promesa, es decir hay algo que me va a devolver mi back luego de que yo le mande el usuario y lo tengo que atajar. Si sale todo bien me cae en el then.Esto quiere decir que va a estar en mi data lo que me haya mandado mi back. Acordarce que data es una palabra reservada que puse yo y que va a lamacenar cualquier cosa que yo le mand edel back.
             //. Si hay problema me va al catch.ya sea problemas de comunicacion de servidor del cliente o nuestro. O tambien puede pasar que no cumpla logica necesaria como que la contraseña no sea correcta, enotnces esto se mando el usuario en json JSON.stringify(usuario)) , ahi se ejecuta un wait() hasta que el back procesa y manda un signal() para que se termine de ejecutar la promesa en el then(), si todo bien too ok, sino cumplio logica como deciamos mi back catghea ese error y le dispara el error a este servidor.
             console.log("funciono el createRequest", data)
+            clearInputs()
         }).catch(error => {
             console.log("No funciono el createRequest", error)
         })
+    }
+
+
+    const clearInputs = () => {
+        if (document.getElementById("lapellido"))
+            document.getElementById("lapellido").value = "";
+        if (document.getElementById("lname"))
+            document.getElementById("lname").value = "";
+        //selects
+        if (
+            document.getElementById("ElegirOrganizacion")
+        ) {
+            document.getElementById("ElegirOrganizacion").value = "";
+            document.getElementById("ElegirOrganizacion").name = "Seleccionar";
+        }
+        if (
+            document.getElementById("ElegirSector")
+        ) {
+            document.getElementById("ElegirSector").value = "";
+            document.getElementById("ElegirSector").name = "Seleccionar";
+            setSectores([]);
+        }
     }
 
     return (
@@ -134,22 +157,12 @@ export const Aplications = () => {
 
 
                         <div className="form-form-2">
-                            <input type="text" id="lname" name="apellido" placeholder="Apellido" onChange={handleChange} />
+                            <input type="text" id="lapellido" name="apellido" placeholder="Apellido" onChange={handleChange} />
                         </div>
                         <div className="form-form-2">
                             <input type="text" id="lname" name="name" placeholder="Nombre" onChange={handleChange} />
                         </div>
                         <div className="form-form-3">
-                            {/* <div className="form-form-3-1">
-                                <select name="DocType" id="">
-                                    <option value="DNI">DNI</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>
-                            </div> */}
-                            {/* <div className="form-form-3-2">
-                                <input type="text" placeholder="Número" />
-                            </div> */}
                         </div>
 
                         <div className="form-form-4" onClick={onSubmit}>

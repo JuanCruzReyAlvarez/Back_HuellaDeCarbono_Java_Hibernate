@@ -26,32 +26,46 @@ export const Emissions = () => {
     };
 
 
-//JSON mandado asi:
-/* {
-"tipo_de_consumo" : "",
-"tipo_de_actividad":"",
-"valor":"",
-"unidad":"",
-} */
+    //JSON mandado asi:
+    /* {
+    "tipo_de_consumo" : "",
+    "tipo_de_actividad":"",
+    "valor":"",
+    "unidad":"",
+    } */
 
     const onSubmit = () => {
-        axios.post("http://localhost:8080/emissions", JSON.stringify( form )).then(({ data }) => {
+        axios.post("http://localhost:8080/emissions", JSON.stringify(form)).then(({ data }) => {
             console.log("Form mandado correctamente ", data)
+            clearInputs()
         }).catch(error => {
+            clearInputs()
             console.log("Error al cargar el form", error)
         })
     }
 
     const onSubmitBD = () => {
-        axios.post("http://localhost:8080/geoInfoAdmin", JSON.stringify( form )).then(({ data }) => {
+        axios.post("http://localhost:8080/geoInfoAdmin", JSON.stringify(form)).then(({ data }) => {
             console.log("Form mandado correctamente ", data)
         }).catch(error => {
             console.log("Error al cargar el form", error)
         })
     }
 
+    const clearInputs = () => {
+        if (document.getElementById("clearInput10"))
+            document.getElementById("clearInput10").value = "";
+        if (document.getElementById("clearInput11"))
+            document.getElementById("clearInput11").value = "";
+        if (document.getElementById("clearInput12"))
+            document.getElementById("clearInput12").value = "";
+        if (document.getElementById("clearInput13"))
+            document.getElementById("clearInput13").value = "";
+    }
+
+
     const onSubmitBDTransportes = () => {
-        axios.post("http://localhost:8080/geoInfoAdminTransports", JSON.stringify( form )).then(({ data }) => {
+        axios.post("http://localhost:8080/geoInfoAdminTransports", JSON.stringify(form)).then(({ data }) => {
             console.log("Form mandado correctamente ", data)
         }).catch(error => {
             console.log("Error al cargar el form", error)
@@ -64,6 +78,7 @@ export const Emissions = () => {
         <>
 
             <div class="Emission">
+
                 <table class="table data">
                     <thead>
                         <tr>
@@ -76,10 +91,10 @@ export const Emissions = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="data"><input type="text" name="tipo_de_consumo" onChange={handleChange} /></td>
-                            <td class="data"><input type="text" name="tipo_de_actividad" onChange={handleChange} /></td>
-                            <td class="data"><input type="text" name="valor" onChange={handleChange} /></td>
-                            <td class="data"><input type="text" name="unidad" onChange={handleChange} /></td>
+                            <td class="data"><input type="text" id="clearInput10" name="tipo_de_consumo" onChange={handleChange} /></td>
+                            <td class="data"><input type="text" id="clearInput11" name="tipo_de_actividad" onChange={handleChange} /></td>
+                            <td class="data"><input type="text" id="clearInput12" name="valor" onChange={handleChange} /></td>
+                            <td class="data"><input type="text" id="clearInput13" name="unidad" onChange={handleChange} /></td>
 
                         </tr>
                     </tbody>
@@ -90,26 +105,26 @@ export const Emissions = () => {
                     <button class="custom-btn btn-1" onClick={onSubmit}>Agregar fila</button>
                 </div>
             </div>
-            
+
             <div class="addRow">
-                    <div class="factoresDeEmisionclass">
-                        <th>Completar Base De Datos con Provincias, Municipios y Localidades</th>
-                    </div>
-                    <div className="botonBaseDeDatos">
+                <div class="factoresDeEmisionclass">
+                    <th>Completar Base De Datos con Provincias, Municipios y Localidades</th>
+                </div>
+                <div className="botonBaseDeDatos">
 
                     <button class="custom-btn btn-1" onClick={onSubmitBD}>Completar Base De Datos</button>
 
-                    </div>
+                </div>
             </div>
             <div class="addRow">
-                    <div class="factoresDeEmisiontransporteclass">
-                        <th>Completar Base De Datos con Medio de Transportes Universales</th>
-                    </div>
-                    <div className="botonBaseDeDatosTransporte">
+                <div class="factoresDeEmisiontransporteclass">
+                    <th>Completar Base De Datos con Medio de Transportes Universales</th>
+                </div>
+                <div className="botonBaseDeDatosTransporte">
 
                     <button class="custom-btn btn-1" onClick={onSubmitBDTransportes}>Completar Base De Datos</button>
 
-                    </div>
+                </div>
             </div>
         </>
     )
