@@ -24,25 +24,28 @@ public class ReportOrganizacionRepository {
             return dao.getAll().stream().filter(l -> l.getIdOrganizacion().equals(idOrganizacion)).collect(Collectors.toList());
         }
 
-        public List<ReportOrganizacion> getAllReportesByProvinciaOrganizacion(String nombreProvincia){
+        public List<ReportOrganizacion> getAllReportesByProvinciaOrganizacion(Integer idProvincia){
             OrganizacionRepository orgrepo = new OrganizacionRepository();
-            List<ReportOrganizacion> lista = new ArrayList<ReportOrganizacion>();
-            List<ReportOrganizacion> listaFiltrada = new ArrayList<ReportOrganizacion>();
-            lista = dao.getAll().stream().collect(Collectors.toList());
-            for(ReportOrganizacion reporte : lista){
-                if( orgrepo.getById(reporte.getId()).getUbicacion().getLocaldiad().getMunicipio().getProvincia().getNombre()  ==nombreProvincia){
-                    listaFiltrada.add(reporte);
+            List<ReportOrganizacion> listaReportes = new ArrayList<ReportOrganizacion>();
+            List<ReportOrganizacion> listaReportesFiltrada = new ArrayList<ReportOrganizacion>();
+
+            listaReportes = dao.getAll().stream().collect(Collectors.toList());
+
+            for(ReportOrganizacion reporte : listaReportes){
+                if( orgrepo.getById(reporte.getIdOrganizacion()).getUbicacion().getLocaldiad().getMunicipio().getProvincia().getId() == idProvincia){
+                    listaReportesFiltrada.add(reporte);
                 }
             }
-            return listaFiltrada;
+            return listaReportesFiltrada;
         }
-        public List<ReportOrganizacion> getAllReportesByMunicipioOrganizacion(String nombreMunicipio){
+        public List<ReportOrganizacion> getAllReportesByMunicipioOrganizacion(Integer idMunicipio){
             OrganizacionRepository orgrepo = new OrganizacionRepository();
             List<ReportOrganizacion> lista = new ArrayList<ReportOrganizacion>();
             List<ReportOrganizacion> listaFiltrada = new ArrayList<ReportOrganizacion>();
             lista = dao.getAll().stream().collect(Collectors.toList());
+
             for(ReportOrganizacion reporte : lista){
-                if( orgrepo.getById(reporte.getId()).getUbicacion().getLocaldiad().getMunicipio().getNombre()  == nombreMunicipio){
+                if( orgrepo.getById(reporte.getIdOrganizacion()).getUbicacion().getLocaldiad().getMunicipio().getId() == idMunicipio){
                     listaFiltrada.add(reporte);
                 }
             }

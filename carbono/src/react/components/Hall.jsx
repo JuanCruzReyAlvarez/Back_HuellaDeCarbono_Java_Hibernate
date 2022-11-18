@@ -115,7 +115,13 @@ export const Hall = () => {
     };
     const SelectorProvincia = (e) => {
         e.preventDefault();
-        let provinciaID = e.target.value
+        let provinciaID = e.target.value 
+        window.localStorage.setItem(
+            "provinciaId",
+            JSON.stringify({
+                provinciaId: provinciaID
+            })
+        )
         if (hallAgentes === "P") {
             setEleccion({ ...eleccion, idProvincia: provinciaID, flagSector: "P" })
 
@@ -137,6 +143,12 @@ export const Hall = () => {
     const SelectorMunicipio = (e) => {
         e.preventDefault();
         let idMunicipio = e.target.value
+        window.localStorage.setItem(
+            "municipioId",
+            JSON.stringify({
+                municipioId: idMunicipio
+            })
+        )
         if (!idMunicipio) return
         if (usuario.rol === "AGENTE_SECTORIAL") {
             setEleccion({ ...eleccion, idMunicipio: idMunicipio, flagSector: "M" });

@@ -16,9 +16,11 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.entities.organization.Organizacion;
+import dds.tp.carbono.services.external.dto.Provincia;
 
 @Entity
 @Table(name="sector_Territorial")
@@ -38,6 +40,7 @@ public abstract class SectorTerritorial {
     
     @OneToMany(mappedBy = "sectorTerritorial",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)  
     @Getter @Setter List<Organizacion> organizaciones;
+
     
     public void agregarOrganizacion (Organizacion x) {
         this.organizaciones.add(x);

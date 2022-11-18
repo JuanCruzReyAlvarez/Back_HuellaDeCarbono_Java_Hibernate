@@ -55,6 +55,7 @@ export const Sidebar = () => {
                     {usuario ? (
                         usuario.token && usuario.rol === "ORGANIZACION" ? (
                             <>
+                                <li></li>
                                 <Link to="/advices">
                                     <li>Recomendaciones</li>
                                 </Link>
@@ -72,10 +73,9 @@ export const Sidebar = () => {
                                     <li>Reportes</li>
                                 </Link>
 
-                                
-                                
-                                
-                                
+                                <Link to="/registerSector">
+                                    <li>Registrar Sectores</li>
+                                </Link>
 
                                 <li id="calculadora">
                                     Calculadora HC
@@ -100,10 +100,6 @@ export const Sidebar = () => {
                                         </Link>
                                     </ul>
                                 </li>
-
-                                <Link to="/registerSector">
-                                    <li>Registrar Sectores</li>
-                                </Link>
                             </>
                         ) : (
                             <></>
@@ -150,17 +146,7 @@ export const Sidebar = () => {
                     {usuario ? (
                         usuario.token && usuario.rol === "MIEMBRO" ? (
                             <>
-                                <li>
-                                    Calculadora HC
-                                    <ul
-                                        className="CalculosItems"
-                                        id="CalculosItems"
-                                    >
-                                        <Link to="/calculators/Miembro">
-                                            <li>Calculo sobre un miembro</li>
-                                        </Link>
-                                    </ul>
-                                </li>
+                                <li></li>
                                 {/* <Link to="/advices"><li>Recomendaciones</li></Link> */}
                                 <Link to="/report">
                                     <li>Reportes</li>
@@ -174,6 +160,19 @@ export const Sidebar = () => {
                                 <Link to="/journeys">
                                     <li>Cargar Trayecto</li>
                                 </Link>
+                                <li>
+                                    Calculadora HC
+                                    <ul
+                                    
+                                        className="CalculosItems"
+                                        id="CalculosItems"
+                                    >
+                                        <Link to="/calculators/Miembro">
+                                            <li>Calculo sobre un miembro</li>
+                                        </Link>
+                                        
+                                    </ul>
+                                </li>
                                 {/* <Link to="/registrarTrayecto"><li>Registrar Trayecto</li></Link> */}
                             </>
                         ) : (

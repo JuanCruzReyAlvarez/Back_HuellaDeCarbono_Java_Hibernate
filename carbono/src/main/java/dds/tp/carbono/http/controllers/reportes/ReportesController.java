@@ -49,11 +49,11 @@ public class ReportesController extends Controller{
                             report = serviceReport.getReportMiembro(miemm.getId(),report);
                             break;
                         case "AGENTE_SECTORIAL": 
+                            System.out.println("Entre a paso 0");
                             AgenteSectorialService agenteService = new AgenteSectorialService();
-                            SectorTerritorial sector =agenteService.getSectorById(Integer.parseInt(input.getUserId()));
-                            report = serviceReport.getReportAgenteSectorial(report,sector,input.getTipoAgente());
+                            SectorTerritorial sector = agenteService.getSectorById(Integer.parseInt(input.getUserId()));
+                            report = serviceReport.getReportAgenteSectorial(report,sector,input.getTipoAgente(),input.getTerritorioId());
                             break;
-                            
                     }
                     
                     return json(report);

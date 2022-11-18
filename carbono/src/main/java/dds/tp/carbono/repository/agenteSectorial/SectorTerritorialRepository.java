@@ -63,9 +63,14 @@ public class SectorTerritorialRepository {
         return sector;
     }
 
+    public SectorProvincial getSectorProvincialByUsuarioId(Integer id) {
+        return this.sectorProvincialDao.getAll().stream()
+            .filter(x -> x.getUsuario().getId().equals(id)).findFirst().orElse(null);
+    }
 
 
-    public SectorTerritorial getById(int id) {
+
+    public SectorTerritorial getById(Integer id) {
 
         SectorTerritorial sector = this.sectorProvincialDao.findOne(id);
          

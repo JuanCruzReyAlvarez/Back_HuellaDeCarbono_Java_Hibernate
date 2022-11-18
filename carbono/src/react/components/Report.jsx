@@ -64,20 +64,25 @@ export const Report = () => {
             let user = JSON.parse(isUserLogg)
 
             if (user.rol === "AGENTE_SECTORIAL" && window.localStorage.getItem("tipoAgente")) {
-                let {tipoAgente} = JSON.parse(window.localStorage.getItem("tipoAgente"))
+                let { tipoAgente } = JSON.parse(window.localStorage.getItem("tipoAgente"))
                 let newAgente;
-                    if(tipoAgente === "P") {
-                        newAgente = "PROVINCIAL"
-
-                    } else {
-                        newAgente = "MUNICIPAL"
-                    }
+                let territorioId;
+                if (tipoAgente === "P") {
+                    newAgente = "PROVINCIAL"
+                    let { provinciaId } = JSON.parse(window.localStorage.getItem("provinciaId"))
+                    territorioId = provinciaId;
+                } else {
+                    newAgente = "MUNICIPAL"
+                    let { municipioId } = JSON.parse(window.localStorage.getItem("municipioId"))
+                    territorioId = municipioId
+                }
 
 
                 setEleccion({
                     rol: user.rol,
                     userId: user.id,
-                    tipoAgente: newAgente
+                    tipoAgente: newAgente,
+                    territorioId: territorioId
                 })
 
             } else {
