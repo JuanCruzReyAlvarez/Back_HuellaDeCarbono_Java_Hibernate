@@ -24,7 +24,6 @@ public class ReportesController extends Controller{
     
         @Override
         public void routes() {
-            System.out.println("Estoy mappeado");
             Spark.post(path(Uri.ORG_REPORT), (rq, rs) -> this.orgReport(rq, rs));
         }
     

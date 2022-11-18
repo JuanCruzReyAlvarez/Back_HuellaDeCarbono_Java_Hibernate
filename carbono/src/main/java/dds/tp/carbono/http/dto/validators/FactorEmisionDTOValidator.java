@@ -9,10 +9,10 @@ public class FactorEmisionDTOValidator extends Validator<FactorEmisionDTO> {
 
     @Override
     public ValidateResult validate(FactorEmisionDTO dto) {
-        if (dto.getTipoActividad() == null || dto.getTipoActividad().isEmpty())
+        if (dto.getTipo_de_actividad() == null || dto.getTipo_de_actividad().isEmpty())
             addError("actividad", String.format(REQUIRED_MESSAGE, "actividad"));
         
-        if (dto.getTipoConsumo() == null || dto.getTipoConsumo().isEmpty())
+        if (dto.getTipo_de_consumo() == null || dto.getTipo_de_consumo().isEmpty())
             addError("tipoConsumo", String.format(REQUIRED_MESSAGE, "tipoConsumo"));
 
         if (dto.getUnidad() == null || dto.getUnidad().isEmpty())

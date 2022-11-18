@@ -56,7 +56,7 @@ export const Emissions = () => {
                             <th> Tipo de actividad </th>
                             <th> Valor </th>
                             <th> Unidad </th>
-                            <th> EDITAR </th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -65,9 +65,7 @@ export const Emissions = () => {
                             <td class="data"><input type="text" name="tipo_de_actividad" onChange={handleChange} /></td>
                             <td class="data"><input type="text" name="valor" onChange={handleChange} /></td>
                             <td class="data"><input type="text" name="unidad" onChange={handleChange} /></td>
-                            <td>
-                                <button class="edit"> Editar </button>
-                            </td>
+
                         </tr>
                     </tbody>
                 </table>

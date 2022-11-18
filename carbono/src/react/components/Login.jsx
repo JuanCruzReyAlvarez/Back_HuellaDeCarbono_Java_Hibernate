@@ -35,6 +35,10 @@ export const Login = () => {
                         navigate("/");
                         return
                     }
+                    if (user.rol === "ADMINISTRADOR") {
+                        navigate("/");
+                        return
+                    }
                     navigate("/hall");
                 }).catch((error) => {
                     console.log("Error memberLog", error);

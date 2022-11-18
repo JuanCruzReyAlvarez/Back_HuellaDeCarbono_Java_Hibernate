@@ -40,6 +40,9 @@ public class Routes {
         define(Uri.LOGEXIST,"/logExist"),
         define(Uri.ORG_METRICS, "/metrics"),
         define(Uri.ORG_REPORT, "/getReport"),
+        define(Uri.ADMIN_FACTOR_EMISION, "/emissions"),
+        define(Uri.ADMIN_GET_FACTOR_EMISION, "/getEmissions"),
+        
 
         
         
@@ -54,8 +57,8 @@ public class Routes {
         
     // -------------------------------------------------------------------------------- admin
         define(Uri.ADMIN, "/admin", 
-        define(Uri.ADMIN_GEOINFO, "/geoInfoAdmin"),  
-        define(Uri.ADMIN_FACTOR_EMISION, "/fe")),
+        define(Uri.ADMIN_GEOINFO, "/geoInfoAdmin")  
+        ),
     // -------------------------------------------------------------------------------- member
        
         define(Uri.MEMBER_POINTS, "/points", 

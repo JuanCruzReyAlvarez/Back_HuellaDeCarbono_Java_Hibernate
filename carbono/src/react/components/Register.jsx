@@ -93,7 +93,6 @@ export const Register = () => {
                     {<h2>Elegir rol</h2>}
                     {<select id="rol" name="rol" onChange={selectRol}>
                         <option value="">Seleccionar</option>
-                        <option value="ADMINISTRADOR">Administrador</option>
                         <option value="MIEMBRO">Miembro</option>
                         <option value="ORGANIZACION">Organizacion</option>
                         <option value="AGENTE_SECTORIAL">Agente Sectorial</option>
