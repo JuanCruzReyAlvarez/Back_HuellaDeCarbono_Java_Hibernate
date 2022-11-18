@@ -2,17 +2,14 @@ import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ".././styles/Report.css";
-import { Link, useNavigate } from "react-router-dom";
-import $ from 'jquery'
 import { BarChart } from "./chart/BarChart"
 import { LineChart } from "./chart/LineChart"
 import { Line } from "react-chartjs-2";
 
 export const Report = () => {
-    const navigate = useNavigate();
+  
 
     const [report, setReportes] = useState("");
-    const [usuario, setUser] = useState({});
     const [eleccion, setEleccion] = useState({});
 
     // $(function () {
@@ -65,7 +62,7 @@ export const Report = () => {
         const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
         if (isUserLogg) {
             let user = JSON.parse(isUserLogg)
-            setUser(user);
+          
             setEleccion({
                 rol: user.rol,
                 userId: user.id
@@ -88,8 +85,12 @@ export const Report = () => {
                 labels: reportes.map((data) => data.fecha),
                 datasets: [{
                     label: "Huella De Carbono",
-                    data: reportes.map((data) => data.valor)
+                    data: reportes.map((data) => data.valor),
+                    backgroundColor: '#000000',
+                    borderColor: "red",
+                    scaleFontColor: "#FFFFFF",
                 }]
+                
             })
         }).catch(error => {
             console.log("Error con los reportes", error)
@@ -100,20 +101,18 @@ export const Report = () => {
 
 
     return (
-
-
-
         <div>
 
             {
 
                 report ? (<>
                     {/* <div class="body-content-hall"></div> */}
-
+                    <div class="body-content-hall"></div>
                     <div class="module">
 
                         {/* ------------Rol organizacion------------- */}
-                        <h1>REPORTES</h1>
+                        
+                        <h1 className="tituloReportes">REPORTES</h1>
 
                         <form
                             class="form"
@@ -123,11 +122,13 @@ export const Report = () => {
                             autocomplete="off"
                         >
                             <div class="alert alert-error"></div>
-                            <div class="module">
+
+                            <div class="chartss">
                                 <BarChart chartData={report} />
                             </div>
+                     
 
-                            <div class="module">
+                            <div class="chartss">
                                 <LineChart lineChart={report} />
                             </div>
 

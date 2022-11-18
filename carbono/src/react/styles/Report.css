@@ -389,12 +389,24 @@ label {
   background: none;
   opacity: 75%;
 
-  
-  
-  
-  
-  
 }
+
+.chartss {
+  height: 500px;
+  max-width: 1000px;
+  margin-left: -250px;
+  display: inline-block;
+  position: relative;
+  width: 400%;
+  background-color: rgb(30, 30, 29);
+  opacity: 95%;
+}
+
+.tituloReportes{
+  font-size: 40px;
+}
+
+
 .row{
 text-align:center;
 /*the same margin which is every button have, it is for small screen, and if you have many buttons.*/

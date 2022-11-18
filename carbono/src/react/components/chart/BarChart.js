@@ -4,7 +4,20 @@ import { Chart as ChartJS } from "chart.js/auto"
 
 export const BarChart = ({chartData}) => {
 
+    let options = {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    fontSize: 100
+                }
+            }]
+        }
+    }
+
+
     return(
-        <Bar data={chartData} />
+        < Bar data={chartData}  
+        options = {options}  
+         />
     )
 }
