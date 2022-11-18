@@ -102,7 +102,8 @@ public class SectorController extends Controller{
                 
                 OrgDTO input = getBody(rq, OrgDTO.class,null); 
 
-                Organizacion org = serviceOrg.getByUser(Integer.parseInt(input.getUserId()));
+                Organizacion org = new Organizacion();
+                org = serviceOrg.getByUser(Integer.parseInt(input.getUserId()));
                
                 Sector sectorNew = new Sector();
                 sectorNew.setNombre(input.getSector());

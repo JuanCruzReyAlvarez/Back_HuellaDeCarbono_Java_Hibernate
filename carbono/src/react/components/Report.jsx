@@ -177,13 +177,13 @@ export const Report = () => {
                             <label for="start">Fecha Inicio:</label>
                             <div class="clasefechita">
                                 <input type="date" id="start" name="trip-start"
-                                    value="aaaa-mm-dd"
+                                   
                                     min="2022-01-01" max="2030-12-31"></input>
                             </div>
                             <label for="finish">Fecha Final:</label>
                             <div class="clasefechita">
                                 <input type="date" id="start" name="trip-start"
-                                    value="aaaa-mm-dd"
+                                 
                                     min="2022-01-01" max="2030-12-31"></input>
                             </div>
                             {/* 

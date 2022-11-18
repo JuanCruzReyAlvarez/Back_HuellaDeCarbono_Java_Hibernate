@@ -49,9 +49,12 @@ public class TrayectosController extends Controller {
 
 
                 Trayecto trayecto = new Trayecto();
+
                 List<Tramo> tramos = new ArrayList<Tramo>();
+
                 Miembro miembro = new Miembro();
                 miembro = miembroService.getByUserId(Integer.parseInt(tramosDTO.get(0).getUserId()));
+                System.out.println(miembro.getId());
                 trayecto.setMiembro(miembro);
 
                 for(TramoDTO tramoDTO: tramosDTO){

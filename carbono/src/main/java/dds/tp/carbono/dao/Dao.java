@@ -22,10 +22,13 @@ public abstract class Dao<T> {
     }
 
     public T save(T item) {
-        
+        System.out.println("Entro");
         EntityManagerHelper.beginTransaction();
+        System.out.println("Entro");
         EntityManagerHelper.getEntityManager().persist(item);
+        System.out.println("Entro");
         EntityManagerHelper.commit();
+        System.out.println("Entro");
         EntityManagerHelper.closeEntityManager();
 
         return item;                                           

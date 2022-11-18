@@ -13,6 +13,7 @@ public class TrayectoRepository {
     }
     
     public Trayecto guardar(Trayecto trayecto) {
+        System.out.println("Entro");
         return this.dao.save(trayecto);
     }
 }

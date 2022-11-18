@@ -115,13 +115,15 @@ public class RequestController extends Controller{
     private String  modRequest(Request rq, Response rs) throws HttpException {
         try{
                 RequestDTO input = getBody(rq, RequestDTO.class, null);
-                SolicitudVinculacion solicitud = service.getById(Integer.parseInt(input.getIdSolicitud())); 
+                SolicitudVinculacion solicitud = new SolicitudVinculacion();
+                solicitud = service.getById(Integer.parseInt(input.getIdSolicitud())); 
                 System.out.println(":antes de entrar al sitch");
                 System.out.println(input.getEstado());
                 switch(input.getEstado()){
 
                     // Para aceptaar
                     case "ACEPTAR": 
+                            System.out.println("Entro al switch");
                             System.out.println(solicitud.getEstado());  
                             solicitud.setEstado(EstadoSolicitudVinculacion.ACEPTADO);
                             System.out.println(solicitud.getEstado()); 

@@ -43,7 +43,14 @@ public class TrayectoService {
     }
 
     public void crear(Trayecto trayecto)  {
-           repository.guardar(trayecto);
+        System.out.println("Antes de Crear El Trayecto");
+        System.out.println(trayecto.getFecha());
+        System.out.println(trayecto.getMiembro().getId());
+        System.out.println(trayecto.getPuntoLlegada().getCalle());
+        System.out.println(trayecto.getPuntoPartida().getCalle());
+        System.out.println(trayecto.getId());
+        
+        repository.guardar(trayecto);
     }
 
     public Tramo setPuntosLlegadasTramo( TramoDTO tramoDTO, Tramo tramo ){
@@ -130,11 +137,14 @@ public class TrayectoService {
 
             for(AcompanianteDTO acompaniante: acompaniantes){
                 Miembro miembro = new Miembro();
+                System.out.println(acompaniante.getApellido_Acompaniante());
+                System.out.println(acompaniante.getNombre_Acompaniante());
                 miembro = miembroRepository.getByNameAndLastName(acompaniante.getApellido_Acompaniante(), acompaniante.getNombre_Acompaniante());
                 miembros.add(miembro);           
             }
 
             tramo.setCompartidos(miembros);
+            System.out.println(miembros.get(0).getId());
         }
             return tramo;
                  

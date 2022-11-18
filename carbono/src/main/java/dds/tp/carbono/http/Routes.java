@@ -34,7 +34,7 @@ public class Routes {
         define(Uri.CONTACTS, "/contacts"),
         define(Uri.ADD_CONTACTS, "/addContacts"),
         define(Uri.ORGANIZACION_NAME,"/organizacionName"),
-        define(Uri.SECTORES_ADD,"/addsector"),
+        define(Uri.SECTORES_ADD,"/addSector"),
         define(Uri.CREATE_REQUEST,"/createRequest"),
         define(Uri.LINEAS,"/lineas"),
         define(Uri.LOGEXIST,"/logExist"),

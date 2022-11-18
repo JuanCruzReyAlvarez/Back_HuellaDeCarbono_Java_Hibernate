@@ -71,6 +71,9 @@ export const Sidebar = () => {
                                 <Link to="/report">
                                     <li>Reportes</li>
                                 </Link>
+
+                                
+                                
                                 
                                 
 
@@ -160,6 +163,12 @@ export const Sidebar = () => {
                                 <Link to="/solMiembro">
                                     <li>Crear Solicitud</li>
                                 </Link>
+                                <Link to="/advices">
+                                    <li>Recomendaciones</li>
+                                </Link>
+                                <Link to="/journeys">
+                                    <li>Cargar Trayecto</li>
+                                </Link>
                                 {/* <Link to="/registrarTrayecto"><li>Registrar Trayecto</li></Link> */}
                             </>
                         ) : (
@@ -192,6 +201,9 @@ export const Sidebar = () => {
                                 </Link>
                                 <Link to="/registerSector">
                                     <li>Registrar Sectores</li>
+                                </Link>
+                                <Link to="/journeys">
+                                    <li>Cargar Trayecto</li>
                                 </Link>
                                 <Link to="/report">
                                     <li>Reportes</li>
