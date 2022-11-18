@@ -42,6 +42,8 @@ public class Routes {
         define(Uri.ORG_REPORT, "/getReport"),
         define(Uri.ADMIN_FACTOR_EMISION, "/emissions"),
         define(Uri.ADMIN_GET_FACTOR_EMISION, "/getEmissions"),
+        define(Uri.ADMIN_GEOINFO_TRANSPORTS, "/geoInfoAdminTransports"),
+     
         
 
         

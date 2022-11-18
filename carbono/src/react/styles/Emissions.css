@@ -18,6 +18,33 @@
     bottom: 700px;
     background-color: rgb(136, 175, 127);
   }
+
+  .factoresDeEmisiontransporteclass{
+    position:absolute;
+    top:75%;    
+    height:8%;
+    width:600px;
+    margin-left:250px;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    text-align: center; 
+    justify-content: center;
+    border: 10px solid rgba(0, 0, 0, 0.3);
+    background-color: rgb(54, 79, 53);
+  }
+  .factoresDeEmisionclass{
+      position:absolute;
+      top:50%;    
+      height:8%;
+      width:600px;
+      margin-left:250px;
+      font-size: 20px;
+      color: rgb(255, 255, 255);
+      text-align: center; 
+      justify-content: center;
+      border: 10px solid rgba(0, 0, 0, 0.3);
+      background-color: rgb(54, 79, 53);
+  }
   thead{
     border: 1px solid rgba(255,255,255,0.3);
     width: 100%; height: 100%;
@@ -71,7 +98,26 @@
     width: 100%; height: 100%;
     text-align: center;
   }
-    .addRow{
+
+  .botonBaseDeDatosTransporte{
+    position:absolute;
+    top:50%;    
+    height:100%;
+    width: 80%; 
+    height: 100%;
+    text-align: right;
+  }
+
+  .botonBaseDeDatos{
+    position:absolute;
+    top:20%;    
+    height:100%;
+    width: 80%; 
+    height: 100%;
+    text-align: right;
+  }
+
+  .addRow{
       display: inline-block;
       width: 60%; height: 100%;
       text-align: right;

@@ -40,9 +40,24 @@ export const Emissions = () => {
         }).catch(error => {
             console.log("Error al cargar el form", error)
         })
-
-
     }
+
+    const onSubmitBD = () => {
+        axios.post("http://localhost:8080/geoInfoAdmin", JSON.stringify( form )).then(({ data }) => {
+            console.log("Form mandado correctamente ", data)
+        }).catch(error => {
+            console.log("Error al cargar el form", error)
+        })
+    }
+
+    const onSubmitBDTransportes = () => {
+        axios.post("http://localhost:8080/geoInfoAdminTransports", JSON.stringify( form )).then(({ data }) => {
+            console.log("Form mandado correctamente ", data)
+        }).catch(error => {
+            console.log("Error al cargar el form", error)
+        })
+    }
+
 
 
     return (
@@ -74,6 +89,27 @@ export const Emissions = () => {
                 <div class="addRow">
                     <button class="custom-btn btn-1" onClick={onSubmit}>Agregar fila</button>
                 </div>
+            </div>
+            
+            <div class="addRow">
+                    <div class="factoresDeEmisionclass">
+                        <th>Completar Base De Datos con Provincias, Municipios y Localidades</th>
+                    </div>
+                    <div className="botonBaseDeDatos">
+
+                    <button class="custom-btn btn-1" onClick={onSubmitBD}>Completar Base De Datos</button>
+
+                    </div>
+            </div>
+            <div class="addRow">
+                    <div class="factoresDeEmisiontransporteclass">
+                        <th>Completar Base De Datos con Medio de Transportes Universales</th>
+                    </div>
+                    <div className="botonBaseDeDatosTransporte">
+
+                    <button class="custom-btn btn-1" onClick={onSubmitBDTransportes}>Completar Base De Datos</button>
+
+                    </div>
             </div>
         </>
     )
