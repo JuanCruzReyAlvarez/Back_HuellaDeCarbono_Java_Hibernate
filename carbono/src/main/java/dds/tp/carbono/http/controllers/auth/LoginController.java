@@ -1,5 +1,11 @@
 package dds.tp.carbono.http.controllers.auth;
 
+import java.net.http.HttpClient.Redirect;
+import java.util.Collections;
+import java.util.Map;
+
+import dds.tp.carbono.entities.auth.Rol;
+
 //import java.util.Collections;
 
 import dds.tp.carbono.http.controllers.Controller;
@@ -9,14 +15,17 @@ import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.SessionCookie;
 import dds.tp.carbono.http.utils.Uri;
 import dds.tp.carbono.services.auth.LoginService;
+import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
+import spark.TemplateEngine;
 
 
 public class LoginController extends Controller {
-    //private static final String LOGIN_VIEW = "auth/login.html";
-    //private static final String UNAUTHORIZED_MESSAGE = "Usuario o Password invalido";
+    TemplateEngine engine;
+    private static final String LOGIN_VIEW = "auth/login.html";
+    private static final String UNAUTHORIZED_MESSAGE = "Usuario o Password invalido";
     private static final String TOKEN_COOKIE_NAME = "CARBONO-TOKEN";
     
     private LoginService loginService;
@@ -27,6 +36,8 @@ public class LoginController extends Controller {
     
     @Override
     public void routes( ) {
+        Spark.get(path(Uri.LOGIN), (rq, rs) -> this.loginView(rq, rs), engine);
+        Spark.post("/loginn", (rq, rs) -> this.loginn(rq, rs));
         Spark.post(path(Uri.LOGIN), (rq, rs) -> this.login(rq, rs));
     }
 
@@ -77,7 +88,7 @@ public class LoginController extends Controller {
 
         return null;
     }
-/* 
+ 
     private ModelAndView loginView(Request request, Response response) {
         try {
             String token = request.cookie(TOKEN_COOKIE_NAME);
@@ -85,7 +96,7 @@ public class LoginController extends Controller {
             if (token == null)
                 return view(LOGIN_VIEW);
             
-            redirectDefault(response, new SessionCookie(token));
+            //redirectDefault(response, new SessionCookie(token));
 
         } catch (Exception ex) {            
             return view(LOGIN_VIEW);
@@ -93,14 +104,52 @@ public class LoginController extends Controller {
 
         return null;
     }
-*/
-/* 
+
+    public ModelAndView loginn(Request request, Response response) throws HttpException {
+        
+        try {
+
+            System.out.println("entroaltry");
+            
+            Map<String, String> input = formFields(request);
+            
+            System.out.println("segundotry");
+
+            System.out.println(input.get("username"));
+            System.out.println(input.get("password"));
+            
+            LoginDTO login = validateInput(
+                new LoginDTO(input.get("username"), input.get("password")),
+                new LoginDTOValidator());
+
+
+                System.out.println("1");
+
+            SessionCookie session = loginService.login(login.getUsername(), login.getPassword());
+
+            response.cookie(TOKEN_COOKIE_NAME, session.getToken());
+
+            System.out.println("2");
+
+            //redirectDefault(response, session);
+        } 
+        
+        
+        catch (Exception ex) {
+            System.out.println("sientreaca");
+            return view(LOGIN_VIEW, Collections.singletonMap("error", UNAUTHORIZED_MESSAGE));
+        }
+
+        return null;
+    }
+
+ /* 
     private void redirectDefault(Response response, SessionCookie session) throws HttpException {
         Rol rol = session.getUser().getRol();
         Uri uri = Redirect.defaultUriByRol(rol);
         response.redirect(path(uri));
     }
-
 */
+
 
 }
