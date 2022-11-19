@@ -6,7 +6,6 @@ export const Navbar = () => {
 const navigate = useNavigate();
 
 
-
 const logOut = () =>{
     window.localStorage.setItem(
         "UserLoggedInfo",

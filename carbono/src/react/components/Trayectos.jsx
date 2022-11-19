@@ -6,7 +6,6 @@
     
     export const Trayecto = () => {
     
-    
         $(document).ready(function () {
             $("#cartelito").hide();
     

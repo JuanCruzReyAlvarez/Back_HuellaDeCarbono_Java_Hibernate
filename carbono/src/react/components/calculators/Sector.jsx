@@ -6,6 +6,10 @@ import $ from "jquery";
 import { Resultado } from "./Resultado.jsx";
 
 export const Sector = () => {
+
+    const puerto = "8080";
+    const full = location.protocol + '//' + location.hostname + ":" + puerto;
+    
     const [usuario, setUser] = useState({});
     const [organizaciones, setOrganizaciones] = useState({});
     const [sector, setSectores] = useState([]);
@@ -18,8 +22,7 @@ export const Sector = () => {
             let user = JSON.parse(isUserLogg);
             setUser(user);
             axios
-                .post( 
-                    "http://localhost:8080/organizacionName",
+                .post(full +"/organizacionName",
                     JSON.stringify(user)
                 )
                 .then(({ data }) => {
@@ -36,8 +39,7 @@ export const Sector = () => {
 
                     //TRAER LOS SECTORES POR ID DE ORG una vez que la ruta responda bien con la org:
                     axios
-                        .post( 
-                            "http://localhost:8080/sectores",
+                        .post(full +"/sectores",
                             JSON.stringify({ id: data.id })
                         )
                         .then(({ data }) => {

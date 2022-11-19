@@ -12,12 +12,14 @@ export const Request = () => {
     const [request, setRequest] = useState([]);
     const [estadoDeSolicitudActual, setSolicitudActual] = useState("")
     const navigate = useNavigate();
+    const puerto = "8080";
+    const full = location.protocol + '//' + location.hostname + ":" + puerto;
 
     useEffect(() => {
         const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
         if (isUserLogg) {
             setUser(JSON.parse(isUserLogg));
-            axios.get("http://localhost:8080/request", JSON.stringify(usuario)).then(({ data }) => {
+            axios.get(full +"/request", JSON.stringify(usuario)).then(({ data }) => {
                 console.log("Solicitudes traidas correctamente:", data)
                 let newData = data.filter((solicitud)=>{
                         return solicitud.Estado === "PENDIENTE"
@@ -44,7 +46,7 @@ id_sector-------------
 
 const aceptarSolicitud = () => {
        
-    axios.post("http://localhost:8080/request", JSON.stringify({
+    axios.post(full +"/request", JSON.stringify({
         estado : "ACEPTADO"
     })).then((data) => {
         console.log("Se acepto la solicitud correctamente", data)
@@ -56,7 +58,7 @@ const aceptarSolicitud = () => {
 
 const rechazarSolicitud = () => {
     
-    axios.post("http://localhost:8080/request", JSON.stringify({
+    axios.post(full +"/request", JSON.stringify({
         estado : "RECHAZADO"
     })).then((data) => {
         console.log("Se rechazo la solicitud correctamente", data)
@@ -96,7 +98,7 @@ const rechazarSolicitud = () => {
                                         <div className="plan-select"><a onClick={(e) => {
                                             e.preventDefault()
                                             console.log("FUNCION RECHAZAR")
-                                             axios.post("http://localhost:8080/modrequest", JSON.stringify({
+                                             axios.post(full +"/modrequest", JSON.stringify({
                                                 estado: "RECHAZAR",
                                                 //id del user card
                                                 idSolicitud: solicitud.idReq
@@ -114,7 +116,7 @@ const rechazarSolicitud = () => {
                                         <div className="plan-select"><a onClick={(e) => {
                                              e.preventDefault(e)
                                              console.log("FUNCION ACEPTAR")
-                                            axios.post("http://localhost:8080/modrequest", JSON.stringify({
+                                            axios.post(full +"/modrequest", JSON.stringify({
                                                 estado: "ACEPTAR",
                                                 //id del user card
                                                 idSolicitud: solicitud.idReq

@@ -8,6 +8,7 @@ export const Servicio_Contratado = ({
     selectVehiculo,
     setAcompañantesTotales
 }) => {
+
     const [acompañante, setAcompañante] = useState(0);
 
     const changeState = (e) => {

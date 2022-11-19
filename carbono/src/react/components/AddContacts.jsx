@@ -12,7 +12,9 @@ export const Contacts = () => {
     const [eleccion, setEleccion] = useState({});
     const [inputs, setInputs] = useState("");
     const [contacts, setContacts] = useState("");
-
+    const puerto = "8080";
+    const full = location.protocol + '//' + location.hostname + ":" + puerto;
+    
     useEffect(() => {
         const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
         if (isUserLogg) {
@@ -24,8 +26,7 @@ export const Contacts = () => {
             })
 
 
-            axios
-                .get("http://localhost:8080/contacts")
+            axios.get(full + "/contacts")
                 .then(({ data }) => {
                     console.log("funciono al traer contacts", data);
                     setContacts(data)

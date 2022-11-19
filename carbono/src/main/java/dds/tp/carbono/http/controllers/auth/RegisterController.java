@@ -3,7 +3,6 @@ package dds.tp.carbono.http.controllers.auth;
 import java.util.Collections;
 
 import dds.tp.carbono.entities.auth.Usuario;
-import dds.tp.carbono.exception.InsecurePasswordException;
 import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.dto.auth.RegisterDTO;
 import dds.tp.carbono.http.dto.validators.RegisterDTOValidator;
@@ -78,7 +77,7 @@ public class RegisterController extends Controller {
             
             
 
-        } catch (InsecurePasswordException ex) {
+        } catch (Exception ex) {
             System.out.println("Error por contraseña insegura");
             throw new BadResquestException(Collections.singletonMap(PASSWORD_FIELD_NAME, INSECURE_PASSWORD_MESSAGE));
         }

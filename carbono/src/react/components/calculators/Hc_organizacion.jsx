@@ -13,6 +13,9 @@ export const Hc_organizacion = () => {
     const [calculo, setCalculo] = useState({});
     const [valor, setValor] = useState({});
 
+    const puerto = "8080";
+    const full = location.protocol + '//' + location.hostname + ":" + puerto;
+
     useEffect(() => {
         const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
         if (isUserLogg) {
@@ -21,8 +24,7 @@ export const Hc_organizacion = () => {
             setUser(user);
             console.log("Usuarioquemandoaback", usuario);
             axios
-                .post(
-                    "http://localhost:8080/organizacionName",
+                .post( full +"/organizacionName",
                     JSON.stringify(user)                  // PUSE .ID
                 )
                 .then(({ data }) => {

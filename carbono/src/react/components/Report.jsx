@@ -11,6 +11,8 @@ export const Report = () => {
 
     const [report, setReportes] = useState("");
     const [eleccion, setEleccion] = useState({});
+    const puerto = "8080";
+    const full = location.protocol + '//' + location.hostname + ":" + puerto;
 
     // $(function () {
     //     $('#buttonSectorTerritorial').click(function () {
@@ -103,7 +105,7 @@ export const Report = () => {
 
     const submitCalculo = (e) => {
         e.preventDefault()
-        axios.post("http://localhost:8080/getReport", JSON.stringify(eleccion)).then(({ data }) => {
+        axios.post(full +"/getReport", JSON.stringify(eleccion)).then(({ data }) => {
             let reportes = data.reporte
             console.log("funcionaron los reportes ", reportes)
             setReportes({

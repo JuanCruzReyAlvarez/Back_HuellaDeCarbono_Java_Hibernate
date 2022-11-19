@@ -8,7 +8,9 @@ export const Emissions = () => {
 
     const [usuario, setUser] = useState({});
     const [form, setForm] = useState({});
-
+    const puerto = "8080";
+    const full = location.protocol + '//' + location.hostname + ":" + puerto;
+    
     useEffect(() => {
         const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
         if (isUserLogg) {
@@ -35,7 +37,7 @@ export const Emissions = () => {
     } */
 
     const onSubmit = () => {
-        axios.post("http://localhost:8080/emissions", JSON.stringify(form)).then(({ data }) => {
+        axios.post(full + "/emissions", JSON.stringify(form)).then(({ data }) => {
             console.log("Form mandado correctamente ", data)
             clearInputs()
         }).catch(error => {
@@ -45,7 +47,7 @@ export const Emissions = () => {
     }
 
     const onSubmitBD = () => {
-        axios.post("http://localhost:8080/geoInfoAdmin", JSON.stringify(form)).then(({ data }) => {
+        axios.post(full + "/geoInfoAdmin", JSON.stringify(form)).then(({ data }) => {
             console.log("Form mandado correctamente ", data)
         }).catch(error => {
             console.log("Error al cargar el form", error)
@@ -65,7 +67,7 @@ export const Emissions = () => {
 
 
     const onSubmitBDTransportes = () => {
-        axios.post("http://localhost:8080/geoInfoAdminTransports", JSON.stringify(form)).then(({ data }) => {
+        axios.post(full + "/geoInfoAdminTransports", JSON.stringify(form)).then(({ data }) => {
             console.log("Form mandado correctamente ", data)
         }).catch(error => {
             console.log("Error al cargar el form", error)

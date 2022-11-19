@@ -1,5 +1,5 @@
-package dds.tp.carbono.exception;
+//package dds.tp.carbono.exception;
 
-public class InsecurePasswordException extends Exception {
+//public class InsecurePasswordException extends Exception {
     
-}
+//}

@@ -35,6 +35,12 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>0.10.2</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -44,10 +50,11 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>fully.qualified.MainClass</mainClass>
+							<mainClass>dds/tp/carbono/CarbonoApplication</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
+					
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
 				</configuration>
@@ -61,6 +68,22 @@
 					</execution>
 				</executions>
 			</plugin>
+
+		<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<configuration>
+					<jdkVersion>1.8</jdkVersion>
+					<!-- Use your own application name -->
+					<appName>carbonocalculator</appName>
+					<processTypes>
+						<!-- Tell Heroku how to launch your application -->
+						<!-- You might have to remove the ./ in front   -->
+						<web>java -jar target/passwords-1.0-jar-with-dependencies.jar</web>
+					</processTypes>
+				</configuration>
+		</plugin>
+
 		</plugins>
 	</build>
 </project>

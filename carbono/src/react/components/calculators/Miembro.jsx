@@ -13,14 +13,17 @@ export const Miembro = () => {
     const [valor, setValor] = useState({});
 
     useEffect(() => {
+
+        const puerto = "8080";
+        const full = location.protocol + '//' + location.hostname + ":" + puerto;
+
         const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
         if (isUserLogg) {
             let user = JSON.parse(isUserLogg);
             console.log("User log", user);
             setUser(user);
             axios
-                .post(
-                    "http://localhost:8080/organizacionName",
+                .post(full +"/organizacionName",
                     JSON.stringify(user)
                 )
                 .then(({ data }) => {

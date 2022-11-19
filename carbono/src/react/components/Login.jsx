@@ -7,11 +7,13 @@ import axios from "axios";
 export const Login = () => {
     const [usuario, setUser] = useState({});
     const navigate = useNavigate();
+    const puerto = "8080";
+    const full = location.protocol + '//' + location.hostname + ":" + puerto;
 
     function onSubmit(e) {
         e.preventDefault();
         axios
-            .post("http://localhost:8080/login", JSON.stringify(usuario))
+            .post(full +"/login", JSON.stringify(usuario))
             .then(({ data }) => {
                 console.log("funciono login", data);
                 window.localStorage.setItem(
@@ -30,7 +32,7 @@ export const Login = () => {
                     token: data.token
                 }
                 console.log("USUARI00O LOG", user)
-                axios.post("http://localhost:8080/logExist", JSON.stringify(user)).then(({ data }) => {
+                axios.post(full +"/logExist", JSON.stringify(user)).then(({ data }) => {
                     if (data) {
                         navigate("/");
                         return

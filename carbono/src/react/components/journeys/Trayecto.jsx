@@ -27,6 +27,9 @@ export const Trayecto = () => {
     const [localidades, setLocalidades] = useState([]);
     const [type, setType] = useState("");
 
+    const puerto = "8080";
+    const full = location.protocol + '//' + location.hostname + ":" + puerto;
+
     useEffect(() => {
         const isUserLogg = window.localStorage.getItem("UserLoggedInfo");
         if (isUserLogg) {
@@ -38,7 +41,7 @@ export const Trayecto = () => {
             });
 
             axios
-                .get("http://localhost:8080/provinciasss", JSON.stringify(user))
+                .get(full +"/provinciasss", JSON.stringify(user))
                 .then(({ data }) => {
                     console.log("funcionaron las provincias ", data);
                     data.unshift({ id: "", name: "Seleccionar" });
@@ -89,8 +92,7 @@ export const Trayecto = () => {
         setLocalidades([]);
         setEleccion({ ...eleccion, [prov]: provinciaID });
         axios
-            .post(
-                "http://localhost:8080/municipio",
+            .post(full +"/municipio",
                 JSON.stringify({ id: provinciaID })
             )
             .then(({ data }) => {
@@ -110,8 +112,7 @@ export const Trayecto = () => {
         if (!idMunicipio) return;
         setEleccion({ ...eleccion, [municipio]: idMunicipio });
         axios
-            .post(
-                "http://localhost:8080/localidad",
+            .post(full +"/localidad",
                 JSON.stringify({ id: idMunicipio })
             )
             .then(({ data }) => {
@@ -197,8 +198,7 @@ export const Trayecto = () => {
         }
         console.log("Trayecto a mandar:", listaDeElecciones);
         axios
-            .post(
-                "http://localhost:8080/trayecto",
+            .post(full +"/trayecto",
                 JSON.stringify(listaDeElecciones)
             )
             .then(({ data }) => {

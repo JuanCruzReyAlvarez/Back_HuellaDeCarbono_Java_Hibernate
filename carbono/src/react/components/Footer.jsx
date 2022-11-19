@@ -5,8 +5,6 @@ import ".././styles/Footer.css";
 import { useLocation } from 'react-router-dom';
 
 
-
-
 export const Footer = () => {
   return (
 

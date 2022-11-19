@@ -5,6 +5,7 @@ import "../.././styles/calculators.css";
 import $ from "jquery";
 export const Resultado = ( {valor, setValor} ) => {
 
+
     $(document).ready(function() {
         $("#cartelito").hide();
 

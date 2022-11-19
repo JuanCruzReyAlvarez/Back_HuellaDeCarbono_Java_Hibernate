@@ -10,12 +10,14 @@ import axios from "axios";
 export const Advices = () => {
     const [usuario, setUser] = useState({});
     const navigate = useNavigate();
+    const puerto = "8080";
+    const full = location.protocol + '//' + location.hostname + ":" + puerto;
 
 
 
     function onSubmit(e) {
         e.preventDefault();
-        axios.post("http://localhost:8080/advices", )
+        axios.post(full +"/advices", )
      }
 
 

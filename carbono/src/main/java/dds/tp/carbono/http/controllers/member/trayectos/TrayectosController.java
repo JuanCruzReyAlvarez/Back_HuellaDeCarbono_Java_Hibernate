@@ -105,7 +105,7 @@ public class TrayectosController extends Controller {
                 //TrayectoPendiente = 
                 //return json(usuario);
 
-            } catch (InsecurePasswordException ex) {
+            } catch (Exception ex) {
                 System.out.println("Error por controller autocomplete");
             }
 

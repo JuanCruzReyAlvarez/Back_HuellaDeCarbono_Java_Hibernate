@@ -1,11 +1,16 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 export const Transporte_Publico = ({ handleChange, selectVehiculo }) => {
+
+    const puerto = "8080";
+    const full = location.protocol + '//' + location.hostname + ":" + puerto;
+
     const [lineas, setLineas] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/lineas").then(({ data }) => {
+        axios.get(full +"/lineas").then(({ data }) => {
             console.log("funcionaron las lineas ", data)
             data.unshift({ id: "", name: "Seleccionar" })
             setLineas(data);

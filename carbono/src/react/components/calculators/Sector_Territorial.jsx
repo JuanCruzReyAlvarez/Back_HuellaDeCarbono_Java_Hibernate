@@ -7,6 +7,10 @@ import $ from "jquery";
 import { Resultado } from "./Resultado.jsx";
 
 export const Sector_Territorial = () => {
+
+    const puerto = "8080";
+    const full = location.protocol + '//' + location.hostname + ":" + puerto;
+
     const [usuario, setUser] = useState({});
     const [organizaciones, setOrganizaciones] = useState([]);
     const [calculo, setCalculo] = useState({});
@@ -54,7 +58,7 @@ export const Sector_Territorial = () => {
     const onSubmit = (e) => {
         console.log("CALCULO A MANDAR:", calculo);
         axios
-            .post("http://localhost:8080/calculators", JSON.stringify(calculo))
+            .post(full + "/calculators", JSON.stringify(calculo))
             .then(({ data }) => {
                 console.log(
                     "Calculo realizado correctamente, valor obtenido:",

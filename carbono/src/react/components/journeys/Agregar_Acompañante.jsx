@@ -12,6 +12,7 @@ export const Agregar_Acompañante = ({
     const [eleccionAcompañante, setEleccionAcompañante] = useState({});
     const [listaAcompañantes, setListaAcompañantes] = useState([]);
 
+
     const handleChange = ({ target }) => {
         // console.log(target.value);
         // console.log(target.name);
