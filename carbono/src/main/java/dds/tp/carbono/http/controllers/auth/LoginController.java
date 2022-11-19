@@ -1,10 +1,10 @@
 package dds.tp.carbono.http.controllers.auth;
 
-import java.net.http.HttpClient.Redirect;
+//import java.net.http.HttpClient.Redirect;
 import java.util.Collections;
 import java.util.Map;
 
-import dds.tp.carbono.entities.auth.Rol;
+//import dds.tp.carbono.entities.auth.Rol;
 
 //import java.util.Collections;
 
@@ -43,7 +43,7 @@ public class LoginController extends Controller {
 
 
 
-    public String login(Request request, Response response) throws HttpException {
+    public String login(Request request, Response response) throws Exception {
 
         try {
             
@@ -105,7 +105,7 @@ public class LoginController extends Controller {
         return null;
     }
 
-    public ModelAndView loginn(Request request, Response response) throws HttpException {
+    public ModelAndView loginn(Request request, Response response) throws Exception {
         
         try {
 
