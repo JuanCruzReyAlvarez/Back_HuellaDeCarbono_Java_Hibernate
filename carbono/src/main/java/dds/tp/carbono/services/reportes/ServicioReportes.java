@@ -4,14 +4,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import dds.tp.carbono.entities.agenteSectorial.SectorProvincial;
 import dds.tp.carbono.entities.agenteSectorial.SectorTerritorial;
 import dds.tp.carbono.entities.huella.HuellaCarbono;
 import dds.tp.carbono.http.dto.org.HuellaReporteDTO;
 import dds.tp.carbono.http.dto.org.ReportDTO;
 import dds.tp.carbono.repository.PuntoGeografico.MunicipioRepository;
 import dds.tp.carbono.repository.PuntoGeografico.ProvinciaRepository;
-import dds.tp.carbono.repository.agenteSectorial.SectorTerritorialRepository;
 import dds.tp.carbono.repository.member.ReportMiembroRepository;
 import dds.tp.carbono.repository.organization.ReportOrganizacionRepository;
 import dds.tp.carbono.services.external.dto.Municipio;
