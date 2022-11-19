@@ -225,7 +225,7 @@
 						</descriptorRefs>
 						<archive>
 							<manifest>
-								<mainClass>dds/tp/carbono/CarbonoApplication</mainClass>
+								<mainClass>src/main/java/dds/tp/carbono/CarbonoApplication</mainClass>
 							</manifest>
 						</archive>
 					</configuration>
