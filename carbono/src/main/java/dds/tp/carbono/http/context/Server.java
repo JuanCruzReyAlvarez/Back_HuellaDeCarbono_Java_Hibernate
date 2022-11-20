@@ -43,7 +43,7 @@ import spark.servlet.SparkApplication;
 
 public class Server implements SparkApplication {
 
-    private final int PORT = 8080;
+    //private final int PORT = 8080;
     private final String PUBLIC_DIR = "/public";
     //private final TemplateEngine TEMPLATE_ENGINE = new MustacheTemplateEngine();
 
@@ -54,7 +54,7 @@ public class Server implements SparkApplication {
         http.setip();
         IController[] controllers = registerControllers(); 
 
-        http.setPort(PORT)
+        http.setPort(this.getHerokuAssignedPort())
             .setStaticFilesLocation(PUBLIC_DIR)
             .addExceptionHandling()
             .addRouting(controllers);
