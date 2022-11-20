@@ -1,8 +1,8 @@
-package dds.tp.carbono.checker.validators;
+package dds.tp.carbono.passwords.checker.validators;
 
 import java.util.Set;
 
-import dds.tp.carbono.checker.validators.contracts.PasswordValidator;
+import dds.tp.carbono.passwords.checker.validators.contracts.PasswordValidator;
 import lombok.Getter;
 import lombok.Setter;
 

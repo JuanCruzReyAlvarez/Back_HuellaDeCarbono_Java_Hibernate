@@ -71,6 +71,7 @@ public class RegisterController extends Controller {
 
 
         try {
+            
             Usuario usuario = service.register(input.getUsername(), input.getPassword(), input.getRol());
             System.out.println(usuario.getUsername());
             return json(usuario);

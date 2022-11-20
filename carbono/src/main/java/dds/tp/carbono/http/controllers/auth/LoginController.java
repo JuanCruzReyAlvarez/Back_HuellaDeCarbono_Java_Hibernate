@@ -11,7 +11,7 @@ import java.util.Map;
 import dds.tp.carbono.http.controllers.Controller;
 import dds.tp.carbono.http.dto.auth.LoginDTO;
 import dds.tp.carbono.http.dto.validators.LoginDTOValidator;
-import dds.tp.carbono.http.exceptions.HttpException;
+//import dds.tp.carbono.http.exceptions.HttpException;
 import dds.tp.carbono.http.utils.SessionCookie;
 import dds.tp.carbono.http.utils.Uri;
 import dds.tp.carbono.services.auth.LoginService;
@@ -33,10 +33,11 @@ public class LoginController extends Controller {
     public LoginController(LoginService loginService) {
         this.loginService = loginService;
     }
+
     
     @Override
     public void routes( ) {
-        Spark.get(path(Uri.LOGIN), (rq, rs) -> this.loginView(rq, rs), engine);
+        //Spark.get(path(Uri.LOGIN), (rq, rs) -> this.loginView(rq, rs), engine);
         Spark.post("/loginn", (rq, rs) -> this.loginn(rq, rs));
         Spark.post(path(Uri.LOGIN), (rq, rs) -> this.login(rq, rs));
     }

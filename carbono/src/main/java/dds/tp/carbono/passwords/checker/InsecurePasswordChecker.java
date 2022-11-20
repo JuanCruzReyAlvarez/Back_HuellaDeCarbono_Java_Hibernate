@@ -1,8 +1,10 @@
-package dds.tp.carbono.checker;
+package dds.tp.carbono.passwords.checker;
 
 import java.util.Set;
 
-import dds.tp.carbono.checker.validators.contracts.PasswordValidator;
+import dds.tp.carbono.passwords.checker.validators.contracts.PasswordValidator;
+
+
 
 public class InsecurePasswordChecker {
 

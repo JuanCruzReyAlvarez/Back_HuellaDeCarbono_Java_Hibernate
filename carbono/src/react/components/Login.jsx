@@ -31,8 +31,10 @@ export const Login = () => {
                     rol: data.user.rol,
                     token: data.token
                 }
+                const puerta = "8080";
+                const fulla = location.protocol + '//' + location.hostname + ":" + puerta;
                 console.log("USUARI00O LOG", user)
-                axios.post(full +"/logExist", JSON.stringify(user)).then(({ data }) => {
+                axios.post( fulla +"/logExist", JSON.stringify(user)).then(({ data }) => {
                     if (data) {
                         navigate("/");
                         return
@@ -47,7 +49,7 @@ export const Login = () => {
                 })
             })
             .catch((error) => {
-                console.log(error);
+                console.log("Error en el login:",error);
             });
     }
 

@@ -93,11 +93,7 @@ export const Sidebar = () => {
                                         <Link to="/calculators/Miembro">
                                             <li>Calculo sobre un miembro</li>
                                         </Link>
-                                        <Link to="/calculators/Sector_Territorial">
-                                            <li>
-                                                Calculo segun sector territorial
-                                            </li>
-                                        </Link>
+                                        
                                     </ul>
                                 </li>
                             </>

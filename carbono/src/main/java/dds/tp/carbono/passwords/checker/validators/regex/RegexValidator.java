@@ -1,9 +1,11 @@
-package dds.tp.carbono.checker.validators.regex;
+package dds.tp.carbono.passwords.checker.validators.regex;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import dds.tp.carbono.checker.validators.contracts.PasswordValidator;
+import dds.tp.carbono.passwords.checker.validators.contracts.PasswordValidator;
+
+
 
 //template method
 public abstract class RegexValidator implements PasswordValidator{

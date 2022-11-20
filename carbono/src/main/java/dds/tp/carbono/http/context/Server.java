@@ -1,6 +1,5 @@
 package dds.tp.carbono.http.context;
 
-import dds.tp.carbono.builder.InsecurePasswordCheckerBuilder;
 import dds.tp.carbono.contracts.http.IController;
 import dds.tp.carbono.http.controllers.admin.AdminGeoInfoController;
 import dds.tp.carbono.http.controllers.admin.FactorEmisionController;
@@ -44,7 +43,7 @@ import spark.servlet.SparkApplication;
 
 public class Server implements SparkApplication {
 
-    //private final int PORT = 8080;
+    private final int PORT = 8080;
     private final String PUBLIC_DIR = "/public";
     //private final TemplateEngine TEMPLATE_ENGINE = new MustacheTemplateEngine();
 
@@ -55,7 +54,7 @@ public class Server implements SparkApplication {
         http.setip();
         IController[] controllers = registerControllers(); 
 
-        http.setPort(this.getHerokuAssignedPort())
+        http.setPort(PORT)
             .setStaticFilesLocation(PUBLIC_DIR)
             .addExceptionHandling()
             .addRouting(controllers);
@@ -75,7 +74,7 @@ public class Server implements SparkApplication {
     private IController[] registerControllers() {
         return new IController[] {
             new LoginController(new LoginService()),
-            new RegisterController(new RegisterService(new InsecurePasswordCheckerBuilder())),
+            new RegisterController(new RegisterService()),
             new SectorController(new SectorService(),new OrganizacionService()),
             new ProvinciaController(new ProvinciaService()),
             new LocalidadController(new LocalidadService()),

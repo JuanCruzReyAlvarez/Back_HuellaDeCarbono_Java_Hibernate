@@ -17,7 +17,7 @@ public class LogExistService {
     }
 
     public  boolean miembroExists(Integer userId) {
-        return miembroRepository.getByUserId(userId)!= null;
+        return (miembroRepository.getByUserId(userId))!= null;
     }
 
     public  boolean organizacionExists(Integer userId) {

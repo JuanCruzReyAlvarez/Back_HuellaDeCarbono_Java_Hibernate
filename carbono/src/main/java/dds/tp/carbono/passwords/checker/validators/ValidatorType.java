@@ -1,4 +1,4 @@
-package dds.tp.carbono.checker.validators;
+package dds.tp.carbono.passwords.checker.validators;
 
 public enum ValidatorType {
     LOWERCASE,

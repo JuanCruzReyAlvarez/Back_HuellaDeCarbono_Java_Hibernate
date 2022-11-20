@@ -1,4 +1,4 @@
-package dds.tp.carbono.checker.validators.regex;
+package dds.tp.carbono.passwords.checker.validators.regex;
 
 public class NumberPasswordValidator extends RegexValidator {
 

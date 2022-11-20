@@ -1,26 +1,27 @@
 package dds.tp.carbono.services.auth;
 
-import dds.tp.carbono.builder.InsecurePasswordCheckerBuilder;
-import dds.tp.carbono.checker.InsecurePasswordChecker;
-import dds.tp.carbono.contracts.IInsecurePasswordCheckerBuilder;
+
 import dds.tp.carbono.entities.auth.Rol;
 import dds.tp.carbono.entities.auth.Usuario;
+import dds.tp.carbono.passwords.builder.InsecurePasswordCheckerBuilder;
+//import dds.tp.carbono.passwords.checker.InsecurePasswordChecker;
+//import dds.tp.carbono.passwords.contracts.IInsecurePasswordCheckerBuilder;
 import dds.tp.carbono.repository.auth.UsuarioRepository;
 
 public class RegisterService {
 
-    private IInsecurePasswordCheckerBuilder passwordCheckerBuilder;
+    //private IInsecurePasswordCheckerBuilder passwordCheckerBuilder;
     private UsuarioRepository repository;
 
-    public RegisterService(InsecurePasswordCheckerBuilder passwordCheckerBuilder) {
-        this.passwordCheckerBuilder = passwordCheckerBuilder;
+    public RegisterService() {
+       // this.passwordCheckerBuilder = passwordCheckerBuilder;
         this.repository = new UsuarioRepository();
     }
-    public Usuario register(String username, String password, String rol) throws Exception {
-        InsecurePasswordChecker checker = passwordCheckerBuilder.buildPasswordChecker();
 
-        if (!checker.isSecure(password))
-            throw new Exception();
+    public Usuario register(String username, String password, String rol) throws Exception {
+        //InsecurePasswordChecker checker = passwordCheckerBuilder.buildPasswordChecker();
+        //if (checker.isSecure(password))
+        //    throw new Exception();
         Usuario usuario = this.buildUsuario(username, password, rol);
         return this.repository.guardar(usuario);
     }

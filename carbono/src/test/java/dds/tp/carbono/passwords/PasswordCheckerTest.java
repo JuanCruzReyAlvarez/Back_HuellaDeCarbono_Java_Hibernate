@@ -1,13 +1,15 @@
-package dds.tp.carbono;
+package dds.tp.carbono.passwords;
 
 import java.util.Arrays;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import dds.tp.carbono.builder.InsecurePasswordCheckerBuilder;
-import dds.tp.carbono.checker.InsecurePasswordChecker;
-import dds.tp.carbono.checker.validators.ValidatorType;
+import dds.tp.carbono.passwords.builder.InsecurePasswordCheckerBuilder;
+import dds.tp.carbono.passwords.checker.InsecurePasswordChecker;
+import dds.tp.carbono.passwords.checker.validators.ValidatorType;
+
+
 
 public class PasswordCheckerTest {
 

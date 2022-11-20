@@ -1,19 +1,20 @@
-package dds.tp.carbono.builder;
+package dds.tp.carbono.passwords.builder;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import dds.tp.carbono.checker.InsecurePasswordChecker;
-import dds.tp.carbono.checker.validators.LengthPasswordValidator;
-import dds.tp.carbono.checker.validators.ValidatorType;
-import dds.tp.carbono.checker.validators.builder.WeakListPasswordValidatorBuilder;
-import dds.tp.carbono.checker.validators.contracts.PasswordValidator;
-import dds.tp.carbono.checker.validators.regex.LowercasePasswordValidator;
-import dds.tp.carbono.checker.validators.regex.NumberPasswordValidator;
-import dds.tp.carbono.checker.validators.regex.UppercasePasswordValidator;
-import dds.tp.carbono.contracts.IInsecurePasswordCheckerBuilder;
+import dds.tp.carbono.passwords.checker.InsecurePasswordChecker;
+import dds.tp.carbono.passwords.checker.validators.LengthPasswordValidator;
+import dds.tp.carbono.passwords.checker.validators.ValidatorType;
+import dds.tp.carbono.passwords.checker.validators.contracts.PasswordValidator;
+import dds.tp.carbono.passwords.checker.validators.regex.LowercasePasswordValidator;
+import dds.tp.carbono.passwords.checker.validators.regex.NumberPasswordValidator;
+import dds.tp.carbono.passwords.checker.validators.regex.UppercasePasswordValidator;
+import dds.tp.carbono.passwords.contracts.IInsecurePasswordCheckerBuilder;
+
+
 
 public class InsecurePasswordCheckerBuilder implements IInsecurePasswordCheckerBuilder {
 
@@ -27,7 +28,6 @@ public class InsecurePasswordCheckerBuilder implements IInsecurePasswordCheckerB
         validators.put(ValidatorType.LOWERCASE, new LowercasePasswordValidator());
         validators.put(ValidatorType.UPPERCASE, new UppercasePasswordValidator());
         validators.put(ValidatorType.NUMERIC, new NumberPasswordValidator());
-        validators.put(ValidatorType.WEAKLIST, WeakListPasswordValidatorBuilder.build());
     }
     
     public InsecurePasswordChecker buildPasswordChecker(ValidatorType ...types) {

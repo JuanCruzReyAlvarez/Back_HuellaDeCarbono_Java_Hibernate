@@ -3,7 +3,7 @@ package dds.tp.carbono.auth;
 import org.junit.Assert;
 import org.junit.Test;
 
-import dds.tp.carbono.builder.InsecurePasswordCheckerBuilder;
+
 import dds.tp.carbono.entities.auth.Usuario;
 import dds.tp.carbono.http.utils.SessionCookie;
 import dds.tp.carbono.services.auth.LoginService;
@@ -29,7 +29,7 @@ public class LoginTest {
     
     //@Test
     public void loginValido() throws Exception {
-        RegisterService register = new RegisterService(new InsecurePasswordCheckerBuilder());
+        RegisterService register = new RegisterService();
         
         Usuario user = register.register("admin", "Diseniodesistemas12345", "administrador");
 
@@ -44,7 +44,7 @@ public class LoginTest {
     
     @Test
     public void weakPassword() {
-        RegisterService register = new RegisterService(new InsecurePasswordCheckerBuilder());
+        RegisterService register = new RegisterService();
         
         try {
             Usuario user = register.register("admin", "diseniodesistemas12345", "administrador");
