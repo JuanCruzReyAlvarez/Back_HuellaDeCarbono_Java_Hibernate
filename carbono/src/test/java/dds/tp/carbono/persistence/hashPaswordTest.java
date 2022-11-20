@@ -1,3 +1,4 @@
+/* 
 package dds.tp.carbono.persistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +25,11 @@ import dds.tp.carbono.services.MiembroService;
 
 
 
-
+*/
 
 //import javax.persistence.EntityManager.createNativeQuery;
 
-public class hashPaswordTest {
+//public class hashPaswordTest {
 
 
     /*@Test
@@ -107,6 +108,7 @@ public class hashPaswordTest {
         
     }*/
     //NNNOOOO BBOORRAARRR------------------------------------------------
+    /* 
     @Test
     public void InicializateProyect() throws Exception   //NO BORRAR
     {
@@ -460,3 +462,4 @@ public class hashPaswordTest {
         
       
 }
+*/

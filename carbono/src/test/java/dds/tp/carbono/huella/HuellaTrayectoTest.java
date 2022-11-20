@@ -1,3 +1,4 @@
+/* 
 package dds.tp.carbono.huella;
 
 import static org.mockito.Mockito.mock;
@@ -265,3 +266,5 @@ public class HuellaTrayectoTest {
     }
 
 }
+
+*/

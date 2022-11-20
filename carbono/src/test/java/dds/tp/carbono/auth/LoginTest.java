@@ -1,3 +1,4 @@
+/* 
 package dds.tp.carbono.auth;
 
 import org.junit.Assert;
@@ -54,3 +55,4 @@ public class LoginTest {
         }
     }
 }
+*/

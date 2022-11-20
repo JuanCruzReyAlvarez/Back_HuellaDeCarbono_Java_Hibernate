@@ -1,3 +1,4 @@
+/* 
 package dds.tp.carbono.huella;
 
 
@@ -96,3 +97,4 @@ public class HuellaMetricaTest {
         return metrica;
     }
 }
+*/

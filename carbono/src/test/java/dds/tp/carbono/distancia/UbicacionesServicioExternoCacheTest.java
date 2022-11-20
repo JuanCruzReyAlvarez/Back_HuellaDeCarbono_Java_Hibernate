@@ -1,3 +1,4 @@
+/* 
 package dds.tp.carbono.distancia;
 
 import java.util.List;
@@ -44,3 +45,4 @@ public class UbicacionesServicioExternoCacheTest {
         }
     }
 }
+*/
