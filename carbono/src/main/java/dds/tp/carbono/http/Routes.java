@@ -15,6 +15,7 @@ public class Routes {
         this.api = define(Uri.ROOT, "",
     // -------------------------------------------------------------------------------- auth 
         define(Uri.LOGIN, "/login"),
+        define(Uri.LOGINRECOMEND, "/loginrecomend"),
         define(Uri.REGISTER, "/register"),
         define(Uri.HALL, "/hall"),
         define(Uri.PROVINCIA, "/provinciasss"),

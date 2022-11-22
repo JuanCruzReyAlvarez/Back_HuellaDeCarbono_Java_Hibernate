@@ -11,7 +11,7 @@ export const Advices = () => {
     const [usuario, setUser] = useState({});
     const navigate = useNavigate();
     const puerto = "8080";
-    const full = location.protocol + '//' + location.hostname + ":" + puerto;
+
 
 
 

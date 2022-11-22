@@ -25,7 +25,7 @@ public class HttpContext {
     }
 
     public HttpContext setip() {
-        Spark.ipAddress("127.0.0.1");
+        Spark.ipAddress("0.0.0.0");
         return this;
     }
 

@@ -3,6 +3,7 @@ package dds.tp.carbono.http.utils;
 public enum Uri { 
     ROOT, 
     LOGIN, 
+    LOGINRECOMEND,
     REGISTER, 
     ADMIN, 
     ADMIN_ORG, 

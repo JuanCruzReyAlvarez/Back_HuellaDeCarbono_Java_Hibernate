@@ -19,12 +19,16 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
-import spark.TemplateEngine;
+//import spark.TemplateEngine;
+import spark.template.handlebars.HandlebarsTemplateEngine;
 
 
 public class LoginController extends Controller {
-    TemplateEngine engine;
+    //TemplateEngine engine; 
+    HandlebarsTemplateEngine engineTemplate = new HandlebarsTemplateEngine();
     private static final String LOGIN_VIEW = "auth/login.html";
+    //private static final String RECOMEND_VIEW = "auth/login.html";
+   
     private static final String UNAUTHORIZED_MESSAGE = "Usuario o Password invalido";
     private static final String TOKEN_COOKIE_NAME = "CARBONO-TOKEN";
     
@@ -38,9 +42,16 @@ public class LoginController extends Controller {
     @Override
     public void routes( ) {
         //Spark.get(path(Uri.LOGIN), (rq, rs) -> this.loginView(rq, rs), engine);
-        Spark.post("/loginn", (rq, rs) -> this.loginn(rq, rs));
+        System.out.println("la estoy mappeando");
+        Spark.post(path(Uri.LOGINRECOMEND), (rq, rs) -> this.mostrar(rq, rs), engineTemplate);
+        //Spark.post("/loginn", (rq, rs) -> this.loginn(rq, rs));
         Spark.post(path(Uri.LOGIN), (rq, rs) -> this.login(rq, rs));
     }
+
+    public ModelAndView mostrar(Request req, Response res) {
+        return view("miembro-organizacion-recomendaciones.hbs");
+    }
+
 
 
 
@@ -90,7 +101,7 @@ public class LoginController extends Controller {
         return null;
     }
  
-    private ModelAndView loginView(Request request, Response response) {
+   /* private ModelAndView loginView(Request request, Response response) {
         try {
             String token = request.cookie(TOKEN_COOKIE_NAME);
             
@@ -104,7 +115,7 @@ public class LoginController extends Controller {
         }
 
         return null;
-    }
+    }*/
 
     public ModelAndView loginn(Request request, Response response) throws Exception {
         

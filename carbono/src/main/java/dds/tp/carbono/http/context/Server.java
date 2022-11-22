@@ -54,7 +54,7 @@ public class Server implements SparkApplication {
         http.setip();
         IController[] controllers = registerControllers(); 
 
-        http.setPort(this.getHerokuAssignedPort())
+        http.setPort(this.getHerokuAssignedPort()) 
             .setStaticFilesLocation(PUBLIC_DIR)
             .addExceptionHandling()
             .addRouting(controllers);

@@ -51,5 +51,8 @@
     },
     "devDependencies": {
         "react-scripts": "^5.0.1"
+    },
+    "engines":{
+        "node": "14.17.3"
     }
 }

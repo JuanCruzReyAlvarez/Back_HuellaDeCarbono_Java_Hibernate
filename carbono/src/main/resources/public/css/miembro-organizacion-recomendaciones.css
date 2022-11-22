@@ -1,0 +1,289 @@
+.miembro-organizacion-recomendaciones-container {
+  min-height: 100vh;
+}
+.miembro-organizacion-recomendaciones-miembro-organizacion-recomendaciones {
+  width: 100%;
+  height: 1304px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-end;
+  flex-shrink: 0;
+  justify-content: center;
+  background-color: rgba(237, 242, 228, 1);
+}
+.miembro-organizacion-recomendaciones-header {
+  top: 0px;
+  flex: 1;
+  left: 0px;
+  width: 100%;
+  height: 147px;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: #E6E6E6;
+}
+.miembro-organizacion-recomendaciones-button {
+  top: 54px;
+  color: rgb(231, 239, 218);
+  right: 190px;
+  width: 296px;
+  height: 62px;
+  display: flex;
+  position: absolute;
+  font-size: 30px;
+  font-style: normal;
+  text-align: center;
+  transition: 0.3s;
+  align-items: center;
+  font-family: Inter;
+  font-weight: 700;
+  padding-top: 0px;
+  padding-left: 0px;
+  border-radius: 4px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  justify-content: center;
+  background-color: rgb(115, 158, 35);
+}
+.miembro-organizacion-recomendaciones-button:hover {
+  background-color: rgba(115, 158, 35, 0.76);
+}
+.miembro-organizacion-recomendaciones-button1 {
+  top: 54px;
+  color: rgb(231, 239, 218);
+  right: 17px;
+  width: 145px;
+  height: 62px;
+  display: flex;
+  position: absolute;
+  font-size: 30px;
+  font-style: normal;
+  text-align: center;
+  transition: 0.3s;
+  align-items: center;
+  font-family: Inter;
+  font-weight: 700;
+  padding-top: 0px;
+  padding-left: 0px;
+  border-radius: 4px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  justify-content: center;
+  background-color: rgb(95, 117, 70);
+}
+.miembro-organizacion-recomendaciones-button1:hover {
+  background-color: rgba(95, 117, 70, 0.82);
+}
+.miembro-organizacion-recomendaciones-text {
+  top: 19px;
+  left: 255px;
+  color: rgba(0, 0, 0, 1);
+  width: 156px;
+  height: auto;
+  position: absolute;
+  font-size: 72px;
+  align-self: auto;
+  font-style: Bold;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.miembro-organizacion-recomendaciones-sao4 {
+  top: 0px;
+  left: 0px;
+  width: 210px;
+  height: 147px;
+  position: absolute;
+  border-color: transparent;
+}
+.miembro-organizacion-recomendaciones-text02 {
+  top: 101px;
+  left: 255px;
+  color: rgba(76, 76, 76, 1);
+  width: 699px;
+  height: auto;
+  position: absolute;
+  font-size: 30px;
+  align-self: auto;
+  font-style: Bold;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.miembro-organizacion-recomendaciones-rectangle8 {
+  top: 146px;
+  left: 0px;
+  width: 100%;
+  height: 14px;
+  z-index: 100;
+  position: absolute;
+  border-color: transparent;
+}
+.miembro-organizacion-recomendaciones-titulo {
+  top: 184px;
+  left: 60px;
+  color: rgba(0, 0, 0, 1);
+  width: 1252px;
+  height: auto;
+  position: absolute;
+  font-size: 64px;
+  align-self: auto;
+  font-style: Bold;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.miembro-organizacion-recomendaciones-subtitulo {
+  top: 365px;
+  left: 60px;
+  color: rgba(76, 76, 76, 1);
+  width: 736px;
+  height: auto;
+  position: absolute;
+  font-size: 40px;
+  align-self: auto;
+  font-style: Bold;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.miembro-organizacion-recomendaciones-cuerpo {
+  top: 489px;
+  left: 60px;
+  color: rgb(0, 0, 0);
+  width: 594px;
+  height: auto;
+  position: absolute;
+  font-size: 22px;
+  align-self: auto;
+  font-style: Regular;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.miembro-organizacion-recomendaciones-compartir {
+  top: 1117px;
+  right: 100px;
+  width: 217.015625px;
+  height: 1300px;
+  display: flex;
+  position: absolute;
+  align-items: flex-end;
+  justify-content: center;
+}
+.miembro-organizacion-recomendaciones-compartir1 {
+  top: 0px;
+  left: 0px;
+  color: rgba(0, 0, 0, 0.75);
+  width: auto;
+  height: auto;
+  position: absolute;
+  font-size: 26px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.miembro-organizacion-recomendaciones-form {
+  top: 52px;
+  left: 62.015625px;
+  width: 98px;
+  height: 91px;
+  position: absolute;
+  box-shadow: 5px 5px 10px 0px #d4d4d4;
+  transition: 0.3s;
+  border-radius: 200px;
+  background-color: var(--dl-color-gray-white);
+}
+.miembro-organizacion-recomendaciones-form:hover {
+  opacity: 0.6;
+}
+.miembro-organizacion-recomendaciones-comparte {
+  top: 73px;
+  left: 82.015625px;
+  width: 51px;
+  height: 54px;
+  z-index: 100;
+  position: absolute;
+  transition: 0.3s;
+}
+.miembro-organizacion-recomendaciones-comparte:hover {
+  opacity: 0.6;
+}
+.miembro-organizacion-recomendaciones-imagenes {
+  top: 406.9886169433594px;
+  left: 798.991455078125px;
+  width: 755.0142059326172px;
+  height: 937.9971313476562px;
+  display: flex;
+  position: absolute;
+  align-items: flex-end;
+  justify-content: center;
+}
+.miembro-organizacion-recomendaciones-image17 {
+  top: 135.00003051757812px;
+  left: 0px;
+  width: 359px;
+  height: 359px;
+  position: absolute;
+  border-color: transparent;
+  border-radius: 316.5px;
+}
+.miembro-organizacion-recomendaciones-image16 {
+  top: 0px;
+  left: 179.00567626953125px;
+  width: 417px;
+  height: 276px;
+  position: absolute;
+  border-color: transparent;
+  border-radius: 113px;
+}
+.miembro-organizacion-recomendaciones-image22 {
+  left: 357.9971923828125px;
+  width: 397px;
+  bottom: 0px;
+  height: 322px;
+  position: absolute;
+  border-color: transparent;
+}
+.miembro-organizacion-recomendaciones-image23 {
+  right: 0px;
+  width: 136px;
+  bottom: 10.000030517578125px;
+  height: 140px;
+  position: absolute;
+  border-color: transparent;
+}
