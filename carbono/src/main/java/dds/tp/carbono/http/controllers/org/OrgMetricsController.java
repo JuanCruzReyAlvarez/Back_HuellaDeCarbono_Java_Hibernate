@@ -39,31 +39,15 @@ public class OrgMetricsController extends Controller {
             
           Integer userId = Integer.parseInt(request.queryParams("cookie")) ;
 
-          System.out.println("HOLAAAA1");
-
           Organizacion organizacion = new Organizacion();
           
           organizacion = this.service.getByUser(userId);
-
-          System.out.println("HOLAAAA2");
             
           MetricsImporterService metricsService = new MetricsImporterService(organizacion);
-
-          System.out.println("HOLAAAA3");
 
           List<MetricaOrganizacion> metricas = new ArrayList();
 
           metricas = metricsService.importExcel(is);
-
-          
-
-          System.out.println("HOLAAAA4");
-          System.out.println(organizacion.getId());
-          System.out.println(metricas.get(0).getOrganizacion().getId());
-            
-          //metricsService.updateAll(metricas,organizacion.getId());
-
-          System.out.println("HOLAAAA5");
 
           return json(goodAnswer());
         }
